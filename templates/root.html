@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="static/bootstrap.min.css">
+<script src="static/jquery.min.js"></script>
+<script src="static/bootstrap.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GreenBelt Bonus System</title>
+</head>
+
+<body>
+
+<div class="site-notice" style="padding: 5px 0 ;text-align: center;background: #208d4e" >
+    <marquee behavior="" direction="" style="color: linen;font-size: 16px">notice from website</marquee>
+</div>
+
+<header class="site-header jumbotron" style="background:#27AE60">
+    <div class="container-fluid">
+        <div style="text-align: center;font-size: 44px;color:white;font-family: "Monotype Corsiva", "Apple Chancery", "URW Chancery L", cursive">
+            Hallo,
+            <br>
+            Welcome to GreenBelt Bonus Search Page
+        </div>
+
+    <div class="form-group" style="color: #dff0d8;font-size: 20px">
+        <form action="" method="post" class="col-xs-12">
+        <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
+        <div class="row col-md-6 col-md-offset-3">
+            <div class="input-group">
+            <input type="text" name="employee_name" placeholder="Enter Employee Name" class="form-control search clearable">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" name="submit">Submit</button>
+            </span>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    </div>
+</header>
+
+     {% if data %}
+     <div class="container-fluid" style="margin-left: auto;margin-right: auto">
+     <div class="table-responsive">
+     <table class="table table-hover table-striped" style="text-align: center;margin-left: auto;margin-right: auto">
+        <caption style="text-align: center;font-size: 20px">Information of {{ request.form.get('employee_name') }}</caption>
+        <tr style="text-align: center">
+            <th>PROJECT_NUMBER</th>
+            <th>PROJECT_NAME</th>
+            <th>PROJECT_DUE_TIME</th>
+            <th>PROJECT_LEADER</th>
+            <th>PROJECT_MEMBER</th>
+            <th>LEADER_BONUS</th>
+            <th>MEMBER_BONUS</th>
+        </tr>
+
+        {% for rows in data %}
+            <tr>
+            {% for element in rows %}
+                <td>{{ element }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    </div>
+    </div>
+    {% endif %}
+
+     {% if total %}
+     <div style="text-align: left;font-size: 20px;color:darkmagenta;font-style: italic">
+         {{ request.form.get('employee_name') }}'s total Bonus is {{ total }}
+     </div>
+     </div>
+    {% endif %}
+
+<nav class="navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p style="font-size: 9px;color: #adadad">ALL RIGHTS &copy; 2016 SHELDON CHEN</p>
+    </div>
+</nav>
+
+</body>
+</html>
