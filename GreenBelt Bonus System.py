@@ -8,7 +8,7 @@ app.secret_key = 'WELCOME TO SIX_SIGMA TEAM'
 
 @app.before_request
 def connect_db():
-    path = os.path.dirname(__file__) + '/Bonus.db'
+    path = os.path.abspath(os.path.dirname(__file__)) + '/Bonus.db'
     print path,url_for('customer')
     g.conn = sqlite3.Connection(path)
 
