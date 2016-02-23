@@ -39,12 +39,12 @@
 
     <div class="col-sm-6 col-md4 col-lg-3">
         <div class="thumbnail">
-            <a href="#"><img src="static/upload.jpg" width="300" height="300"></img></a>
+            <a href="{{ url_for('login') }}"><img src="static/upload.jpg" width="300" height="300"></img></a>
 
             <div class="caption">
                 <p>An Administrator?Need To Upload Data?</p>
                 <hr>
-                <a class="btn btn-success" href="">Log In</a>
+                <a class="btn btn-success" href="{{ url_for('login') }}">Log In</a>
             </div>
         </div>
     </div>

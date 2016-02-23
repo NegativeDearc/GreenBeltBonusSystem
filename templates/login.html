@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="static/bootstrap.min.css">
+<script src="static/jquery.min.js"></script>
+<script src="static/bootstrap.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="" method="POST">
+    <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
+    {% for messages in get_flashed_messages() %}
+    {{ messages }}
+    {% endfor %}
+    <input type="text" required="required" name="usr">
+    <input type="password" required="required" name="pwd">
+    <input type="submit">
+</form>
+</body>
+</html>

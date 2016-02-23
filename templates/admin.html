@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="static/bootstrap.min.css">
+<script src="static/jquery.min.js"></script>
+<script src="static/bootstrap.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Maintain Your DB</title>
+</head>
+
+<body>
+<div class="page-header" style="padding-left: 20px">
+  <h1>Admin maintain panel<small>Be careful!</small></h1>
+</div>
+
+<div class="row" style="padding-left:20px;padding-right: 20px">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+        <div class="panel-heading">User Information</div>
+        <div class="panel-body">
+            <div>
+            <ol style="color:red">
+                <li>All text field required</li>
+                <li>Want to UPDATE data instead of INSERT? select the check box</li>
+                <li>Code of Drop list from file QW144-01-01</li>
+                <li>Uppercase needed</li>
+                <li>Use ',' separate use name,do not use chinese '，'</li>
+                <li>Recheck before submit,database can't roll back</li>
+            </ol>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-9">
+    <form action="" method="post" class="form-horizontal">
+    <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
+    <div class="form-group">
+        <label for="use_type" class="col-sm-2 control-label">Choose to Update instead of Insert</label>
+        <div class="col-sm-2">
+            <!--if choose request.form get 'on'-->
+            <input type="checkbox" class="btn" name="update">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="proj_type" class="col-sm-2 control-label">Project type</label>
+        <div class="col-sm-2">
+            <select id="s1" class="btn btn-default" name="s1">
+                <option value="S">S</option>
+                <option value="P">P</option>
+                <option value="K">K</option>
+                <option value="G">G</option>
+                <option value="B">B</option>
+            </select>
+        </div>
+        <label for="golden_idea_type" class="col-sm-2 control-label">Golden idea type</label>
+        <div class="col-sm-2">
+            <select id="s2" class="btn btn-default" name="s2">
+                <option value="S1">S</option>
+                <option value="P1">P</option>
+                <option value="K1">K</option>
+                <option value="G1">G1</option>
+                <option value="G2">G2</option>
+                <option value="G3">G3</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+                <option value="B3">B3</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="proj_num" class="col-sm-2 control-label">Project Number</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" placeholder="CKT1600X" name="project_num" required="required">
+        </div>
+        <label for="proj_name" class="col-sm-2 control-label">Project Name</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" placeholder="Title of your Project" name="project_name" required="required">
+        </div>
+    </div>
+    <!--xx-->
+    <div class="form-group">
+        <label for="due_time" class="col-sm-2 control-label">Due Time</label>
+        <div class="col-sm-2">
+            <input type="date" class="form-control" name="due_time" required="required">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inintialor" class="col-sm-2 control-label">inintialor</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" name="inintialor" required="required">
+        </div>
+        <label for="leader" class="col-sm-2 control-label">leader</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" name="leader" required="required">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="major_member" class="col-sm-2 control-label">major member</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="major_member" required="required" placeholder="LEON WANG,JUSTIN WAN">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="minior_member" class="col-sm-2 control-label">Minior Member</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="minior_member" required="required" placeholder="KEVIN SONG,DAMON CHEN">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="submit" class="col-sm-2 control-label">Submit</label>
+        <div class="col-sm-4">
+             <input type="submit" class="btn btn-default">
+        </div>
+    </div>
+</form>
+    </div>
+</div>
+
+
+
+<nav class="navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p style="font-size: 9px;color: #adadad">ALL RIGHTS &copy; 2016 SHELDON CHEN</p>
+    </div>
+</nav>
+</body>
+
+
+<script>
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
+    $.ajax({
+        type: 'POST',
+        url: $SCRIPT_ROOT+ '/api/selector',
+        data:JSON.stringify({'s1':jQuery("#s1 option:selected").val(),'s2':jQuery("#s2 option:selected").val()}),
+        dataType: 'json'
+        //contentType:
+        });
+</script>
+</html>
