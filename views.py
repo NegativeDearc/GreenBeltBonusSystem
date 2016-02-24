@@ -9,8 +9,10 @@ app.secret_key = 'WELCOME TO SIX_SIGMA TEAM'
 
 @app.before_request
 def connect_db():
+    #+'/CLSS_BONUS_DB' in Linux or OSX
     path = os.path.abspath(os.path.dirname(__file__)) + '\CLSS_BONUS_DB'
-    g.conn = sqlite3.Connection(path)
+    g.conn = sqlite3.connect(path)
+    g.conn.text_factory=lambda x: unicode(x, "utf-8", "ignore")
 
 def csrf_protect():
     if request.method == 'POST':
@@ -32,10 +34,14 @@ def customer():
     if request.method == 'POST':
         employee_name = request.form.get('employee_name','')
         if employee_name != '':
-            SQL_SEARCH_MEMBER = '''
-                SELECT * FROM TOTAL WHERE LEADER LIKE "%%%s%%" OR
-                MAJOR_PARTICIPATOR LIKE "%%%s%%" OR
-                MINIOR_PARTICIPATOR LIKE "%%%s%%"
+            SQL_SEARCH_MEMBER = '''SELECT *
+                                   FROM TOTAL
+                                   WHERE LEADER
+                                   LIKE "%%%s%%"
+                                   OR MAJOR_PARTICIPATOR
+                                   LIKE "%%%s%%"
+                                   OR MINIOR_PARTICIPATOR
+                                   LIKE "%%%s%%;"
                                 ''' % (employee_name,employee_name,employee_name)
             cur = g.conn.cursor()
             res = cur.execute(SQL_SEARCH_MEMBER).fetchall()
@@ -50,21 +56,50 @@ def index():
 def admin():
     if session.get('is_actived',False) is not True:
         #actived until the web browser shut down
+        #if want to logout,just let session['is_actived']=False
         abort(401)
     if request.method == 'POST':
         print request.form
-        cur = g.conn.cursor()
-        INSERT_PROJECT_INFO = '''INSERT INTO PROJECT_INFO (PROJECT_NUMBER,PROJECT_NAME,PROJECT_DUE_TIME) VALUES ("%s","%s","%s");''' \
-                              % (request.form['project_num'],request.form['project_name'],request.form['due_time'])
-        INSERT_MEMBER_INFO = '''INSERT INTO MEMBER_INFO (PROJECT_NUMBER,ININTIALOR,LEADER,MAJOR_PARTICIPATOR,MINIOR_PARTICIPATOR) VALUES ("%s","%s","%s","%s","%s");'''\
-                             % (request.form['project_num'] , request.form['inintialor'] , request.form['leader'],request.form['major_member'],request.form['minior_member'])
-        INSERT_SCORE_INFO = ''' INSERT INTO SCORE_CARD (PROJECT_NUMBER,GOLDEN_IDEA_LEVEL,PROJECT_SCORE_LEVEL) VALUES ("%s","%s","%s");''' \
-                            % (request.form['project_num'],request.form['s2'],request.form['s1'])
-        cur.execute(INSERT_PROJECT_INFO)
-        cur.execute(INSERT_MEMBER_INFO)
-        cur.execute(INSERT_SCORE_INFO)
-        g.conn.commit()
-        return redirect(url_for('admin'))
+        #update values
+        if request.form.get('update','') == 'on':
+            cur = g.conn.cursor()
+            UPDATE_PROJECT_INFO = '''UPDATE PROJECT_INFO 
+                                     SET PROJECT_NAME = "%s",PROJECT_DUE_TIME = "%s"
+                                     WHERE PROJECT_NUMBER = "%s";
+                                     '''% (request.form['project_name'],request.form['due_time'],request.form['project_num'])
+            UPDATE_MEMBER_INFO = '''UPDATE MEMBER_INFO 
+                                    SET ININTIALOR = "%s",LEADER = "%s",MAJOR_PARTICIPATOR = "%s",MINIOR_PARTICIPATOR = "%s"
+                                    WHERE PROJECT_NUMBER = "%s";
+                                    ''' % (request.form['inintialor'] , request.form['leader'],request.form['major_member'],request.form['minior_member'],request.form['project_num'])
+            UPDATE_SCORE_INFO = ''' UPDATE SCORE_CARD 
+                                    SET GOLDEN_IDEA_LEVEL = "%s",PROJECT_SCORE_LEVEL = "%s"
+                                    WHERE PROJECT_NUMBER = "%s";
+                                    ''' % (request.form['s2'],request.form['s1'],request.form['project_num'])
+            cur.execute(UPDATE_PROJECT_INFO)
+            cur.execute(UPDATE_MEMBER_INFO)
+            cur.execute(UPDATE_SCORE_INFO)
+            g.conn.commit()
+            return redirect(url_for('admin'))
+        #insert values
+        else:
+            cur = g.conn.cursor()
+            INSERT_PROJECT_INFO = '''INSERT INTO
+                                     PROJECT_INFO (PROJECT_NUMBER,PROJECT_NAME,PROJECT_DUE_TIME)
+                                     VALUES ("%s","%s","%s");
+                                     '''% (request.form['project_num'],request.form['project_name'],request.form['due_time'])
+            INSERT_MEMBER_INFO = '''INSERT INTO
+                                    MEMBER_INFO (PROJECT_NUMBER,ININTIALOR,LEADER,MAJOR_PARTICIPATOR,MINIOR_PARTICIPATOR)
+                                    VALUES ("%s","%s","%s","%s","%s");
+                                    ''' % (request.form['project_num'] , request.form['inintialor'] , request.form['leader'],request.form['major_member'],request.form['minior_member'])
+            INSERT_SCORE_INFO = ''' INSERT INTO
+                                    SCORE_CARD (PROJECT_NUMBER,GOLDEN_IDEA_LEVEL,PROJECT_SCORE_LEVEL)
+                                    VALUES ("%s","%s","%s");
+                                    ''' % (request.form['project_num'],request.form['s2'],request.form['s1'])
+            cur.execute(INSERT_PROJECT_INFO)
+            cur.execute(INSERT_MEMBER_INFO)
+            cur.execute(INSERT_SCORE_INFO)
+            g.conn.commit()
+            return redirect(url_for('admin'))
     return render_template('admin.html')
 
 @app.route('/auth/login',methods = ['GET','POST'])

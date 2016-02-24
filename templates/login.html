@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="static/bootstrap.min.css">
-<script src="static/jquery.min.js"></script>
-<script src="static/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../static/bootstrap.min.css">
+<script src="../static/jquery.min.js"></script>
+<script src="../static/bootstrap.min.js"></script>
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Log In</title>
 </head>
-<body>
-<form action="" method="POST">
-    <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
-    {% for messages in get_flashed_messages() %}
-    {{ messages }}
-    {% endfor %}
-    <input type="text" required="required" name="usr">
-    <input type="password" required="required" name="pwd">
-    <input type="submit">
-</form>
+<body background="../static/bg.png">
+<nav class="navbar-inverse navbar-fixed-top" style="background-color: #1fa67a">
+    <div class="container">
+        <nav class="navbar-header" style="background-size: 200%">
+            <a class="navbar-brand" type="submit" href="#" style="color: white;">GreenBelt Bonus System</a>
+            <form class="navbar-form navbar-right">
+                <a class="btn btn-success" type="submit" href="../index">Return to Index</a>
+            </form>
+        </nav>
+    </div>
+</nav>
+
+<div class="container" style="margin-top: 80px;">
+    <form role="form" action="" method="post" class="form-horizontal">
+        <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
+         <div class="form-group">
+            <label for="usr" class="control-label col-sm-2">User</label>
+             <div class="col-sm-2"><input type="text" required="required" name="usr"></div>
+         </div>
+
+        <div class="form-group">
+            <label for="psw" class="control-label col-sm-2">Password</label>
+            <div class="col-sm-2"><input type="password" required="required" name="pwd"></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">
+                {% for messages in get_flashed_messages() %}
+                {{ messages }}
+                {% endfor %}
+            </div>
+            <div class="col-sm-2"><input type="submit" class="btn btn-default"></div>
+        </div>
+    </form>
+</div>
+
+
+<nav class="navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p style="font-size: 9px;color: #adadad">ALL RIGHTS &copy; 2016 SHELDON CHEN</p>
+    </div>
+</nav>
+</body>
 </body>
 </html>
