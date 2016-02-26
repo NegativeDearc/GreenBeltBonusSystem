@@ -1,6 +1,8 @@
-from flask import Flask,render_template,request,g,session,url_for,abort,redirect,flash
+from flask import Flask,render_template,request,g,session,url_for,abort,redirect,flash,jsonify
 from release_score import Action
+from itertools import chain
 import sqlite3
+import string
 import os
 
 app = Flask(__name__)
@@ -196,8 +198,8 @@ def admin():
             project_num = reverse_dict.get('RELEASE6')
             action = Action(g.conn,project_num,flag='6_MONTH')
             action.release_bonus()
-        if reverse_dict.has_key('CLOSE3'):
-            project_num = reverse_dict.get('CLOSE3')
+        if reverse_dict.has_key('CLOSE6'):
+            project_num = reverse_dict.get('CLOSE6')
             action = Action(g.conn,project_num,flag='6_MONTH')
             action.close_prj()
             return redirect(url_for('admin'))
@@ -217,6 +219,20 @@ def login():
         else:
             flash('Wrong User Name or Password')
     return render_template('login.html')
+
+@app.route('/api/user/')
+def user():
+    n = request.args.get('term','')
+    cur = g.conn.cursor()
+    SEARCH_NAME = '''SELECT FORMAT_NAME
+                     FROM USER_ID
+                     WHERE NAME
+                     LIKE "%%%s%%"
+                     OR
+                     ID LIKE "%%%s%%";''' % (n,n)
+    res = cur.execute(SEARCH_NAME).fetchall()
+    usr_name = list(chain(*res))
+    return jsonify(dict(zip(string.lowercase,usr_name)))
 
 if __name__ == '__main__':
     app.run(debug = True, port = 5010,threaded = True)
