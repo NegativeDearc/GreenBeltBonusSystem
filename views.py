@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,g,session,url_for,abort,redirect,flash,jsonify
 from release_score import Action
+from views_sql import views_sql
 from totalSummary import totalSummary
 from itertools import chain
 import sqlite3
@@ -8,6 +9,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = 'WELCOME TO SIX_SIGMA TEAM'
+sql = views_sql()
 
 def count_member(name):
     s = name.split(',')
@@ -37,30 +39,16 @@ app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 @app.route('/customer',methods = ['GET','POST'])
 def customer():
-    res = None;total = None;
+    res = None;
     d0 = None;d1 = None;d2 = None;d3 = None;d4 = None
-    d5 = None;d6 = None;d7 =None;d8 = None;d9 = None;
+    d5 = None;d6 = None;d7 = None;d8 = None;d9 = None;
     d10 = None;d11 = None;d12 = None
     if request.method == 'POST':
         employee_name = request.form.get('employee_name','')
         if employee_name != '':
-            SQL_SEARCH_MEMBER = '''SELECT PROJECT_NUMBER,
-                                          PROJECT_NAME,
-                                          PROJECT_DUE_TIME,
-                                          ININTIALOR,
-                                          LEADER,
-                                          MAJOR_PARTICIPATOR,
-                                          MINIOR_PARTICIPATOR,
-                                          ACTIVE_SCORE
-                                   FROM TOTAL
-                                   WHERE LEADER LIKE "%%%s%%"
-                                   OR ININTIALOR LIKE "%%%s%%"
-                                   OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
-                                   OR MAJOR_PARTICIPATOR LIKE "%%%s%%";
-                                ''' % (tuple([employee_name]) * 4)
+            search_member = sql.SQL_SEARCH_MEMBER % (tuple([employee_name]) * 4)
             cur = g.conn.cursor()
-            res = cur.execute(SQL_SEARCH_MEMBER).fetchall()
-            print res
+            res = cur.execute(search_member).fetchall()
             ts = totalSummary(employee_name)
             d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12 = ts.summary(g.conn)
     return render_template('root.html',data = res,d0 = d0,d1 = d1,d2 = d2,d3 = d3,d4 = d4,
@@ -73,7 +61,6 @@ def index():
 
 @app.route('/admin',methods = ['GET','POST'])
 def admin():
-    print request.form
     if session.get('is_active',False) is not True:
         #actived until the web browser shut down
         #if want to logout,just let session['is_active']=False
@@ -81,30 +68,8 @@ def admin():
 
     #search the project reaching to the check point
     cur = g.conn.cursor()
-    data_3_month = cur.execute('''SELECT PROJECT_NUMBER,
-                                         PROJECT_NAME,
-                                         CHECK_POINT_3_MONTH,
-                                         LEADER,
-                                         GOLDEN_IDEA_SCORE,
-                                         PROJECT_SCORE,
-                                         ACTIVE_SCORE
-                                  FROM TOTAL
-                                  WHERE DATE('now','+3 days') > CHECK_POINT_3_MONTH
-                                  AND DATE('now','-3 days') < CHECK_POINT_3_MONTH
-                                  AND ([3_MONTH_CHECK] != 1 OR [3_MONTH_CHECK] IS NULL);
-                               ''').fetchall()
-    data_6_month = cur.execute('''SELECT PROJECT_NUMBER,
-                                         PROJECT_NAME,
-                                         CHECK_POINT_6_MONTH,
-                                         LEADER,
-                                         GOLDEN_IDEA_SCORE,
-                                         PROJECT_SCORE,
-                                         ACTIVE_SCORE
-                                  FROM TOTAL
-                                  WHERE DATE('now','+3 days') > CHECK_POINT_6_MONTH
-                                  AND DATE('now','-3 days') < CHECK_POINT_6_MONTH
-                                  AND ([6_MONTH_CHECK] != 1 OR [6_MONTH_CHECK] IS NULL );
-                               ''').fetchall()
+    data_3_month = cur.execute(sql.data_3_month).fetchall()
+    data_6_month = cur.execute(sql.data_6_month).fetchall()
     if request.method == 'POST':
         reverse_dict = dict(zip(request.form.values(),request.form.keys()))
         if request.form.get('sub1') == 'submit':
@@ -112,36 +77,22 @@ def admin():
             if request.form.get('update','') == 'on':
                 #sqlite3 dynamic for type,it's ok use %s or ?
                 cur = g.conn.cursor()
-                UPDATE_PROJECT_INFO = '''UPDATE PROJECT_INFO
-                                         SET PROJECT_NAME = "%s",PROJECT_DUE_TIME = "%s"
-                                         WHERE PROJECT_NUMBER = "%s";
-                                         '''% (request.form['project_name'],
-                                               request.form['due_time'],
-                                               request.form['project_num'])
-                UPDATE_MEMBER_INFO = '''UPDATE MEMBER_INFO
-                                        SET ININTIALOR = "%s",
-                                            LEADER = "%s",
-                                            MAJOR_PARTICIPATOR = "%s",
-                                            MINIOR_PARTICIPATOR = "%s"
-                                        WHERE PROJECT_NUMBER = "%s";
-                                        ''' % (request.form['inintialor'],
+                UPDATE_PROJECT_INFO = sql.UPDATE_PROJECT_INFO \
+                                      % (request.form['project_name'],
+                                         request.form['due_time'],
+                                         request.form['project_num'])
+                UPDATE_MEMBER_INFO = sql.UPDATE_MEMBER_INFO % \
+                                              (request.form['inintialor'],
                                                request.form['leader'],
                                                request.form['major_member'],
                                                request.form['minior_member'],
                                                request.form['project_num'])
-                UPDATE_SCORE_INFO = ''' UPDATE SCORE_CARD
-                                        SET GOLDEN_IDEA_LEVEL = "%s",
-                                            PROJECT_SCORE_LEVEL = "%s"
-                                        WHERE PROJECT_NUMBER = "%s";
-                                        ''' % (request.form['s2'],
+                UPDATE_SCORE_INFO = sql.UPDATE_SCORE_INFO % \
+                                              (request.form['s2'],
                                                request.form['s1'],
                                                request.form['project_num'])
-                UPDATE_MEMBER_COUNT_MAJOR = '''UPDATE MEMBER_INFO
-                                               SET MAJOR_PARTICIPATOR_COUNT = count_member(MAJOR_PARTICIPATOR)
-                                               WHERE PROJECT_NUMBER = "%s"''' % request.form['project_num']
-                UPDATE_MEMBER_COUNT_MAINIOR = '''UPDATE MEMBER_INFO
-                                                 SET MINIOR_PARTICIPATOR_COUNT = count_member(MINIOR_PARTICIPATOR)
-                                                 WHERE PROJECT_NUMBER = "%s"''' % request.form['project_num']
+                UPDATE_MEMBER_COUNT_MAJOR = sql.UPDATE_MEMBER_COUNT_MAJOR % request.form['project_num']
+                UPDATE_MEMBER_COUNT_MAINIOR = sql.UPDATE_MEMBER_COUNT_MAINIOR % request.form['project_num']
 
                 cur.execute(UPDATE_PROJECT_INFO)
                 cur.execute(UPDATE_MEMBER_INFO)
@@ -153,32 +104,20 @@ def admin():
             #insert values
             else:
                 cur = g.conn.cursor()
-                INSERT_PROJECT_INFO = '''INSERT INTO
-                                         PROJECT_INFO (PROJECT_NUMBER,PROJECT_NAME,PROJECT_DUE_TIME)
-                                         VALUES ("%s","%s","%s");
-                                         '''% (request.form['project_num'],
+                INSERT_PROJECT_INFO = sql.INSERT_PROJECT_INFO % \
+                                              (request.form['project_num'],
                                                request.form['project_name'],
                                                request.form['due_time'])
-                INSERT_MEMBER_INFO = '''INSERT INTO
-                                        MEMBER_INFO (PROJECT_NUMBER,
-                                                     ININTIALOR,
-                                                     LEADER,
-                                                     MAJOR_PARTICIPATOR,
-                                                     MINIOR_PARTICIPATOR,
-                                                     MAJOR_PARTICIPATOR_COUNT,
-                                                     MINIOR_PARTICIPATOR_COUNT)
-                                        VALUES ("%s","%s","%s","%s","%s","%s","%s");
-                                        ''' % (request.form['project_num'] ,
+                INSERT_MEMBER_INFO = sql.INSERT_MEMBER_INFO % \
+                                              (request.form['project_num'] ,
                                                request.form['inintialor'] ,
                                                request.form['leader'],
                                                request.form['major_member'],
                                                request.form['minior_member'],
                                                count_member(request.form['major_member']),
                                                count_member(request.form['minior_member']))
-                INSERT_SCORE_INFO = ''' INSERT INTO
-                                        SCORE_CARD (PROJECT_NUMBER,GOLDEN_IDEA_LEVEL,PROJECT_SCORE_LEVEL)
-                                        VALUES ("%s","%s","%s");
-                                        ''' % (request.form['project_num'],
+                INSERT_SCORE_INFO = sql.INSERT_SCORE_INFO % \
+                                              (request.form['project_num'],
                                                request.form['s2'],
                                                request.form['s1'])
 
@@ -227,12 +166,7 @@ def login():
 def user():
     n = request.args.get('term','')
     cur = g.conn.cursor()
-    SEARCH_NAME = '''SELECT FORMAT_NAME
-                     FROM USER_ID
-                     WHERE NAME
-                     LIKE "%%%s%%"
-                     OR
-                     ID LIKE "%%%s%%";''' % (n,n)
+    SEARCH_NAME = sql.SEARCH_NAME % (n,n)
     res = cur.execute(SEARCH_NAME).fetchall()
     usr_name = list(chain(*res))
     return jsonify(dict(zip(string.lowercase,usr_name)))
@@ -241,5 +175,6 @@ def user():
 def about():
     return render_template('about.html')
 
+
 if __name__ == '__main__':
-    app.run(debug = True, port = 5010,threaded = True)
+    app.run(debug=True,threaded=True,port=5010)
