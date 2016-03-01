@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views_sql.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/GreenBeltBonusSystem.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/insert_records.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/us_dollar.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CTLSS_BONUS_DB" afterPath="$PROJECT_DIR$/CTLSS_BONUS_DB" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CONFIG.py" afterPath="$PROJECT_DIR$/CONFIG.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/totalSummary.py" afterPath="$PROJECT_DIR$/totalSummary.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views.py" afterPath="$PROJECT_DIR$/views.py" />
     </list>
     <ignored path="GreenBeltBonusSystem.iws" />
@@ -22,39 +32,26 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="GreenBeltBonusSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="release_score.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/release_score.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1456348072000" expanded="true" signature="255:387" placeholder="SELECT PROJE... SCORE_CARD" />
-                <marker date="1456348072000" expanded="true" signature="473:605" placeholder="SELECT [3_MO... " />
-                <marker date="1456348072000" expanded="true" signature="692:824" placeholder="SELECT [6_MO... " />
-                <marker date="1456348072000" expanded="true" signature="917:1293" placeholder="UPDATE SCORE... " />
-                <marker date="1456348072000" expanded="true" signature="1011:1226" placeholder="SELECT ACTIV... SCORE_CARD" />
-                <marker date="1456348072000" expanded="true" signature="1413:1845" placeholder="UPDATE SCORE... " />
-                <marker date="1456348072000" expanded="true" signature="1591:1776" placeholder="SELECT ACTIV... SCORE_CARD" />
-                <marker date="1456348072000" expanded="true" signature="1973:2134" placeholder="UPDATE PROJE... " />
-                <marker date="1456348072000" expanded="true" signature="2247:2408" placeholder="UPDATE PROJE... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8165681">
-              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+            <state vertical-scroll-proportion="-1.928994">
+              <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
               <folding>
-                <element signature="e#0#94#0" expanded="true" />
+                <element signature="e#0#103#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/views_sql.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+              <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
               <folding>
                 <marker date="1456834595000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
                 <marker date="1456834595000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
@@ -83,12 +80,76 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CONFIG.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CONFIG.py">
+      <file leaf-file-name="marquee.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/upload.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coin_3d.gif" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="github.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/github.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="boss.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/boss.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insert_records.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/insert_records.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="13" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="44" />
-              <folding />
+              <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
+              <folding>
+                <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
+                <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
+                <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="totalSummary.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/totalSummary.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+              <folding>
+                <marker date="1456839441000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
+                <marker date="1456839441000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -109,10 +170,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/manager.py" />
-        <option value="$PROJECT_DIR$/CONFIG.py" />
-        <option value="$PROJECT_DIR$/views.py" />
         <option value="$PROJECT_DIR$/templates/views_sql.py" />
         <option value="$PROJECT_DIR$/views_sql.py" />
+        <option value="$PROJECT_DIR$/CONFIG.py" />
+        <option value="$PROJECT_DIR$/templates/insert_records.py" />
+        <option value="$PROJECT_DIR$/insert_records.py" />
+        <option value="$PROJECT_DIR$/totalSummary.py" />
+        <option value="$PROJECT_DIR$/views.py" />
       </list>
     </option>
   </component>
@@ -125,6 +189,25 @@
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="773" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyPep8Inspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -151,6 +234,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -169,23 +253,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GreenBeltBonusSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GreenBeltBonusSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -269,6 +338,11 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -423,24 +497,24 @@
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -467,22 +541,26 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CONFIG.py">
+    <entry file="file://$PROJECT_DIR$/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="13" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="44" />
-          <folding />
+          <caret line="104" column="63" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#103#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views_sql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
           <folding>
             <marker date="1456834595000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
             <marker date="1456834595000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
@@ -500,30 +578,199 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/release_score.py">
+    <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/upload.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/github.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/insert_records.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
           <folding>
-            <marker date="1456348072000" expanded="true" signature="255:387" placeholder="SELECT PROJE... SCORE_CARD" />
-            <marker date="1456348072000" expanded="true" signature="473:605" placeholder="SELECT [3_MO... " />
-            <marker date="1456348072000" expanded="true" signature="692:824" placeholder="SELECT [6_MO... " />
-            <marker date="1456348072000" expanded="true" signature="917:1293" placeholder="UPDATE SCORE... " />
-            <marker date="1456348072000" expanded="true" signature="1011:1226" placeholder="SELECT ACTIV... SCORE_CARD" />
-            <marker date="1456348072000" expanded="true" signature="1413:1845" placeholder="UPDATE SCORE... " />
-            <marker date="1456348072000" expanded="true" signature="1591:1776" placeholder="SELECT ACTIV... SCORE_CARD" />
-            <marker date="1456348072000" expanded="true" signature="1973:2134" placeholder="UPDATE PROJE... " />
-            <marker date="1456348072000" expanded="true" signature="2247:2408" placeholder="UPDATE PROJE... " />
+            <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
+            <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
+            <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/totalSummary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <marker date="1456839441000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8165681">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#94#0" expanded="true" />
+            <element signature="e#0#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/insert_records.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+          <folding>
+            <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
+            <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
+            <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CONFIG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17751479">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/release_score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3313609">
+          <caret line="73" column="32" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/insert_records.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
+          <folding>
+            <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
+            <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
+            <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/totalSummary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <marker date="1456839441000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456839441000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views_sql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding>
+            <marker date="1456834595000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456834595000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456834595000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456834595000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
+            <marker date="1456834595000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
+            <marker date="1456834595000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
+            <marker date="1456834595000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
+            <marker date="1456834595000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
+            <marker date="1456834595000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
+            <marker date="1456834595000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
+            <marker date="1456834595000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
+            <marker date="1456834595000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/upload.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/github.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.928994">
+          <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#103#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,12 +1,14 @@
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
 __author__ = 'Dearc'
 
+
 class totalSummary:
-	"""docstring for totalSummary"""
-	def __init__(self,name):
-		self.name = name
-		self.SQL_PROJECT_TOTAL = '''SELECT COUNT(*) 
+    """docstring for totalSummary"""
+
+    def __init__(self, name):
+        self.name = name
+        self.SQL_PROJECT_TOTAL = '''SELECT COUNT(*)
 			                       FROM TOTAL 
 			                       WHERE 
 			                       ININTIALOR LIKE "%%%s%%"
@@ -15,7 +17,7 @@ class totalSummary:
 			                       OR MINIOR_PARTICIPATOR LIKE "%%%s%%";
 			                    ''' % (tuple([self.name]) * 4)
 
-		self.SQL_PROJECT_FINISHED = '''SELECT COUNT(*) 
+        self.SQL_PROJECT_FINISHED = '''SELECT COUNT(*)
 			                          FROM TOTAL 
 			                          WHERE CHECK_POINT_3_MONTH = 1
 			                          AND CHECK_POINT_3_MONTH = 1
@@ -26,7 +28,7 @@ class totalSummary:
 			                              OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
 			                          );''' % (tuple([self.name]) * 4)
 
-		self.SQL_PROJECT_IN_3_MONTH = '''SELECT COUNT(*) 
+        self.SQL_PROJECT_IN_3_MONTH = '''SELECT COUNT(*)
 			                            FROM TOTAL 
 			                            WHERE CHECK_POINT_3_MONTH = 1
 			                            AND CHECK_POINT_3_MONTH <> 1
@@ -37,7 +39,7 @@ class totalSummary:
 			                              OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
 			                            );''' % (tuple([self.name]) * 4)
 
-		self.SQL_PROJECT_IN_6_MONTH = '''SELECT COUNT(*) 
+        self.SQL_PROJECT_IN_6_MONTH = '''SELECT COUNT(*)
 			                            FROM TOTAL 
 			                            WHERE CHECK_POINT_6_MONTH = 1
 			                            AND (
@@ -47,7 +49,7 @@ class totalSummary:
 			                              OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
 			                            );''' % (tuple([self.name]) * 4)
 
-		self.SQL_PROJECT_FAILED = '''SELECT COUNT(*) 
+        self.SQL_PROJECT_FAILED = '''SELECT COUNT(*)
 			                            FROM TOTAL 
 			                            WHERE CHECK_POINT_6_MONTH = 0
 			                            AND (
@@ -57,18 +59,18 @@ class totalSummary:
 			                              OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
 			                            );''' % (tuple([self.name]) * 4)
 
-		self.SQL_ININTIALOR = '''SELECT COUNT(*)
+        self.SQL_ININTIALOR = '''SELECT COUNT(*)
 	                             FROM TOTAL
 	                             WHERE ININTIALOR LIKE "%%%s%%";
 			                  ''' % self.name
 
-		self.SQL_ININTIALOR_BONUS_S = '''SELECT SUM(ACTIVE_SCORE * 0.5)
+        self.SQL_ININTIALOR_BONUS_S = '''SELECT SUM(ACTIVE_SCORE * 0.5)
 		                                 FROM TOTAL 
 		                                 WHERE ININTIALOR LIKE "%%%s%%"
 		                                 AND PROJECT_SCORE_LEVEL = "S";
 		                                 ''' % self.name
 
-		self.SQL_ININTIALOR_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * 0.2)
+        self.SQL_ININTIALOR_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * 0.2)
 		                                 FROM TOTAL 
 		                                 WHERE ININTIALOR LIKE "%%%s%%"
 		                                 AND (PROJECT_SCORE_LEVEL = "P"
@@ -76,13 +78,13 @@ class totalSummary:
 		                                      OR PROJECT_SCORE_LEVEL = "G"
 		                                      OR PROJECT_SCORE_LEVEL = "B");
 		                                 ''' % self.name
-		
-		self.SQL_LEADER = '''SELECT COUNT(*)
+
+        self.SQL_LEADER = '''SELECT COUNT(*)
 	                             FROM TOTAL
 	                             WHERE LEADER LIKE "%%%s%%";
 			                  ''' % self.name
-		
-		self.SQL_LEADER_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * 0.3)
+
+        self.SQL_LEADER_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * 0.3)
 		                                 FROM TOTAL 
 		                                 WHERE LEADER LIKE "%%%s%%"
 		                                 AND (PROJECT_SCORE_LEVEL = "P"
@@ -90,58 +92,57 @@ class totalSummary:
 		                                      OR PROJECT_SCORE_LEVEL = "G"
 		                                      oR PROJECT_SCORE_LEVEL = "B");
 		                                 ''' % self.name
-		
-		self.SQL_MAJOR = '''SELECT COUNT(*)
+
+        self.SQL_MAJOR = '''SELECT COUNT(*)
 	                             FROM TOTAL
 	                             WHERE MAJOR_PARTICIPATOR LIKE "%%%s%%";
 			                  ''' % self.name
 
-		self.SQL_MAJOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * 0.4 / MAJOR_PARTICIPATOR_COUNT)
+        self.SQL_MAJOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * 0.4 / MAJOR_PARTICIPATOR_COUNT)
 		                          FROM TOTAL
 		                          WHERE MAJOR_PARTICIPATOR LIKE "%%%s%%";
 		                          ''' % self.name
 
-		self.SQL_MINIOR = '''SELECT COUNT(*)
+        self.SQL_MINIOR = '''SELECT COUNT(*)
 	                             FROM TOTAL
 	                             WHERE MINIOR_PARTICIPATOR LIKE "%%%s%%";
 			                  ''' % self.name
 
-		self.SQL_MINIOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * 0.1 / MINIOR_PARTICIPATOR_COUNT)
+        self.SQL_MINIOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * 0.1 / MINIOR_PARTICIPATOR_COUNT)
 		                          FROM TOTAL
 		                          WHERE MINIOR_PARTICIPATOR LIKE "%%%s%%";
 		                          ''' % self.name
 
-		
-	def summary(self,conn):
-		conn = conn
-		cur = conn.cursor()
-		d0 = cur.execute(self.SQL_PROJECT_TOTAL).fetchone()[0]
-		d1 = cur.execute(self.SQL_PROJECT_FINISHED).fetchone()[0]
-		d2 = cur.execute(self.SQL_PROJECT_IN_3_MONTH).fetchone()[0]
-		d3 = cur.execute(self.SQL_PROJECT_IN_6_MONTH).fetchone()[0]
-		d4 = cur.execute(self.SQL_PROJECT_FAILED).fetchone()[0]
-		d5 = cur.execute(self.SQL_ININTIALOR).fetchone()[0]
-		d6_1 = cur.execute(self.SQL_ININTIALOR_BONUS_S).fetchone()[0]
-		d6_2 = cur.execute(self.SQL_ININTIALOR_BONUS_P).fetchone()[0]
+    def summary(self, conn):
+        conn = conn
+        cur = conn.cursor()
+        d0 = cur.execute(self.SQL_PROJECT_TOTAL).fetchone()[0]
+        d1 = cur.execute(self.SQL_PROJECT_FINISHED).fetchone()[0]
+        d2 = cur.execute(self.SQL_PROJECT_IN_3_MONTH).fetchone()[0]
+        d3 = cur.execute(self.SQL_PROJECT_IN_6_MONTH).fetchone()[0]
+        d4 = cur.execute(self.SQL_PROJECT_FAILED).fetchone()[0]
+        d5 = cur.execute(self.SQL_ININTIALOR).fetchone()[0]
+        d6_1 = cur.execute(self.SQL_ININTIALOR_BONUS_S).fetchone()[0]
+        d6_2 = cur.execute(self.SQL_ININTIALOR_BONUS_P).fetchone()[0]
 
-		if d6_1 is not None:
-			if d6_2 is not None:
-				d6 = d6_1 + d6_2
-			else:
-				d6 = d6_1
-		if d6_1 is None:
-			if d6_2 is not None:
-				d6 = d6_2
-			else:
-				d6 = 0
+        if d6_1 is not None:
+            if d6_2 is not None:
+                d6 = d6_1 + d6_2
+            else:
+                d6 = d6_1
+        if d6_1 is None:
+            if d6_2 is not None:
+                d6 = d6_2
+            else:
+                d6 = 0
 
-		d7 = cur.execute(self.SQL_LEADER).fetchone()[0]
-		d8 = cur.execute(self.SQL_LEADER_BONUS_P).fetchone()[0]
-		if d8 is None:d8 = 0
-		d9 = cur.execute(self.SQL_MAJOR).fetchone()[0]
-		d10 = cur.execute(self.SQL_MAJOR_BONUS).fetchone()[0]
-		if d10 is None:d10 = 0
-		d11 = cur.execute(self.SQL_MINIOR).fetchone()[0]
-		d12 = cur.execute(self.SQL_MINIOR_BONUS).fetchone()[0]
-		if d12 is None:d12 = 0
-		return d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12
+        d7 = cur.execute(self.SQL_LEADER).fetchone()[0]
+        d8 = cur.execute(self.SQL_LEADER_BONUS_P).fetchone()[0]
+        if d8 is None: d8 = 0
+        d9 = cur.execute(self.SQL_MAJOR).fetchone()[0]
+        d10 = cur.execute(self.SQL_MAJOR_BONUS).fetchone()[0]
+        if d10 is None: d10 = 0
+        d11 = cur.execute(self.SQL_MINIOR).fetchone()[0]
+        d12 = cur.execute(self.SQL_MINIOR_BONUS).fetchone()[0]
+        if d12 is None: d12 = 0
+        return d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12
