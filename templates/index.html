@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=Edge;IE=11;IE=10;IE=9"/>
+    <title>GreenBelt Bonus System</title>
+</head>
 <link rel="stylesheet" href="static/bootstrap.min.css">
 <script src="static/jquery.min.js"></script>
 <script src="static/bootstrap.min.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GreenBelt Bonus System</title>
-</head>
-
 <body>
-
 <nav class="navbar-inverse navbar-fixed-top" style="background-color: #1fa67a">
     <div class="container">
         <nav class="navbar-header" style="background-size: 200%">
             <a class="navbar-brand" type="submit" href="#" style="color: white;">GreenBelt Bonus System</a>
             <form class="navbar-form navbar-right">
-                <a class="btn btn-warning" type="submit" href="#">About</a>
+                <a class="btn btn-warning" type="submit" href="{{ url_for('about') }}">About</a>
             </form>
         </nav>
     </div>

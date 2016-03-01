@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="static/bootstrap.min.css">
-<script src="static/jquery.min.js"></script>
-<script src="static/bootstrap.min.js"></script>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=Edge;IE=11;IE=10;IE=9"/>
     <title>GreenBelt Bonus System</title>
 </head>
+<link rel="stylesheet" href="static/bootstrap.min.css">
+<link rel="stylesheet" href="static/jquery-ui.css">
+<script src="static/jquery.min.js"></script>
+<script src="static/jquery-ui.min.js"></script>
+<script src="static/bootstrap.min.js"></script>
 
 <body>
 
@@ -29,7 +31,7 @@
         <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
         <div class="row col-md-6 col-md-offset-3">
             <div class="input-group">
-            <input type="text" name="employee_name" placeholder="Enter Employee Name" class="form-control search clearable">
+            <input id="s" type="text" name="employee_name" placeholder="Enter Employee Name" class="form-control search clearable">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit" name="submit">Submit</button>
             </span>
@@ -41,6 +43,32 @@
     </div>
 </header>
 
+<!--generate summary report -->
+{% if request.form.get('employee_name') %}
+<!--if data -->
+    <div class="container">
+    <div class="alert alert-success">
+    <b>Hello <span style="color: #eea236">{{ request.form.get('employee_name') }}</span>:</b>
+    <p>As a period,<span style="color: red">{{ d0 }}</span> projects total,
+       you're finished <span style="color: red">{{ d1 }}</span> projects,
+       in 3 month progress <span style="color: red">{{ d2 }}</span>,
+       in 6 month progress <span style="color: red">{{ d3 }}</span>,
+       failed <span style="color: red">{{ d4 }}</span> projects
+    </p>
+    <ol>
+        <li>Being a inintialor,<span style="color: red">{{ d5 }}</span> projects,earns <span style="color: red">{{ d6 }}</span> bonus</li>
+        <li>Being a leader,<span style="color: red">{{ d7 }}</span> projects,earns <span style="color: red">{{ d8 }}</span> bonus</li>
+        <li>Being a major member,<span style="color: red">{{ d9 }}</span> projects,earns <span style="color: red">{{ d10 }}</span> bonus</li>
+        <li>Being a minor member,<span style="color: red">{{ d11 }}</span> projects,earns <span style="color: red">{{ d12 }}</span> bonus</li>
+    </ol>
+    <p>Total:{{ d13 }}Bonus,among them you can use <span style="color: red">{{ d6+d8+d10+d12 }}</span>! And {{ d15 }} is waiting for you!</p>
+    <p>Thank you for your participation!</p>
+    </div>
+    </div>
+{% endif %}
+
+
+<!--generate table -->
      {% if data %}
      <div class="container-fluid" style="margin-left: auto;margin-right: auto">
      <div class="table-responsive">
@@ -83,5 +111,21 @@
     </div>
 </nav>
 
+<script>
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
+
+    $(function() {
+        function termPop(term) {
+            return term.pop();
+        }
+
+    $("input#s").autocomplete({
+        source: function (request, response) {
+            //the GET method! use flask request.agrs.get('term')
+            $.getJSON($SCRIPT_ROOT + "/api/user/",{term:request.term},response);
+        }
+    })
+});
+</script>
 </body>
 </html>

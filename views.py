@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,g,session,url_for,abort,redirect,flash,jsonify
 from release_score import Action
+from totalSummary import totalSummary
 from itertools import chain
 import sqlite3
 import string
@@ -36,8 +37,10 @@ app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 @app.route('/customer',methods = ['GET','POST'])
 def customer():
-    print request.form
-    res = None;total = None
+    res = None;total = None;
+    d0 = None;d1 = None;d2 = None;d3 = None;d4 = None
+    d5 = None;d6 = None;d7 =None;d8 = None;d9 = None;
+    d10 = None;d11 = None;d12 = None
     if request.method == 'POST':
         employee_name = request.form.get('employee_name','')
         if employee_name != '':
@@ -50,18 +53,18 @@ def customer():
                                           MINIOR_PARTICIPATOR,
                                           ACTIVE_SCORE
                                    FROM TOTAL
-                                   WHERE LEADER
-                                   LIKE "%%%s%%"
-                                   OR ININTIALOR
-                                   LIKE "%%%s%%"
-                                   OR MAJOR_PARTICIPATOR
-                                   LIKE "%%%s%%"
-                                   OR MINIOR_PARTICIPATOR
-                                   LIKE "%%%s%%;"
+                                   WHERE LEADER LIKE "%%%s%%"
+                                   OR ININTIALOR LIKE "%%%s%%"
+                                   OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
+                                   OR MAJOR_PARTICIPATOR LIKE "%%%s%%";
                                 ''' % (tuple([employee_name]) * 4)
             cur = g.conn.cursor()
             res = cur.execute(SQL_SEARCH_MEMBER).fetchall()
-    return render_template('root.html',data = res)
+            print res
+            ts = totalSummary(employee_name)
+            d0,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12 = ts.summary(g.conn)
+    return render_template('root.html',data = res,d0 = d0,d1 = d1,d2 = d2,d3 = d3,d4 = d4,
+                           d5 = d5,d6 = d6,d7 = d7,d8 = d8,d9 = d9,d10 =d10,d11 = d11,d12 =d12)
 
 @app.route('/')
 @app.route('/index')
@@ -233,6 +236,10 @@ def user():
     res = cur.execute(SEARCH_NAME).fetchall()
     usr_name = list(chain(*res))
     return jsonify(dict(zip(string.lowercase,usr_name)))
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug = True, port = 5010,threaded = True)
