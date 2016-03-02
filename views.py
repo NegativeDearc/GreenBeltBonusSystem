@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, g, session, url_for, abort, redirect, flash, jsonify
 from release_score import Action
 from insert_records import insert_records
+from report_monthly import report_html
 from views_sql import views_sql
 from totalSummary import totalSummary
 from itertools import chain
@@ -11,6 +12,7 @@ import os
 app = Flask(__name__)
 app.secret_key = 'WELCOME TO SIX_SIGMA TEAM'
 sql = views_sql()
+insert_records = insert_records()
 
 
 def count_member(name):
@@ -135,26 +137,33 @@ def admin():
                 cur.execute(INSERT_PROJECT_INFO)
                 cur.execute(INSERT_MEMBER_INFO)
                 cur.execute(INSERT_SCORE_INFO)
+                cur.execute(insert_records.prj_launch(golden_type=request.form['s2'],
+                                                      prj_num=request.form['project_num']))
                 g.conn.commit()
                 return redirect(url_for('admin'))
         if reverse_dict.has_key('RELEASE3'):
             project_num = reverse_dict.get('RELEASE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.release_bonus()
+            insert_records.insert_month_3_release(g.conn,project_num,'3 month checkpoint')
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE3'):
             project_num = reverse_dict.get('CLOSE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.close_prj()
+            insert_records.insert_month_3_release(g.conn,project_num,'3 month closed')
             return redirect(url_for('admin'))
         if reverse_dict.has_key('RELEASE6'):
             project_num = reverse_dict.get('RELEASE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.release_bonus()
+            insert_records.insert_month_3_release(g.conn,project_num,'6 month checkpoint')
+            return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE6'):
             project_num = reverse_dict.get('CLOSE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.close_prj()
+            insert_records.insert_month_3_release(g.conn,project_num,'6 month closed')
             return redirect(url_for('admin'))
     return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month)
 
@@ -188,6 +197,20 @@ def user():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/report',methods=['GET','POST'])
+def report():
+    # need route protect here,but conflict with 'admin'
+    data = {};prj = {}
+    if request.method == 'POST':
+        date_begin = request.form.get('date_begin')
+        date_end = request.form.get('date_end')
+        report = report_html(g.conn,date_begin,date_end)
+        names = report.get_name()
+        for name in names:
+            prj[name] = list(chain(*report.prj_set(name)))
+            data[name] = report.summary(name)
+    return render_template('report.html',data = data,prj = prj)
 
 
 if __name__ == '__main__':

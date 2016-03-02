@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/GreenBeltBonusSystem.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/insert_records.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/us_dollar.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CLSS_BONUS_DB" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CTLSS_BONUS_DB" afterPath="$PROJECT_DIR$/CTLSS_BONUS_DB" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CONFIG.py" afterPath="$PROJECT_DIR$/CONFIG.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/totalSummary.py" afterPath="$PROJECT_DIR$/totalSummary.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/insert_records.py" afterPath="$PROJECT_DIR$/insert_records.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views.py" afterPath="$PROJECT_DIR$/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views_sql.py" afterPath="$PROJECT_DIR$/views_sql.py" />
     </list>
     <ignored path="GreenBeltBonusSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +20,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/GreenBeltBonusSystem$GreenBeltBonusSystem.coverage" NAME="GreenBeltBonusSystem Coverage Results" MODIFIED="1456834615066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/GreenBeltBonusSystem$GreenBeltBonusSystem.coverage" NAME="GreenBeltBonusSystem Coverage Results" MODIFIED="1456928950701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -45,111 +38,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.928994">
-              <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
               <folding>
                 <element signature="e#0#103#0" expanded="true" />
+                <element signature="e#2408#7571#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views_sql.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views_sql.py">
+      <file leaf-file-name="report_monthly.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/report_monthly.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.6621622">
+              <caret line="81" column="17" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="17" />
               <folding>
-                <marker date="1456834595000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
-                <marker date="1456834595000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
-                <marker date="1456834595000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
-                <marker date="1456834595000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
-                <marker date="1456834595000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
-                <marker date="1456834595000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
-                <marker date="1456834595000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
-                <marker date="1456834595000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
-                <marker date="1456834595000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
-                <marker date="1456834595000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
-                <marker date="1456834595000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
-                <marker date="1456834595000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
+                <marker date="1456929348000" expanded="true" signature="271:458" placeholder="SELECT ININT... REPORT" />
+                <marker date="1456929348000" expanded="true" signature="789:996" placeholder="SELECT SUM(S... REPORT" />
+                <marker date="1456929348000" expanded="true" signature="1083:1576" placeholder="SELECT SUM(S... REPORT" />
+                <marker date="1456929348000" expanded="true" signature="1659:2101" placeholder="SELECT SUM(S... REPORT" />
+                <marker date="1456929348000" expanded="true" signature="2186:2355" placeholder="SELECT SUM(S... REPORT" />
+                <marker date="1456929348000" expanded="true" signature="2433:2596" placeholder="SELECT SUM(S... REPORT" />
+                <marker date="1456929348000" expanded="true" signature="3767:3831" placeholder="SELECT DISTI... " />
+                <marker date="1456929348000" expanded="true" signature="3767:3838" placeholder="SELECT DISTI... REPORT" />
+                <marker date="1456929348000" expanded="true" signature="3767:4094" placeholder="SELECT DISTI... REPORT" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="marquee.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="upload.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/upload.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="coin_3d.gif" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="github.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/github.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="boss.jpg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/boss.jpg">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="insert_records.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/insert_records.py">
+      <file leaf-file-name="report.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/report.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-              <folding>
-                <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
-                <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
-                <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="totalSummary.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/totalSummary.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-              <folding>
-                <marker date="1456839441000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
-                <marker date="1456839441000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
-              </folding>
+            <state vertical-scroll-proportion="-14.375">
+              <caret line="73" column="40" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -176,7 +103,9 @@
         <option value="$PROJECT_DIR$/templates/insert_records.py" />
         <option value="$PROJECT_DIR$/insert_records.py" />
         <option value="$PROJECT_DIR$/totalSummary.py" />
+        <option value="$PROJECT_DIR$/templates/report.html" />
         <option value="$PROJECT_DIR$/views.py" />
+        <option value="$PROJECT_DIR$/report_monthly.py" />
       </list>
     </option>
   </component>
@@ -234,6 +163,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -253,9 +183,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -494,7 +451,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -503,18 +460,18 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -550,9 +507,10 @@
     <entry file="file://$PROJECT_DIR$/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="63" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#103#0" expanded="true" />
+            <element signature="e#2408#7571#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -562,18 +520,18 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
           <folding>
-            <marker date="1456834595000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1456834595000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1456834595000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1456834595000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
-            <marker date="1456834595000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
-            <marker date="1456834595000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
-            <marker date="1456834595000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
-            <marker date="1456834595000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
-            <marker date="1456834595000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
-            <marker date="1456834595000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
-            <marker date="1456834595000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
-            <marker date="1456834595000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
+            <marker date="1456782328000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
+            <marker date="1456782328000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
+            <marker date="1456782328000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
+            <marker date="1456782328000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
+            <marker date="1456782328000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
+            <marker date="1456782328000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
           </folding>
         </state>
       </provider>
@@ -607,11 +565,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding>
-            <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
-            <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
-            <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -620,20 +574,108 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
           <folding>
-            <marker date="1456839441000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="63" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#103#0" expanded="true" />
+            <element signature="e#2408#7571#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views_sql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding>
+            <marker date="1456782328000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
+            <marker date="1456782328000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
+            <marker date="1456782328000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
+            <marker date="1456782328000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
+            <marker date="1456782328000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
+            <marker date="1456782328000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/upload.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/github.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/insert_records.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/totalSummary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <marker date="1456782328000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
           </folding>
         </state>
       </provider>
@@ -644,6 +686,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#103#0" expanded="true" />
+            <element signature="e#2408#7571#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -652,11 +695,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-          <folding>
-            <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
-            <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
-            <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -666,6 +705,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#103#0" expanded="true" />
+            <element signature="e#2408#7571#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -687,12 +727,8 @@
     <entry file="file://$PROJECT_DIR$/insert_records.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding>
-            <marker date="1456837066000" expanded="true" signature="79:164" placeholder="insert into MONTHLY_ACTION... " />
-            <marker date="1456837066000" expanded="true" signature="79:179" placeholder="insert into MONTHLY_ACTION... " />
-            <marker date="1456837066000" expanded="true" signature="79:180" placeholder="insert into MONTHLY_ACTION... " />
-          </folding>
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -701,41 +737,36 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
           <folding>
-            <marker date="1456839441000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
-            <marker date="1456839441000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="196:508" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="604:1096" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1170:1673" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1747:2190" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2260:2703" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2769:2886" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2967:3175" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3270:3687" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3770:3883" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="3960:4373" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4455:4580" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4654:4817" placeholder="SELECT SUM(A... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="4893:5019" placeholder="SELECT COUNT... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="5094:5259" placeholder="SELECT SUM(A... TOTAL" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views_sql.py">
+    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/root.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.39285713">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding>
-            <marker date="1456834595000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1456834595000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1456834595000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1456834595000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
-            <marker date="1456834595000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
-            <marker date="1456834595000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
-            <marker date="1456834595000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
-            <marker date="1456834595000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
-            <marker date="1456834595000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
-            <marker date="1456834595000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
-            <marker date="1456834595000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
-            <marker date="1456834595000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
+            <element signature="n#style#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -760,17 +791,60 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/views_sql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.445946">
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding>
+            <marker date="1456782328000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1456782328000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
+            <marker date="1456782328000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
+            <marker date="1456782328000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
+            <marker date="1456782328000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
+            <marker date="1456782328000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
+            <marker date="1456782328000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
+            <marker date="1456782328000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/report.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.375">
+          <caret line="73" column="40" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="40" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.928994">
-          <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
           <folding>
             <element signature="e#0#103#0" expanded="true" />
+            <element signature="e#2408#7571#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report_monthly.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6621622">
+          <caret line="81" column="17" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="17" />
+          <folding>
+            <marker date="1456929348000" expanded="true" signature="271:458" placeholder="SELECT ININT... REPORT" />
+            <marker date="1456929348000" expanded="true" signature="789:996" placeholder="SELECT SUM(S... REPORT" />
+            <marker date="1456929348000" expanded="true" signature="1083:1576" placeholder="SELECT SUM(S... REPORT" />
+            <marker date="1456929348000" expanded="true" signature="1659:2101" placeholder="SELECT SUM(S... REPORT" />
+            <marker date="1456929348000" expanded="true" signature="2186:2355" placeholder="SELECT SUM(S... REPORT" />
+            <marker date="1456929348000" expanded="true" signature="2433:2596" placeholder="SELECT SUM(S... REPORT" />
+            <marker date="1456929348000" expanded="true" signature="3767:3831" placeholder="SELECT DISTI... " />
+            <marker date="1456929348000" expanded="true" signature="3767:3838" placeholder="SELECT DISTI... REPORT" />
+            <marker date="1456929348000" expanded="true" signature="3767:4094" placeholder="SELECT DISTI... REPORT" />
           </folding>
         </state>
       </provider>
