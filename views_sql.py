@@ -95,3 +95,8 @@ class views_sql:
                      LIKE "%%%s%%"
                      OR
                      ID LIKE "%%%s%%";'''
+
+        self.SEARCH_PRJ_INFO = '''SELECT PROJECT_NUMBER,PROJECT_NAME,PROJECT_DUE_TIME,ININTIALOR,LEADER,MAJOR_PARTICIPATOR,
+                                         MINIOR_PARTICIPATOR,PROJECT_SCORE_LEVEL,ACTIVE_SCORE
+                                  FROM TOTAL
+                                  WHERE PROJECT_NUMBER = "%s";'''

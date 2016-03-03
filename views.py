@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, g, session, url_for, abort, redirect, flash, jsonify
+from urlparse import urlparse,urljoin
 from release_score import Action
 from insert_records import insert_records
 from report_monthly import report_html
@@ -18,8 +19,12 @@ insert_records = insert_records()
 def count_member(name):
     # incase of count '' as one element
     # use Regexp in HTML to make sure ',' will not end in a string
+    # s = re.split('\s*,\s*',string)
     s = name.split(',')
-    return len(s)
+    if s[-1] == '':
+        return len(s)-1
+    else:
+        return len(s)
 
 
 @app.before_request
@@ -54,6 +59,7 @@ def customer():
     d0 = None;d1 = None;d2 = None;d3 = None;d4 = None;
     d5 = None;d6 = None;d7 = None;d8 = None;d9 = None;
     d10 = None;d11 = None;d12 = None
+
     if request.method == 'POST':
         employee_name = request.form.get('employee_name', '')
         if employee_name != '':
@@ -74,11 +80,10 @@ def index():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    # actived until the web browser shut down
+    # if want to logout,just let session['is_active']=False
     if session.get('is_active', False) is not True:
-        # actived until the web browser shut down
-        # if want to logout,just let session['is_active']=False
-        abort(401)
-
+        return redirect(url_for('login'),401)
     # search the project reaching to the check point
     cur = g.conn.cursor()
     data_3_month = cur.execute(sql.data_3_month).fetchall()
@@ -170,19 +175,55 @@ def admin():
 
 @app.route('/auth/login', methods=['GET', 'POST'])
 def login():
+    def get_redirect_target():
+        for target in request.values.get('next'), request.referrer:
+            if not target:
+                continue
+            if is_safe_url(target):
+                return target
+
+    def is_safe_url(target):
+        ref_url = urlparse(request.host_url)
+        test_url = urlparse(urljoin(request.host_url, target))
+        return test_url.scheme in ('http', 'https') and \
+               ref_url.netloc == test_url.netloc
+
+    next = get_redirect_target()
+    print next
     if request.method == 'POST':
         session['usr'] = request.form.get('usr')
         session['pwd'] = request.form.get('pwd')
         if session['usr'] is not None and session['usr'] == 'admin':
             if session['pwd'] == 'admin':
                 session['is_active'] = True
-                return redirect(url_for('admin'))
+                return redirect(next)
             else:
                 flash('Wrong User Name or Password')
         else:
             flash('Wrong User Name or Password')
-    return render_template('login.html')
+    return render_template('login.html',next = next)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/report',methods=['GET','POST'])
+def report():
+    print request.args
+    if not session.get('is_active'):
+        return redirect(url_for('login'),code=401)
+    # need route protect here,but conflict with 'admin'
+    data = {};prj = {}
+    if request.method == 'POST' and request.form.get('submit') == 'submit':
+        date_begin = request.form.get('date_begin')
+        date_end = request.form.get('date_end')
+        report = report_html(g.conn,date_begin,date_end)
+        names = report.get_name()
+        print request.form
+        for name in names:
+            prj[name] = list(chain(*report.prj_set(name)))
+            data[name] = report.summary(name)
+    return render_template('report.html',data = data,prj = prj)
 
 @app.route('/api/user/')
 def user():
@@ -193,25 +234,16 @@ def user():
     usr_name = list(chain(*res))
     return jsonify(dict(zip(string.lowercase, usr_name)))
 
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/report',methods=['GET','POST'])
-def report():
-    # need route protect here,but conflict with 'admin'
-    data = {};prj = {}
-    if request.method == 'POST':
-        date_begin = request.form.get('date_begin')
-        date_end = request.form.get('date_end')
-        report = report_html(g.conn,date_begin,date_end)
-        names = report.get_name()
-        for name in names:
-            prj[name] = list(chain(*report.prj_set(name)))
-            data[name] = report.summary(name)
-    return render_template('report.html',data = data,prj = prj)
-
+@app.route('/api/project/')
+def project_info():
+    n = request.args.get('term','')
+    cur = g.conn.cursor()
+    SEARCH_PRJ_INFO = sql.SEARCH_PRJ_INFO % n
+    res = cur.execute(SEARCH_PRJ_INFO).fetchone()
+    if res is None:
+        return jsonify({})
+    else:
+        return jsonify(zip(string.lowercase,res))
 
 if __name__ == '__main__':
     app.run(debug=True, threaded=True, port=5010)

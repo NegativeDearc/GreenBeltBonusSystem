@@ -10,6 +10,9 @@
 <script src="static/bootstrap.min.js"></script>
 <link rel="stylesheet" href="static/bootstrap-table-expandable.css">
 <script src="static/bootstrap-table-expandable.js"></script>
+<script src="static/jspdf.min.js"></script>
+<script src="static/jspdf.plugin.autotable.js"></script>
+<script src="static/FileSaver.min.js"></script>
 
 <body>
 <header class="navbar navbar-fixed-top" style="background-color: #122b40">
@@ -37,7 +40,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-1">
-             <input type="submit" class="btn btn-default" name="" value="submit">
+             <input type="submit" class="btn btn-default" name="submit" value="submit">
         </div>
     </div>
 </form>
@@ -47,7 +50,8 @@
 <div class="container-fluid" style="padding-top: 40px">
 {% if data %}
 <div class="table-responsive">
-<table class="table table-striped table-hover table-expandable">
+<table class="table table-striped table-hover table-expandable" id="report">
+<caption style="text-align: center;font-size: 20px">From {{ request.form.get('date_begin') }} to {{ request.form.get('date_end') }}</caption>
 <thead>
     <tr>
         <th>Name</th>
@@ -72,7 +76,7 @@
               <!--insert project names-->
               <ol>
                   {% for e in prj.get(x) %}
-                  <li>{{ e }}</li>
+                  <li><a href="/api/project/?term={{ e }}">{{ e }}</a></li>
                   {% endfor %}
               </ol>
           </td>
@@ -81,7 +85,25 @@
 </tbody>
 </table>
 </div>
-{% endif %}
+
+<div class="container-fluid">
+    <div class="navbar">
+        <form action="" class="form-horizontal">
+            <input type="button" onclick="print()" class="btn btn-success navbar-right" value="print">
+        </form>
+    </div>
 </div>
+</div>
+{% endif %}
+
+<script>
+    print = function(){
+        var doc = new jsPDF('p', 'pt');
+        doc.text("From {{ request.form.get('date_begin') }} to {{ request.form.get('date_end') }}", 40, 50);
+        var res = doc.autoTableHtmlToJson(document.getElementById("report"));
+        doc.autoTable(res.columns, res.data,{startY:60});
+        doc.save('CTCLSS_monthly_report.pdf');
+    };
+</script>
 </body>
 </html>

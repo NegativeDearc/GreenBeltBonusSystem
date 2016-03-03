@@ -16,6 +16,8 @@ class report_html:
 
         cur = self.conn.cursor()
         member = cur.execute(query_member).fetchall()
+        # use RegExp to make sure the name string can be split correctly
+        # lambda x:re.split('\s*,\s*',x)
         rv = set(chain(*map(lambda x:x.split(', '),list(chain(*member)))))
         return rv
     def summary(self,name):
