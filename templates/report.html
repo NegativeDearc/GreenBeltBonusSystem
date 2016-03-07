@@ -76,7 +76,9 @@
               <!--insert project names-->
               <ol>
                   {% for e in prj.get(x) %}
-                  <li><a href="/api/project/?term={{ e }}">{{ e }}</a></li>
+                  <li>
+                      <a href="/api/project/?term={{ e }}" target="_blank">{{ e }}</a>
+                  </li>
                   {% endfor %}
               </ol>
           </td>

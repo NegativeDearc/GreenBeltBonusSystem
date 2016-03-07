@@ -6,12 +6,14 @@ from report_monthly import report_html
 from views_sql import views_sql
 from totalSummary import totalSummary
 from itertools import chain
+from CONFIG import config
 import sqlite3
 import string
 import os
 
 app = Flask(__name__)
-app.secret_key = 'WELCOME TO SIX_SIGMA TEAM'
+app.config.from_object(config['development'])
+
 sql = views_sql()
 insert_records = insert_records()
 
@@ -68,7 +70,7 @@ def customer():
             res = cur.execute(search_member).fetchall()
             ts = totalSummary(employee_name)
             d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12 = ts.summary(g.conn)
-    return render_template('root.html', data=res, d0=d0, d1=d1, d2=d2, d3=d3, d4=d4,
+    return render_template('search.html', data=res, d0=d0, d1=d1, d2=d2, d3=d3, d4=d4,
                            d5=d5, d6=d6, d7=d7, d8=d8, d9=d9, d10=d10, d11=d11, d12=d12)
 
 
@@ -80,10 +82,10 @@ def index():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    # actived until the web browser shut down
+    # active until the web browser shut down
     # if want to logout,just let session['is_active']=False
-    if session.get('is_active', False) is not True:
-        return redirect(url_for('login'),401)
+    if not session.get('is_active'):
+        return redirect(url_for('login'),code=401)
     # search the project reaching to the check point
     cur = g.conn.cursor()
     data_3_month = cur.execute(sql.data_3_month).fetchall()
@@ -187,9 +189,8 @@ def login():
         test_url = urlparse(urljoin(request.host_url, target))
         return test_url.scheme in ('http', 'https') and \
                ref_url.netloc == test_url.netloc
-
+    # /?next=
     next = get_redirect_target()
-    print next
     if request.method == 'POST':
         session['usr'] = request.form.get('usr')
         session['pwd'] = request.form.get('pwd')
@@ -209,7 +210,6 @@ def about():
 
 @app.route('/report',methods=['GET','POST'])
 def report():
-    print request.args
     if not session.get('is_active'):
         return redirect(url_for('login'),code=401)
     # need route protect here,but conflict with 'admin'
@@ -219,10 +219,10 @@ def report():
         date_end = request.form.get('date_end')
         report = report_html(g.conn,date_begin,date_end)
         names = report.get_name()
-        print request.form
         for name in names:
             prj[name] = list(chain(*report.prj_set(name)))
             data[name] = report.summary(name)
+            # rewrite the dict class to let dict can add with dict
     return render_template('report.html',data = data,prj = prj)
 
 @app.route('/api/user/')
@@ -246,4 +246,4 @@ def project_info():
         return jsonify(zip(string.lowercase,res))
 
 if __name__ == '__main__':
-    app.run(debug=True, threaded=True, port=5010)
+    app.run(threaded=True,port=5010,host='0.0.0.0')

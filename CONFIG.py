@@ -10,13 +10,9 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    THREADED = True
-    PORT = 5010
 
 class ProductionConfig(Config):
     DEBUG = False
-    THREADED = True
-    PORT = 5010
 
 config = {
     'development':DevelopmentConfig,

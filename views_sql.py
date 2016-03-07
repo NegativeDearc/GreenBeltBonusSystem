@@ -23,8 +23,8 @@ class views_sql:
                                          PROJECT_SCORE,
                                          ACTIVE_SCORE
                                   FROM TOTAL
-                                  WHERE DATE('now','+3 days') > CHECK_POINT_3_MONTH
-                                  AND DATE('now','-3 days') < CHECK_POINT_3_MONTH
+                                  WHERE DATE('now','+30 days') > CHECK_POINT_3_MONTH
+                                  AND DATE('now','-2 days') < CHECK_POINT_3_MONTH
                                   AND ([3_MONTH_CHECK] != 1 OR [3_MONTH_CHECK] IS NULL);
                                '''
 
@@ -36,8 +36,8 @@ class views_sql:
                                          PROJECT_SCORE,
                                          ACTIVE_SCORE
                                   FROM TOTAL
-                                  WHERE DATE('now','+3 days') > CHECK_POINT_6_MONTH
-                                  AND DATE('now','-3 days') < CHECK_POINT_6_MONTH
+                                  WHERE DATE('now','+30 days') > CHECK_POINT_6_MONTH
+                                  AND DATE('now','-2 days') < CHECK_POINT_6_MONTH
                                   AND ([6_MONTH_CHECK] != 1 OR [6_MONTH_CHECK] IS NULL );
                                '''
 

@@ -38,12 +38,12 @@
 
     <div class="col-sm-6 col-md4 col-lg-3">
         <div class="thumbnail">
-            <a href="{{ url_for('login') }}"><img src="static/upload.jpg" width="300" height="300"></img></a>
+            <a href="{{ url_for('admin') }}"><img src="static/upload.jpg" width="300" height="300"></img></a>
 
             <div class="caption">
                 <p>An Administrator?Need To Upload Data?</p>
                 <hr>
-                <a class="btn btn-success" href="{{ url_for('login') }}">Log In</a>
+                <a class="btn btn-success" href="{{ url_for('admin') }}">Log In</a>
             </div>
         </div>
     </div>
@@ -74,12 +74,12 @@
 
     <div class="col-sm-6 col-md4 col-lg-3">
         <div class="thumbnail">
-            <a href="#"><img src="static/github.png" width="300" height="300"></img></a>
+            <a href="{{ url_for('admin') }}"><img src="static/github.png" width="300" height="300"></img></a>
 
             <div class="caption">
                 <p>May you Share your website?</p>
                 <hr>
-                <a class="btn btn-warning" href="">Fork me</a>
+                <a class="btn btn-warning" href="{{ url_for('admin') }}">Fork me</a>
             </div>
         </div>
     </div>
