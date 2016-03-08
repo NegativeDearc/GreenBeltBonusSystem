@@ -1,25 +1,26 @@
-from flask import Flask, render_template, request, g, session, url_for, abort, redirect, flash, jsonify
+from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify
 from urlparse import urlparse,urljoin
-from release_score import Action
-from insert_records import insert_records
-from report_monthly import report_html
-from views_sql import views_sql
-from totalSummary import totalSummary
+from app import app
+
+from app.ext.insert_records import insert_records
+from app.ext.totalSummary import totalSummary
+from app.ext.report_monthly import report_html
+from app.ext.release_score import Action
+from app.ext.views_sql import views_sql
+from app.ext.newDict import newDict
+
 from itertools import chain
-from CONFIG import config
+from config import config
+
 import sqlite3
 import string
 import os
 
-app = Flask(__name__)
-app.config.from_object(config['development'])
-
 sql = views_sql()
 insert_records = insert_records()
 
-
 def count_member(name):
-    # incase of count '' as one element
+    # in case of count '' as one element
     # use Regexp in HTML to make sure ',' will not end in a string
     # s = re.split('\s*,\s*',string)
     s = name.split(',')
@@ -31,11 +32,10 @@ def count_member(name):
 
 @app.before_request
 def connect_db():
-    # +'/CTLSS_BONUS_DB' in Linux or OSX
-    path = os.path.abspath(os.path.dirname(__file__)) + '/CTLSS_BONUS_DB'
-    g.conn = sqlite3.connect(path, timeout=5)
+    path = config['development'].DATABASE_PATH
+    g.conn = sqlite3.connect(path, timeout = 5)
     g.conn.text_factory = lambda x: unicode(x, "utf-8", "ignore")
-    # register function
+    # register function of sqlite3
     g.conn.create_function('count_member', 1, count_member)
 
 
@@ -55,8 +55,8 @@ def generate_csrf_token():
 app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 
-@app.route('/customer', methods=['GET', 'POST'])
-def customer():
+@app.route('/search', methods=['GET', 'POST'])
+def search():
     res = None;
     d0 = None;d1 = None;d2 = None;d3 = None;d4 = None;
     d5 = None;d6 = None;d7 = None;d8 = None;d9 = None;
@@ -189,7 +189,8 @@ def login():
         test_url = urlparse(urljoin(request.host_url, target))
         return test_url.scheme in ('http', 'https') and \
                ref_url.netloc == test_url.netloc
-    # /?next=
+    # url/?next=next
+    # a bugs here,if next = /auth/login itself,it will redirect to itself
     next = get_redirect_target()
     if request.method == 'POST':
         session['usr'] = request.form.get('usr')
@@ -214,6 +215,7 @@ def report():
         return redirect(url_for('login'),code=401)
     # need route protect here,but conflict with 'admin'
     data = {};prj = {}
+    summary = newDict(Major=0,Initiator=0,Leader=0,Minor=0,sum=0)
     if request.method == 'POST' and request.form.get('submit') == 'submit':
         date_begin = request.form.get('date_begin')
         date_end = request.form.get('date_end')
@@ -222,8 +224,9 @@ def report():
         for name in names:
             prj[name] = list(chain(*report.prj_set(name)))
             data[name] = report.summary(name)
+            summary = summary + newDict(report.summary(name))
             # rewrite the dict class to let dict can add with dict
-    return render_template('report.html',data = data,prj = prj)
+    return render_template('report.html',data = data,prj = prj,summary = summary)
 
 @app.route('/api/user/')
 def user():
@@ -244,6 +247,3 @@ def project_info():
         return jsonify({})
     else:
         return jsonify(zip(string.lowercase,res))
-
-if __name__ == '__main__':
-    app.run(threaded=True,port=5010,host='0.0.0.0')

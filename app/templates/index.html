@@ -13,12 +13,9 @@
 <body>
 <nav class="navbar-inverse navbar-fixed-top" style="background-color: #1fa67a">
     <div class="container">
-        <nav class="navbar-header" style="background-size: 200%">
-            <a class="navbar-brand" type="submit" href="#" style="color: white;">GreenBelt Bonus System</a>
-            <form class="navbar-form navbar-right">
-                <a class="btn btn-warning" type="submit" href="{{ url_for('about') }}">About</a>
-            </form>
-        </nav>
+        <div class="navbar-header" style="background-size: 200%">
+            <a class="navbar-brand" type="submit" href="{{ url_for('about') }}" style="color: white;">GreenBelt Bonus System</a>
+        </div>
     </div>
 </nav>
 
@@ -26,12 +23,12 @@
 <div class="row">
     <div class="col-sm-6 col-md4 col-lg-3">
         <div class="thumbnail">
-            <a href="{{ url_for('customer') }}"><img src="static/coin_3d.gif" width="300" height="300"></img></a>
+            <a href="{{ url_for('search') }}"><img src="static/coin_3d.gif" width="300" height="300"></img></a>
 
             <div class="caption">
                 <p>Search Bonus Information of Your Own?</p>
                 <hr>
-                <a class="btn btn-success" href="{{ url_for('customer') }}">Go!</a>
+                <a class="btn btn-success" href="{{ url_for('search') }}">Go!</a>
             </div>
         </div>
     </div>
@@ -89,7 +86,7 @@
 <div>
    <div class="container">
        <hr>
-       <p style="color: #8c8c8c;font-size: 9px">ALL RIGHTS &COPY; 2016 SHELDON CHEN</p>
+       <p style="color: #8c8c8c;font-size: 9px">ALL RIGHTS RESERVED &COPY; 2016 SHELDON CHEN</p>
    </div>
 </div>
 

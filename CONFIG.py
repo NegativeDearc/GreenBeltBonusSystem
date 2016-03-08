@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = 'WELCOME TO SIX_SIGMA TEAM'
-    DATABASE_PATH = basedir + '/CLSS_BONUS_DB'
+    DATABASE_PATH = basedir + '\\app\models\CTLSS_BONUS_DB'
 
 class DevelopmentConfig(Config):
     DEBUG = True

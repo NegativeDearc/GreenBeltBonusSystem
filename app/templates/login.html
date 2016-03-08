@@ -10,14 +10,14 @@
 <script src="../static/bootstrap.min.js"></script>
 
 <body background="../static/bg.png">
-<nav class="navbar-inverse navbar-fixed-top" style="background-color: #1fa67a">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #1fa67a;border: none">
     <div class="container">
-        <nav class="navbar-header" style="background-size: 200%">
-            <a class="navbar-brand" type="submit" href="#" style="color: white;">GreenBelt Bonus System</a>
+        <div class="navbar-header" style="background-size: 200%">
+            <a class="navbar-brand" type="submit" href="{{ url_for('about') }}" style="color: white">GreenBelt Bonus System</a>
             <form class="navbar-form navbar-right">
-                <a class="btn btn-success" type="submit" href="../index">Return to Index</a>
+                <a class="btn btn-warning" type="submit" href="../index">Return</a>
             </form>
-        </nav>
+        </div>
     </div>
 </nav>
 
@@ -49,7 +49,7 @@
 
 <nav class="navbar-fixed-bottom">
     <div class="container-fluid">
-        <p style="font-size: 9px;color: #adadad">ALL RIGHTS &copy; 2016 SHELDON CHEN</p>
+        <p style="font-size: 9px;color: #adadad">ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
     </div>
 </nav>
 </body>

@@ -1,61 +1,78 @@
 Folder PATH listing for volume OSDisk
 Volume serial number is 00730075 C687:D2AF
 C:.
-©¦   .gitignore
-©¦   CLSS_BONUS_DB
-©¦   CONFIG.py
-©¦   CTLSS_BONUS_DB
-©¦   CTLSS_BONUS_DB-journal
-©¦   CTLSS_BONUS_DB.txt
-©¦   ddl.sql
-©¦   insert_records.py
-©¦   insert_records.pyc
-©¦   Name list for Sheldon.xlsx
-©¦   release_score.py
-©¦   release_score.pyc
-©¦   report_monthly.py
-©¦   report_monthly.pyc
-©¦   TEST_CTLSS_BONUS_DB
-©¦   totalSummary.py
-©¦   totalSummary.pyc
-©¦   tree.txt
-©¦   views.py
-©¦   views_sql.py
-©¦   views_sql.pyc
-©¦   
-©À©¤©¤©¤.idea
-©¦       .name
-©¦       encodings.xml
-©¦       GreenBeltBonusSystem.iml
-©¦       misc.xml
-©¦       modules.xml
-©¦       vcs.xml
-©¦       workspace.xml
-©¦       
-©À©¤©¤©¤static
-©¦       bg.png
-©¦       bootstrap-table-expandable.css
-©¦       bootstrap-table-expandable.js
-©¦       bootstrap.min.css
-©¦       bootstrap.min.js
-©¦       boss.jpg
-©¦       coin_3d.gif
-©¦       FileSaver.min.js
-©¦       github.png
-©¦       jquery-ui.css
-©¦       jquery-ui.min.js
-©¦       jquery.min.js
-©¦       jspdf.min.js
-©¦       jspdf.plugin.autotable.js
-©¦       marquee.jpg
-©¦       upload.jpg
-©¦       us_dollar.jpg
-©¦       
-©¸©¤©¤©¤templates
-        about.html
-        admin.html
-        index.html
-        login.html
-        report.html
-        root.html
-        
+|   .gitignore
+|   config.py
+|   config.pyc
+|   run.py
+|   tree.text
+|   tree.txt
+|   
++---.idea
+|       .name
+|       encodings.xml
+|       GreenBeltBonusSystem.iml
+|       misc.xml
+|       modules.xml
+|       vcs.xml
+|       workspace.xml
+|       
++---app
+|   |   __init__.py
+|   |   __init__.pyc
+|   |   
+|   +---ext
+|   |       insert_records.py
+|   |       insert_records.pyc
+|   |       newDict.py
+|   |       newDict.pyc
+|   |       release_score.py
+|   |       release_score.pyc
+|   |       report_monthly.py
+|   |       report_monthly.pyc
+|   |       totalSummary.py
+|   |       totalSummary.pyc
+|   |       views_sql.py
+|   |       views_sql.pyc
+|   |       __init__.py
+|   |       __init__.pyc
+|   |       
+|   +---models
+|   |       CLSS_BONUS_DB
+|   |       CTLSS_BONUS_DB
+|   |       CTLSS_BONUS_DB.txt
+|   |       ddl.sql
+|   |       Name list for Sheldon.xlsx
+|   |       TEST_CTLSS_BONUS_DB
+|   |       
+|   +---static
+|   |       bg.png
+|   |       bootstrap-table-expandable.css
+|   |       bootstrap-table-expandable.js
+|   |       bootstrap.min.css
+|   |       bootstrap.min.js
+|   |       boss.jpg
+|   |       coin_3d.gif
+|   |       FileSaver.min.js
+|   |       github.png
+|   |       jquery-ui.css
+|   |       jquery-ui.min.js
+|   |       jquery.min.js
+|   |       jspdf.min.js
+|   |       jspdf.plugin.autotable.js
+|   |       marquee.jpg
+|   |       upload.jpg
+|   |       us_dollar.jpg
+|   |       
+|   +---templates
+|   |       about.html
+|   |       admin.html
+|   |       index.html
+|   |       login.html
+|   |       report.html
+|   |       search.html
+|   |       
+|   \---views
+|           views.py
+|           
+\---tests

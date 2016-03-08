@@ -20,7 +20,7 @@
 
 <header class="site-header jumbotron" style="background:#27AE60">
     <div class="container-fluid">
-        <div style="text-align: center;font-size: 44px;color:white;font-family: 'Monotype Corsiva', 'Apple Chancery', 'URW Chancery L', cursive">
+        <div style="text-align: center;font-size: 46px;color:white;font-family: 'Monotype Corsiva', 'Apple Chancery', 'URW Chancery L', cursive">
             Hallo,
             <br>
             Welcome to GreenBelt Bonus Search Page
@@ -31,7 +31,7 @@
         <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
         <div class="row col-md-6 col-md-offset-3">
             <div class="input-group">
-            <input id="s" type="text" name="employee_name" placeholder="Enter Employee Name" class="form-control search clearable">
+            <input id="s" type="text" name="employee_name" placeholder="Enter Employee Name Or Id" class="form-control search clearable">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit" name="submit">Submit</button>
             </span>
@@ -47,7 +47,7 @@
 {% if request.form.get('employee_name') %}
 <!--if data -->
     <div class="container">
-    <div class="alert alert-success">
+    <div class="alert alert-success" style="font-size: 16px">
     <b>Hello <span style="color: #eea236">{{ request.form.get('employee_name') }}</span>:</b>
     <p>As a period,<span style="color: red">{{ d0 }}</span> projects total,
        you're finished <span style="color: red">{{ d1 }}</span> projects,
@@ -70,25 +70,25 @@
 
 <!--generate table -->
      {% if data %}
-     <div class="container-fluid" style="margin-left: auto;margin-right: auto">
+     <div class="container-fluid">
      <div class="table-responsive">
-     <table class="table table-hover table-striped" style="text-align: center;margin-left: auto;margin-right: auto">
+     <table class="table table-hover table-striped">
         <caption style="text-align: center;font-size: 20px">Information of {{ request.form.get('employee_name') }}</caption>
-        <tr style="text-align: center">
-            <th>PROJECT_NUMBER</th>
-            <th>PROJECT_NAME</th>
-            <th>PROJECT_DUE_TIME</th>
-            <th>ININTIALOR</th>
-            <th>LEADER</th>
-            <th>MAJOR_MEMBER</th>
-            <th>MINIOR_MEMBER</th>
-            <th>ACTIVE_SCORE</th>
+        <tr style="background-color:lightgreen">
+            <td align="center">PROJECT</td>
+            <td align="center">PROJECT NAME</td>
+            <td align="center">PROJECT_DUE_TIME</td>
+            <td align="center">INITIATOR</td>
+            <td align="center">LEADER</td>
+            <td align="center">MAJOR_MEMBER</td>
+            <td align="center">MINOR_MEMBER</td>
+            <td align="center">ACTIVE_SCORE</td>
         </tr>
 
         {% for rows in data %}
             <tr>
             {% for element in rows %}
-                <td>{{ element }}</td>
+                <td align="center">{{ element }}</td>
             {% endfor %}
             </tr>
         {% endfor %}
@@ -107,7 +107,7 @@
 
 <nav class="navbar-fixed-bottom">
     <div class="container-fluid">
-        <p style="font-size: 9px;color: #adadad">ALL RIGHTS &copy; 2016 SHELDON CHEN</p>
+        <p style="font-size: 9px;color: #adadad">ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
     </div>
 </nav>
 
