@@ -7,7 +7,6 @@ class report_html:
         self.conn = conn
         self.month_begin = month_begin
         self.month_end = month_end
-    
     def get_name(self):
         query_member = '''SELECT ININTIALOR,LEADER,MAJOR_PARTICIPATOR,MINIOR_PARTICIPATOR
                           FROM REPORT
@@ -21,7 +20,6 @@ class report_html:
         # lambda x:re.split('\s*,\s*',x)
         rv = set(chain(*map(lambda x:x.split(', '),list(chain(*member)))))
         return rv
-    
     def summary(self,name):
         name = name
 
@@ -86,7 +84,7 @@ class report_html:
              'sum':round(initiator_bonus_s+initiator_bonus_p+leader_bonus+major_bonus+minor_bonus,1)
              }
         return r
-    
+
     def prj_set(self,name):
         name = name
         cur = self.conn.cursor()

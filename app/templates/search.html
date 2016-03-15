@@ -46,25 +46,27 @@
 <!--generate summary report -->
 {% if request.form.get('employee_name') %}
 <!--if data -->
+    {% if data2 %}
     <div class="container">
     <div class="alert alert-success" style="font-size: 16px">
     <b>Hello <span style="color: #eea236">{{ request.form.get('employee_name') }}</span>:</b>
-    <p>As a period,<span style="color: red">{{ d0 }}</span> projects total,
-       you're finished <span style="color: red">{{ d1 }}</span> projects,
-       in 3 month progress <span style="color: red">{{ d2 }}</span>,
-       in 6 month progress <span style="color: red">{{ d3 }}</span>,
-       failed <span style="color: red">{{ d4 }}</span> projects
+    <p>As a period,<span style="color: red">{{ data2.get('d0') }}</span> projects total,
+       you're finished <span style="color: red">{{ data2.get('d1')}}</span> projects,
+       in 3 month progress <span style="color: red">{{ data2.get('d2') }}</span>,
+       in 6 month progress <span style="color: red">{{ data2.get('d3') }}</span>,
+       failed <span style="color: red">{{ data2.get('d4') }}</span> projects
     </p>
     <ol>
-        <li>Being a inintialor,<span style="color: red">{{ d5 }}</span> projects,earns <span style="color: red">{{ d6 }}</span> bonus</li>
-        <li>Being a leader,<span style="color: red">{{ d7 }}</span> projects,earns <span style="color: red">{{ d8 }}</span> bonus</li>
-        <li>Being a major member,<span style="color: red">{{ d9 }}</span> projects,earns <span style="color: red">{{ d10 }}</span> bonus</li>
-        <li>Being a minor member,<span style="color: red">{{ d11 }}</span> projects,earns <span style="color: red">{{ d12 }}</span> bonus</li>
+        <li>Being a inintialor,<span style="color: red">{{ data2.get('d5') }}</span> projects,earns <span style="color: red">{{ data2.get('d6') }}</span> bonus</li>
+        <li>Being a leader,<span style="color: red">{{ data2.get('d7') }}</span> projects,earns <span style="color: red">{{ data2.get('d8') }}</span> bonus</li>
+        <li>Being a major member,<span style="color: red">{{ data2.get('d9') }}</span> projects,earns <span style="color: red">{{ data2.get('d10') }}</span> bonus</li>
+        <li>Being a minor member,<span style="color: red">{{ data2.get('d11') }}</span> projects,earns <span style="color: red">{{ data2.get('d12') }}</span> bonus</li>
     </ol>
-    <p>Total:{{ d13 }}Bonus,among them you can use <span style="color: red">{{ d6+d8+d10+d12 }}</span>! And {{ d15 }} is waiting for you!</p>
+    <p>Total: {{ data2.get('13') }} Bonus,among them you can use <span style="color: red">{{ data2.get('d14') }}</span>! And {{ data2.get('15') }} is waiting for you!</p>
     <p>Thank you for your participation!</p>
     </div>
     </div>
+    {% endif %}
 {% endif %}
 
 

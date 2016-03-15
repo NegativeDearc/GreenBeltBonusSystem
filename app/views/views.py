@@ -57,10 +57,8 @@ app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    res = None;
-    d0 = None;d1 = None;d2 = None;d3 = None;d4 = None;
-    d5 = None;d6 = None;d7 = None;d8 = None;d9 = None;
-    d10 = None;d11 = None;d12 = None
+    res = None
+    res2 = None
 
     if request.method == 'POST':
         employee_name = request.form.get('employee_name', '')
@@ -69,9 +67,8 @@ def search():
             cur = g.conn.cursor()
             res = cur.execute(search_member).fetchall()
             ts = totalSummary(employee_name)
-            d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12 = ts.summary(g.conn)
-    return render_template('search.html', data=res, d0=d0, d1=d1, d2=d2, d3=d3, d4=d4,
-                           d5=d5, d6=d6, d7=d7, d8=d8, d9=d9, d10=d10, d11=d11, d12=d12)
+            res2 = ts.summary(g.conn)
+    return render_template('search.html', data=res, data2=res2)
 
 
 @app.route('/')
