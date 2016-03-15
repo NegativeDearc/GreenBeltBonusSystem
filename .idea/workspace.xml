@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="" />
+    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/ext/log.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/views.py" afterPath="$PROJECT_DIR$/app/views/views.py" />
+    </list>
     <ignored path="GreenBeltBonusSystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -14,7 +18,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/GreenBeltBonusSystem$GreenBeltBonusSystem.coverage" NAME="GreenBeltBonusSystem Coverage Results" MODIFIED="1457014533447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/GreenBeltBonusSystem$GreenBeltBonusSystem.coverage" NAME="GreenBeltBonusSystem Coverage Results" MODIFIED="1458052260577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,37 +36,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="report.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/report.html">
+      <file leaf-file-name="log.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/ext/log.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.2857143">
-              <caret line="78" column="54" selection-start-line="78" selection-start-column="54" selection-end-line="78" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.5945946">
+              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+              <folding>
+                <element signature="e#24#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/logs/log.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views_sql.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views_sql.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="99" column="93" selection-start-line="99" selection-start-column="93" selection-end-line="99" selection-end-column="93" />
+              <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
               <folding>
-                <marker date="1457014375000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
-                <marker date="1457014375000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
-                <marker date="1457014375000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
-                <marker date="1457014375000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
-                <marker date="1457014375000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
-                <marker date="1457014375000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
-                <marker date="1457014375000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
-                <marker date="1457014375000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
-                <marker date="1457014375000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
-                <marker date="1457014375000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
-                <marker date="1457014375000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
-                <marker date="1457014375000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
-                <marker date="1457014375000" expanded="true" signature="5285:5507" placeholder="SELECT * FRO... " />
-                <marker date="1457014375000" expanded="true" signature="5285:5553" placeholder="SELECT * FRO... TOTAL" />
-                <marker date="1457014375000" expanded="true" signature="5285:5575" placeholder="SELECT * FRO... TOTAL" />
+                <element signature="e#0#96#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,6 +96,9 @@
         <option value="$PROJECT_DIR$/views.py" />
         <option value="$PROJECT_DIR$/templates/report.html" />
         <option value="$PROJECT_DIR$/views_sql.py" />
+        <option value="$PROJECT_DIR$/app/views/views.py" />
+        <option value="$PROJECT_DIR$/app/ext/log.py" />
+        <option value="$PROJECT_DIR$/app/logs/log.txt" />
       </list>
     </option>
   </component>
@@ -103,6 +108,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="19" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="773" />
@@ -151,7 +157,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -180,7 +185,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -194,18 +199,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="logs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreenBeltBonusSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ext" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/run_.py" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -412,14 +459,14 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="SDK_HOME" value="/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="GreenBeltBonusSystem" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/views.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -439,7 +486,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <frame x="19" y="23" width="1280" height="773" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -448,7 +495,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -492,41 +539,25 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views.py">
+    <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.088757396">
+          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/report_monthly.py">
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.23648648">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <marker date="1456986166000" expanded="true" signature="271:458" placeholder="SELECT ININT... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="903:1110" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="1197:1690" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="1773:2215" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="2300:2469" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="2547:2710" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="3881:3945" placeholder="SELECT DISTI... " />
-            <marker date="1456986166000" expanded="true" signature="3881:3952" placeholder="SELECT DISTI... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="3881:4208" placeholder="SELECT DISTI... REPORT" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/report.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="40" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views.py">
+    <entry file="file://$PROJECT_DIR$/app/logs/log.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -534,302 +565,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views_sql.py">
+    <entry file="file://$PROJECT_DIR$/app/views/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
           <folding>
-            <marker date="1457014375000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
-            <marker date="1457014375000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
-            <marker date="1457014375000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
-            <marker date="1457014375000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
-            <marker date="1457014375000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
-            <marker date="1457014375000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
-            <marker date="1457014375000" expanded="true" signature="5285:5507" placeholder="SELECT * FRO... " />
-            <marker date="1457014375000" expanded="true" signature="5285:5553" placeholder="SELECT * FRO... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="5285:5575" placeholder="SELECT * FRO... TOTAL" />
+            <element signature="e#0#96#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/github.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/insert_records.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/totalSummary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="63" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views_sql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
-          <folding>
-            <marker date="1457014375000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
-            <marker date="1457014375000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
-            <marker date="1457014375000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
-            <marker date="1457014375000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
-            <marker date="1457014375000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
-            <marker date="1457014375000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
-            <marker date="1457014375000" expanded="true" signature="5285:5507" placeholder="SELECT * FRO... " />
-            <marker date="1457014375000" expanded="true" signature="5285:5553" placeholder="SELECT * FRO... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="5285:5575" placeholder="SELECT * FRO... TOTAL" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/github.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/insert_records.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/totalSummary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/insert_records.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CONFIG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17751479">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/release_score.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3313609">
-          <caret line="73" column="32" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/insert_records.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/totalSummary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/boss.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/root.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39285713">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/marquee.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/upload.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/coin_3d.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/github.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/jspdf.plugin.autotable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5885979">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.125">
-          <caret line="55" column="67" selection-start-line="55" selection-start-column="67" selection-end-line="55" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/report_monthly.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.08108108">
-          <caret line="85" column="16" selection-start-line="85" selection-start-column="16" selection-end-line="85" selection-end-column="16" />
-          <folding>
-            <marker date="1456986166000" expanded="true" signature="271:458" placeholder="SELECT ININT... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="903:1110" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="1197:1690" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="1773:2215" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="2300:2469" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="2547:2710" placeholder="SELECT SUM(S... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="3881:3945" placeholder="SELECT DISTI... " />
-            <marker date="1456986166000" expanded="true" signature="3881:3952" placeholder="SELECT DISTI... REPORT" />
-            <marker date="1456986166000" expanded="true" signature="3881:4208" placeholder="SELECT DISTI... REPORT" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.607143">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views_sql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="93" selection-start-line="99" selection-start-column="93" selection-end-line="99" selection-end-column="93" />
-          <folding>
-            <marker date="1457014375000" expanded="true" signature="77:813" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="883:1540" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="1609:2267" placeholder="SELECT PROJE... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="2343:2520" placeholder="UPDATE PROJE... " />
-            <marker date="1457014375000" expanded="true" signature="2605:2955" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3039:3265" placeholder="UPDATE SCORE... " />
-            <marker date="1457014375000" expanded="true" signature="3356:3560" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3611:3821" placeholder="UPDATE MEMBE... " />
-            <marker date="1457014375000" expanded="true" signature="3864:4041" placeholder="INSERT INTO PROJECT_INFO" />
-            <marker date="1457014375000" expanded="true" signature="4126:4722" placeholder="INSERT INTO MEMBER_INFO" />
-            <marker date="1457014375000" expanded="true" signature="4806:4987" placeholder="INSERT INTO SCORE_CARD" />
-            <marker date="1457014375000" expanded="true" signature="5064:5245" placeholder="SELECT FORMA... USER_ID" />
-            <marker date="1457014375000" expanded="true" signature="5285:5507" placeholder="SELECT * FRO... " />
-            <marker date="1457014375000" expanded="true" signature="5285:5553" placeholder="SELECT * FRO... TOTAL" />
-            <marker date="1457014375000" expanded="true" signature="5285:5575" placeholder="SELECT * FRO... TOTAL" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views.py">
+    <entry file="file://$PROJECT_DIR$/app/ext/log.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5945946">
-          <caret line="243" column="26" selection-start-line="243" selection-start-column="26" selection-end-line="243" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/report.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2857143">
-          <caret line="78" column="54" selection-start-line="78" selection-start-column="54" selection-end-line="78" selection-end-column="54" />
-          <folding />
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+          <folding>
+            <element signature="e#24#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

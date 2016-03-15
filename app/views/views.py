@@ -8,6 +8,7 @@ from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
+from app.ext.log import app_log
 
 from itertools import chain
 from config import config
@@ -18,6 +19,7 @@ import os
 
 sql = views_sql()
 insert_records = insert_records()
+log = app_log()
 
 def count_member(name):
     # in case of count '' as one element
@@ -54,13 +56,12 @@ def generate_csrf_token():
 
 app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
-
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     res = None
     res2 = None
-
     if request.method == 'POST':
+        log.visitor_ip()
         employee_name = request.form.get('employee_name', '')
         if employee_name != '':
             search_member = sql.SQL_SEARCH_MEMBER % (tuple([employee_name]) * 4)
