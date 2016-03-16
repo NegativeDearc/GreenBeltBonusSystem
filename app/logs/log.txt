@@ -1,1 +1,16 @@
-2016-03-15 22:31:14,584-visitor_ip-WARNING-127.0.0.1
+2016-03-16 10:59:42,374-app-ERROR-Exception on /test/log_test [GET]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem-high-structual\GreenBeltBonusSystem-high-structual\app\views\views.py", line 254, in log_test
+    a = None + 1
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
+

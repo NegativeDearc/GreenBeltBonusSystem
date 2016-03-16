@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify
 from urlparse import urlparse,urljoin
 from app import app
@@ -8,7 +10,6 @@ from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
-from app.ext.log import app_log
 
 from itertools import chain
 from config import config
@@ -19,12 +20,14 @@ import os
 
 sql = views_sql()
 insert_records = insert_records()
-log = app_log()
 
 def count_member(name):
-    # in case of count '' as one element
-    # use Regexp in HTML to make sure ',' will not end in a string
-    # s = re.split('\s*,\s*',string)
+    '''
+    注册函数，以逗号分割，计算人名字段的个数。
+    有潜在的问题，若最末以逗号+空格结尾，则计算数目+1
+    已在模板中加入正则防止最末产生逗号+空格
+    未来考虑使用正则匹配re.split('\s*,\s*',string)
+    '''
     s = name.split(',')
     if s[-1] == '':
         return len(s)-1
@@ -34,10 +37,11 @@ def count_member(name):
 
 @app.before_request
 def connect_db():
+    # 调用配置
     path = config['development'].DATABASE_PATH
     g.conn = sqlite3.connect(path, timeout = 5)
     g.conn.text_factory = lambda x: unicode(x, "utf-8", "ignore")
-    # register function of sqlite3
+    # 注册函数
     g.conn.create_function('count_member', 1, count_member)
 
 
@@ -53,7 +57,6 @@ def generate_csrf_token():
         session['_crsf_token'] = os.urandom(15).encode('hex')
     return session['_crsf_token']
 
-
 app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -61,7 +64,6 @@ def search():
     res = None
     res2 = None
     if request.method == 'POST':
-        log.visitor_ip()
         employee_name = request.form.get('employee_name', '')
         if employee_name != '':
             search_member = sql.SQL_SEARCH_MEMBER % (tuple([employee_name]) * 4)
@@ -80,11 +82,11 @@ def index():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    # active until the web browser shut down
-    # if want to logout,just let session['is_active']=False
+    # session 过期时间 直到浏览器退出
+    # 若要登出用户，使 session['is_active']=False
     if not session.get('is_active'):
         return redirect(url_for('login'),code=401)
-    # search the project reaching to the check point
+    # 查找到达检查点的项目
     cur = g.conn.cursor()
     data_3_month = cur.execute(sql.data_3_month).fetchall()
     data_6_month = cur.execute(sql.data_6_month).fetchall()
@@ -93,7 +95,8 @@ def admin():
         if request.form.get('sub1') == 'submit':
             # update values
             if request.form.get('update', '') == 'on':
-                # sqlite3 dynamic for type,it's ok use %s or ?
+                # sqlite3 使用动态类型判断，字段拼接用 ? 或者 %s
+                # 注意防止SQL注入
                 cur = g.conn.cursor()
                 UPDATE_PROJECT_INFO = sql.UPDATE_PROJECT_INFO \
                                       % (request.form['project_name'],
@@ -245,3 +248,8 @@ def project_info():
         return jsonify({})
     else:
         return jsonify(zip(string.lowercase,res))
+
+@app.route('/test/log_test')
+def log_test():
+    a = None + 1
+    return a
