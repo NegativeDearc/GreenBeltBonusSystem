@@ -1,4 +1,7 @@
-class views_sql:
+#-*- coding:utf-8 -*-
+
+class views_sql(object):
+    '''模块作用：视图函数用到的查询、插入、更新'''
     def __init__(self):
         self.SQL_SEARCH_MEMBER = '''SELECT PROJECT_NUMBER,
                                           PROJECT_NAME,

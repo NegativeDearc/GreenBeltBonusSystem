@@ -2,11 +2,24 @@
 
 __author__ = 'Dearc'
 
+from rules import ruleMaker
 
-class totalSummary:
-    """docstring for totalSummary"""
-
+class totalSummary(object):
+    """模块作用：查询 /search 页面数据
+       依赖：依赖rules提供分值分配信息
+    """
     def __init__(self, name):
+        # 初始化rules模块
+        self.rul = ruleMaker()
+        self.rv = self.rul.rules_api_info()
+
+        # 还请务必注意来自self.rv中值的类型
+        ini_s = float(self.rv['s']['distribution'][0])
+        ini_p = float(self.rv['p']['distribution'][0])
+        lea_p = float(self.rv['p']['distribution'][1])
+        maj_p = float(self.rv['p']['distribution'][2])
+        min_p = float(self.rv['p']['distribution'][3])
+
         self.name = name
         self.SQL_PROJECT_TOTAL = '''SELECT COUNT(*)
                                    FROM TOTAL
@@ -64,54 +77,54 @@ class totalSummary:
                                  WHERE ININTIALOR LIKE "%%%s%%";
                               ''' % self.name
 
-        self.SQL_ININTIALOR_BONUS_S = '''SELECT SUM(ACTIVE_SCORE * 0.5)
+        self.SQL_ININTIALOR_BONUS_S = '''SELECT SUM(ACTIVE_SCORE * %s)
                                          FROM TOTAL
                                          WHERE ININTIALOR LIKE "%%%s%%"
                                          AND PROJECT_SCORE_LEVEL = "S";
-                                         ''' % self.name
+                                         ''' % (ini_s,self.name)
 
-        self.SQL_ININTIALOR_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * 0.2)
+        self.SQL_ININTIALOR_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * %s)
                                          FROM TOTAL
                                          WHERE ININTIALOR LIKE "%%%s%%"
                                          AND (PROJECT_SCORE_LEVEL = "P"
                                               OR PROJECT_SCORE_LEVEL = "K"
                                               OR PROJECT_SCORE_LEVEL = "G"
                                               OR PROJECT_SCORE_LEVEL = "B");
-                                         ''' % self.name
+                                         ''' % (ini_p,self.name)
 
         self.SQL_LEADER = '''SELECT COUNT(*)
                                  FROM TOTAL
                                  WHERE LEADER LIKE "%%%s%%";
                               ''' % self.name
 
-        self.SQL_LEADER_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * 0.3)
+        self.SQL_LEADER_BONUS_P = '''SELECT SUM(ACTIVE_SCORE * %s)
                                          FROM TOTAL
                                          WHERE LEADER LIKE "%%%s%%"
                                          AND (PROJECT_SCORE_LEVEL = "P"
                                               OR PROJECT_SCORE_LEVEL = "K"
                                               OR PROJECT_SCORE_LEVEL = "G"
                                               oR PROJECT_SCORE_LEVEL = "B");
-                                         ''' % self.name
+                                         ''' % (lea_p,self.name)
 
         self.SQL_MAJOR = '''SELECT COUNT(*)
                                  FROM TOTAL
                                  WHERE MAJOR_PARTICIPATOR LIKE "%%%s%%";
                               ''' % self.name
 
-        self.SQL_MAJOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * 0.4 / MAJOR_PARTICIPATOR_COUNT)
+        self.SQL_MAJOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * %s / MAJOR_PARTICIPATOR_COUNT)
                                   FROM TOTAL
                                   WHERE MAJOR_PARTICIPATOR LIKE "%%%s%%";
-                                  ''' % self.name
+                                  ''' % (maj_p,self.name)
 
         self.SQL_MINIOR = '''SELECT COUNT(*)
                                  FROM TOTAL
                                  WHERE MINIOR_PARTICIPATOR LIKE "%%%s%%";
                               ''' % self.name
 
-        self.SQL_MINIOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * 0.1 / MINIOR_PARTICIPATOR_COUNT)
+        self.SQL_MINIOR_BONUS = '''SELECT SUM(ACTIVE_SCORE * %s / MINIOR_PARTICIPATOR_COUNT)
                                   FROM TOTAL
                                   WHERE MINIOR_PARTICIPATOR LIKE "%%%s%%";
-                                  ''' % self.name
+                                  ''' % (min_p,self.name)
 
     def summary(self, conn):
         conn = conn

@@ -3,8 +3,12 @@
 from flask import Flask
 from config import config
 
-app = Flask(__name__)
-app.config.from_object(config['production'])
+def create_app(conf):
+    app = Flask(__name__)
+    app.config.from_object(conf)
+    return app
+
+app = create_app(config['development'])
 
 # debug 模式关闭时启用日志记录
 # 尝试采用邮件发送

@@ -26,12 +26,16 @@
         <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
          <div class="form-group">
             <label for="usr" class="control-label col-sm-2">User</label>
-             <div class="col-sm-2"><input type="text" required="required" name="usr"></div>
+             <div class="col-sm-2">
+                 <input type="text" required="required" name="usr" class="form-control" placeholder="enter user name">
+             </div>
          </div>
 
         <div class="form-group">
             <label for="psw" class="control-label col-sm-2">Password</label>
-            <div class="col-sm-2"><input type="password" required="required" name="pwd"></div>
+            <div class="col-sm-2">
+                <input type="password" required="required" name="pwd" class="form-control" placeholder="enter password">
+            </div>
         </div>
 
         <div class="form-group">

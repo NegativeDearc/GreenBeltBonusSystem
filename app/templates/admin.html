@@ -12,11 +12,14 @@
 <script src="static/bootstrap.min.js"></script>
 
 <body>
-<div class="page-header" style="padding-left: 20px">
-  <h1 style="font-family:'Monotype Corsiva', 'Apple Chancery', 'URW Chancery L', cursive;color: green;font-size: 50px">Admin maintain panel<small>Be careful!</small></h1>
-</div>
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #27AE60">
+    <a href="" style="color: white;font-size:18px;padding: 14px" class="btn btn-disabled disabled">Admin Panel</a>||
+    <a href="{{ url_for('index') }}" style="color: white;font-size:18px;padding: 14px" class="btn">Home</a>|
+    <a href="{{ url_for('rules') }}" style="color: white;font-size:18px;padding: 14px" class="btn">Rules Editor</a>|
+    <a href="{{ url_for('report') }}" style="color: white;font-size:18px;padding: 14px" class="btn">Report System</a>
+</nav>
 
-<div class="row" style="padding-left:20px;padding-right: 20px">
+<div class="row" style="padding-left:20px;padding-right: 20px;margin-top: 85px">
     <div class="col-md-3">
         <div class="panel panel-default">
         <div class="panel-heading">User Information</div>

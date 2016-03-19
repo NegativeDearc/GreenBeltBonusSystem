@@ -1,19 +1,26 @@
 # -*- coding:utf-8 -*-
 __author__ = 'Dearc'
 
+from rules import ruleMaker
 
-class insert_records:
+class insert_records(object):
+    '''模块作用：向数据库插入操作的动作、分值来作为日志，供后续调用
+       依赖模块：rules，从中获取点子分和项目积分的分值信息
+       注意事项：务必注意分值信息的类型是否为int
+    '''
     def __init__(self):
-        pass
+        '''从rules中获取分值信息'''
+        self.rul = ruleMaker()
+        self.rv = self.rul.rules_api_info()
 
     def prj_launch(self, golden_type=None, prj_num=None):
         prj_num_ = prj_num
         golden_type = golden_type
 
         if golden_type == 'S1':
-            golden = 100
+            golden = int(self.rv['s1']['value'])
         elif golden_type == 'P1':
-            golden = 200
+            golden = int(self.rv['p1']['value'])
         else:
             golden = 0
 
@@ -34,21 +41,21 @@ class insert_records:
         cur = con_.cursor()
         g, p = cur.execute(tmp).fetchall()[0]
 
-        prj_score = {'S': 200,
-                     'P': 800,
-                     'K': 1500,
-                     'G': 2500,
-                     'B': 3500}
+        prj_score = {'S': int(self.rv['s']['value']),
+                     'P': int(self.rv['p']['value']),
+                     'K': int(self.rv['k']['value']),
+                     'G': int(self.rv['g']['value']),
+                     'B': int(self.rv['b']['value'])}
 
         golden_score = {'S1': 0,  # already added when prj launched
                         'P1': 0,  # already added when prj launched
-                        'K1': 500,
-                        'G1': 800,
-                        'G2': 1000,
-                        'G3': 1500,
-                        'B1': 2000,
-                        'B2': 3000,
-                        'B3': 4000}
+                        'K1': int(self.rv['k1']['value']),
+                        'G1': int(self.rv['g1']['value']),
+                        'G2': int(self.rv['g2']['value']),
+                        'G3': int(self.rv['g3']['value']),
+                        'B1': int(self.rv['b1']['value']),
+                        'B2': int(self.rv['b2']['value']),
+                        'B3': int(self.rv['b3']['value'])}
 
         if flag_.endswith('checkpoint'):
             total = int(prj_score.get(p) * 0.5 + golden_score.get(g) * 0.5)

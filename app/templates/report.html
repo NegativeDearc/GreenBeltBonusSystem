@@ -15,12 +15,12 @@
 <script src="static/FileSaver.min.js"></script>
 
 <body>
-<header class="navbar navbar-fixed-top" style="background-color: #122b40">
-    <div class="container-fluid" style="margin-top: 10px">
-        <div style="text-align: left;font-size: 22px;color: white">Monthly Report System</div>
-        </form>
-    </div>
-</header>
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #27AE60">
+    <a href="" style="color: white;font-size:18px;padding: 14px" class="btn btn-disabled disabled">Monthly Report System</a>||
+    <a href="{{ url_for('index') }}" style="color: white;font-size:18px;padding: 14px" class="btn">Home</a>|
+    <a href="{{ url_for('admin') }}" style="color: white;font-size:18px;padding: 14px" class="btn">Admin Panel</a>|
+    <a href="{{ url_for('rules') }}" style="color: white;font-size:18px;padding: 14px" class="btn">Rules Editor</a>
+</nav>
 
 
 <div class="container-fluid" style="margin-top: 60px">

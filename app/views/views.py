@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
 
 from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify
-from urlparse import urlparse,urljoin
+from urlparse import urlparse, urljoin
 from app import app
 
+from app.ext.rules import ruleMaker
+from app.ext.func_collection import count_member
 from app.ext.insert_records import insert_records
 from app.ext.totalSummary import totalSummary
 from app.ext.report_monthly import report_html
@@ -21,28 +23,25 @@ import os
 sql = views_sql()
 insert_records = insert_records()
 
-def count_member(name):
-    '''
-    注册函数，以逗号分割，计算人名字段的个数。
-    有潜在的问题，若最末以逗号+空格结尾，则计算数目+1
-    已在模板中加入正则防止最末产生逗号+空格
-    未来考虑使用正则匹配re.split('\s*,\s*',string)
-    '''
-    s = name.split(',')
-    if s[-1] == '':
-        return len(s)-1
-    else:
-        return len(s)
-
 
 @app.before_request
 def connect_db():
+    # 请求之前打开数据库链接
     # 调用配置
     path = config['development'].DATABASE_PATH
-    g.conn = sqlite3.connect(path, timeout = 5)
+    g.conn = sqlite3.connect(path, timeout=5)
     g.conn.text_factory = lambda x: unicode(x, "utf-8", "ignore")
     # 注册函数
     g.conn.create_function('count_member', 1, count_member)
+
+@app.teardown_appcontext
+def close_db(exception):
+    # 注意flask有两种环境，一种是应用环境app context，一种是请求环境request context
+    # 在应用关闭销毁数据库链接
+    if hasattr(g, 'conn'):
+        # 打印查看关闭情况
+        # print 'Database has been closed'
+        g.conn.close()
 
 
 def csrf_protect():
@@ -57,7 +56,9 @@ def generate_csrf_token():
         session['_crsf_token'] = os.urandom(15).encode('hex')
     return session['_crsf_token']
 
+
 app.jinja_env.globals['crsf_token'] = generate_csrf_token
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -85,7 +86,7 @@ def admin():
     # session 过期时间 直到浏览器退出
     # 若要登出用户，使 session['is_active']=False
     if not session.get('is_active'):
-        return redirect(url_for('login'),code=401)
+        return redirect(url_for('login'), code=401)
     # 查找到达检查点的项目
     cur = g.conn.cursor()
     data_3_month = cur.execute(sql.data_3_month).fetchall()
@@ -141,7 +142,8 @@ def admin():
                                     (request.form['project_num'],
                                      request.form['s2'],
                                      request.form['s1'])
-
+                # 数据库已设置项目编号唯一性，否则回滚
+                # 产生500错误
                 cur.execute(INSERT_PROJECT_INFO)
                 cur.execute(INSERT_MEMBER_INFO)
                 cur.execute(INSERT_SCORE_INFO)
@@ -153,25 +155,25 @@ def admin():
             project_num = reverse_dict.get('RELEASE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.release_bonus()
-            insert_records.insert_month_3_release(g.conn,project_num,'3 month checkpoint')
+            insert_records.insert_month_3_release(g.conn, project_num, '3 month checkpoint')
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE3'):
             project_num = reverse_dict.get('CLOSE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.close_prj()
-            insert_records.insert_month_3_release(g.conn,project_num,'3 month closed')
+            insert_records.insert_month_3_release(g.conn, project_num, '3 month closed')
             return redirect(url_for('admin'))
         if reverse_dict.has_key('RELEASE6'):
             project_num = reverse_dict.get('RELEASE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.release_bonus()
-            insert_records.insert_month_3_release(g.conn,project_num,'6 month checkpoint')
+            insert_records.insert_month_3_release(g.conn, project_num, '6 month checkpoint')
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE6'):
             project_num = reverse_dict.get('CLOSE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.close_prj()
-            insert_records.insert_month_3_release(g.conn,project_num,'6 month closed')
+            insert_records.insert_month_3_release(g.conn, project_num, '6 month closed')
             return redirect(url_for('admin'))
     return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month)
 
@@ -190,6 +192,7 @@ def login():
         test_url = urlparse(urljoin(request.host_url, target))
         return test_url.scheme in ('http', 'https') and \
                ref_url.netloc == test_url.netloc
+
     # url/?next=next
     # a bugs here,if next = /auth/login itself,it will redirect to itself
     next = get_redirect_target()
@@ -204,30 +207,47 @@ def login():
                 flash('Wrong User Name or Password')
         else:
             flash('Wrong User Name or Password')
-    return render_template('login.html',next = next)
+    return render_template('login.html', next=next)
+
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-@app.route('/report',methods=['GET','POST'])
+
+@app.route('/report', methods=['GET', 'POST'])
 def report():
     if not session.get('is_active'):
-        return redirect(url_for('login'),code=401)
+        return redirect(url_for('login'), code=401)
     # need route protect here,but conflict with 'admin'
-    data = {};prj = {}
-    summary = newDict(Major=0,Initiator=0,Leader=0,Minor=0,sum=0)
+    data = {};
+    prj = {}
+    summary = newDict(Major=0, Initiator=0, Leader=0, Minor=0, sum=0)
     if request.method == 'POST' and request.form.get('submit') == 'submit':
         date_begin = request.form.get('date_begin')
         date_end = request.form.get('date_end')
-        report = report_html(g.conn,date_begin,date_end)
+        report = report_html(g.conn, date_begin, date_end)
         names = report.get_name()
         for name in names:
             prj[name] = list(chain(*report.prj_set(name)))
             data[name] = report.summary(name)
             summary = summary + newDict(report.summary(name))
             # rewrite the dict class to let dict can add with dict
-    return render_template('report.html',data = data,prj = prj,summary = summary)
+    return render_template('report.html', data=data, prj=prj, summary=summary)
+
+@app.route('/rules',methods=['GET','POST'])
+def rules():
+    if not session.get('is_active'):
+        return redirect(url_for('login'), code=401)
+    rul = ruleMaker()
+    data = rul.rules_api_info()
+    if request.method == 'POST':
+        # 更新本地json配置文件
+        rul.update_config(request.form)
+        # 更新数据库触发器，耗时很长，而且用SQLite Expert 打开数据库似乎出了问题
+        rul.update_triggers(g.conn,request.form)
+        return redirect(url_for('rules'))
+    return render_template('rules.html',data = data)
 
 @app.route('/api/user/')
 def user():
@@ -240,14 +260,20 @@ def user():
 
 @app.route('/api/project/')
 def project_info():
-    n = request.args.get('term','')
+    n = request.args.get('term', '')
     cur = g.conn.cursor()
     SEARCH_PRJ_INFO = sql.SEARCH_PRJ_INFO % n
     res = cur.execute(SEARCH_PRJ_INFO).fetchone()
     if res is None:
         return jsonify({})
     else:
-        return jsonify(zip(string.lowercase,res))
+        return jsonify(zip(string.lowercase, res))
+
+@app.route('/api/rules/')
+def rules_api():
+    rul = ruleMaker()
+    return jsonify(rul.rules_api_info())
+
 
 @app.route('/test/log_test')
 def log_test():
