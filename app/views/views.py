@@ -12,6 +12,7 @@ from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
+from app.ext.hash_password import passwordSecurity
 
 from itertools import chain
 from config import config
@@ -196,15 +197,14 @@ def login():
     # url/?next=next
     # a bugs here,if next = /auth/login itself,it will redirect to itself
     next = get_redirect_target()
+    # 初始化密码hash检查模块
+    password_security = passwordSecurity(g.conn)
     if request.method == 'POST':
-        session['usr'] = request.form.get('usr')
-        session['pwd'] = request.form.get('pwd')
-        if session['usr'] is not None and session['usr'] == 'admin':
-            if session['pwd'] == 'admin':
-                session['is_active'] = True
-                return redirect(next)
-            else:
-                flash('Wrong User Name or Password')
+        rv = password_security.verify_hash_password(request.form.get('usr'),
+                                                    request.form.get('pwd'))
+        if rv:
+            session['is_active'] = True
+            return redirect(next)
         else:
             flash('Wrong User Name or Password')
     return render_template('login.html', next=next)
@@ -244,7 +244,7 @@ def rules():
     if request.method == 'POST':
         # 更新本地json配置文件
         rul.update_config(request.form)
-        # 更新数据库触发器，耗时很长，而且用SQLite Expert 打开数据库似乎出了问题
+        # 更新数据库触发器，耗时较长
         rul.update_triggers(g.conn,request.form)
         return redirect(url_for('rules'))
     return render_template('rules.html',data = data)

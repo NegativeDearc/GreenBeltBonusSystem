@@ -307,10 +307,11 @@ img {
 <li>jsPDF生成PDF</li>
 <li>程序的结构化</li>
 <li>日志系统</li>
+<li>密码的hash处理</li>
+<li>配置json化</li>
 </ul>
 <h3>需要修改的特性</h3>
 <ul>
-<li>密码的hash处理</li>
 <li>sql防止注入</li>
 <li>在服务器的部署</li>
 <li>Session的过期时间</li>
@@ -319,67 +320,80 @@ img {
 <h3>程序结构</h3>
 <pre>
 GreenBeltBonusSystem
+|   .gitignore
+|   config.py
 |   README.md
 |   run.py
 |   run_.py
 |   tree.txt
-|   config.py
+|   __init__.py
 |
-\---app
-    |   __init__.py
-    |
-    +---ext
-    |       insert_records.py
-    |       log.py
-    |       newDict.py
-    |       release_score.py
-    |       report_monthly.py
-    |       totalSummary.py
-    |       views_sql.py
-    |       __init__.py
-    |
-    +---logs
-    |       log.txt
-    |
-    +---models
-    |       CLSS_BONUS_DB
-    |       CTLSS_BONUS_DB
-    |       CTLSS_BONUS_DB.txt
-    |       ddl.sql
-    |       Name list for Sheldon.xlsx
-    |       TEST_CTLSS_BONUS_DB
-    |
-    +---static
-    |       bg.png
-    |       bootstrap-table-expandable.css
-    |       bootstrap-table-expandable.js
-    |       bootstrap.min.css
-    |       bootstrap.min.js
-    |       boss.jpg
-    |       coin_3d.gif
-    |       FileSaver.min.js
-    |       github.png
-    |       jquery-ui.css
-    |       jquery-ui.min.js
-    |       jquery.min.js
-    |       jquery.min.map
-    |       jspdf.min.js
-    |       jspdf.plugin.autotable.js
-    |       marquee.jpg
-    |       upload.jpg
-    |       us_dollar.jpg
-    |
-    +---templates
-    |       about.html
-    |       admin.html
-    |       index.html
-    |       login.html
-    |       report.html
-    |       search.html
-    |
-    \---views
-            views.py
-            __init__.py
++---app
+|   |   __init__.py
+|   |
+|   +---ext
+|   |       config.json
+|   |       config_backup.json
+|   |       func_collection.py
+|   |       hash_password.py
+|   |       insert_records.py
+|   |       log.py
+|   |       newDict.py
+|   |       release_score.py
+|   |       report_monthly.py
+|   |       rules.py
+|   |       totalSummary.py
+|   |       views_sql.py
+|   |       __init__.py
+|   |
+|   +---logs
+|   |       log.txt
+|   |
+|   +---models
+|   |       CLSS_BONUS_DB
+|   |       CTLSS_BONUS_DB
+|   |       CTLSS_BONUS_DB.txt
+|   |       ddl.sql
+|   |       Name list for Sheldon.xlsx
+|   |       TEST_CTLSS_BONUS_DB
+|   |
+|   +---static
+|   |       bg.png
+|   |       bootstrap-table-expandable.css
+|   |       bootstrap-table-expandable.js
+|   |       bootstrap.min.css
+|   |       bootstrap.min.js
+|   |       boss.jpg
+|   |       coin_3d.gif
+|   |       FileSaver.min.js
+|   |       github.png
+|   |       go.jpg
+|   |       jquery-ui.css
+|   |       jquery-ui.min.js
+|   |       jquery.min.js
+|   |       jquery.min.map
+|   |       jspdf.min.js
+|   |       jspdf.plugin.autotable.js
+|   |       marquee.jpg
+|   |       upload.jpg
+|   |       us_dollar.jpg
+|   |
+|   +---templates
+|   |       about.html
+|   |       admin.html
+|   |       index.html
+|   |       login.html
+|   |       report.html
+|   |       rules.html
+|   |       search.html
+|   |
+|   \---views
+|           views.py
+|           __init__.py
+|
+\---tests
+        test.py
+        __init__.py
 </pre>
 
 </body>

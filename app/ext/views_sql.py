@@ -17,7 +17,7 @@ class views_sql(object):
                                    OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
                                    OR MAJOR_PARTICIPATOR LIKE "%%%s%%";
                                 '''
-
+        # 注意，在检查点前2天，后30天检查 (-30,+2)
         self.data_3_month = '''SELECT PROJECT_NUMBER,
                                          PROJECT_NAME,
                                          CHECK_POINT_3_MONTH,
@@ -26,8 +26,8 @@ class views_sql(object):
                                          PROJECT_SCORE,
                                          ACTIVE_SCORE
                                   FROM TOTAL
-                                  WHERE DATE('now','+30 days') > CHECK_POINT_3_MONTH
-                                  AND DATE('now','-2 days') < CHECK_POINT_3_MONTH
+                                  WHERE DATE('now','-30 days') < CHECK_POINT_3_MONTH
+                                  AND DATE('now','+2 days') > CHECK_POINT_3_MONTH
                                   AND ([3_MONTH_CHECK] != 1 OR [3_MONTH_CHECK] IS NULL);
                                '''
 
@@ -39,8 +39,8 @@ class views_sql(object):
                                          PROJECT_SCORE,
                                          ACTIVE_SCORE
                                   FROM TOTAL
-                                  WHERE DATE('now','+30 days') > CHECK_POINT_6_MONTH
-                                  AND DATE('now','-2 days') < CHECK_POINT_6_MONTH
+                                  WHERE DATE('now','-30 days') < CHECK_POINT_6_MONTH
+                                  AND DATE('now','+2 days') > CHECK_POINT_6_MONTH
                                   AND ([6_MONTH_CHECK] != 1 OR [6_MONTH_CHECK] IS NULL );
                                '''
 
