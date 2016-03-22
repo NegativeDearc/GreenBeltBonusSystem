@@ -243,9 +243,10 @@ def rules():
     data = rul.rules_api_info()
     if request.method == 'POST':
         # 更新本地json配置文件
-        rul.update_config(request.form)
+        print request.form
+        #rul.update_config(request.form)
         # 更新数据库触发器，耗时较长
-        rul.update_triggers(g.conn,request.form)
+        #rul.update_triggers(g.conn,request.form)
         return redirect(url_for('rules'))
     return render_template('rules.html',data = data)
 
