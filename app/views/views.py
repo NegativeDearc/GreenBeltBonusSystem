@@ -75,7 +75,6 @@ def search():
             res2 = ts.summary(g.conn)
     return render_template('search.html', data=res, data2=res2)
 
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -84,6 +83,8 @@ def index():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    rul = ruleMaker()
+    data = rul.rules_api_info()
     # session 过期时间 直到浏览器退出
     # 若要登出用户，使 session['is_active']=False
     if not session.get('is_active'):
@@ -93,11 +94,15 @@ def admin():
     data_3_month = cur.execute(sql.data_3_month).fetchall()
     data_6_month = cur.execute(sql.data_6_month).fetchall()
     if request.method == 'POST':
+        golden_type = rul.golden_type_judging(request.form)
+        print request.form
+        print golden_type
         reverse_dict = dict(zip(request.form.values(), request.form.keys()))
         if request.form.get('sub1') == 'submit':
             # update values
             if request.form.get('update', '') == 'on':
                 # sqlite3 使用动态类型判断，字段拼接用 ? 或者 %s
+                # 注意 request 表单是不可修改的
                 # 注意防止SQL注入
                 cur = g.conn.cursor()
                 UPDATE_PROJECT_INFO = sql.UPDATE_PROJECT_INFO \
@@ -111,7 +116,7 @@ def admin():
                                       request.form['minior_member'],
                                       request.form['project_num'])
                 UPDATE_SCORE_INFO = sql.UPDATE_SCORE_INFO % \
-                                    (request.form['s2'],
+                                    (golden_type,
                                      request.form['s1'],
                                      request.form['project_num'])
                 UPDATE_MEMBER_COUNT_MAJOR = sql.UPDATE_MEMBER_COUNT_MAJOR % request.form['project_num']
@@ -141,14 +146,14 @@ def admin():
                                       count_member(request.form['minior_member']))
                 INSERT_SCORE_INFO = sql.INSERT_SCORE_INFO % \
                                     (request.form['project_num'],
-                                     request.form['s2'],
+                                     golden_type,
                                      request.form['s1'])
                 # 数据库已设置项目编号唯一性，否则回滚
                 # 产生500错误
                 cur.execute(INSERT_PROJECT_INFO)
                 cur.execute(INSERT_MEMBER_INFO)
                 cur.execute(INSERT_SCORE_INFO)
-                cur.execute(insert_records.prj_launch(golden_type=request.form['s2'],
+                cur.execute(insert_records.prj_launch(golden_type=golden_type,
                                                       prj_num=request.form['project_num']))
                 g.conn.commit()
                 return redirect(url_for('admin'))
@@ -176,8 +181,7 @@ def admin():
             action.close_prj()
             insert_records.insert_month_3_release(g.conn, project_num, '6 month closed')
             return redirect(url_for('admin'))
-    return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month)
-
+    return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month,data=data)
 
 @app.route('/auth/login', methods=['GET', 'POST'])
 def login():
@@ -220,7 +224,7 @@ def report():
     if not session.get('is_active'):
         return redirect(url_for('login'), code=401)
     # need route protect here,but conflict with 'admin'
-    data = {};
+    data = {}
     prj = {}
     summary = newDict(Major=0, Initiator=0, Leader=0, Minor=0, sum=0)
     if request.method == 'POST' and request.form.get('submit') == 'submit':
@@ -244,9 +248,9 @@ def rules():
     if request.method == 'POST':
         # 更新本地json配置文件
         print request.form
-        #rul.update_config(request.form)
+        rul.update_config(request.form)
         # 更新数据库触发器，耗时较长
-        #rul.update_triggers(g.conn,request.form)
+        rul.update_triggers(g.conn,request.form)
         return redirect(url_for('rules'))
     return render_template('rules.html',data = data)
 
@@ -280,3 +284,10 @@ def rules_api():
 def log_test():
     a = None + 1
     return a
+
+@app.route('/admin_test',methods = ['POST','GET'])
+def admin_test():
+    if request.method == 'POST':
+        print request.form
+        return render_template('admin.html')
+    return render_template('admin.html')

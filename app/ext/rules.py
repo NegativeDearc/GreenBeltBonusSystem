@@ -4,6 +4,7 @@ __author__ = 'SXChen'
 from sys import platform
 import os
 import json
+import bisect
 
 # 统一项目积分规则的接口
 class ruleMaker(object):
@@ -30,7 +31,7 @@ class ruleMaker(object):
         '''更新本地json文件'''
         with open(self.path,'r') as f:
             origin_data = json.load(f)
-
+        #
         origin_data.update(s1={'value':data['s_s']})
         origin_data.update(p1={'value':data['s_p']})
         origin_data.update(k1={'value':data['s_k']})
@@ -40,7 +41,7 @@ class ruleMaker(object):
         origin_data.update(b1={'value':data['s_b1']})
         origin_data.update(b2={'value':data['s_b2']})
         origin_data.update(b3={'value':data['s_b3']})
-
+        #
         origin_data.update(s={'value':data['p_s'],
                               'distribution':[data['ini_s'],data['lea_s'],data['maj_s'],data['min_s']]})
         origin_data.update(p={'value':data['p_p'],
@@ -51,6 +52,30 @@ class ruleMaker(object):
                               'distribution':[data['ini_g'],data['lea_g'],data['maj_g'],data['min_g']]})
         origin_data.update(b={'value':data['p_b'],
                               'distribution':[data['ini_b'],data['lea_b'],data['maj_b'],data['min_b']]})
+        #
+        origin_data.update(duplicability={"level1":data['duplicability_level_1'],
+                                          "level2":data['duplicability_level_2'],
+                                          "level3":data['duplicability_level_3']})
+        origin_data.update(resource_usage={"level1":data['resource_usage_level_1'],
+                                           "level2":data['resource_usage_level_2'],
+                                           "level3":data['resource_usage_level_3']})
+        origin_data.update(implement_period={"level1":data['implement_period_level_1'],
+                                             "level2":data['implement_period_level_2'],
+                                             "level3":data['implement_period_level_3']})
+        origin_data.update(kpi_impact={"level1":data['kpi_level_1'],
+                                       "level2":data['kpi_level_2'],
+                                       "level3":data['kpi_level_3']})
+        #
+        origin_data.update(s1_range=data['s1_range'])
+        origin_data.update(p1_range=data['p1_range'])
+        origin_data.update(k1_range=data['k1_range'])
+        origin_data.update(g1_range=data['g1_range'])
+        origin_data.update(g2_range=data['g2_range'])
+        origin_data.update(g3_range=data['g3_range'])
+        origin_data.update(b1_range=data['b1_range'])
+        origin_data.update(b2_range=data['b2_range'])
+        origin_data.update(b3_range=data['b3_range'])
+
         with open(self.path,'w') as ff:
             json.dump(origin_data,ff)
 
@@ -233,6 +258,37 @@ class ruleMaker(object):
         cur = conn.cursor()
         cur.executescript(trigger)
         conn.commit()
+
+    def golden_type_judging(self,data):
+        range_data = ruleMaker.rules_api_info(self)
+        # 从request form中获取数据,数据类型为unicode
+        d1 = data['duplicability']
+        d2 = data['resource_usage']
+        d3 = data['implement_period']
+        d4 = data['kpi_impact']
+        d5 = data['cost_saving']
+        lst = map(lambda x:float(x),[d1,d2,d3,d4,d5])
+        # 收益的千分之一作为积分
+        res = int(round(sum(lst[:-1]) + lst[-1]/1000))
+        # 积分规则调用,利用bisect 进行排序插值，若得1则居中
+        if bisect.bisect(eval(range_data['s1_range']),res) == 1:
+            return 'S1'
+        if bisect.bisect(eval(range_data['p1_range']),res) == 1:
+            return 'P1'
+        if bisect.bisect(eval(range_data['k1_range']),res) == 1:
+            return 'K1'
+        if bisect.bisect(eval(range_data['g1_range']),res) == 1:
+            return 'G1'
+        if bisect.bisect(eval(range_data['g2_range']),res) == 1:
+            return 'G2'
+        if bisect.bisect(eval(range_data['g3_range']),res) == 1:
+            return 'G3'
+        if bisect.bisect(eval(range_data['b1_range']),res) == 1:
+            return 'B1'
+        if bisect.bisect(eval(range_data['b2_range']),res) == 1:
+            return 'B2'
+        if bisect.bisect(eval(range_data['b3_range']),res) == 1:
+            return 'B3'
 
 if __name__ == '__main__':
     test = ruleMaker()

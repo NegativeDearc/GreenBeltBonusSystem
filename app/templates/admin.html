@@ -43,36 +43,76 @@
     <form action="" method="post" class="form-horizontal">
     <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
     <div class="form-group">
-        <label for="use_type" class="col-sm-2 control-label">Choose to Update instead of Insert</label>
+        <label for="use_type" class="col-sm-3 control-label">Choose to Update instead of Insert</label>
+        <div class="col-sm-6">
+            <!--if choose request.form get 'on'-->
+            <input type="checkbox" class="btn btn-success" name="update">
+        </div>
+    </div>
+    <hr>
+
+    <div class="form-group">
+        <label for="use_type" class="col-sm-2 control-label">Duplicability</label>
         <div class="col-sm-2">
             <!--if choose request.form get 'on'-->
-            <input type="checkbox" class="btn" name="update">
+            <select class="btn btn-success" name="duplicability" id="">
+                <option value="{{ data.duplicability.level3 }}">{{ data.duplicability.level3 }}(>2 Workshop)</option>
+                <option value="{{ data.duplicability.level2 }}">{{ data.duplicability.level2 }}(1~2 Workshop)</option>
+                <option value="{{ data.duplicability.level1 }}">{{ data.duplicability.level1 }}(Only Own Dept.)</option>
+            </select>
+        </div>
+
+        <label for="" class="col-sm-2 control-label">Resource Usage</label>
+        <div class="col-sm-2">
+            <select name="resource_usage" id="" class="btn btn-success">
+                <option value="{{ data.resource_usage.level3 }}">{{ data.resource_usage.level3 }}(External Resource of Company Usage)</option>
+                <option value="{{ data.resource_usage.level2 }}">{{ data.resource_usage.level2 }} (Internal Resource of Company Usage)</option>
+                <option value="{{ data.resource_usage.level1 }}">{{ data.resource_usage.level1 }} (Only Own Dept. Resource Usage)</option>
+            </select>
         </div>
     </div>
 
     <div class="form-group">
+        <label for="" class="col-sm-2 control-label">Implement Period</label>
+        <div class="col-sm-2">
+            <!--if choose request.form get 'on'-->
+            <select class="btn btn-success" name="implement_period" id="">
+                <option value="{{ data.implement_period.level3 }}">{{ data.implement_period.level3 }}(< 1 Month)</option>
+                <option value="{{ data.implement_period.level2 }}">{{ data.implement_period.level2 }}(1~3 Month)</option>
+                <option value="{{ data.implement_period.level1}}">{{ data.implement_period.level1 }}(> 3 Month)</option>
+            </select>
+        </div>
+
+        <label for="" class="col-sm-2 control-label">
+            <abbr title=" S(Safety)、Q(Quality)、C(Cost)、D(Delivery)、M(Morale)">KPI Impact(S,Q,C,D,M)</abbr>
+        </label>
+        <div class="col-sm-2">
+            <select name="kpi_impact" id="" class="btn btn-success">
+                <option value="{{ data.kpi_impact.level3 }}">{{ data.kpi_impact.level3 }}(>= 3 Items)</option>
+                <option value="{{ data.kpi_impact.level2 }}">{{ data.kpi_impact.level2 }}(2 Items)</option>
+                <option value="{{ data.kpi_impact.level1 }}">{{ data.kpi_impact.level1 }} (Only 1 Item)</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">
+            <abbr title="(Score/Thousands USD)">Estimated Cost Saving</abbr>
+        </label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" name="cost_saving"
+                   required="required" placeholder="1000.2">
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
         <label for="proj_type" class="col-sm-2 control-label">Project type</label>
         <div class="col-sm-2">
-            <select id="s1" class="btn btn-default" name="s1">
+            <select id="s1" class="btn btn-success" name="s1">
                 <option value="S">S</option>
                 <option value="P">P</option>
                 <option value="K">K</option>
                 <option value="G">G</option>
                 <option value="B">B</option>
-            </select>
-        </div>
-        <label for="golden_idea_type" class="col-sm-2 control-label">Golden idea type</label>
-        <div class="col-sm-2">
-            <select id="s2" class="btn btn-default" name="s2">
-                <option value="S1">S</option>
-                <option value="P1">P</option>
-                <option value="K1">K</option>
-                <option value="G1">G1</option>
-                <option value="G2">G2</option>
-                <option value="G3">G3</option>
-                <option value="B1">B1</option>
-                <option value="B2">B2</option>
-                <option value="B3">B3</option>
             </select>
         </div>
     </div>
@@ -83,18 +123,19 @@
             <input type="text" class="form-control" placeholder="CKT1600X" name="project_num" required="required">
         </div>
         <label for="proj_name" class="col-sm-2 control-label">Project Name</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <input type="text" class="form-control" placeholder="Title of your Project" name="project_name" required="required">
         </div>
     </div>
     <!--xx-->
     <div class="form-group">
         <label for="due_time" class="col-sm-2 control-label">Due Time</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <input type="date" class="form-control" name="due_time" required="required">
         </div>
     </div>
 
+    <hr>
     <div class="form-group">
         <label for="inintialor" class="col-sm-2 control-label">inintialor</label>
         <div class="col-sm-2">

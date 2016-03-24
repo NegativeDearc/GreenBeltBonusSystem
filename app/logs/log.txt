@@ -251,3 +251,220 @@ Traceback (most recent call last):
   File "D:\Python27\lib\site-packages\werkzeug\routing.py", line 1678, in build
     raise BuildError(endpoint, values, method)
 BuildError: ('amdin', {}, None)
+2016-03-24 10:52:54,684-app-ERROR-Exception on /test/log_test [GET]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 281, in log_test
+    a = None + 1
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
+2016-03-24 11:14:21,509-app-ERROR-Exception on /admin_test [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 288, in admin_test
+    request.form['xxx'] = 'xxx'
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 178, in __setitem__
+    is_immutable(self)
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 28, in is_immutable
+    raise TypeError('%r objects are immutable' % self.__class__.__name__)
+TypeError: 'ImmutableMultiDict' objects are immutable
+2016-03-24 11:14:27,815-app-ERROR-Exception on /admin_test [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 288, in admin_test
+    request.form['xxx'] = 'xxx'
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 178, in __setitem__
+    is_immutable(self)
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 28, in is_immutable
+    raise TypeError('%r objects are immutable' % self.__class__.__name__)
+TypeError: 'ImmutableMultiDict' objects are immutable
+2016-03-24 11:14:35,835-app-ERROR-Exception on /admin_test [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 288, in admin_test
+    #request.form['xxx'] = 'xxx'
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 178, in __setitem__
+    is_immutable(self)
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 28, in is_immutable
+    raise TypeError('%r objects are immutable' % self.__class__.__name__)
+TypeError: 'ImmutableMultiDict' objects are immutable
+2016-03-24 11:14:36,640-app-ERROR-Exception on /admin_test [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 288, in admin_test
+    #request.form['xxx'] = 'xxx'
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 178, in __setitem__
+    is_immutable(self)
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 28, in is_immutable
+    raise TypeError('%r objects are immutable' % self.__class__.__name__)
+TypeError: 'ImmutableMultiDict' objects are immutable
+2016-03-24 11:14:36,871-app-ERROR-Exception on /admin_test [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 288, in admin_test
+    #request.form['xxx'] = 'xxx'
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 178, in __setitem__
+    is_immutable(self)
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 28, in is_immutable
+    raise TypeError('%r objects are immutable' % self.__class__.__name__)
+TypeError: 'ImmutableMultiDict' objects are immutable
+2016-03-24 11:14:37,059-app-ERROR-Exception on /admin_test [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 288, in admin_test
+    #request.form['xxx'] = 'xxx'
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 178, in __setitem__
+    is_immutable(self)
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 28, in is_immutable
+    raise TypeError('%r objects are immutable' % self.__class__.__name__)
+TypeError: 'ImmutableMultiDict' objects are immutable
+2016-03-24 11:15:27,608-app-ERROR-Exception on /api/user/ [GET]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 257, in user
+    SEARCH_NAME = sql.SEARCH_NAME % (n, n)
+NameError: global name 'sql' is not defined
+2016-03-24 11:16:10,862-app-ERROR-Exception on /admin_test [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 288, in admin_test
+    request.form['xxx'] = 'xxx'
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 178, in __setitem__
+    is_immutable(self)
+  File "D:\Python27\lib\site-packages\werkzeug\datastructures.py", line 28, in is_immutable
+    raise TypeError('%r objects are immutable' % self.__class__.__name__)
+TypeError: 'ImmutableMultiDict' objects are immutable
+2016-03-24 18:16:07,147-app-ERROR-Exception on /admin [GET]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 180, in admin
+    insert_records.insert_month_3_release(g.conn, project_num, '6 month closed')
+  File "D:\Python27\lib\site-packages\flask\templating.py", line 128, in render_template
+    context, ctx.app)
+  File "D:\Python27\lib\site-packages\flask\templating.py", line 110, in _render
+    rv = template.render(context)
+  File "D:\Python27\lib\site-packages\jinja2\environment.py", line 989, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "D:\Python27\lib\site-packages\jinja2\environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\templates\admin.html", line 59, in top-level template code
+    <option value="{{ data.duplicability.level3 }}">{{ data.duplicability.level3 }} >2 Workshop</option>
+  File "D:\Python27\lib\site-packages\jinja2\environment.py", line 408, in getattr
+    return getattr(obj, attribute)
+UndefinedError: 'data' is undefined
+2016-03-24 18:17:01,670-app-ERROR-Exception on /admin [GET]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 180, in admin
+    insert_records.insert_month_3_release(g.conn, project_num, '6 month closed')
+  File "D:\Python27\lib\site-packages\flask\templating.py", line 128, in render_template
+    context, ctx.app)
+  File "D:\Python27\lib\site-packages\flask\templating.py", line 110, in _render
+    rv = template.render(context)
+  File "D:\Python27\lib\site-packages\jinja2\environment.py", line 989, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "D:\Python27\lib\site-packages\jinja2\environment.py", line 754, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\templates\admin.html", line 59, in top-level template code
+    <option value="{{ data.duplicability.level3 }}">{{ data.duplicability.level3 }} >2 Workshop</option>
+  File "D:\Python27\lib\site-packages\jinja2\environment.py", line 408, in getattr
+    return getattr(obj, attribute)
+UndefinedError: 'data' is undefined
