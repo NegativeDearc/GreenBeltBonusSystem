@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 
-from flask import request
 import logging
 import os
 from app import app
@@ -22,7 +21,7 @@ class AppLog(object):
     def visitor_ip(self):
         logger = logging.getLogger('visitor_ip')
         logger.addHandler(self.handler)
-        logger.warning(request.remote_addr)
+        logger.warning('')
 
     # form post data
     def form_post(self):

@@ -76,6 +76,11 @@ class ruleMaker(object):
         origin_data.update(b2_range=data['b2_range'])
         origin_data.update(b3_range=data['b3_range'])
 
+        origin_data.update(g_3=data['g_3'])
+        origin_data.update(g_6=data['g_6'])
+        origin_data.update(p_3=data['p_3'])
+        origin_data.update(p_6=data['p_6'])
+
         with open(self.path,'w') as ff:
             json.dump(origin_data,ff)
 
@@ -243,12 +248,22 @@ class ruleMaker(object):
                     FOR EACH ROW
                     BEGIN
                     UPDATE [SCORE_CARD]
-                    SET ACTIVE_SCORE = %s
+                    SET ACTIVE_SCORE = %s + TARGET_SCORE
                     WHERE GOLDEN_IDEA_LEVEL = 'S1' ;
 
                     UPDATE [SCORE_CARD]
-                    SET ACTIVE_SCORE = %s
+                    SET ACTIVE_SCORE = %s + TARGET_SCORE
                     WHERE GOLDEN_IDEA_LEVEL = 'P1' ;
+
+                    UPDATE [SCORE_CARD]
+                    SET ACTIVE_SCORE = TARGET_SCORE
+                    WHERE (GOLDEN_IDEA_LEVEL = 'K1'
+                    OR GOLDEN_IDEA_LEVEL = 'G1'
+                    OR GOLDEN_IDEA_LEVEL = 'G2'
+                    OR GOLDEN_IDEA_LEVEL = 'G3'
+                    OR GOLDEN_IDEA_LEVEL = 'B1'
+                    OR GOLDEN_IDEA_LEVEL = 'B2'
+                    OR GOLDEN_IDEA_LEVEL = 'B3');
                     END
         ''' % (data['s_s'],data['s_p'],data['s_k'],data['s_g1'],data['s_g2'],data['s_g3'],
                data['s_b1'],data['s_b2'],data['s_b3'],data['p_s'],data['p_p'],data['p_k'],
@@ -270,24 +285,34 @@ class ruleMaker(object):
         lst = map(lambda x:float(x),[d1,d2,d3,d4,d5])
         # 收益的千分之一作为积分
         res = int(round(sum(lst[:-1]) + lst[-1]/1000))
-        # 积分规则调用,利用bisect 进行排序插值，若得1则居中
-        if bisect.bisect(eval(range_data['s1_range']),res) == 1:
+        print res
+        # 积分规则调用,利用bisect 进行排序插值，若得1则居中,或者等于末端点
+        if bisect.bisect(eval(range_data['s1_range']),res) == 1\
+                or res == eval(range_data['s1_range'])[1]:
             return 'S1'
-        if bisect.bisect(eval(range_data['p1_range']),res) == 1:
+        if bisect.bisect(eval(range_data['p1_range']),res) == 1\
+                or res == eval(range_data['p1_range'])[1]:
             return 'P1'
-        if bisect.bisect(eval(range_data['k1_range']),res) == 1:
+        if bisect.bisect(eval(range_data['k1_range']),res) == 1\
+                or res == eval(range_data['k1_range'])[1]:
             return 'K1'
-        if bisect.bisect(eval(range_data['g1_range']),res) == 1:
+        if bisect.bisect(eval(range_data['g1_range']),res) == 1\
+                or res == eval(range_data['g1_range'])[1]:
             return 'G1'
-        if bisect.bisect(eval(range_data['g2_range']),res) == 1:
+        if bisect.bisect(eval(range_data['g2_range']),res) == 1\
+                or res == eval(range_data['g2_range'])[1]:
             return 'G2'
-        if bisect.bisect(eval(range_data['g3_range']),res) == 1:
+        if bisect.bisect(eval(range_data['g3_range']),res) == 1\
+                or res == eval(range_data['g3_range'])[1]:
             return 'G3'
-        if bisect.bisect(eval(range_data['b1_range']),res) == 1:
+        if bisect.bisect(eval(range_data['b1_range']),res) == 1\
+                or res == eval(range_data['b1_range'])[1]:
             return 'B1'
-        if bisect.bisect(eval(range_data['b2_range']),res) == 1:
+        if bisect.bisect(eval(range_data['b2_range']),res) == 1\
+                or res == eval(range_data['b2_range'])[1]:
             return 'B2'
-        if bisect.bisect(eval(range_data['b3_range']),res) == 1:
+        if bisect.bisect(eval(range_data['b3_range']),res) == 1\
+                or res == eval(range_data['b3_range'])[1]:
             return 'B3'
 
 if __name__ == '__main__':
@@ -300,3 +325,8 @@ if __name__ == '__main__':
     print test.rules_api_info()['s']['distribution']
     print test.rules_api_info()['s']['distribution'][3]
     print type(test.rules_api_info()['s']['distribution']) #list
+    print test.golden_type_judging(dict(duplicability=3,
+                                        resource_usage=3,
+                                        implement_period=3,
+                                        kpi_impact=3,
+                                        cost_saving=100))

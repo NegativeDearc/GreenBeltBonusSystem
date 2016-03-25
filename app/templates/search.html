@@ -57,18 +57,17 @@
        failed <span style="color: red">{{ data2.get('d4') }}</span> projects
     </p>
     <ol>
-        <li>Being a inintialor,<span style="color: red">{{ data2.get('d5') }}</span> projects,earns <span style="color: red">{{ data2.get('d6') }}</span> bonus</li>
-        <li>Being a leader,<span style="color: red">{{ data2.get('d7') }}</span> projects,earns <span style="color: red">{{ data2.get('d8') }}</span> bonus</li>
-        <li>Being a major member,<span style="color: red">{{ data2.get('d9') }}</span> projects,earns <span style="color: red">{{ data2.get('d10') }}</span> bonus</li>
-        <li>Being a minor member,<span style="color: red">{{ data2.get('d11') }}</span> projects,earns <span style="color: red">{{ data2.get('d12') }}</span> bonus</li>
+        <li>Being a inintialor,<span style="color: red">{{ data2.get('d5') }}</span> projects,earns <span style="color: red">{{ data1.get('Initiator') }}</span> bonus</li>
+        <li>Being a leader,<span style="color: red">{{ data2.get('d7') }}</span> projects,earns <span style="color: red">{{ data1.get('Leader') }}</span> bonus</li>
+        <li>Being a major member,<span style="color: red">{{ data2.get('d9') }}</span> projects,earns <span style="color: red">{{ data1.get('Major') }}</span> bonus</li>
+        <li>Being a minor member,<span style="color: red">{{ data2.get('d6') }}</span> projects,earns <span style="color: red">{{ data1.get('Minor') }}</span> bonus</li>
     </ol>
-    <p>Total: {{ data2.get('13') }} Bonus,among them you can use <span style="color: red">{{ data2.get('d14') }}</span>! And {{ data2.get('15') }} is waiting for you!</p>
+    <p>Total: {{ data2.get('13') }} Bonus,among them you can use <span style="color: red">{{ data1.get('sum') }}</span>! And {{ data2.get('15') }} is waiting for you!</p>
     <p>Thank you for your participation!</p>
     </div>
     </div>
     {% endif %}
 {% endif %}
-
 
 <!--generate table -->
      {% if data %}

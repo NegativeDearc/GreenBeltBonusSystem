@@ -22,7 +22,7 @@ import string
 import os
 
 sql = views_sql()
-insert_records = insert_records()
+insert = insert_records()
 
 
 @app.before_request
@@ -65,6 +65,7 @@ app.jinja_env.globals['crsf_token'] = generate_csrf_token
 def search():
     res = None
     res2 = None
+    res3 = None
     if request.method == 'POST':
         employee_name = request.form.get('employee_name', '')
         if employee_name != '':
@@ -72,8 +73,8 @@ def search():
             cur = g.conn.cursor()
             res = cur.execute(search_member).fetchall()
             ts = totalSummary(employee_name)
-            res2 = ts.summary(g.conn)
-    return render_template('search.html', data=res, data2=res2)
+            res2,res3 = ts.summary(g.conn)
+    return render_template('search.html', data=res, data1=res3,data2=res2)
 
 @app.route('/')
 @app.route('/index')
@@ -93,12 +94,13 @@ def admin():
     cur = g.conn.cursor()
     data_3_month = cur.execute(sql.data_3_month).fetchall()
     data_6_month = cur.execute(sql.data_6_month).fetchall()
+    #提交表单
     if request.method == 'POST':
-        golden_type = rul.golden_type_judging(request.form)
-        print request.form
-        print golden_type
-        reverse_dict = dict(zip(request.form.values(), request.form.keys()))
+        reverse_dict = dict(zip(request.form.values(),request.form.keys()))
+        # print reverse_dict
         if request.form.get('sub1') == 'submit':
+            # 注意这段只有在request.form 包含数据才有效，否则http 400
+            golden_type = rul.golden_type_judging(request.form)
             # update values
             if request.form.get('update', '') == 'on':
                 # sqlite3 使用动态类型判断，字段拼接用 ? 或者 %s
@@ -118,7 +120,13 @@ def admin():
                 UPDATE_SCORE_INFO = sql.UPDATE_SCORE_INFO % \
                                     (golden_type,
                                      request.form['s1'],
-                                     request.form['project_num'])
+                                     request.form['project_num'],
+                                     request.form['targeted_incentive_score'],
+                                     request.form['duplicability'],
+                                     request.form['resource_usage'],
+                                     request.form['implement_period'],
+                                     request.form['kpi_impact'],
+                                     request.form['cost_saving'])
                 UPDATE_MEMBER_COUNT_MAJOR = sql.UPDATE_MEMBER_COUNT_MAJOR % request.form['project_num']
                 UPDATE_MEMBER_COUNT_MAINIOR = sql.UPDATE_MEMBER_COUNT_MAINIOR % request.form['project_num']
 
@@ -147,39 +155,46 @@ def admin():
                 INSERT_SCORE_INFO = sql.INSERT_SCORE_INFO % \
                                     (request.form['project_num'],
                                      golden_type,
-                                     request.form['s1'])
+                                     request.form['s1'],
+                                     request.form['targeted_incentive_score'],
+                                     request.form['duplicability'],
+                                     request.form['resource_usage'],
+                                     request.form['implement_period'],
+                                     request.form['kpi_impact'],
+                                     request.form['cost_saving'])
                 # 数据库已设置项目编号唯一性，否则回滚
                 # 产生500错误
                 cur.execute(INSERT_PROJECT_INFO)
                 cur.execute(INSERT_MEMBER_INFO)
                 cur.execute(INSERT_SCORE_INFO)
-                cur.execute(insert_records.prj_launch(golden_type=golden_type,
-                                                      prj_num=request.form['project_num']))
+                insert.prj_launch(golden_type=golden_type,
+                                  prj_num=request.form['project_num'],
+                                  conn=g.conn)
                 g.conn.commit()
                 return redirect(url_for('admin'))
         if reverse_dict.has_key('RELEASE3'):
             project_num = reverse_dict.get('RELEASE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.release_bonus()
-            insert_records.insert_month_3_release(g.conn, project_num, '3 month checkpoint')
+            insert.insert_release_detail(conn=g.conn, prj_num=project_num,flag=1)
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE3'):
             project_num = reverse_dict.get('CLOSE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.close_prj()
-            insert_records.insert_month_3_release(g.conn, project_num, '3 month closed')
+            insert.insert_release_detail(g.conn, project_num,flag=3)
             return redirect(url_for('admin'))
         if reverse_dict.has_key('RELEASE6'):
             project_num = reverse_dict.get('RELEASE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.release_bonus()
-            insert_records.insert_month_3_release(g.conn, project_num, '6 month checkpoint')
+            insert.insert_release_detail(g.conn,project_num,flag=2)
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE6'):
             project_num = reverse_dict.get('CLOSE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.close_prj()
-            insert_records.insert_month_3_release(g.conn, project_num, '6 month closed')
+            insert.insert_release_detail(g.conn, project_num,flag=4)
             return redirect(url_for('admin'))
     return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month,data=data)
 

@@ -34,22 +34,20 @@ class views_sql(object):
                                '''
 
         self.data_6_month = '''SELECT PROJECT_NUMBER,
-                                         PROJECT_NAME,
-                                         CHECK_POINT_6_MONTH,
-                                         LEADER,
-                                         GOLDEN_IDEA_SCORE,
-                                         PROJECT_SCORE,
-                                         ACTIVE_SCORE
-                                  FROM TOTAL
-                                  WHERE DATE('now','-30 days') < CHECK_POINT_6_MONTH
-                                  AND DATE('now','+2 days') > CHECK_POINT_6_MONTH
-                                  AND ([6_MONTH_CHECK] != 1 OR [6_MONTH_CHECK] IS NULL );
-                               '''
+                                      PROJECT_NAME,
+                                      CHECK_POINT_6_MONTH,
+                                      LEADER,
+                                      GOLDEN_IDEA_SCORE,
+                                      PROJECT_SCORE,
+                                      ACTIVE_SCORE
+                              FROM TOTAL
+                              WHERE DATE('now','-30 days') < CHECK_POINT_6_MONTH
+                              AND DATE('now','+2 days') > CHECK_POINT_6_MONTH
+                              AND ([6_MONTH_CHECK] != 1 OR [6_MONTH_CHECK] IS NULL );'''
 
         self.UPDATE_PROJECT_INFO = '''UPDATE PROJECT_INFO
-                                         SET PROJECT_NAME = "%s",PROJECT_DUE_TIME = "%s"
-                                         WHERE PROJECT_NUMBER = "%s";
-                                         '''
+                                      SET PROJECT_NAME = "%s",PROJECT_DUE_TIME = "%s"
+                                      WHERE PROJECT_NUMBER = "%s";'''
 
         self.UPDATE_MEMBER_INFO = '''UPDATE MEMBER_INFO
                                         SET ININTIALOR = "%s",
@@ -60,9 +58,15 @@ class views_sql(object):
                                         '''
 
         self.UPDATE_SCORE_INFO = ''' UPDATE SCORE_CARD
-                                        SET GOLDEN_IDEA_LEVEL = "%s",
-                                            PROJECT_SCORE_LEVEL = "%s"
-                                        WHERE PROJECT_NUMBER = "%s";
+                                     SET GOLDEN_IDEA_LEVEL = "%s",
+                                        PROJECT_SCORE_LEVEL = "%s",
+                                        TARGET_SCORE = "%s",
+                                        DUPLICABILITY = "%s",
+                                        RESOURCE_USAGE = "%s",
+                                        IMPLEMENT_PERIOD ="%s",
+                                        KPI_IMPACT = "%s",
+                                        COST_SAVING = "%s"
+                                     WHERE PROJECT_NUMBER = "%s";
                                         '''
 
         self.UPDATE_MEMBER_COUNT_MAJOR = '''UPDATE MEMBER_INFO
@@ -90,9 +94,16 @@ class views_sql(object):
                                         '''
 
         self.INSERT_SCORE_INFO = ''' INSERT INTO
-                                        SCORE_CARD (PROJECT_NUMBER,GOLDEN_IDEA_LEVEL,PROJECT_SCORE_LEVEL)
-                                        VALUES ("%s","%s","%s");
-                                        '''
+                                     SCORE_CARD (PROJECT_NUMBER,
+                                                 GOLDEN_IDEA_LEVEL,
+                                                 PROJECT_SCORE_LEVEL,
+                                                 TARGET_SCORE,
+                                                 DUPLICABILITY,
+                                                 RESOURCE_USAGE,
+                                                 IMPLEMENT_PERIOD,
+                                                 KPI_IMPACT,
+                                                 COST_SAVING)
+                                     VALUES ("%s","%s","%s","%s","%s","%s","%s","%s","%s");'''
 
         self.SEARCH_NAME = '''SELECT FORMAT_NAME
                      FROM USER_ID

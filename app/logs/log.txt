@@ -468,3 +468,103 @@ Traceback (most recent call last):
   File "D:\Python27\lib\site-packages\jinja2\environment.py", line 408, in getattr
     return getattr(obj, attribute)
 UndefinedError: 'data' is undefined
+2016-03-25 13:58:50,588-app-ERROR-Exception on /search [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 75, in search
+    res2 = ts.summary(g.conn)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\totalSummary.py", line 95, in summary
+    report = report_html()
+TypeError: __init__() takes exactly 4 arguments (1 given)
+2016-03-25 14:00:11,141-app-ERROR-Exception on /search [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 75, in search
+    res2 = ts.summary(g.conn)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\totalSummary.py", line 95, in summary
+    report = report_html()
+TypeError: __init__() takes exactly 4 arguments (1 given)
+2016-03-25 14:04:42,081-app-ERROR-Exception on /search [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 75, in search
+    res2 = ts.summary(g.conn)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\totalSummary.py", line 95, in summary
+    report = report_html(conn=conn,month_begin=None,month_end=None)
+TypeError: __init__() takes exactly 4 arguments (1 given)
+2016-03-25 14:05:06,039-app-ERROR-Exception on /search [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 75, in search
+    res2 = ts.summary(g.conn)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\totalSummary.py", line 121, in summary
+    d6=round(d6,1),
+NameError: global name 'd6' is not defined
+2016-03-25 14:05:36,865-app-ERROR-Exception on /search [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 75, in search
+    res2 = ts.summary(g.conn)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\totalSummary.py", line 121, in summary
+NameError: global name 'd6' is not defined
+2016-03-25 14:08:49,223-app-ERROR-Exception on /search [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 75, in search
+    ts = totalSummary(employee_name)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\totalSummary.py", line 121, in summary
+NameError: global name 'd6' is not defined
