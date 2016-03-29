@@ -118,36 +118,4 @@ class views_sql(object):
                                   WHERE PROJECT_NUMBER = "%s";'''
 
     def golden_type_judging(self,data):
-        rul = ruleMaker()
-        range_data = ruleMaker.rules_api_info()
-        # 从request form中获取数据,数据类型为unicode
-        d1 = data['duplicability']
-        d2 = data['resource_usage']
-        d3 = data['implement_period']
-        d4 = data['kpi_impact']
-        d5 = data['cost_saving']
-        lst = map(lambda x:float(x),[d1,d2,d3,d4,d5])
-        # 收益的千分之一作为积分
-        res = int(round(sum(lst[:-1]) + lst[-1]/1000))
-        # 积分规则调用,利用bisect 进行排序插值，若得1则居中
-        if bisect.bisect(eval(range_data['s1_range']),res) == 1:
-            return 'S1'
-        if bisect.bisect(eval(range_data['p1_range']),res) == 1:
-            return 'P1'
-        if bisect.bisect(eval(range_data['k1_range']),res) == 1:
-            return 'K1'
-        if bisect.bisect(eval(range_data['g1_range']),res) == 1:
-            return 'G1'
-        if bisect.bisect(eval(range_data['g2_range']),res) == 1:
-            return 'G2'
-        if bisect.bisect(eval(range_data['g3_range']),res) == 1:
-            return 'G3'
-        if bisect.bisect(eval(range_data['b1_range']),res) == 1:
-            return 'B1'
-        if bisect.bisect(eval(range_data['b2_range']),res) == 1:
-            return 'B2'
-        if bisect.bisect(eval(range_data['b3_range']),res) == 1:
-            return 'B3'
-
-
-
+        pass
