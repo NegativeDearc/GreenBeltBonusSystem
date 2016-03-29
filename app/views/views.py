@@ -99,7 +99,7 @@ def admin():
         reverse_dict = dict(zip(request.form.values(),request.form.keys()))
         # print reverse_dict
         if request.form.get('sub1') == 'submit':
-            # 注意这段只有在request.form 包含数据才有效，否则http 400
+            # 注意这段只有在request.form 包含指定数据才有效，否则http 400
             golden_type = rul.golden_type_judging(request.form)
             # update values
             if request.form.get('update', '') == 'on':
@@ -164,13 +164,13 @@ def admin():
                                      request.form['cost_saving'])
                 # 数据库已设置项目编号唯一性，否则回滚
                 # 产生500错误
+                # 注意提交顺序以及是否需要两次提交
                 cur.execute(INSERT_PROJECT_INFO)
                 cur.execute(INSERT_MEMBER_INFO)
                 cur.execute(INSERT_SCORE_INFO)
                 insert.prj_launch(golden_type=golden_type,
                                   prj_num=request.form['project_num'],
                                   conn=g.conn)
-                g.conn.commit()
                 return redirect(url_for('admin'))
         if reverse_dict.has_key('RELEASE3'):
             project_num = reverse_dict.get('RELEASE3')

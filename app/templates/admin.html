@@ -40,7 +40,7 @@
     </div>
 
     <div class="col-md-9">
-    <form action="" method="post" class="form-horizontal">
+    <form action="" method="post" class="form-horizontal" id="form_data">
     <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
     <div class="form-group">
         <label for="use_type" class="col-sm-3 control-label">Choose to Update instead of Insert</label>
@@ -55,7 +55,7 @@
         <label for="use_type" class="col-sm-2 control-label">Duplicability</label>
         <div class="col-sm-2">
             <!--if choose request.form get 'on'-->
-            <select class="btn btn-success" name="duplicability" id="">
+            <select class="btn btn-success" name="duplicability" id="selection1">
                 <option value="{{ data.duplicability.level3 }}">{{ data.duplicability.level3 }}(>2 Workshop)</option>
                 <option value="{{ data.duplicability.level2 }}">{{ data.duplicability.level2 }}(1~2 Workshop)</option>
                 <option value="{{ data.duplicability.level1 }}">{{ data.duplicability.level1 }}(Only Own Dept.)</option>
@@ -64,7 +64,7 @@
 
         <label for="" class="col-sm-2 control-label">Resource Usage</label>
         <div class="col-sm-2">
-            <select name="resource_usage" id="" class="btn btn-success">
+            <select name="resource_usage" id="selection2" class="btn btn-success">
                 <option value="{{ data.resource_usage.level3 }}">{{ data.resource_usage.level3 }}(External Resource of Company Usage)</option>
                 <option value="{{ data.resource_usage.level2 }}">{{ data.resource_usage.level2 }} (Internal Resource of Company Usage)</option>
                 <option value="{{ data.resource_usage.level1 }}">{{ data.resource_usage.level1 }} (Only Own Dept. Resource Usage)</option>
@@ -76,7 +76,7 @@
         <label for="" class="col-sm-2 control-label">Implement Period</label>
         <div class="col-sm-2">
             <!--if choose request.form get 'on'-->
-            <select class="btn btn-success" name="implement_period" id="">
+            <select class="btn btn-success" name="implement_period" id="selection3">
                 <option value="{{ data.implement_period.level3 }}">{{ data.implement_period.level3 }}(< 1 Month)</option>
                 <option value="{{ data.implement_period.level2 }}">{{ data.implement_period.level2 }}(1~3 Month)</option>
                 <option value="{{ data.implement_period.level1}}">{{ data.implement_period.level1 }}(> 3 Month)</option>
@@ -87,7 +87,7 @@
             <abbr title=" S(Safety)、Q(Quality)、C(Cost)、D(Delivery)、M(Morale)">KPI Impact(S,Q,C,D,M)</abbr>
         </label>
         <div class="col-sm-2">
-            <select name="kpi_impact" id="" class="btn btn-success">
+            <select name="kpi_impact" id="selection4" class="btn btn-success">
                 <option value="{{ data.kpi_impact.level3 }}">{{ data.kpi_impact.level3 }}(>= 3 Items)</option>
                 <option value="{{ data.kpi_impact.level2 }}">{{ data.kpi_impact.level2 }}(2 Items)</option>
                 <option value="{{ data.kpi_impact.level1 }}">{{ data.kpi_impact.level1 }} (Only 1 Item)</option>
@@ -168,7 +168,7 @@
     <div class="form-group">
         <label for="submit" class="col-sm-2 control-label">Submit</label>
         <div class="col-sm-4">
-             <input type="submit" class="btn btn-default" name="sub1" value="submit">
+             <input type="submit" class="btn btn-default" name="sub1" value="submit" onclick="return dataAlert()">
         </div>
     </div>
     </form>
@@ -304,5 +304,53 @@
                 $.getJSON($SCRIPT_ROOT + "/api/user/",{term: request.term},response);
             }
     });
+
+    /*以下代码供/admin面板数据检查*/
+    var form_data = function(){
+            var input_Data = document.getElementsByTagName('input');
+            var elements = new Array();
+            for (var i = 0;i < input_Data.length; i++){
+                elements.push(input_Data[i].value);
+            }
+            return elements
+        };
+
+    var select_data = function(){
+            var select_Data = document.getElementsByTagName('select');
+            var elements = new Array();
+            for (var i = 0;i < select_Data.length; i++){
+                index = select_Data[i].selectedIndex;
+                elements.push(select_Data[i].options[index].value);
+            }
+            return elements
+        };
+
+    var dataAlert = function (){
+        data = form_data()
+        data2 = select_data()
+        data_string = "***请检查输入!***\n"+
+                "***可复制性***--->" + data2[0] + "\n" +
+                "***资源利用***--->" + data2[1] + "\n" +
+                "***实行周期***--->" + data2[2] + "\n" +
+                "***KPI等级***---->" + data2[3] + "\n" +
+                "***节约成本***--->" + data[2] + "$" + "\n" +
+                "***项目类型***--->" + data2[4] + "\n" +
+                "***定向奖励***--->" + data[3] + "\n" +
+                "***项目编号***--->" + data[4] + "\n" +
+                "***项目描述***--->" + data[5] + "\n" +
+                "***结案日期***--->" + data[6] + "\n" +
+                "**项目发起人**--->" + data[7] + "\n" +
+                "**项目执行者**--->" + data[8] + "\n" +
+                "***主要成员***--->" + data[9] + "\n" +
+                "***次要成员***--->" + data[10] + "\n"
+        if (confirm(data_string)){
+            alert('点击确认提交!');
+            return true;
+        }
+        else{
+            alert('撤销提交,请检查数据!')
+            return false;
+        }
+    };
 </script>
 </html>

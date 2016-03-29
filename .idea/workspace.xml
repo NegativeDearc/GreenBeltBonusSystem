@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="" />
+    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/CTLSS_BONUS_DB" afterPath="$PROJECT_DIR$/app/models/CTLSS_BONUS_DB" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/admin.html" afterPath="$PROJECT_DIR$/app/templates/admin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/views.py" afterPath="$PROJECT_DIR$/app/views/views.py" />
+    </list>
     <ignored path="GreenBeltBonusSystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -14,8 +19,8 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/GreenBeltBonusSystem$GreenBeltBonusSystem.coverage" NAME="GreenBeltBonusSystem Coverage Results" MODIFIED="1458906938492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/GreenBeltBonusSystem-high-structual$GreenBeltBonusSystem.coverage" NAME="GreenBeltBonusSystem Coverage Results" MODIFIED="1458387714911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/GreenBeltBonusSystem$GreenBeltBonusSystem.coverage" NAME="GreenBeltBonusSystem Coverage Results" MODIFIED="1459254364328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,125 +37,49 @@
     <favorites_list name="GreenBeltBonusSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0326796">
-              <caret line="96" column="9" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+            <state vertical-scroll-proportion="-4.0123763">
+              <caret line="178" column="34" selection-start-line="178" selection-start-column="34" selection-end-line="178" selection-end-column="34" />
               <folding>
                 <element signature="e#24#120#0" expanded="true" />
-                <element signature="e#761#1015#0" expanded="false" />
-                <element signature="e#1071#1258#0" expanded="false" />
-                <element signature="e#1285#1451#0" expanded="false" />
-                <element signature="e#1485#1613#0" expanded="false" />
-                <element signature="e#1741#2244#0" expanded="false" />
-                <element signature="e#8657#9703#0" expanded="false" />
-                <element signature="e#9848#10694#0" expanded="false" />
-                <element signature="e#10757#11186#0" expanded="false" />
-                <element signature="e#11229#11467#0" expanded="false" />
-                <element signature="e#11521#11783#0" expanded="false" />
-                <element signature="e#11832#11890#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="report_monthly.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/ext/report_monthly.py">
+      <file leaf-file-name="views_sql.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/ext/views_sql.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="104" column="64" selection-start-line="104" selection-start-column="64" selection-end-line="104" selection-end-column="64" />
+            <state vertical-scroll-proportion="-20.703703">
+              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
               <folding>
-                <element signature="e#46#73#0" expanded="true" />
-                <marker date="1458907841712" expanded="true" signature="654:841" placeholder="SELECT ININT..REPORT..." />
-                <marker date="1458907841712" expanded="true" signature="2631:2795" placeholder="SELECT SUM(S..REPORT..." />
-                <marker date="1458907841712" expanded="true" signature="3140:3304" placeholder="SELECT SUM(S..REPORT..." />
-                <marker date="1458907841712" expanded="true" signature="3731:3937" placeholder="SELECT SUM(S..REPORT..." />
-                <marker date="1458907841712" expanded="true" signature="4281:4489" placeholder="SELECT SUM(S..REPORT..." />
-                <marker date="1458907841712" expanded="true" signature="5127:5454" placeholder="SELECT DISTI..REPORT..." />
+                <marker date="1459245373000" expanded="true" signature="181:917" placeholder="SELECT PROJE... TOTAL" />
+                <marker date="1459245373000" expanded="true" signature="1023:1681" placeholder="SELECT PROJE... TOTAL" />
+                <marker date="1459245373000" expanded="true" signature="1750:2375" placeholder="SELECT PROJE... TOTAL" />
+                <marker date="1459245373000" expanded="true" signature="2419:2590" placeholder="UPDATE PROJE... " />
+                <marker date="1459245373000" expanded="true" signature="2633:2983" placeholder="UPDATE MEMBE... " />
+                <marker date="1459245373000" expanded="true" signature="3067:3652" placeholder="UPDATE SCORE... " />
+                <marker date="1459245373000" expanded="true" signature="3743:3947" placeholder="UPDATE MEMBE... " />
+                <marker date="1459245373000" expanded="true" signature="3998:4208" placeholder="UPDATE MEMBE... " />
+                <marker date="1459245373000" expanded="true" signature="4251:4428" placeholder="INSERT INTO PROJECT_INFO" />
+                <marker date="1459245373000" expanded="true" signature="4513:5109" placeholder="INSERT INTO MEMBER_INFO" />
+                <marker date="1459245373000" expanded="true" signature="5193:5880" placeholder="INSERT INTO SCORE_CARD" />
+                <marker date="1459245373000" expanded="true" signature="5916:6097" placeholder="SELECT FORMA... USER_ID" />
+                <marker date="1459245373000" expanded="true" signature="6137:6427" placeholder="SELECT PROJE... TOTAL" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="totalSummary.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/ext/totalSummary.py">
+      <file leaf-file-name="admin.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/admin.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-              <folding>
-                <element signature="e#266#4176#0" expanded="false" />
-                <marker date="1458887224326" expanded="true" signature="320:690" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="822:1399" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="1504:2092" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="2185:2703" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="2794:3280" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="3367:3490" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="3587:3698" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="3793:3914" placeholder="SELECT COUNT..TOTAL..." />
-                <marker date="1458887224326" expanded="true" signature="4009:4133" placeholder="SELECT COUNT..TOTAL..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rules.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/ext/rules.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="314" column="45" selection-start-line="314" selection-start-column="45" selection-end-line="314" selection-end-column="45" />
-              <folding>
-                <element signature="e#3851#10558#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="insert_records.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/ext/insert_records.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
-              <folding>
-                <marker date="1458902180702" expanded="true" signature="510:635" placeholder="SELECT TARGE..." />
-                <marker date="1458902180702" expanded="true" signature="1051:1201" placeholder="INSERT INTO ..." />
-                <marker date="1458902180702" expanded="true" signature="1598:1717" placeholder="SELECT GOLDE..SCORE_CARD..." />
-                <marker date="1458902180702" expanded="true" signature="1598:1719" placeholder="SELECT GOLDE..SCORE_CARD..." />
-                <marker date="1458902180702" expanded="true" signature="1598:1720" placeholder="SELECT GOLDE..SCORE_CARD..." />
-                <marker date="1458902180702" expanded="true" signature="3441:3591" placeholder="INSERT INTO ..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="release_score.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/ext/release_score.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
-              <folding>
-                <marker date="1458904374494" expanded="true" signature="438:570" placeholder="SELECT PROJE..SCORE_CARD..." />
-                <marker date="1458904374494" expanded="true" signature="674:806" placeholder="SELECT [3_MO..." />
-                <marker date="1458904374494" expanded="true" signature="911:1043" placeholder="SELECT [6_MO..." />
-                <marker date="1458904374494" expanded="true" signature="1158:1336" placeholder="UPDATE SCORE..." />
-                <marker date="1458904374494" expanded="true" signature="1463:1666" placeholder="UPDATE SCORE..." />
-                <marker date="1458904374494" expanded="true" signature="1823:2026" placeholder="UPDATE SCORE..." />
-                <marker date="1458904374494" expanded="true" signature="2184:2345" placeholder="UPDATE PROJE..." />
-                <marker date="1458904374494" expanded="true" signature="2476:2637" placeholder="UPDATE PROJE..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-              <folding>
-                <element signature="e#24#47#0" expanded="true" />
-              </folding>
+              <caret line="225" column="42" selection-start-line="225" selection-start-column="42" selection-end-line="225" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -197,7 +126,6 @@
         <option value="$PROJECT_DIR$/app/ext/config.txt" />
         <option value="$PROJECT_DIR$/app/templates/index.html" />
         <option value="$PROJECT_DIR$/app/templates/report.html" />
-        <option value="$PROJECT_DIR$/app/templates/admin.html" />
         <option value="$PROJECT_DIR$/app/ext/views_sql.py" />
         <option value="$PROJECT_DIR$/app/templates/rules.html" />
         <option value="$PROJECT_DIR$/app/logs/log.txt" />
@@ -212,6 +140,7 @@
         <option value="$PROJECT_DIR$/app/ext/release_score.py" />
         <option value="$PROJECT_DIR$/app/ext/rules.py" />
         <option value="$PROJECT_DIR$/app/ext/report_monthly.py" />
+        <option value="$PROJECT_DIR$/app/templates/admin.html" />
         <option value="$PROJECT_DIR$/app/views/views.py" />
       </list>
     </option>
@@ -221,14 +150,10 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
-  <component name="NamedScopeManager">
-    <order />
-  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -270,10 +195,10 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -380,6 +305,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -389,7 +316,6 @@
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
@@ -479,6 +405,12 @@
       <tasks />
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
       <envs />
       <method />
     </configuration>
@@ -598,7 +530,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="D:\Python27\python.exe" />
+      <option name="SDK_HOME" value="/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -628,28 +560,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18806162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3489933" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34801137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -670,11 +602,96 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/views/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="225" column="42" selection-start-line="225" selection-start-column="42" selection-end-line="225" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/report_monthly.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="16" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/totalSummary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/rules.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="245" column="45" selection-start-line="245" selection-start-column="45" selection-end-line="245" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/insert_records.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <marker date="1459245373000" expanded="true" signature="510:635" placeholder="SELECT TARGE... " />
+            <marker date="1459245373000" expanded="true" signature="1051:1201" placeholder="INSERT INTO MONTHLY_ACTION... " />
+            <marker date="1459245373000" expanded="true" signature="1598:1720" placeholder="SELECT GOLDE... SCORE_CARD" />
+            <marker date="1459245373000" expanded="true" signature="3441:3591" placeholder="INSERT INTO MONTHLY_ACTION... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/release_score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+          <folding>
+            <marker date="1459245373000" expanded="true" signature="438:570" placeholder="SELECT PROJE... SCORE_CARD" />
+            <marker date="1459245373000" expanded="true" signature="674:806" placeholder="SELECT [3_MO... " />
+            <marker date="1459245373000" expanded="true" signature="911:1043" placeholder="SELECT [6_MO... " />
+            <marker date="1459245373000" expanded="true" signature="1158:1336" placeholder="UPDATE SCORE... " />
+            <marker date="1459245373000" expanded="true" signature="1463:1666" placeholder="UPDATE SCORE... " />
+            <marker date="1459245373000" expanded="true" signature="1823:2026" placeholder="UPDATE SCORE... " />
+            <marker date="1459245373000" expanded="true" signature="2184:2345" placeholder="UPDATE PROJE... " />
+            <marker date="1459245373000" expanded="true" signature="2476:2637" placeholder="UPDATE PROJE... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/rules.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,11 +700,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="247" column="23" selection-start-line="247" selection-start-column="23" selection-end-line="247" selection-end-column="23" />
           <folding>
-            <element signature="e#8657#9703#0" expanded="false" />
-            <element signature="e#9848#10694#0" expanded="false" />
-            <element signature="e#11521#11783#0" expanded="false" />
-            <element signature="e#11832#11890#0" expanded="false" />
-            <element signature="e#11942#11967#0" expanded="false" />
+            <element signature="e#24#120#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -780,7 +793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -788,30 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6">
           <caret line="200" column="27" selection-start-line="200" selection-start-column="27" selection-end-line="200" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ext/views_sql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.920904">
-          <caret line="89" column="73" selection-start-line="89" selection-start-column="73" selection-end-line="89" selection-end-column="73" />
-          <folding>
-            <element signature="e#22#35#0" expanded="true" />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="SELECT PROJE..TOTAL..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="SELECT PROJE..TOTAL..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="SELECT PROJE..TOTAL..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="UPDATE PROJE..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="UPDATE SCORE..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="UPDATE MEMBE..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="SELECT FORMA..USER_ID..." />
-            <marker date="1458869070561" expanded="true" signature="-1:-1" placeholder="SELECT PROJE..TOTAL..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -819,7 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.1676648">
           <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -827,7 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9540918">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -835,7 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -843,7 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -851,9 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.90960455">
           <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -861,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,10 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.79096043">
           <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-          <folding>
-            <element signature="e#46#119#0" expanded="true" />
-            <marker date="1458892641739" expanded="true" signature="-1:-1" placeholder="SELECT PASSW..USER_PASSWORD..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -880,9 +856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.15819208">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#32#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -890,7 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15819208">
           <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -898,41 +870,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6440678">
           <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/logs/log.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.625">
           <caret line="567" column="29" selection-start-line="567" selection-start-column="29" selection-end-line="567" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.774648">
-          <caret line="200" column="81" selection-start-line="200" selection-start-column="81" selection-end-line="200" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ext/insert_records.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
-          <folding>
-            <marker date="1458902180702" expanded="true" signature="510:635" placeholder="SELECT TARGE..." />
-            <marker date="1458902180702" expanded="true" signature="1051:1201" placeholder="INSERT INTO ..." />
-            <marker date="1458902180702" expanded="true" signature="1598:1717" placeholder="SELECT GOLDE..SCORE_CARD..." />
-            <marker date="1458902180702" expanded="true" signature="1598:1719" placeholder="SELECT GOLDE..SCORE_CARD..." />
-            <marker date="1458902180702" expanded="true" signature="1598:1720" placeholder="SELECT GOLDE..SCORE_CARD..." />
-            <marker date="1458902180702" expanded="true" signature="3441:3591" placeholder="INSERT INTO ..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -940,99 +884,103 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8873239">
           <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding>
-            <element signature="e#24#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ext/rules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="314" column="45" selection-start-line="314" selection-start-column="45" selection-end-line="314" selection-end-column="45" />
-          <folding>
-            <element signature="e#3851#10558#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ext/release_score.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
-          <folding>
-            <marker date="1458904374494" expanded="true" signature="438:570" placeholder="SELECT PROJE..SCORE_CARD..." />
-            <marker date="1458904374494" expanded="true" signature="674:806" placeholder="SELECT [3_MO..." />
-            <marker date="1458904374494" expanded="true" signature="911:1043" placeholder="SELECT [6_MO..." />
-            <marker date="1458904374494" expanded="true" signature="1158:1336" placeholder="UPDATE SCORE..." />
-            <marker date="1458904374494" expanded="true" signature="1463:1666" placeholder="UPDATE SCORE..." />
-            <marker date="1458904374494" expanded="true" signature="1823:2026" placeholder="UPDATE SCORE..." />
-            <marker date="1458904374494" expanded="true" signature="2184:2345" placeholder="UPDATE PROJE..." />
-            <marker date="1458904374494" expanded="true" signature="2476:2637" placeholder="UPDATE PROJE..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ext/totalSummary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="e#266#4176#0" expanded="false" />
-            <marker date="1458887224326" expanded="true" signature="320:690" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="822:1399" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="1504:2092" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="2185:2703" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="2794:3280" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="3367:3490" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="3587:3698" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="3793:3914" placeholder="SELECT COUNT..TOTAL..." />
-            <marker date="1458887224326" expanded="true" signature="4009:4133" placeholder="SELECT COUNT..TOTAL..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/ext/report_monthly.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5118343">
+          <caret line="126" column="16" selection-start-line="126" selection-start-column="16" selection-end-line="126" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/totalSummary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.022189349">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/rules.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8668639">
+          <caret line="331" column="45" selection-start-line="331" selection-start-column="45" selection-end-line="331" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2311248">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="64" selection-start-line="104" selection-start-column="64" selection-end-line="104" selection-end-column="64" />
+          <caret line="225" column="42" selection-start-line="225" selection-start-column="42" selection-end-line="225" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/release_score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9029276">
+          <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
           <folding>
-            <element signature="e#46#73#0" expanded="true" />
-            <marker date="1458907841712" expanded="true" signature="654:841" placeholder="SELECT ININT..REPORT..." />
-            <marker date="1458907841712" expanded="true" signature="2631:2795" placeholder="SELECT SUM(S..REPORT..." />
-            <marker date="1458907841712" expanded="true" signature="3140:3304" placeholder="SELECT SUM(S..REPORT..." />
-            <marker date="1458907841712" expanded="true" signature="3731:3937" placeholder="SELECT SUM(S..REPORT..." />
-            <marker date="1458907841712" expanded="true" signature="4281:4489" placeholder="SELECT SUM(S..REPORT..." />
-            <marker date="1458907841712" expanded="true" signature="5127:5454" placeholder="SELECT DISTI..REPORT..." />
+            <marker date="1459245373000" expanded="true" signature="438:570" placeholder="SELECT PROJE... SCORE_CARD" />
+            <marker date="1459245373000" expanded="true" signature="674:806" placeholder="SELECT [3_MO... " />
+            <marker date="1459245373000" expanded="true" signature="911:1043" placeholder="SELECT [6_MO... " />
+            <marker date="1459245373000" expanded="true" signature="1158:1336" placeholder="UPDATE SCORE... " />
+            <marker date="1459245373000" expanded="true" signature="1463:1666" placeholder="UPDATE SCORE... " />
+            <marker date="1459245373000" expanded="true" signature="1823:2026" placeholder="UPDATE SCORE... " />
+            <marker date="1459245373000" expanded="true" signature="2184:2345" placeholder="UPDATE PROJE... " />
+            <marker date="1459245373000" expanded="true" signature="2476:2637" placeholder="UPDATE PROJE... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/views_sql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.703703">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding>
+            <marker date="1459245373000" expanded="true" signature="181:917" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1459245373000" expanded="true" signature="1023:1681" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1459245373000" expanded="true" signature="1750:2375" placeholder="SELECT PROJE... TOTAL" />
+            <marker date="1459245373000" expanded="true" signature="2419:2590" placeholder="UPDATE PROJE... " />
+            <marker date="1459245373000" expanded="true" signature="2633:2983" placeholder="UPDATE MEMBE... " />
+            <marker date="1459245373000" expanded="true" signature="3067:3652" placeholder="UPDATE SCORE... " />
+            <marker date="1459245373000" expanded="true" signature="3743:3947" placeholder="UPDATE MEMBE... " />
+            <marker date="1459245373000" expanded="true" signature="3998:4208" placeholder="UPDATE MEMBE... " />
+            <marker date="1459245373000" expanded="true" signature="4251:4428" placeholder="INSERT INTO PROJECT_INFO" />
+            <marker date="1459245373000" expanded="true" signature="4513:5109" placeholder="INSERT INTO MEMBER_INFO" />
+            <marker date="1459245373000" expanded="true" signature="5193:5880" placeholder="INSERT INTO SCORE_CARD" />
+            <marker date="1459245373000" expanded="true" signature="5916:6097" placeholder="SELECT FORMA... USER_ID" />
+            <marker date="1459245373000" expanded="true" signature="6137:6427" placeholder="SELECT PROJE... TOTAL" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ext/insert_records.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8589109">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+          <folding>
+            <marker date="1459245373000" expanded="true" signature="510:635" placeholder="SELECT TARGE... " />
+            <marker date="1459245373000" expanded="true" signature="1051:1201" placeholder="INSERT INTO MONTHLY_ACTION... " />
+            <marker date="1459245373000" expanded="true" signature="1598:1720" placeholder="SELECT GOLDE... SCORE_CARD" />
+            <marker date="1459245373000" expanded="true" signature="3441:3591" placeholder="INSERT INTO MONTHLY_ACTION... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0326796">
-          <caret line="96" column="9" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+        <state vertical-scroll-proportion="-4.0123763">
+          <caret line="178" column="34" selection-start-line="178" selection-start-column="34" selection-end-line="178" selection-end-column="34" />
           <folding>
             <element signature="e#24#120#0" expanded="true" />
-            <element signature="e#761#1015#0" expanded="false" />
-            <element signature="e#1071#1258#0" expanded="false" />
-            <element signature="e#1285#1451#0" expanded="false" />
-            <element signature="e#1485#1613#0" expanded="false" />
-            <element signature="e#1741#2244#0" expanded="false" />
-            <element signature="e#8657#9703#0" expanded="false" />
-            <element signature="e#9848#10694#0" expanded="false" />
-            <element signature="e#10757#11186#0" expanded="false" />
-            <element signature="e#11229#11467#0" expanded="false" />
-            <element signature="e#11521#11783#0" expanded="false" />
-            <element signature="e#11832#11890#0" expanded="false" />
           </folding>
         </state>
       </provider>
