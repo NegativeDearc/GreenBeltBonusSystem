@@ -568,3 +568,471 @@ Traceback (most recent call last):
     ts = totalSummary(employee_name)
   File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\totalSummary.py", line 121, in summary
 NameError: global name 'd6' is not defined
+2016-04-05 11:08:29,414-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 168, in admin
+    cur.execute(INSERT_PROJECT_INFO)
+IntegrityError: column PROJECT_NUMBER is not unique
+2016-04-05 11:09:05,290-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 168, in admin
+    cur.execute(INSERT_PROJECT_INFO)
+IntegrityError: column PROJECT_NUMBER is not unique
+2016-04-05 12:28:25,937-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv.get(golden_type)['value']
+TypeError: 'NoneType' object has no attribute '__getitem__'
+2016-04-05 12:29:24,888-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv.get(golden_type)['value']
+TypeError: 'NoneType' object has no attribute '__getitem__'
+2016-04-05 12:30:42,124-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+TypeError: 'NoneType' object has no attribute '__getitem__'
+2016-04-05 12:33:26,308-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+TypeError: 'NoneType' object has no attribute '__getitem__'
+2016-04-05 12:33:31,779-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'S1'
+2016-04-05 12:35:34,525-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'S1'
+2016-04-05 12:37:35,690-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'S1'
+2016-04-05 12:37:41,848-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'S1'
+2016-04-05 12:39:18,789-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'S1'
+2016-04-05 12:41:15,706-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'S1'
+2016-04-05 12:41:34,555-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 163, in admin
+    golden_score(golden_type),
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'P1'
+2016-04-05 12:42:46,473-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 107, in admin
+    print golden_score(golden_type)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'P1'
+2016-04-05 12:43:00,339-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 107, in admin
+    print golden_score(golden_type)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[golden_type]['value']
+KeyError: 'P1'
+2016-04-05 12:45:44,684-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 107, in admin
+    print golden_score(golden_type)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 29, in golden_score
+    g = rv[str.lower(golden_type)]['value']
+KeyError: 'P1'
+2016-04-05 12:46:01,309-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 108, in admin
+    print project_score(request.form['s1'])
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 42, in project_score
+    p = rv[str.lower(project_type)]['value']
+TypeError: descriptor 'lower' requires a 'str' object but received a 'unicode'
+2016-04-05 12:47:38,575-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 109, in admin
+    print project_score(request.form['s1'])
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 42, in project_score
+    p = rv[str.lower(project_type)]['value']
+TypeError: descriptor 'lower' requires a 'str' object but received a 'unicode'
+2016-04-05 12:47:48,171-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 109, in admin
+    print project_score(request.form['s1'])
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 42, in project_score
+    p = rv[str.lower(project_type)]['value']
+TypeError: descriptor 'lower' requires a 'str' object but received a 'unicode'
+2016-04-05 12:51:06,154-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 109, in admin
+    print project_score(request.form['s1'])
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 42, in project_score
+    p = rv[str.lower(project_type)]['value']
+TypeError: descriptor 'lower' requires a 'str' object but received a 'unicode'
+2016-04-05 13:27:27,226-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 109, in admin
+    print project_score(request.form['s1'])
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 42, in project_score
+    p = rv[str.lower(project_type)]['value']
+TypeError: descriptor 'lower' requires a 'str' object but received a 'unicode'
+2016-04-05 13:30:54,204-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 110, in admin
+    print project_score(request.form['s1'])
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\func_collection.py", line 42, in project_score
+    p = rv[str.lower(project_type)]['value']
+TypeError: descriptor 'lower' requires a 'str' object but received a 'unicode'
+2016-04-05 15:15:05,150-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 183, in admin
+    action.release_bonus()
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\release_score.py", line 67, in release_bonus
+    cur.execute(self.UPDATE_ACTIVE_SCORE_0)
+OperationalError: no such column: tests
+2016-04-05 15:15:51,881-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 183, in admin
+    action.release_bonus()
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\release_score.py", line 67, in release_bonus
+    cur.execute(self.UPDATE_ACTIVE_SCORE_0)
+OperationalError: no such column: tests
+2016-04-05 15:21:56,309-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 173, in admin
+    cur.execute(INSERT_PROJECT_INFO)
+IntegrityError: column PROJECT_NUMBER is not unique
+2016-04-05 15:22:51,256-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 183, in admin
+    action.release_bonus()
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\release_score.py", line 67, in release_bonus
+    cur.execute(self.UPDATE_ACTIVE_SCORE_0)
+OperationalError: no such column: tests
+2016-04-05 15:45:40,687-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 181, in admin
+    action.release_bonus()
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\ext\release_score.py", line 67, in release_bonus
+    cur.execute(self.UPDATE_ACTIVE_SCORE_0)
+OperationalError: no such column: testss
+2016-04-05 18:13:28,897-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\sxchen\Desktop\GreenBeltBonusSystem\app\views\views.py", line 174, in admin
+    cur.execute(INSERT_PROJECT_INFO)
+IntegrityError: column PROJECT_NUMBER is not unique

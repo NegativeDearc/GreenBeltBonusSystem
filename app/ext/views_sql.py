@@ -53,29 +53,26 @@ class views_sql(object):
                                         SET ININTIALOR = "%s",
                                             LEADER = "%s",
                                             MAJOR_PARTICIPATOR = "%s",
-                                            MINIOR_PARTICIPATOR = "%s"
+                                            MINIOR_PARTICIPATOR = "%s",
+                                            MAJOR_PARTICIPATOR_COUNT = "%s",
+                                            MINIOR_PARTICIPATOR_COUNT = "%s"
                                         WHERE PROJECT_NUMBER = "%s";
                                         '''
 
         self.UPDATE_SCORE_INFO = ''' UPDATE SCORE_CARD
                                      SET GOLDEN_IDEA_LEVEL = "%s",
-                                        PROJECT_SCORE_LEVEL = "%s",
-                                        TARGET_SCORE = "%s",
-                                        DUPLICABILITY = "%s",
-                                        RESOURCE_USAGE = "%s",
-                                        IMPLEMENT_PERIOD ="%s",
-                                        KPI_IMPACT = "%s",
-                                        COST_SAVING = "%s"
+                                         PROJECT_SCORE_LEVEL = "%s",
+                                         GOLDEN_IDEA_SCORE = "%s",
+                                         PROJECT_SCORE = "%s",
+                                         TARGET_SCORE = "%s",
+                                         DUPLICABILITY = "%s",
+                                         RESOURCE_USAGE = "%s",
+                                         IMPLEMENT_PERIOD ="%s",
+                                         KPI_IMPACT = "%s",
+                                         COST_SAVING = "%s",
+                                         ACTIVE_SCORE = "%s"
                                      WHERE PROJECT_NUMBER = "%s";
                                         '''
-
-        self.UPDATE_MEMBER_COUNT_MAJOR = '''UPDATE MEMBER_INFO
-                                               SET MAJOR_PARTICIPATOR_COUNT = count_member(MAJOR_PARTICIPATOR)
-                                               WHERE PROJECT_NUMBER = "%s"'''
-
-        self.UPDATE_MEMBER_COUNT_MAINIOR = '''UPDATE MEMBER_INFO
-                                                 SET MINIOR_PARTICIPATOR_COUNT = count_member(MINIOR_PARTICIPATOR)
-                                                 WHERE PROJECT_NUMBER = "%s"'''
 
         self.INSERT_PROJECT_INFO = '''INSERT INTO
                                          PROJECT_INFO (PROJECT_NUMBER,PROJECT_NAME,PROJECT_DUE_TIME)
@@ -97,13 +94,16 @@ class views_sql(object):
                                      SCORE_CARD (PROJECT_NUMBER,
                                                  GOLDEN_IDEA_LEVEL,
                                                  PROJECT_SCORE_LEVEL,
+                                                 GOLDEN_IDEA_SCORE,
+                                                 PROJECT_SCORE,
                                                  TARGET_SCORE,
                                                  DUPLICABILITY,
                                                  RESOURCE_USAGE,
                                                  IMPLEMENT_PERIOD,
                                                  KPI_IMPACT,
-                                                 COST_SAVING)
-                                     VALUES ("%s","%s","%s","%s","%s","%s","%s","%s","%s");'''
+                                                 COST_SAVING,
+                                                 ACTIVE_SCORE)
+                                     VALUES ("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s");'''
 
         self.SEARCH_NAME = '''SELECT FORMAT_NAME
                      FROM USER_ID

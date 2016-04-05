@@ -13,7 +13,7 @@ class insert_records(object):
         self.rul = ruleMaker()
         self.rv  = self.rul.rules_api_info()
 
-    def prj_launch(self, golden_type=None, prj_num=None,conn = None):
+    def prj_launch(self, golden_type= None, prj_num= None,conn = None):
         # 初始化游标
         cur = conn.cursor()
         # 查询语句
@@ -47,42 +47,31 @@ class insert_records(object):
         flag = 3 ->3 month closed
         flag = 4 ->6 month closed
         '''
-        # 查询点子类型和项目类型
-        tmp = '''SELECT GOLDEN_IDEA_LEVEL,PROJECT_SCORE_LEVEL
+        # 查询点子分数和项目分数
+        tmp = '''SELECT GOLDEN_IDEA_SCORE,PROJECT_SCORE,PROJECT_SCORE_LEVEL
                  FROM SCORE_CARD
                  WHERE PROJECT_NUMBER = "%s"''' % prj_num
         # 游标
         cur = conn.cursor()
         # 解包
-        g, p = cur.execute(tmp).fetchall()[0]
-        # 获取配置的分值信息
-        prj_score = {'S': int(self.rv['s']['value']),
-                     'P': int(self.rv['p']['value']),
-                     'K': int(self.rv['k']['value']),
-                     'G': int(self.rv['g']['value']),
-                     'B': int(self.rv['b']['value'])}
-
-        golden_score = {'S1': 0,  # already added when prj launched
-                        'P1': 0,  # already added when prj launched
-                        'K1': int(self.rv['k1']['value']),
-                        'G1': int(self.rv['g1']['value']),
-                        'G2': int(self.rv['g2']['value']),
-                        'G3': int(self.rv['g3']['value']),
-                        'B1': int(self.rv['b1']['value']),
-                        'B2': int(self.rv['b2']['value']),
-                        'B3': int(self.rv['b3']['value'])}
-
-        # 这里，需根据配置决定每个检查点释放的比例
+        g, p, pj_type = cur.execute(tmp).fetchall()[0]
+        # 需根据配置决定每个检查点释放的比例
         flag_description = None
         total = None
         # 3个月释放
         if flag == 1:
-            flag_description = '3 month release'
-            total = int(prj_score.get(p) * float(self.rv['p_3']) + golden_score.get(g) * float(self.rv['g_3']))
+            # S/P 类型的规则
+            if pj_type == 'S' or pj_type == 'P':
+                flag_description = 'S/P 3 month release'
+                total = int(p + g)
+            # 非S/P类型的规则
+            else:
+                flag_description = '3 month release'
+                total = int(p * float(self.rv['p_3']) + g * float(self.rv['g_3']))
         # 6个月释放
         if flag == 2:
             flag_description = '6 month release'
-            total = int(prj_score.get(p) * float(self.rv['p_6']) + golden_score.get(g) * float(self.rv['g_6']))
+            total = int(p * float(self.rv['p_6']) + g * float(self.rv['g_6']))
         # 3个月未通过关闭，不得分
         if flag == 3:
             flag_description = '3 month closed'

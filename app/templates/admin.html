@@ -37,9 +37,29 @@
             </div>
         </div>
     </div>
+        <div class="well">
+            <form id="form1">
+                <div class="alert alert-info">Employee Info</div>
+                <div class="form-group">
+                    <label for="">Employee ID</label>
+                    <input type="text" class="form-control" id="employee_id" placeholder="insert employee id"
+                           required="required" pattern="[0-9]+">
+                    <div><p></p></div>
+                    <label for="">English Name(Or Pinyin)</label>
+                    <input type="text" class="form-control" id="employee_name" placeholder="insert employee name"
+                           required="required" pattern="[a-zA-Z\s]+">
+                    <input type="submit" name="sub2" value="submit" class="btn btn-default"
+                           style="margin-top: 10px" onclick="postdata()">
+                    <input type="reset" style="display: none" id="reset">
+                </div>
+            </form>
+        </div>
+        {% for messages in get_flashed_messages() %}
+            <div class="alert-warning">{{ message }}</div>
+        {% endfor %}
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-9 well" style="padding-right: 10px">
     <form action="" method="post" class="form-horizontal" id="form_data">
     <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
     <div class="form-group">
@@ -117,7 +137,7 @@
         </div>
         <label for="" class="col-sm-2 control-label">Targeted Incentive Score</label>
         <div class="col-sm-2">
-            <input type="number" min="0" class="form-control" name="targeted_incentive_score">
+            <input type="number" min="0"  class="form-control" name="targeted_incentive_score">
         </div>
     </div>
 
@@ -305,6 +325,28 @@
             }
     });
 
+    /*ajax无刷提交表单*/
+    $(function(){
+        $('form#form1').on('submit', function(e) {
+          e.preventDefault();
+          var id = $("#employee_id").val();
+          var name = $("#employee_name").val();
+          $.ajax({
+            type: 'GET',
+            url: $SCRIPT_ROOT + "/api/add_employee/",
+            data: "id=" + id + "&name=" + name,
+            success: function () {
+              alert('用户名已经提交成功！');
+              $("#reset").trigger("click");
+            },
+            error:function(xhr,status,statusText){
+                alert('服务器没有接受您的提交\n' + '错误信息:'+ xhr.statusText);
+                $("#reset").trigger("click");
+            }
+          });
+        });
+      });
+
     /*以下代码供/admin面板数据检查*/
     var form_data = function(){
             var input_Data = document.getElementsByTagName('input');
@@ -326,8 +368,8 @@
         };
 
     var dataAlert = function (){
-        data = form_data()
-        data2 = select_data()
+        data = form_data();
+        data2 = select_data();
         data_string = "***请检查输入!***\n"+
                 "***可复制性***--->" + data2[0] + "\n" +
                 "***资源利用***--->" + data2[1] + "\n" +
@@ -348,7 +390,7 @@
             return true;
         }
         else{
-            alert('撤销提交,请检查数据!')
+            alert('撤销提交,请检查数据!');
             return false;
         }
     };

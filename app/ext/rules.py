@@ -84,6 +84,7 @@ class ruleMaker(object):
         with open(self.path,'w') as ff:
             json.dump(origin_data,ff)
 
+    # 数据库触发器是全局动作
     def update_triggers(self,conn,data):
         '''更新数据库触发器'''
         trigger = '''DROP TRIGGER IF EXISTS [S];
@@ -285,7 +286,6 @@ class ruleMaker(object):
         lst = map(lambda x:float(x),[d1,d2,d3,d4,d5])
         # 收益的千分之一作为积分
         res = int(round(sum(lst[:-1]) + lst[-1]/1000))
-        print res
         # 积分规则调用,利用bisect 进行排序插值，若得1则居中,或者等于末端点
         if bisect.bisect(eval(range_data['s1_range']),res) == 1\
                 or res == eval(range_data['s1_range'])[1]:

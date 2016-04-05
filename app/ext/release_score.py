@@ -32,7 +32,7 @@ class Action(object):
         self.UPDATE_ACTIVE_SCORE_0 = '''UPDATE SCORE_CARD
                                         SET ACTIVE_SCORE = PROJECT_SCORE * %s + ACTIVE_SCORE
                                         WHERE PROJECT_NUMBER = "%s";
-                                   ''' % (self.project_num,1)
+                                   ''' % (1,self.project_num)
         # 非S/P类型的3个月释放
         self.UPDATE_ACTIVE_SCORE_1 = '''UPDATE SCORE_CARD
                                         SET ACTIVE_SCORE = GOLDEN_IDEA_SCORE * %s + PROJECT_SCORE * %s + ACTIVE_SCORE

@@ -1,11 +1,11 @@
 # -*- coding:utf-8 -*-
 
-from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify
+from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify,make_response
 from urlparse import urlparse, urljoin
 from app import app
 
 from app.ext.rules import ruleMaker
-from app.ext.func_collection import count_member
+from app.ext.func_collection import count_member,golden_score,project_score,active_score_launched
 from app.ext.insert_records import insert_records
 from app.ext.totalSummary import totalSummary
 from app.ext.report_monthly import report_html
@@ -34,6 +34,9 @@ def connect_db():
     g.conn.text_factory = lambda x: unicode(x, "utf-8", "ignore")
     # 注册函数
     g.conn.create_function('count_member', 1, count_member)
+    g.conn.create_function('golden_score', 1, golden_score)
+    g.conn.create_function('project_score', 1, project_score)
+    g.conn.create_function('active_score_launched', 2 , active_score_launched)
 
 @app.teardown_appcontext
 def close_db(exception):
@@ -97,7 +100,6 @@ def admin():
     #提交表单
     if request.method == 'POST':
         reverse_dict = dict(zip(request.form.values(),request.form.keys()))
-        # print reverse_dict
         if request.form.get('sub1') == 'submit':
             # 注意这段只有在request.form 包含指定数据才有效，否则http 400
             golden_type = rul.golden_type_judging(request.form)
@@ -116,25 +118,26 @@ def admin():
                                       request.form['leader'],
                                       request.form['major_member'],
                                       request.form['minior_member'],
-                                      request.form['project_num'])
+                                      request.form['project_num'],
+                                      count_member(request.form['major_member']),
+                                      count_member(request.form['minior_member']))
                 UPDATE_SCORE_INFO = sql.UPDATE_SCORE_INFO % \
                                     (golden_type,
                                      request.form['s1'],
-                                     request.form['project_num'],
+                                     golden_score(golden_type),
+                                     project_score(request.form['s1']),
                                      request.form['targeted_incentive_score'],
                                      request.form['duplicability'],
                                      request.form['resource_usage'],
                                      request.form['implement_period'],
                                      request.form['kpi_impact'],
-                                     request.form['cost_saving'])
-                UPDATE_MEMBER_COUNT_MAJOR = sql.UPDATE_MEMBER_COUNT_MAJOR % request.form['project_num']
-                UPDATE_MEMBER_COUNT_MAINIOR = sql.UPDATE_MEMBER_COUNT_MAINIOR % request.form['project_num']
+                                     request.form['cost_saving'],
+                                     active_score_launched(golden_type,request.form['targeted_incentive_score']),
+                                     request.form['project_num'])
 
                 cur.execute(UPDATE_PROJECT_INFO)
                 cur.execute(UPDATE_MEMBER_INFO)
                 cur.execute(UPDATE_SCORE_INFO)
-                cur.execute(UPDATE_MEMBER_COUNT_MAJOR)
-                cur.execute(UPDATE_MEMBER_COUNT_MAINIOR)
                 g.conn.commit()
                 return redirect(url_for('admin'))
             # insert values
@@ -156,12 +159,15 @@ def admin():
                                     (request.form['project_num'],
                                      golden_type,
                                      request.form['s1'],
+                                     golden_score(golden_type),
+                                     project_score(request.form['s1']),
                                      request.form['targeted_incentive_score'],
                                      request.form['duplicability'],
                                      request.form['resource_usage'],
                                      request.form['implement_period'],
                                      request.form['kpi_impact'],
-                                     request.form['cost_saving'])
+                                     request.form['cost_saving'],
+                                     active_score_launched(golden_type,request.form['targeted_incentive_score']))
                 # 数据库已设置项目编号唯一性，否则回滚
                 # 产生500错误
                 # 注意提交顺序以及是否需要两次提交
@@ -261,11 +267,9 @@ def rules():
     rul = ruleMaker()
     data = rul.rules_api_info()
     if request.method == 'POST':
+        # print request.form
         # 更新本地json配置文件
-        print request.form
         rul.update_config(request.form)
-        # 更新数据库触发器，耗时较长
-        rul.update_triggers(g.conn,request.form)
         return redirect(url_for('rules'))
     return render_template('rules.html',data = data)
 
@@ -294,15 +298,21 @@ def rules_api():
     rul = ruleMaker()
     return jsonify(rul.rules_api_info())
 
-
-@app.route('/test/log_test')
-def log_test():
-    a = None + 1
-    return a
-
-@app.route('/admin_test',methods = ['POST','GET'])
-def admin_test():
-    if request.method == 'POST':
-        print request.form
-        return render_template('admin.html')
-    return render_template('admin.html')
+@app.route('/api/add_employee/')
+def add_employee():
+    id = request.args.get('id',None)
+    name = request.args.get('name',None)
+    if id is not None and name is not None:
+        sql = '''INSERT INTO USER_ID (ID,NAME)
+                 VALUES ("%s","%s");''' % (id,name)
+        cur = g.conn.cursor()
+        try:
+            cur.execute(sql)
+        except Exception:
+            return make_response('',500)
+        else:
+            return make_response('',200)
+        finally:
+            g.conn.commit()
+    else:
+        return make_response('',500)
