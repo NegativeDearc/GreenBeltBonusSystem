@@ -1,11 +1,11 @@
 # -*- coding:utf-8 -*-
 
-from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify,make_response
+from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify, make_response
 from urlparse import urlparse, urljoin
 from app import app
 
 from app.ext.rules import ruleMaker
-from app.ext.func_collection import count_member,golden_score,project_score,active_score_launched
+from app.ext.func_collection import count_member, golden_score, project_score, active_score_launched
 from app.ext.insert_records import insert_records
 from app.ext.totalSummary import totalSummary
 from app.ext.report_monthly import report_html
@@ -22,7 +22,6 @@ import string
 import os
 
 sql = views_sql()
-insert = insert_records()
 
 
 @app.before_request
@@ -36,7 +35,8 @@ def connect_db():
     g.conn.create_function('count_member', 1, count_member)
     g.conn.create_function('golden_score', 1, golden_score)
     g.conn.create_function('project_score', 1, project_score)
-    g.conn.create_function('active_score_launched', 2 , active_score_launched)
+    g.conn.create_function('active_score_launched', 2, active_score_launched)
+
 
 @app.teardown_appcontext
 def close_db(exception):
@@ -76,8 +76,9 @@ def search():
             cur = g.conn.cursor()
             res = cur.execute(search_member).fetchall()
             ts = totalSummary(employee_name)
-            res2,res3 = ts.summary(g.conn)
-    return render_template('search.html', data=res, data1=res3,data2=res2)
+            res2, res3 = ts.summary(g.conn)
+    return render_template('search.html', data=res, data1=res3, data2=res2)
+
 
 @app.route('/')
 @app.route('/index')
@@ -97,9 +98,14 @@ def admin():
     cur = g.conn.cursor()
     data_3_month = cur.execute(sql.data_3_month).fetchall()
     data_6_month = cur.execute(sql.data_6_month).fetchall()
-    #提交表单
+    # 注意，insert_records 读取配置文件，记录写入数据库
+    # 若在/admin以外初始化，一旦配置文件被/rules修改，配置文件仍旧还是修改前
+    # 请在此初始化，以读取最新的配置表
+    insert = insert_records()
+    # 提交表单
+    # 仍存在bug，被修改后再次提交的数据，insert_records()不能响应
     if request.method == 'POST':
-        reverse_dict = dict(zip(request.form.values(),request.form.keys()))
+        reverse_dict = dict(zip(request.form.values(), request.form.keys()))
         if request.form.get('sub1') == 'submit':
             # 注意这段只有在request.form 包含指定数据才有效，否则http 400
             golden_type = rul.golden_type_judging(request.form)
@@ -132,9 +138,15 @@ def admin():
                                      request.form['implement_period'],
                                      request.form['kpi_impact'],
                                      request.form['cost_saving'],
-                                     active_score_launched(golden_type,request.form['targeted_incentive_score']),
+                                     active_score_launched(golden_type, request.form['targeted_incentive_score']),
                                      request.form['project_num'])
 
+                # 更新之前项目初始化的信息
+                insert.prj_launch(golden_type=golden_type,
+                                  prj_num=request.form['project_num'],
+                                  conn=g.conn,
+                                  update=True)
+                # 执行其他表的更新
                 cur.execute(UPDATE_PROJECT_INFO)
                 cur.execute(UPDATE_MEMBER_INFO)
                 cur.execute(UPDATE_SCORE_INFO)
@@ -167,7 +179,7 @@ def admin():
                                      request.form['implement_period'],
                                      request.form['kpi_impact'],
                                      request.form['cost_saving'],
-                                     active_score_launched(golden_type,request.form['targeted_incentive_score']))
+                                     active_score_launched(golden_type, request.form['targeted_incentive_score']))
                 # 数据库已设置项目编号唯一性，否则回滚
                 # 产生500错误
                 # 注意提交顺序以及是否需要两次提交
@@ -182,27 +194,28 @@ def admin():
             project_num = reverse_dict.get('RELEASE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.release_bonus()
-            insert.insert_release_detail(conn=g.conn, prj_num=project_num,flag=1)
+            insert.insert_release_detail(conn=g.conn, prj_num=project_num, flag=1)
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE3'):
             project_num = reverse_dict.get('CLOSE3')
             action = Action(g.conn, project_num, flag='3_MONTH')
             action.close_prj()
-            insert.insert_release_detail(g.conn, project_num,flag=3)
+            insert.insert_release_detail(g.conn, project_num, flag=3)
             return redirect(url_for('admin'))
         if reverse_dict.has_key('RELEASE6'):
             project_num = reverse_dict.get('RELEASE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.release_bonus()
-            insert.insert_release_detail(g.conn,project_num,flag=2)
+            insert.insert_release_detail(g.conn, project_num, flag=2)
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE6'):
             project_num = reverse_dict.get('CLOSE6')
             action = Action(g.conn, project_num, flag='6_MONTH')
             action.close_prj()
-            insert.insert_release_detail(g.conn, project_num,flag=4)
+            insert.insert_release_detail(g.conn, project_num, flag=4)
             return redirect(url_for('admin'))
-    return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month,data=data)
+    return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month, data=data)
+
 
 @app.route('/auth/login', methods=['GET', 'POST'])
 def login():
@@ -260,7 +273,8 @@ def report():
             # rewrite the dict class to let dict can add with dict
     return render_template('report.html', data=data, prj=prj, summary=summary)
 
-@app.route('/rules',methods=['GET','POST'])
+
+@app.route('/rules', methods=['GET', 'POST'])
 def rules():
     if not session.get('is_active'):
         return redirect(url_for('login'), code=401)
@@ -271,7 +285,8 @@ def rules():
         # 更新本地json配置文件
         rul.update_config(request.form)
         return redirect(url_for('rules'))
-    return render_template('rules.html',data = data)
+    return render_template('rules.html', data=data)
+
 
 @app.route('/api/user/')
 def user():
@@ -281,6 +296,7 @@ def user():
     res = cur.execute(SEARCH_NAME).fetchall()
     usr_name = list(chain(*res))
     return jsonify(dict(zip(string.lowercase, usr_name)))
+
 
 @app.route('/api/project/')
 def project_info():
@@ -293,26 +309,28 @@ def project_info():
     else:
         return jsonify(zip(string.lowercase, res))
 
+
 @app.route('/api/rules/')
 def rules_api():
     rul = ruleMaker()
     return jsonify(rul.rules_api_info())
 
+
 @app.route('/api/add_employee/')
 def add_employee():
-    id = request.args.get('id',None)
-    name = request.args.get('name',None)
+    id = request.args.get('id', None)
+    name = request.args.get('name', None)
     if id is not None and name is not None:
         sql = '''INSERT INTO USER_ID (ID,NAME)
-                 VALUES ("%s","%s");''' % (id,name)
+                 VALUES ("%s","%s");''' % (id, name)
         cur = g.conn.cursor()
         try:
             cur.execute(sql)
         except Exception:
-            return make_response('',500)
+            return make_response('', 500)
         else:
-            return make_response('',200)
+            return make_response('', 200)
         finally:
             g.conn.commit()
     else:
-        return make_response('',500)
+        return make_response('', 500)
