@@ -11,9 +11,15 @@
 <script src="static/jquery.min.js"></script>
 <script src="static/jquery-ui.min.js"></script>
 <script src="static/bootstrap.min.js"></script>
+<style type="text/css">
+    table tr:hover {background-color: #0180FE;color: #fff;cursor:hand;}
+    th {text-align: center;background: #27AE60;color: white}
+    td {text-align: center}
+    caption {text-align: center;font-size: 18px}
+    p {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+</style>
 
 <body>
-
 <div class="site-notice" style="padding: 5px 0 ;text-align: center;background: #208d4e" >
     <marquee behavior="" direction="" style="color: linen;font-size: 16px">Welcome User From {{ request.remote_addr }}</marquee>
 </div>
@@ -45,72 +51,67 @@
 
 <!--generate summary report -->
 {% if request.form.get('employee_name') %}
-<!--if data -->
     {% if data2 %}
     <div class="container">
     <div class="alert alert-success" style="font-size: 16px">
     <b>Hello <span style="color: #eea236">{{ request.form.get('employee_name') }}</span>:</b>
-    <p>As a period,<span style="color: red">{{ data2.get('d0') }}</span> projects total,
-       you're finished <span style="color: red">{{ data2.get('d1')}}</span> projects,
-       in 3 month progress <span style="color: red">{{ data2.get('d2') }}</span>,
-       in 6 month progress <span style="color: red">{{ data2.get('d3') }}</span>,
-       failed <span style="color: red">{{ data2.get('d4') }}</span> projects
-    </p>
-    <ol>
-        <li>Being a inintialor,<span style="color: red">{{ data2.get('d5') }}</span> projects,earns <span style="color: red">{{ data1.get('Initiator') }}</span> bonus</li>
-        <li>Being a leader,<span style="color: red">{{ data2.get('d7') }}</span> projects,earns <span style="color: red">{{ data1.get('Leader') }}</span> bonus</li>
-        <li>Being a major member,<span style="color: red">{{ data2.get('d9') }}</span> projects,earns <span style="color: red">{{ data1.get('Major') }}</span> bonus</li>
-        <li>Being a minor member,<span style="color: red">{{ data2.get('d6') }}</span> projects,earns <span style="color: red">{{ data1.get('Minor') }}</span> bonus</li>
-    </ol>
-    <p>Total: {{ data2.get('13') }} Bonus,among them you can use <span style="color: red">{{ data1.get('sum') }}</span>! And {{ data2.get('15') }} is waiting for you!</p>
+    <p>您好: <span style="color: #eea236">{{ request.form.get('employee_name') }}</p>
+    <br>
     <p>Thank you for your participation!</p>
+    <p>感谢您的参与!</p>
+        <ol>
+        <li>Staff Total CIS Score:</li>
+        <p>员工项目总积分</p>
+        {{ data2.get('a') }}
+        <li>Staff Available CIS Score:</li>
+        <p>可用积分</p>
+        {{ data2.get('b') }}
+        <li>Staff Inactive CIS Score:</li>
+        <p>暂不可用积分</p>
+        {{ data2.get('c') }}
+        </ol>
     </div>
     </div>
     {% endif %}
 {% endif %}
 
-<!--generate table -->
-     {% if data %}
-     <div class="container-fluid">
+     <!--test-->
+{% if data %}
      <div class="table-responsive">
-     <table class="table table-hover table-striped">
-        <caption style="text-align: center;font-size: 20px">Information of {{ request.form.get('employee_name') }}</caption>
-        <tr style="background-color:lightgreen">
-            <td align="center">PROJECT</td>
-            <td align="center">PROJECT NAME</td>
-            <td align="center">PROJECT_DUE_TIME</td>
-            <td align="center">INITIATOR</td>
-            <td align="center">LEADER</td>
-            <td align="center">MAJOR_MEMBER</td>
-            <td align="center">MINOR_MEMBER</td>
-            <td align="center">ACTIVE_SCORE</td>
-        </tr>
-
-        {% for rows in data %}
-            <tr>
-            {% for element in rows %}
-                <td align="center">{{ element }}</td>
-            {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-
-    </div>
-    </div>
-    {% endif %}
-
-     {% if total %}
-     <div style="text-align: left;font-size: 20px;color:darkmagenta;font-style: italic">
-         {{ request.form.get('employee_name') }}'s total Bonus is {{ total }}
+         <table class="table" id="score_matrix">
+         <caption>{{ request.form.get('employee_name') }}'s Project Detail</caption>
+             <tr>
+             <th rowspan="2">Project No.</th>
+             <th colspan="3">Project General Situation</th>
+             <th colspan="2">Releasing Status</th>
+             <th colspan="3">Timely Releasing Score</th>
+             </tr>
+             <tr>
+                 <th>Project Type</th>
+                 <th>Project CIS Score</th>
+                 <th>Staff Score</th>
+                 <th>Already Released</th>
+                 <th>Not Release Yet</th>
+                 <th>Project Closed</th>
+                 <th>Tracked 3 Month</th>
+                 <th>Tracked 6 Month</th>
+             </tr>
+             {% for element in data %}
+                 <tr>
+                 {% for e in element %}
+                     <td>{{ e }}</td>
+                 {% endfor %}
+                 </tr>
+             {% endfor %}
+         </table>
      </div>
-     </div>
-    {% endif %}
+{% endif %}
 
-<nav class="navbar-fixed-bottom">
+<footer class="footer">
     <div class="container-fluid">
         <p style="font-size: 9px;color: #adadad">ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
     </div>
-</nav>
+</footer>
 
 <script>
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}

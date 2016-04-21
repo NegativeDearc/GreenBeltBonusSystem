@@ -15,24 +15,33 @@ class insert_records(object):
         self.rul = ruleMaker()
         self.rv = self.rul.rules_api_info()
 
-    def prj_launch(self, golden_type=None, prj_num=None, conn=None, update=False):
+    def prj_launch(self, project_type=None, prj_num=None, conn=None, update=False):
         # 初始化游标
         cur = conn.cursor()
         # 查询语句
-        target_score_sql = '''SELECT TARGET_SCORE
-                              FROM [SCORE_CARD]
-                              WHERE PROJECT_NUMBER = "%s"''' % prj_num
-        # 结果，一般不为None
-        target_score = cur.execute(target_score_sql).fetchone()[0]
-        # S/P 类型在项目起始直接释放golden score，后续如何改动？
-        if golden_type == 'S1':
-            golden = int(self.rv['s1']['value'])
-        elif golden_type == 'P1':
-            golden = int(self.rv['p1']['value'])
-        else:
-            golden = 0
+        total_score_sql = '''SELECT TOTAL_SCORE
+                             FROM [SCORE_CARD]
+                             WHERE PROJECT_NUMBER = "%s"''' % prj_num
+        # 结果一般不为None
+        total_score = cur.execute(total_score_sql).fetchone()[0]
 
-        res = target_score + golden
+        if project_type == 'S' or project_type == 'P':
+            res = total_score
+            # 关闭S/P类型节点检查
+            close_check_point_1 = '''UPDATE [PROJECT_INFO]
+                                     SET [3_MONTH_CHECK]=1,
+                                       [6_MONTH_CHECK]=1
+                                     WHERE [PROJECT_NUMBER] = "%s"''' % prj_num
+            cur.execute(close_check_point_1)
+            conn.commit()
+        else:
+            res = 0
+            close_check_point_0 = '''UPDATE [PROJECT_INFO]
+                                     SET [3_MONTH_CHECK]=0,
+                                         [6_MONTH_CHECK]=0
+                                     WHERE [PROJECT_NUMBER] = "%s"''' % prj_num
+            cur.execute(close_check_point_0)
+            conn.commit()
 
         insert_records = '''INSERT INTO MONTHLY_ACTION
                             (PROJECT_NUM,DATE,ACTION,SCORE)
@@ -58,13 +67,13 @@ class insert_records(object):
         flag = 4 ->6 month closed
         '''
         # 查询点子分数和项目分数
-        tmp = '''SELECT GOLDEN_IDEA_SCORE,PROJECT_SCORE,PROJECT_SCORE_LEVEL
+        tmp = '''SELECT TOTAL_SCORE,PROJECT_SCORE_LEVEL
                  FROM SCORE_CARD
                  WHERE PROJECT_NUMBER = "%s"''' % prj_num
         # 游标
         cur = conn.cursor()
         # 解包
-        g, p, pj_type = cur.execute(tmp).fetchall()[0]
+        total_score,pj_type = cur.execute(tmp).fetchall()[0]
         # 需根据配置决定每个检查点释放的比例
         flag_description = None
         total = None
@@ -73,15 +82,15 @@ class insert_records(object):
             # S/P 类型的规则
             if pj_type == 'S' or pj_type == 'P':
                 flag_description = 'S/P 3 month release'
-                total = int(p + g)
+                total = int(total_score)
             # 非S/P类型的规则
             else:
                 flag_description = '3 month release'
-                total = int(p * float(self.rv['p_3']) + g * float(self.rv['g_3']))
+                total = int(total_score * float(self.rv['check_3']))
         # 6个月释放
         if flag == 2:
             flag_description = '6 month release'
-            total = int(p * float(self.rv['p_6']) + g * float(self.rv['g_6']))
+            total = int(total_score * float(self.rv['check_6']))
         # 3个月未通过关闭，不得分
         if flag == 3:
             flag_description = '3 month closed'

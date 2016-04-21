@@ -2,7 +2,6 @@
 __author__ = 'SXChen'
 
 from itertools import chain
-from rules import ruleMaker
 
 class report_html(object):
     '''模块作用：为/report页面提供*精确*的人名查询，

@@ -28,21 +28,21 @@ class Action(object):
                                 FROM PROJECT_INFO
                                 WHERE PROJECT_NUMBER = "%s";
                              ''' % self.project_num
-        # S/P类型的节点释放
+        # S/P类型的直接释放，无须节点
         self.UPDATE_ACTIVE_SCORE_0 = '''UPDATE SCORE_CARD
-                                        SET ACTIVE_SCORE = PROJECT_SCORE * %s + ACTIVE_SCORE
+                                        SET ACTIVE_SCORE = TOTAL_SCORE
                                         WHERE PROJECT_NUMBER = "%s";
-                                   ''' % (1,self.project_num)
+                                   ''' % self.project_num
         # 非S/P类型的3个月释放
         self.UPDATE_ACTIVE_SCORE_1 = '''UPDATE SCORE_CARD
-                                        SET ACTIVE_SCORE = GOLDEN_IDEA_SCORE * %s + PROJECT_SCORE * %s + ACTIVE_SCORE
+                                        SET ACTIVE_SCORE = TOTAL_SCORE * %s + ACTIVE_SCORE
                                         WHERE PROJECT_NUMBER = "%s";
-                                     ''' % (self.rv['g_3'],self.rv['p_3'],self.project_num)
+                                     ''' % (self.rv['check_3'],self.project_num)
         # 非S/P类型的6个月释放
         self.UPDATE_ACTIVE_SCORE_2 = '''UPDATE SCORE_CARD
-                                        SET ACTIVE_SCORE = GOLDEN_IDEA_SCORE * %s + PROJECT_SCORE * %s + ACTIVE_SCORE
+                                        SET ACTIVE_SCORE = TOTAL_SCORE * %s + ACTIVE_SCORE
                                         WHERE PROJECT_NUMBER = "%s";
-                                     ''' % (self.rv['g_6'],self.rv['p_6'],self.project_num)
+                                     ''' % (self.rv['check_6'],self.project_num)
         # 更新3个月检查点
         self.UPDATE_3_MONTH_CHECK_POINT = '''UPDATE PROJECT_INFO
                                              SET [3_MONTH_CHECK] = 1
@@ -60,14 +60,6 @@ class Action(object):
         # 获得项目类型
         pj_type = cur.execute(self.PROJECT_TYPE).fetchone()[0]
 
-        if pj_type == 'S' or pj_type == 'P':
-            if self.checkpoint == '3_MONTH':
-                if cur.execute(self.MONTH_3_CHECK).fetchone()[0] is None \
-                or cur.execute(self.MONTH_3_CHECK).fetchone()[0] != 1:
-                    cur.execute(self.UPDATE_ACTIVE_SCORE_0)
-                    cur.execute(self.UPDATE_3_MONTH_CHECK_POINT)
-                    cur.execute(self.UPDATE_6_MONTH_CHECK_POINT)
-                    self.conn.commit()
         if pj_type in ['K','G','B']:
             if self.checkpoint == '3_MONTH':
                 if cur.execute(self.MONTH_3_CHECK).fetchone()[0] is None \

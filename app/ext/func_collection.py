@@ -43,18 +43,22 @@ def project_score(project_type):
     p = rv[project_type.lower()]['value']
     return int(p)
 
-def active_score_launched(golden_type,target_score):
-    '''根据项目类型和金点子类型决定初始发放的分钟'''
+def active_score_launched(golden_type,project_type,target_score):
+    '''根据项目类型决定初始发放的分值
+       S/P全部释放分值
+       K/G/B类型初始不发放'''
     from rules import ruleMaker
     rul = ruleMaker()
     rv = rul.rules_api_info()
     # 读取金点子类型的分值
     g = int(rv[str.lower(golden_type)]['value'])
-
-    if golden_type == 'S1' or golden_type == 'P1':
-        return g + int(target_score)
+    # 读取项目积分
+    p = int(rv[project_type.lower()]['value'])
+    # S/P 类型直接激活所有积分=金点子+项目分+定向
+    if project_type == 'S' or project_type == 'P':
+        return g + p + int(target_score)
     else:
-        return int(target_score)
+        return 0
 
 if __name__ == '__main__':
     print project_score(u'P') # error can't use str in unicode

@@ -2,8 +2,7 @@
 
 __author__ = 'Dearc'
 
-from report_monthly import report_html
-
+from rules import ruleMaker
 
 class totalSummary(object):
     """模块作用：查询 /search 页面数据，积分明细不提供模糊查询
@@ -13,103 +12,65 @@ class totalSummary(object):
 
     def __init__(self, name):
         self.name = name
+        self.rv = ruleMaker().rules_api_info()
 
-        self.SQL_PROJECT_TOTAL = '''SELECT COUNT(*)
-                                    FROM TOTAL
-                                    WHERE
-                                    ININTIALOR LIKE "%%%s%%"
-                                    OR LEADER LIKE "%%%s%%"
-                                    OR MAJOR_PARTICIPATOR LIKE "%%%s%%"
-                                    OR MINIOR_PARTICIPATOR LIKE "%%%s%%";
-                                 ''' % (tuple([self.name]) * 4)
+    def personal_score_matrix(self,conn=None):
+        cur = conn.cursor()
+        score_matrix_sql = '''SELECT [PROJECT_NUMBER],
+                                     [PROJECT_SCORE_LEVEL],
+                                     [TOTAL_SCORE],
+                                     [ACTIVE_SCORE],
+                                     [ININTIALOR],
+                                     [LEADER],
+                                     [MAJOR_PARTICIPATOR],
+                                     [MAJOR_PARTICIPATOR_COUNT],
+                                     [MINIOR_PARTICIPATOR],
+                                     [MINIOR_PARTICIPATOR_COUNT]
+                              FROM [TOTAL]
+                              WHERE ININTIALOR="%s"
+                              OR LEADER="%s"
+                              OR [MAJOR_PARTICIPATOR] LIKE "%%%s%%"
+                              OR [MINIOR_PARTICIPATOR] LIKE "%%%s%%"''' % (self.name,self.name,self.name,self.name)
+        res = cur.execute(score_matrix_sql).fetchall()
 
-        # 追踪完成的项目，通过所有检查点
-        self.SQL_PROJECT_FINISHED = '''SELECT COUNT(*)
-                                       FROM TOTAL
-                                       WHERE CHECK_POINT_3_MONTH = 1
-                                       AND CHECK_POINT_6_MONTH = 1
-                                       AND (
-                                          ININTIALOR LIKE "%%%s%%"
-                                          OR LEADER LIKE "%%%s%%"
-                                          OR MAJOR_PARTICIPATOR LIKE "%%%s%%"
-                                          OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
-                                       );''' % (tuple([self.name]) * 4)
+        rs = []
+        for elements in res:
 
-        # 通过3个月的检查点，但未通过6个月检查点
-        self.SQL_PROJECT_IN_3_MONTH = '''SELECT COUNT(*)
-                                         FROM TOTAL
-                                         WHERE CHECK_POINT_3_MONTH = 1
-                                         AND CHECK_POINT_6_MONTH <> 1
-                                         AND (
-                                          ININTIALOR LIKE "%%%s%%"
-                                          OR LEADER LIKE "%%%s%%"
-                                          OR MAJOR_PARTICIPATOR LIKE "%%%s%%"
-                                          OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
-                                         );''' % (tuple([self.name]) * 4)
+            pj_num = elements[0]
+            pj_type = elements[1]
+            cis_score = elements[2]
+            active_score = elements[3]
 
-        # 通过6个月检查点
-        self.SQL_PROJECT_IN_6_MONTH = '''SELECT COUNT(*)
-                                         FROM TOTAL
-                                         WHERE CHECK_POINT_6_MONTH = 1
-                                         AND (
-                                          ININTIALOR LIKE "%%%s%%"
-                                          OR LEADER LIKE "%%%s%%"
-                                          OR MAJOR_PARTICIPATOR LIKE "%%%s%%"
-                                          OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
-                                         );''' % (tuple([self.name]) * 4)
+            def score(active=False):
+                staff_score = []
 
-        # 没有通过检查点的项目
-        self.SQL_PROJECT_FAILED = '''SELECT COUNT(*)
-                                     FROM TOTAL
-                                     WHERE CHECK_POINT_6_MONTH = 0
-                                     AND (
-                                      ININTIALOR LIKE "%%%s%%"
-                                      OR LEADER LIKE "%%%s%%"
-                                      OR MAJOR_PARTICIPATOR LIKE "%%%s%%"
-                                      OR MINIOR_PARTICIPATOR LIKE "%%%s%%"
-                                     );''' % (tuple([self.name]) * 4)
+                l = lambda active:active_score if active else cis_score
 
-        # 项目发起者的项目总数
-        self.SQL_ININTIALOR = '''SELECT COUNT(*)
-                                 FROM TOTAL
-                                 WHERE ININTIALOR LIKE "%%%s%%";
-                              ''' % self.name
+                if self.name in elements[4]:
+                    staff_score.append(l(active) * eval(self.rv[pj_type.lower()]['distribution'][0]))
+                if self.name in elements[5]:
+                    staff_score.append(l(active) * eval(self.rv[pj_type.lower()]['distribution'][1]))
+                if self.name in elements[6]:
+                    staff_score.append(l(active) * eval(self.rv[pj_type.lower()]['distribution'][2])/elements[7])
+                if self.name in elements[8]:
+                    staff_score.append(l(active) * eval(self.rv[pj_type.lower()]['distribution'][3])/elements[9])
+                return sum(staff_score)
 
-        # 项目领导者的总数
-        self.SQL_LEADER = '''SELECT COUNT(*)
-                             FROM TOTAL
-                             WHERE LEADER LIKE "%%%s%%";
-                          ''' % self.name
+            def check_point_score():
+                if pj_type == 'S' or pj_type == 'P':
+                    return [score(False),0,0]
+                else:
+                    return [0,score(False)*eval(self.rv['check_3']),score(False)*eval(self.rv['check_6'])]
 
-        # 作为项目主要成员的数目
-        self.SQL_MAJOR = '''SELECT COUNT(*)
-                            FROM TOTAL
-                            WHERE MAJOR_PARTICIPATOR LIKE "%%%s%%";
-                         ''' % self.name
+            r = [pj_num,pj_type,cis_score,score(False),score(True),score(False)-score(True)]
+            r.extend(check_point_score())
+            rs.append(r)
 
-        # 作为项目次要成员的数目
-        self.SQL_MINIOR = '''SELECT COUNT(*)
-                             FROM TOTAL
-                             WHERE MINIOR_PARTICIPATOR LIKE "%%%s%%";
-                          ''' % self.name
-
-    def summary(self, conn):
-        # 报表系统初始化,需要额外的参数
-        report = report_html(conn=conn, month_begin=None, month_end=None)
-        # 依据人名获取明细报告
-        rv = report.summary(self.name)
-        # 数据库游标
-        cur  = conn.cursor()
-
-        d0 = cur.execute(self.SQL_PROJECT_TOTAL).fetchone()[0]
-        d1 = cur.execute(self.SQL_PROJECT_FINISHED).fetchone()[0]
-        d2 = cur.execute(self.SQL_PROJECT_IN_3_MONTH).fetchone()[0]
-        d3 = cur.execute(self.SQL_PROJECT_IN_6_MONTH).fetchone()[0]
-        d4 = cur.execute(self.SQL_PROJECT_FAILED).fetchone()[0]
-        d5 = cur.execute(self.SQL_ININTIALOR).fetchone()[0]
-        d6 = cur.execute(self.SQL_MINIOR).fetchone()[0]
-        d7 = cur.execute(self.SQL_LEADER).fetchone()[0]
-        d9 = cur.execute(self.SQL_MAJOR).fetchone()[0]
-
-        # 返回两个字典，注意后续解包
-        return dict(d0=d0, d1=d1, d2=d2, d3=d3, d4=d4, d5=d5, d6=d6, d7=d7, d9=d9), rv
+        total_score = []
+        available_score = []
+        inactive_score = []
+        for lst in rs:
+            total_score.append(lst[3])
+            available_score.append(lst[4])
+            inactive_score.append(lst[5])
+        return rs,{'a':sum(total_score),'b':sum(available_score),'c':sum(inactive_score)}

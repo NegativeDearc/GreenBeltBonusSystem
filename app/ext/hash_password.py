@@ -40,4 +40,6 @@ class passwordSecurity(object):
 
 if __name__ == '__main__':
     test = passwordSecurity('conn')
+    test.generate_hash_password('070662')
+    test.generate_hash_password('124464')
     print test.path

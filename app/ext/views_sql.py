@@ -12,6 +12,8 @@ class views_sql(object):
                                           LEADER,
                                           MAJOR_PARTICIPATOR,
                                           MINIOR_PARTICIPATOR,
+                                          GOLDEN_IDEA_SCORE,
+                                          PROJECT_SCORE,
                                           ACTIVE_SCORE
                                    FROM TOTAL
                                    WHERE LEADER LIKE "%%%s%%"
@@ -21,12 +23,13 @@ class views_sql(object):
                                 '''
         # 注意，在检查点前2天，后30天检查 (-30,+2)
         self.data_3_month = '''SELECT PROJECT_NUMBER,
-                                         PROJECT_NAME,
-                                         CHECK_POINT_3_MONTH,
-                                         LEADER,
-                                         GOLDEN_IDEA_SCORE,
-                                         PROJECT_SCORE,
-                                         ACTIVE_SCORE
+                                      PROJECT_NAME,
+                                      CHECK_POINT_3_MONTH,
+                                      LEADER,
+                                      GOLDEN_IDEA_SCORE,
+                                      PROJECT_SCORE,
+                                      TARGET_SCORE,
+                                      ACTIVE_SCORE
                                   FROM TOTAL
                                   WHERE DATE('now','-30 days') < CHECK_POINT_3_MONTH
                                   AND DATE('now','+2 days') > CHECK_POINT_3_MONTH
@@ -39,6 +42,7 @@ class views_sql(object):
                                       LEADER,
                                       GOLDEN_IDEA_SCORE,
                                       PROJECT_SCORE,
+                                      TARGET_SCORE,
                                       ACTIVE_SCORE
                               FROM TOTAL
                               WHERE DATE('now','-30 days') < CHECK_POINT_6_MONTH

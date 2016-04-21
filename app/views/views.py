@@ -66,18 +66,19 @@ app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    res = None
-    res2 = None
-    res3 = None
+    data = None
+    data2 = None
     if request.method == 'POST':
         employee_name = request.form.get('employee_name', '')
         if employee_name != '':
-            search_member = sql.SQL_SEARCH_MEMBER % (tuple([employee_name]) * 4)
-            cur = g.conn.cursor()
-            res = cur.execute(search_member).fetchall()
+            # search_member = sql.SQL_SEARCH_MEMBER % (tuple([employee_name]) * 4)
+            # cur = g.conn.cursor()
+            # res = cur.execute(search_member).fetchall()
+            # ts = totalSummary(employee_name)
+            # res2, res3 = ts.summary(g.conn)
             ts = totalSummary(employee_name)
-            res2, res3 = ts.summary(g.conn)
-    return render_template('search.html', data=res, data1=res3, data2=res2)
+            data,data2 = ts.personal_score_matrix(g.conn)
+    return render_template('search.html', data=data,data2 = data2)
 
 
 @app.route('/')
@@ -138,11 +139,13 @@ def admin():
                                      request.form['implement_period'],
                                      request.form['kpi_impact'],
                                      request.form['cost_saving'],
-                                     active_score_launched(golden_type, request.form['targeted_incentive_score']),
+                                     active_score_launched(golden_type,
+                                                           request.form['s1'],
+                                                           request.form['targeted_incentive_score']),
                                      request.form['project_num'])
 
                 # 更新之前项目初始化的信息
-                insert.prj_launch(golden_type=golden_type,
+                insert.prj_launch(project_type=request.form['s1'],
                                   prj_num=request.form['project_num'],
                                   conn=g.conn,
                                   update=True)
@@ -179,14 +182,16 @@ def admin():
                                      request.form['implement_period'],
                                      request.form['kpi_impact'],
                                      request.form['cost_saving'],
-                                     active_score_launched(golden_type, request.form['targeted_incentive_score']))
+                                     active_score_launched(golden_type,
+                                                           request.form['s1'],
+                                                           request.form['targeted_incentive_score']))
                 # 数据库已设置项目编号唯一性，否则回滚
                 # 产生500错误
                 # 注意提交顺序以及是否需要两次提交
                 cur.execute(INSERT_PROJECT_INFO)
                 cur.execute(INSERT_MEMBER_INFO)
                 cur.execute(INSERT_SCORE_INFO)
-                insert.prj_launch(golden_type=golden_type,
+                insert.prj_launch(project_type=request.form['s1'],
                                   prj_num=request.form['project_num'],
                                   conn=g.conn)
                 return redirect(url_for('admin'))

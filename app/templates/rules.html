@@ -528,71 +528,48 @@
             <caption>CIS Score Release Time Point Chart</caption>
             <tr>
                 <td rowspan="2">Suggestion Level</td>
-                <td colspan="3">Golden Score Release Percentage</td>
-                <td colspan="3">Project Score Release Percentage</td>
-                <td>Targeted Incentive Score Release Percentage</td>
+                <td colspan="3" rowspan="2">Total CIS Score</td>
+                <td colspan="3">Total Release Percentage</td>
             </tr>
             <tr>
                 <td>Project Closed</td>
                 <td>Tracked 3 Month</td>
                 <td>Tracked 6 Month</td>
-                <td>Project Closed</td>
-                <td>Tracked 3 Month</td>
-                <td>Tracked 6 Month</td>
-                <td>Project Closed</td>
             </tr>
             <tr>
                 <td>S</td>
+                <td rowspan="5">Golden Score</td>
+                <td rowspan="5">Project Score</td>
+                <td rowspan="5">Target Score</td>
                 <td>100%</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td rowspan="2">100%</td>
-                <td rowspan="2"></td>
-                <td>100%</td>
             </tr>
             <tr>
                 <td>P</td>
                 <td>100%</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td>100%</td>
             </tr>
             <tr>
                 <td>K</td>
                 <td rowspan="3"></td>
                 <td rowspan="3">
-                    <input type="text" class="form-control" name="g_3"
-                           value="{{ data.g_3 }}" placeholder="{{ data.g_3 }}">
+                    <input type="text" class="form-control" name="check_3"
+                           value="{{ data.check_3 }}" placeholder="{{ data.check_3 }}">
                 </td>
                 <td rowspan="3">
-                    <input type="text" class="form-control" name="g_6"
-                           value="{{ data.g_6 }}" placeholder="{{ data.g_6 }}">
+                    <input type="text" class="form-control" name="check_6"
+                           value="{{ data.check_6 }}" placeholder="{{ data.check_6 }}">
                 </td>
-                <td></td>
-                <td rowspan="3">
-                    <input type="text" class="form-control" name="p_3"
-                           value="{{ data.p_3 }}" placeholder="{{ data.p_3 }}">
-                </td>
-                <td rowspan="3">
-                    <input type="text" class="form-control" name="p_6"
-                           value="{{ data.p_6 }}" placeholder="{{ data.p_6 }}">
-                </td>
-                <td>100%</td>
             </tr>
             <tr>
                 <td>G</td>
-                <td></td>
-                <td>100%</td>
             </tr>
             <tr>
                 <td>B</td>
-                <td></td>
-                <td>100%</td>
             </tr>
         </table>
-
         <input type="submit" class="btn btn-success">
     </form>
     <hr>
