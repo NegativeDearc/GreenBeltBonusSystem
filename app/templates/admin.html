@@ -10,6 +10,10 @@
 <script src="static/jquery.min.js"></script>
 <script src="static/jquery-ui.min.js"></script>
 <script src="static/bootstrap.min.js"></script>
+<style type="text/css">
+    th {text-align: center;vertical-align: middle!important;}
+    td {text-align: center;vertical-align: middle!important;}
+</style>
 
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #27AE60">
@@ -218,8 +222,8 @@
             <tr>
             <td>
                 <form action="" method="post">
-                    <input class="btn btn-success" type="submit" name="{{ rows[0] }}" value="RELEASE3">
-                    <input class="btn btn-warning" type="submit" name="{{ rows[0] }}" value="CLOSE3">
+                    <input class="btn btn-success" type="submit" name="{{ rows[0] }}" value="RELEASE3" style="width: 100px">
+                    <input class="btn btn-warning" type="submit" name="{{ rows[0] }}" value="CLOSE3" style="width: 100px">
                     <!--add another submit here-->
                 </form>
             </td>
@@ -254,8 +258,8 @@
             <tr>
             <td>
                 <form action="" method="post">
-                    <input class="btn btn-success" type="submit" name="{{ rows[0] }}" value="RELEASE6">
-                    <input class="btn btn-warning" type="submit" name="{{ rows[0] }}" value="CLOSE6">
+                    <input class="btn btn-success" type="submit" name="{{ rows[0] }}" value="RELEASE6" style="width: 100px">
+                    <input class="btn btn-warning" type="submit" name="{{ rows[0] }}" value="CLOSE6" style="width: 100px">
                 </form>
             </td>
             {% for element in rows %}

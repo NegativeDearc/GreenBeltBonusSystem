@@ -3,7 +3,6 @@ __author__ = 'Dearc'
 
 from rules import ruleMaker
 
-
 class insert_records(object):
     '''模块作用：向数据库插入操作的动作、分值来作为日志，供后续调用
        依赖模块：rules，从中获取点子分和项目积分的分值信息
@@ -30,7 +29,7 @@ class insert_records(object):
             # 关闭S/P类型节点检查
             close_check_point_1 = '''UPDATE [PROJECT_INFO]
                                      SET [3_MONTH_CHECK]=1,
-                                       [6_MONTH_CHECK]=1
+                                         [6_MONTH_CHECK]=1
                                      WHERE [PROJECT_NUMBER] = "%s"''' % prj_num
             cur.execute(close_check_point_1)
             conn.commit()
@@ -49,12 +48,13 @@ class insert_records(object):
                          ''' % (prj_num, 'project launched', res)
 
         # 在比较运算中is的速度要比==快,
-        # 当update=True时,更新MONTHLY_ACTION表中project launched的分值
+        # 更新=True时:同时删除MONTHLY_ACTION表中所有该项目的记录，重新插入信息
         if update is True:
-            insert_records = '''UPDATE MONTHLY_ACTION
-                                SET SCORE=%s
-                                WHERE PROJECT_NUM="%s"
-                                AND ACTION="project launched";''' % (res,prj_num)
+            del_records = '''DELETE *
+                             FROM MONTHLY_ACTION
+                             WHERE PROJECT_NUM="%s";
+                          ''' % prj_num
+            cur.execute(del_records)
 
         cur.execute(insert_records)
         conn.commit()

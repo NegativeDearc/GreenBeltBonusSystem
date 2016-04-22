@@ -47,39 +47,28 @@ def close_db(exception):
         # print 'Database has been closed'
         g.conn.close()
 
-
 def csrf_protect():
     if request.method == 'POST':
         token = session.pop('_csrf_token', None)
         if not token or token != request.form.get('_crsf_token'):
             abort(403)
 
-
 def generate_csrf_token():
     if '_crsf_token' not in session:
         session['_crsf_token'] = os.urandom(15).encode('hex')
     return session['_crsf_token']
 
-
 app.jinja_env.globals['crsf_token'] = generate_csrf_token
-
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    data = None
-    data2 = None
+    data = None;data2 = None
     if request.method == 'POST':
         employee_name = request.form.get('employee_name', '')
         if employee_name != '':
-            # search_member = sql.SQL_SEARCH_MEMBER % (tuple([employee_name]) * 4)
-            # cur = g.conn.cursor()
-            # res = cur.execute(search_member).fetchall()
-            # ts = totalSummary(employee_name)
-            # res2, res3 = ts.summary(g.conn)
             ts = totalSummary(employee_name)
             data,data2 = ts.personal_score_matrix(g.conn)
-    return render_template('search.html', data=data,data2 = data2)
-
+    return render_template('search.html', data=data,data2=data2)
 
 @app.route('/')
 @app.route('/index')
@@ -104,7 +93,6 @@ def admin():
     # 请在此初始化，以读取最新的配置表
     insert = insert_records()
     # 提交表单
-    # 仍存在bug，被修改后再次提交的数据，insert_records()不能响应
     if request.method == 'POST':
         reverse_dict = dict(zip(request.form.values(), request.form.keys()))
         if request.form.get('sub1') == 'submit':
@@ -221,7 +209,6 @@ def admin():
             return redirect(url_for('admin'))
     return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month, data=data)
 
-
 @app.route('/auth/login', methods=['GET', 'POST'])
 def login():
     def get_redirect_target():
@@ -262,9 +249,8 @@ def about():
 def report():
     if not session.get('is_active'):
         return redirect(url_for('login'), code=401)
-    # need route protect here,but conflict with 'admin'
-    data = {}
-    prj = {}
+
+    data = {};prj = {}
     summary = newDict(Major=0, Initiator=0, Leader=0, Minor=0, sum=0)
     if request.method == 'POST' and request.form.get('submit') == 'submit':
         date_begin = request.form.get('date_begin')
@@ -275,7 +261,6 @@ def report():
             prj[name] = list(chain(*report.prj_set(name)))
             data[name] = report.summary(name)
             summary = summary + newDict(report.summary(name))
-            # rewrite the dict class to let dict can add with dict
     return render_template('report.html', data=data, prj=prj, summary=summary)
 
 
@@ -286,7 +271,6 @@ def rules():
     rul = ruleMaker()
     data = rul.rules_api_info()
     if request.method == 'POST':
-        # print request.form
         # 更新本地json配置文件
         rul.update_config(request.form)
         return redirect(url_for('rules'))

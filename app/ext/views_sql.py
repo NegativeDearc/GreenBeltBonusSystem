@@ -1,6 +1,4 @@
 #-*- coding:utf-8 -*-
-import bisect
-from rules import ruleMaker
 
 class views_sql(object):
     '''模块作用：视图函数用到的查询、插入、更新'''

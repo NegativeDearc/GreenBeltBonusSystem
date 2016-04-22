@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/rules.html" afterPath="$PROJECT_DIR$/app/templates/rules.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/search.html" afterPath="$PROJECT_DIR$/app/templates/search.html" />
-    </list>
+    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="" />
     <ignored path="GreenBeltBonusSystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
