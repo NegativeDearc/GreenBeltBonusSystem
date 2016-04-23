@@ -10,9 +10,12 @@
 <script src="static/jquery.min.js"></script>
 <script src="static/jquery-ui.min.js"></script>
 <script src="static/bootstrap.min.js"></script>
+
 <style type="text/css">
     th {text-align: center;vertical-align: middle!important;}
     td {text-align: center;vertical-align: middle!important;}
+    li,p,label {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    .alert {text-align: center}
 </style>
 
 <body>
@@ -26,30 +29,32 @@
 <div class="row" style="padding-left:20px;padding-right: 20px;margin-top: 85px">
     <div class="col-md-3">
         <div class="panel panel-default">
-        <div class="panel-heading">User Information</div>
+        <div class="panel-heading">使用前必读说明</div>
         <div class="panel-body">
             <div>
             <ol style="color:red">
-                <li>All text field required</li>
-                <li>Want to UPDATE data instead of INSERT? select the check box</li>
-                <li>Code of Drop list from file QW144-01-01</li>
-                <li>Uppercase needed</li>
-                <li>Use ',' separate use name,do not use chinese '，'</li>
-                <li>Recheck before submit,database can't roll back</li>
-                <li>If you encounter HTTP 400 code,check the data you filled</li>
+                <li>所有字段都需要填写,否则无法提交</li>
+                <li>数据填写有误?只需勾选UPDATE按钮</li>
+                <li>文件依据:QW144-01-01,详情请参见黑带文档</li>
+                <li>请注意区分大小写,数据库对大小写敏感</li>
+                <li>请注意中文逗号和英文逗号,英文字段不允许出现中文逗号</li>
+                <li>如果遭遇内部错误500,请联系管理员6573</li>
+                <hr>
+                <li>员工名单录入时请仔细确认信息,不提供更新机会</li>
+                <li>如果存在相同工号,网页会提示500错误</li>
             </ol>
             </div>
         </div>
     </div>
         <div class="well">
             <form id="form1">
-                <div class="alert alert-info">Employee Info</div>
+                <div class="alert alert-info"><p>员工工号人名维护</p></div>
                 <div class="form-group">
-                    <label for="">Employee ID</label>
+                    <label for="">员工ID编号</label>
                     <input type="text" class="form-control" id="employee_id" placeholder="insert employee id"
                            required="required" pattern="[0-9]+">
                     <div><p></p></div>
-                    <label for="">English Name(Or Pinyin)</label>
+                    <label for="">英文名称或拼音</label>
                     <input type="text" class="form-control" id="employee_name" placeholder="insert employee name"
                            required="required" pattern="[a-zA-Z\s]+">
                     <input type="submit" name="sub2" value="submit" class="btn btn-default"
@@ -67,7 +72,7 @@
     <form action="" method="post" class="form-horizontal" id="form_data">
     <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
     <div class="form-group">
-        <label for="use_type" class="col-sm-3 control-label">Choose to Update instead of Insert</label>
+        <label for="use_type" class="col-sm-3 control-label"><p>勾选来修改已经提交的数据</p></label>
         <div class="col-sm-6">
             <!--if choose request.form get 'on'-->
             <input type="checkbox" class="btn btn-success" name="update">
@@ -76,7 +81,7 @@
     <hr>
 
     <div class="form-group">
-        <label for="use_type" class="col-sm-2 control-label">Duplicability</label>
+        <label for="use_type" class="col-sm-2 control-label"><p>可拓展性</p></label>
         <div class="col-sm-2">
             <!--if choose request.form get 'on'-->
             <select class="btn btn-success" name="duplicability" id="selection1">
@@ -86,7 +91,7 @@
             </select>
         </div>
 
-        <label for="" class="col-sm-2 control-label">Resource Usage</label>
+        <label for="" class="col-sm-2 control-label"><p>资源利用</p></label>
         <div class="col-sm-2">
             <select name="resource_usage" id="selection2" class="btn btn-success">
                 <option value="{{ data.resource_usage.level3 }}">{{ data.resource_usage.level3 }}(External Resource of Company Usage)</option>
@@ -97,7 +102,7 @@
     </div>
 
     <div class="form-group">
-        <label for="" class="col-sm-2 control-label">Implement Period</label>
+        <label for="" class="col-sm-2 control-label"><p>结案时长</p></label>
         <div class="col-sm-2">
             <!--if choose request.form get 'on'-->
             <select class="btn btn-success" name="implement_period" id="selection3">
@@ -108,7 +113,7 @@
         </div>
 
         <label for="" class="col-sm-2 control-label">
-            <abbr title=" S(Safety)、Q(Quality)、C(Cost)、D(Delivery)、M(Morale)">KPI Impact(S,Q,C,D,M)</abbr>
+            <abbr title=" S(Safety)、Q(Quality)、C(Cost)、D(Delivery)、M(Morale)"><p>KPI等级</p></abbr>
         </label>
         <div class="col-sm-2">
             <select name="kpi_impact" id="selection4" class="btn btn-success">
@@ -120,7 +125,7 @@
     </div>
     <div class="form-group">
         <label for="" class="col-sm-2 control-label">
-            <abbr title="(Score/Thousands USD)">Estimated Cost Saving</abbr>
+            <abbr title="每千美元转换成1积分"><p>预估的成本节约</p></abbr>
         </label>
         <div class="col-sm-2">
             <input type="text" class="form-control" name="cost_saving"
@@ -129,7 +134,7 @@
     </div>
     <hr>
     <div class="form-group">
-        <label for="proj_type" class="col-sm-2 control-label">Project type</label>
+        <label for="proj_type" class="col-sm-2 control-label"><p>项目等级</p></label>
         <div class="col-sm-2">
             <select id="s1" class="btn btn-success" name="s1">
                 <option value="S">S</option>
@@ -139,25 +144,25 @@
                 <option value="B">B</option>
             </select>
         </div>
-        <label for="" class="col-sm-2 control-label">Targeted Incentive Score</label>
+        <label for="" class="col-sm-2 control-label"><p>定向奖励积分</p></label>
         <div class="col-sm-2">
             <input type="number" min="0"  class="form-control" name="targeted_incentive_score">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="proj_num" class="col-sm-2 control-label">Project Number</label>
+        <label for="proj_num" class="col-sm-2 control-label"><p>项目编号</p></label>
         <div class="col-sm-2">
             <input type="text" class="form-control" placeholder="CKT1600X" name="project_num" required="required">
         </div>
-        <label for="proj_name" class="col-sm-2 control-label">Project Name</label>
+        <label for="proj_name" class="col-sm-2 control-label"><p>项目描述</p></label>
         <div class="col-sm-4">
             <input type="text" class="form-control" placeholder="Title of your Project" name="project_name" required="required">
         </div>
     </div>
     <!--xx-->
     <div class="form-group">
-        <label for="due_time" class="col-sm-2 control-label">Due Time</label>
+        <label for="due_time" class="col-sm-2 control-label"><p>结案日期</p></label>
         <div class="col-sm-4">
             <input type="date" class="form-control" name="due_time" required="required">
         </div>
@@ -165,32 +170,39 @@
 
     <hr>
     <div class="form-group">
-        <label for="inintialor" class="col-sm-2 control-label">inintialor</label>
-        <div class="col-sm-2">
+        <label for="inintialor" class="col-sm-2 control-label"><p>项目发起人</p></label>
+        <div class="col-sm-3">
             <input id="au2" type="text" class="form-control" name="inintialor" required="required" placeholder="ZHANG SAN">
         </div>
-        <label for="leader" class="col-sm-2 control-label">leader</label>
-        <div class="col-sm-2">
+        <label for="leader" class="col-sm-2 control-label"><p>项目领导</p></label>
+        <div class="col-sm-3">
             <input id="au2" type="text" class="form-control" name="leader" required="required" placeholder="ZHANG SAN">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="major_member" class="col-sm-2 control-label">major member</label>
-        <div class="col-sm-4">
+        <label for="major_member" class="col-sm-2 control-label"><p>主要成员</p></label>
+        <div class="col-sm-6">
             <input id="au" type="text" class="form-control" name="major_member" required="required" placeholder="LEON WANG,JUSTIN WAN" pattern="^[()0-9,a-zA-z\s]*[a-zA-Z]$">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="minior_member" class="col-sm-2 control-label">Minior Member</label>
-        <div class="col-sm-4">
+        <label for="minior_member" class="col-sm-2 control-label"><p>次要成员</p></label>
+        <div class="col-sm-6">
             <input id="au" type="text" class="form-control" name="minior_member" required="required" placeholder="KEVIN SONG,DAMON CHEN" pattern="^[()0-9,a-zA-z\s]*[a-zA-Z]$">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="submit" class="col-sm-2 control-label">Submit</label>
+        <label for="frozen_member" class="col-sm-2 control-label"><p>积分冻结成员</p></label>
+        <div class="col-sm-6">
+            <input id="au" type="text" class="form-control" name="frozen_member" required="required" placeholder="" pattern="^[()0-9,a-zA-z\s]*[a-zA-Z]$">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="submit" class="col-sm-2 control-label"><p>提交表单</p></label>
         <div class="col-sm-4">
              <input type="submit" class="btn btn-default" name="sub1" value="submit" onclick="return dataAlert()">
         </div>
@@ -390,7 +402,8 @@
                 "**项目发起人**--->" + data[11] + "\n" +
                 "**项目执行者**--->" + data[12] + "\n" +
                 "***主要成员***--->" + data[13] + "\n" +
-                "***次要成员***--->" + data[14] + "\n"
+                "***次要成员***--->" + data[14] + "\n" +
+                "**积分冻结人员**-->" + data[15] + "\n"
         if (confirm(data_string)){
             alert('点击确认提交!');
             return true;

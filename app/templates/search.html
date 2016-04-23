@@ -11,15 +11,20 @@
 <script src="static/jquery.min.js"></script>
 <script src="static/jquery-ui.min.js"></script>
 <script src="static/bootstrap.min.js"></script>
+<script src="static/poshytip/jquery.poshytip.min.js"></script>
+<link rel="stylesheet" href="static/poshytip/tip-twitter/tip-twitter.css">
+
 <style type="text/css">
     table tr:hover {background-color: #0180FE;color: #fff;cursor:hand;}
     th {text-align: center;background: #27AE60;color: white;vertical-align: middle!important;}
     td {text-align: center}
     caption {text-align: center;font-size: 18px}
     p {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    a:link{color: black;}
+    a:hover{color: white;text-decoration:none;}
 </style>
 
-<body>
+<body leftmargin=0 topmargin=0 oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
 <div class="site-notice" style="padding: 5px 0 ;text-align: center;background: #208d4e" >
     <marquee behavior="" direction="" style="color: linen;font-size: 16px">Welcome User From {{ request.remote_addr }}</marquee>
 </div>
@@ -55,21 +60,26 @@
     <div class="container">
     <div class="alert alert-success" style="font-size: 16px">
     <b>Hello <span style="color: #eea236">{{ request.form.get('employee_name') }}</span>:</b>
-    <p>您好: <span style="color: #eea236">{{ request.form.get('employee_name') }}</p>
     <br>
     <p>Thank you for your participation!</p>
     <p>感谢您的参与!</p>
-        <ol>
-        <li>Staff Total CIS Score:</li>
-        <p>员工项目总积分</p>
-        {{ data2.get('a') }}
-        <li>Staff Available CIS Score:</li>
-        <p>可用积分</p>
-        {{ data2.get('b') }}
-        <li>Staff Inactive CIS Score:</li>
-        <p>暂不可用积分</p>
-        {{ data2.get('c') }}
-        </ol>
+    <br>
+    <div class="table-responsive">
+        <table border="1">
+            <tr>
+                <td><p>CIS Total Score <br>员工项目总积分</p></td>
+                <td><p>Active Score <br>可用积分</p></td>
+                <td><p>Inactive Score <br>暂不可用积分</p></td>
+                <td><p>Frozon Scorebr <br>冻结积分</p></td>
+            </tr>
+            <tr>
+                <td>{{ data2.get('a') }}</td>
+                <td>{{ data2.get('b') }}</td>
+                <td>{{ data2.get('c') }}</td>
+                <td>{{ data2.get('d') }}</td>
+            </tr>
+        </table>
+    </div>
     </div>
     </div>
     {% endif %}
@@ -99,7 +109,7 @@
              {% for element in data %}
                  <tr>
                  {% for e in element %}
-                     <td>{{ e }}</td>
+                     <td><a href="javascript:" class="ahover" title="test &#31; test{{ element }}{{ e }}">{{ e }}</a></td>
                  {% endfor %}
                  </tr>
              {% endfor %}
@@ -127,6 +137,17 @@
             $.getJSON($SCRIPT_ROOT + "/api/user/",{term:request.term},response);
         }
     })
+});
+
+$(".ahover").poshytip({
+    className: 'tip-twitter',
+	showTimeout: 1,
+	alignTo: 'target',
+	alignX: 'center',
+	offsetY: 5,
+	allowTipHover: false,
+	fade: false,
+	slide: false
 });
 </script>
 </body>
