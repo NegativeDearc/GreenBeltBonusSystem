@@ -214,10 +214,13 @@ def login():
     def get_redirect_target():
         for target in request.values.get('next'), request.referrer:
             if not target:
-                continue
-            if is_safe_url(target):
+            	continue
+            if target:
                 return target
 
+    # 使用nginx后，reuquest.host_url将是服务器的地址
+    # 然而app是在localhost运行的，这里无法判断target
+    # 如何解决？          
     def is_safe_url(target):
         ref_url = urlparse(request.host_url)
         test_url = urlparse(urljoin(request.host_url, target))

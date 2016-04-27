@@ -1,3 +1,3 @@
 from app import app
 
-app.run(host='0.0.0.0',port=5010,threaded=True)
+app.run(port=8888,threaded=True)
