@@ -7,32 +7,55 @@
 </head>
 <link rel="stylesheet" href="static/bootstrap.min.css">
 <link rel="stylesheet" href="static/jquery-ui.css">
+<link rel="stylesheet" href="static/jquery-ui-1.11.4/jquery-ui.theme.css">
+<link rel="stylesheet" href="static/jquery-ui-1.11.4/jquery-ui.structure.css">
 <script src="static/jquery.min.js"></script>
-<script src="static/jquery-ui.min.js"></script>
+<script src="static/jquery-ui-1.11.4/jquery-ui.js"></script>
 <script src="static/bootstrap.min.js"></script>
 
 <style type="text/css">
     th {text-align: center;vertical-align: middle!important;}
     td {text-align: center;vertical-align: middle!important;}
-    li,p,label {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    div.panel-heading,li,p,label,h3,td {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
     .alert {text-align: center}
+    nav.navbar-default {background-color: #27AE60;}
+    #brand {color: white;font-size:18px;padding: 14px}
+    div.navbar-collapse > a {color: white;font-size:16px;padding: 14px}
+    div.row {padding-left:20px;padding-right: 20px;margin-top: 20px}
+    ol {color: red;}
+    li {margin-left: -15px;font-size: 13px;}
 </style>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #27AE60">
-    <a href="" style="color: white;font-size:18px;padding: 14px" class="btn btn-disabled disabled">Admin Panel</a>||
-    <a href="{{ url_for('index') }}" style="color: white;font-size:16px;padding: 14px" class="btn">Home</a>|
-    <a href="{{ url_for('rules') }}" style="color: white;font-size:16px;padding: 14px" class="btn">Rules Editor</a>|
-    <a href="{{ url_for('report') }}" style="color: white;font-size:16px;padding: 14px" class="btn">Report System</a>
+<!--这边可以通过jinja2模板继承重用-->
+<nav class="navbar navbar-default navbar-static-top nav-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!--无论折叠与否都显示-->
+        <a href="" class="navbar-brand" id="brand">Admin Panel</a>
+    </div>
+    <!--折叠数据-->
+    <div class="collapse navbar-collapse navbar-responsive-collapse" id="navbar1">
+        <a href="{{ url_for('index') }}" class="btn">Home</a>|
+        <a href="{{ url_for('rules') }}" class="btn">Rules Editor</a>|
+        <a href="{{ url_for('report') }}" class="btn">Report System</a>
+    </div>
 </nav>
+<!--重用结束-->
 
-<div class="row" style="padding-left:20px;padding-right: 20px;margin-top: 85px">
+<div class="row">
+    <!--通知栏-->
     <div class="col-md-3">
         <div class="panel panel-default">
         <div class="panel-heading">使用前必读说明</div>
         <div class="panel-body">
             <div>
-            <ol style="color:red">
+            <ol>
                 <li>所有字段都需要填写,否则无法提交</li>
                 <li>数据填写有误?只需勾选UPDATE按钮</li>
                 <li>文件依据:QW144-01-01,详情请参见黑带文档</li>
@@ -46,28 +69,320 @@
             </div>
         </div>
     </div>
-        <div class="well">
-            <form id="form1">
-                <div class="alert alert-info"><p>员工工号人名维护</p></div>
-                <div class="form-group">
-                    <label for="">员工ID编号</label>
-                    <input type="text" class="form-control" id="employee_id" placeholder="insert employee id"
-                           required="required" pattern="[0-9]+">
-                    <div><p></p></div>
-                    <label for="">英文名称或拼音</label>
-                    <input type="text" class="form-control" id="employee_name" placeholder="insert employee name"
-                           required="required" pattern="[a-zA-Z\s]+">
-                    <input type="submit" name="sub2" value="submit" class="btn btn-default"
-                           style="margin-top: 10px" onclick="postdata()">
-                    <input type="reset" style="display: none" id="reset">
+    <!--员工工号维护-->
+    <div class="well">
+        <form id="form1">
+            <div class="alert alert-info"><p>员工工号人名维护</p></div>
+            <div class="form-group">
+                <label for="">员工ID编号</label>
+                <input type="text" class="form-control" id="employee_id" placeholder="insert employee id"
+                       required="required" pattern="[0-9]+">
+                <div><p></p></div>
+                <label for="">英文名称或拼音</label>
+                <input type="text" class="form-control" id="employee_name" placeholder="insert employee name"
+                       required="required" pattern="[a-zA-Z\s]+">
+                <input type="submit" name="sub2" value="submit" class="btn btn-default"
+                       style="margin-top: 10px" onclick="postdata()">
+                <input type="reset" style="display: none" id="reset">
+            </div>
+        </form>
+    </div>
+    {% for messages in get_flashed_messages() %}
+        <div class="alert-warning">{{ message }}</div>
+    {% endfor %}
+    </div>
+    <!--折叠面板-->
+    <div class="col-md-9">
+        <div id="accordion">
+            <!--项目基本信息-->
+            <h3>项目基本信息</h3>
+            <form action="" method="post" id="a_1">
+            <div class="form-group">
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>项目编号</td>
+                        <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td>项目描述</td>
+                        <td><input type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td>项目关闭日期</td>
+                        <td><input type="date" class="form-control"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            </form>
+            <!--积分等级维护-->
+            <h3>金点子积分等级</h3>
+            <form action="" method="post" id="a_2">
+            <div class="form-group">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td rowspan="8">持续改善等级</td>
+                            <td colspan="3">总的持续改善点数</td>
+                            <td>选择,</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="7">持续改善等级判定</td>
+                            <td>S</td>
+                            <td>4-9</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>10-12</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>K</td>
+                            <td>13-17</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>G1</td>
+                            <td>18-23</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>G2</td>
+                            <td>24-29</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>G3</td>
+                            <td>30-60</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>60~</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr class="success">
+                            <td>编号</td>
+                            <td>项目</td>
+                            <td>点数细节</td>
+                            <td>CIS点数</td>
+                            <td>选择,</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">1</td>
+                            <td rowspan="3">可拓展性</td>
+                            <td>2~车间</td>
+                            <td>3</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>1-2车间</td>
+                            <td>2</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>1个部门</td>
+                            <td>1</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">2</td>
+                            <td rowspan="3">资源调用</td>
+                            <td>External Resource of Comp. Usage</td>
+                            <td>3</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Internal Resource of Comp. Usage</td>
+                            <td>2</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Only Own Dept. Resource Usage</td>
+                            <td>1</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">3</td>
+                            <td rowspan="3">项目持续周期</td>
+                            <td>小于1月</td>
+                            <td>3</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>1-3月</td>
+                            <td>2</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>大于3月</td>
+                            <td>1</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">4</td>
+                            <td rowspan="3">KPI Impact</td>
+                            <td>3~项</td>
+                            <td>3</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>1-3项</td>
+                            <td>2</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>1项</td>
+                            <td>1</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>关闭时项目收益</td>
+                            <td>得分/每千美元</td>
+                            <td><input type="number" min="0" class="form-control"></td>
+                            <td><input type="number" min="0" class="form-control"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+            </form>
+            <!--项目等级维护-->
+            <h3>项目积分等级</h3>
+            <form action="" method="post" id="a_3">
+            <div class="form-group">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr class="success">
+                            <td>持续改善等级</td>
+                            <td>项目主旨</td>
+                            <td>项目报告形式</td>
+                            <td>选择</td>
+                        </tr>
+                        <tr>
+                            <td>S</td>
+                            <td rowspan="3">消除浪费</td>
+                            <td>suggestion</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>PSR</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>K</td>
+                            <td>Kaizen</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>G</td>
+                            <td rowspan="2">减少变异</td>
+                            <td>DMAIC/DMAOV</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>DMAIC/DMADOV<br>(6Sigma Statistical Tools Number>=10)</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr class="success">
+                            <td colspan="2">持续改善定向鼓励</td>
+                            <td colspan="2"><input type="number" min="0" class="form-control"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            </form>
+            <!--成员信息维护-->
+            <h3>成员信息</h3>
+            <form action="" method="post" id="a_4">
+            <div class="form-group">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td colspan="2">角色定义</td>
+                            <td>名单</td>
+                            <td>无效?</td>
+                            <td>备注</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">提案发起者</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">项目发起者</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">主要参与者</td>
+                            <td>1</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">次要参与者</td>
+                            <td>1</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><input type="text" class="au form-control"></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                    </table>
+                </div>
+                <input type="submit" class="btn-success" value="提交">
+            </div>
             </form>
         </div>
-        {% for messages in get_flashed_messages() %}
-            <div class="alert-warning">{{ message }}</div>
-        {% endfor %}
     </div>
 
+{#
     <div class="col-md-9 well" style="padding-right: 10px">
     <form action="" method="post" class="form-horizontal" id="form_data">
     <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
@@ -209,6 +524,7 @@
     </div>
     </form>
     </div>
+#}
 </div>
 
 <hr>
@@ -311,7 +627,7 @@
             return split(term).pop();
         }
 
-        $("input#au").autocomplete({
+        $("input.au").autocomplete({
             source: function (request, response) {
                 //the GET method! use flask request.agrs.get('term')
                 $.getJSON($SCRIPT_ROOT + "/api/user/",{term: extractLast( request.term )},response);
@@ -330,7 +646,8 @@
                 terms.push(ui.item.value);
                 // add place holder,add ',' & ''
                 terms.push("");
-                this.value = terms.join(", ");
+                //this.value = terms.join(", ");
+                this.value = terms.join("");
                 return false;
             }
         })
@@ -413,5 +730,11 @@
             return false;
         }
     };
+    /*折叠面板*/
+    $(function() {
+        /*content高度自适应*/
+      $("#accordion").accordion({heightStyle:"content",
+                                 clearStyle:true});
+    });
 </script>
 </html>
