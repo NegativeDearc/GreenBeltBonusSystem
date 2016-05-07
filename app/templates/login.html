@@ -8,52 +8,56 @@
 <link rel="stylesheet" href="../static/bootstrap.min.css">
 <script src="../static/jquery.min.js"></script>
 <script src="../static/bootstrap.min.js"></script>
+<style>
+    .container {margin-top: 200px;}
+    body {background-color: #dddddd;}
+    .messages {color: red;font-style: oblique}
+    p {font-size: 9px;color: #1fa67a}
+</style>
 
-<body background="../static/index-background/bg.png">
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #1fa67a;border: none">
-    <div class="container">
-        <div class="navbar-header" style="background-size: 200%">
-            <a class="navbar-brand" type="submit" href="{{ url_for('about') }}" style="color: white">GreenBelt Bonus System</a>
-            <form class="navbar-form navbar-right">
-                <a class="btn btn-warning" type="submit" href="../index">Return</a>
-            </form>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post">
+                    <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
+                    <input type="hidden" value="{{ next or '' }}" name="next">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Name" name="usr" autofocus required="required">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="pwd" type="password" required="required">
+                            </div>
+                            <div class="form-group">
+                            <div class="messages">
+                                {% for messages in get_flashed_messages()%}
+                                {{ messages }}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                </label>
+                            </div>
+                            <input type="submit" class="btn btn-success btn-block" value="Login">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-
-<div class="container well" style="margin-top: 80px;">
-    <form role="form" action="" method="post" class="form-horizontal">
-        <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
-         <div class="form-group">
-            <label for="usr" class="control-label col-sm-2">User Name</label>
-             <div class="col-sm-2">
-                 <input type="text" required="required" name="usr" class="form-control" placeholder="enter user name">
-             </div>
-         </div>
-
-        <div class="form-group">
-            <label for="psw" class="control-label col-sm-2">Password</label>
-            <div class="col-sm-2">
-                <input type="password" required="required" name="pwd" class="form-control" placeholder="enter password">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-2" style="color: red">
-                {% for messages in get_flashed_messages() %}
-                {{ messages }}
-                {% endfor %}
-            </div>
-            <div class="col-sm-2"><input type="submit" value="Login" lass="btn btn-default"></div>
-            <input type="hidden" value="{{ next or '' }}" name="next">
-        </div>
-    </form>
 </div>
-
 
 <nav class="navbar-fixed-bottom">
     <div class="container-fluid">
-        <p style="font-size: 9px;color: #adadad">ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
+        <p>ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
     </div>
 </nav>
 </body>

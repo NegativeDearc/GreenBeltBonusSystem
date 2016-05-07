@@ -22,22 +22,30 @@
     p {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
     a:link{color: black;}
     a:hover{color: white;text-decoration:none;}
+    .site-notice {padding: 5px 0 ;text-align: center;background: #208d4e}
+    marquee {color: linen;font-size: 16px}
+    .site-header {background:#27AE60;}
+    #search_name {text-align: center;font-size: 46px;color:white;font-family: 'Monotype Corsiva', 'Apple Chancery', 'URW Chancery L', cursive;}
+    .form-group {color: #dff0d8;font-size: 20px;}
+    .alert-success {font-size: 16px;}
+    span {color: #eea236;}
+    #copyright {font-size: 9px;color: #adadad;}
 </style>
 
 <body leftmargin=0 topmargin=0 oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
-<div class="site-notice" style="padding: 5px 0 ;text-align: center;background: #208d4e" >
-    <marquee behavior="" direction="" style="color: linen;font-size: 16px">Welcome User From {{ request.remote_addr }}</marquee>
+<div class="site-notice">
+    <marquee behavior="" direction="">Welcome User From {{ request.remote_addr }}</marquee>
 </div>
 
-<header class="site-header jumbotron" style="background:#27AE60">
+<header class="site-header jumbotron">
     <div class="container-fluid">
-        <div style="text-align: center;font-size: 46px;color:white;font-family: 'Monotype Corsiva', 'Apple Chancery', 'URW Chancery L', cursive">
+        <div id="search_name">
             Hallo,
             <br>
             Welcome to GreenBelt Bonus Search Page
         </div>
 
-    <div class="form-group" style="color: #dff0d8;font-size: 20px">
+    <div class="form-group">
         <form action="" method="post" class="col-xs-12">
         <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
         <div class="row col-md-6 col-md-offset-3">
@@ -58,8 +66,8 @@
 {% if request.form.get('employee_name') %}
     {% if data2 %}
     <div class="container">
-    <div class="alert alert-success" style="font-size: 16px">
-    <b>Hello <span style="color: #eea236">{{ request.form.get('employee_name') }}</span>:</b>
+    <div class="alert alert-success">
+    <b>Hello <span>{{ request.form.get('employee_name') }}</span>:</b>
     <br>
     <p>Thank you for your participation!</p>
     <p>感谢您的参与!</p>
@@ -119,7 +127,7 @@
 
 <footer class="footer">
     <div class="container-fluid">
-        <p style="font-size: 9px;color: #adadad">ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
+        <p id="copyright">ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
     </div>
 </footer>
 
