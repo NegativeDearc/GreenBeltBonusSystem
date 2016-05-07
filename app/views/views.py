@@ -12,7 +12,7 @@ from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
-from app.ext.hash_password import passwordSecurity
+from app.models.dbModels import usrPwd
 
 from itertools import chain
 from config import config
@@ -214,7 +214,7 @@ def login():
     def get_redirect_target():
         for target in request.values.get('next'), request.referrer:
             if not target:
-            	continue
+                continue
             if target:
                 return target
 
@@ -230,12 +230,10 @@ def login():
     # url/?next=next
     # a bugs here,if next = /auth/login itself,it will redirect to itself
     next = get_redirect_target()
-    # 初始化密码hash检查模块
-    password_security = passwordSecurity(g.conn)
     if request.method == 'POST':
-        rv = password_security.verify_hash_password(request.form.get('usr'),
-                                                    request.form.get('pwd'))
-        if rv:
+        # 如果查询到用户则返回app.Models.dbModels.usrPwd类,可调用该类的方法
+        usr = usrPwd.query.filter_by(user = request.form.get('usr')).first()
+        if usr is not None and usr.verify_pwd(request.form.get('pwd')):
             session['is_active'] = True
             return redirect(next)
         else:

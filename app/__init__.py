@@ -2,13 +2,15 @@
 
 from flask import Flask
 from config import config
+from flask.ext.sqlalchemy import SQLAlchemy
 
 def create_app(conf):
     app = Flask(__name__)
     app.config.from_object(conf)
     return app
 
-app = create_app(config['production'])
+app = create_app(config['development'])
+db = SQLAlchemy(app)
 
 # debug 模式关闭时启用日志记录
 # 尝试采用邮件发送
