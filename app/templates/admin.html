@@ -14,6 +14,7 @@
 <script src="static/bootstrap.min.js"></script>
 
 <style type="text/css">
+    table caption {text-align: center;font-size: 20px;}
     th {text-align: center;vertical-align: middle!important;}
     td {text-align: center;vertical-align: middle!important;}
     div.panel-heading,li,p,label,h3,td {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
@@ -24,6 +25,8 @@
     div.row {padding-left:20px;padding-right: 20px;margin-top: 20px}
     ol {color: red;}
     li {margin-left: -15px;font-size: 13px;}
+    input#sub2 {margin-top: 10px;}
+    input#reset {display: none;}
 </style>
 
 <body>
@@ -81,9 +84,9 @@
                 <label for="">英文名称或拼音</label>
                 <input type="text" class="form-control" id="employee_name" placeholder="insert employee name"
                        required="required" pattern="[a-zA-Z\s]+">
-                <input type="submit" name="sub2" value="submit" class="btn btn-default"
-                       style="margin-top: 10px" onclick="postdata()">
-                <input type="reset" style="display: none" id="reset">
+                <input type="submit" name="sub2" id="sub2",value="submit" class="btn btn-default"
+                       onclick="postdata()">
+                <input type="reset" id="reset">
             </div>
         </form>
     </div>
@@ -96,31 +99,32 @@
         <div id="accordion">
             <!--项目基本信息-->
             <h3>项目基本信息</h3>
-            <form action="" method="post" id="a_1">
+            <form method="post" id="a_1">
             <div class="form-group">
                 <div class="table-responsive">
                 <table class="table table-bordered">
                     <tbody>
                     <tr>
                         <td>项目编号</td>
-                        <td><input type="text" class="form-control"></td>
+                        <td><input type="text" class="form-control" name="prj_name" id="prj_name"></td>
                     </tr>
                     <tr>
                         <td>项目描述</td>
-                        <td><input type="text" class="form-control"></td>
+                        <td><input type="text" class="form-control" name="prj_des" id="prj_des"></td>
                     </tr>
                     <tr>
                         <td>项目关闭日期</td>
-                        <td><input type="date" class="form-control"></td>
+                        <td><input type="date" class="form-control" name="prj_date" id="prj_date"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+                <input type="submit">
             </div>
             </form>
             <!--积分等级维护-->
             <h3>金点子积分等级</h3>
-            <form action="" method="post" id="a_2">
+            <form method="post" id="a_2">
             <div class="form-group">
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -134,37 +138,37 @@
                             <td rowspan="7">持续改善等级判定</td>
                             <td>S</td>
                             <td>4-9</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_level" id="s" name="s"></td>
                         </tr>
                         <tr>
                             <td>P</td>
                             <td>10-12</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_level" id="p" name="p"></td>
                         </tr>
                         <tr>
                             <td>K</td>
                             <td>13-17</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_level" id="k" name="k"></td>
                         </tr>
                         <tr>
                             <td>G1</td>
                             <td>18-23</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_level" id="g1" name="g1"></td>
                         </tr>
                         <tr>
                             <td>G2</td>
                             <td>24-29</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_level" id="g2" name="g2"></td>
                         </tr>
                         <tr>
                             <td>G3</td>
                             <td>30-60</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_level" id="g3" name="g3"></td>
                         </tr>
                         <tr>
                             <td>B</td>
                             <td>60~</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_level" id="b" name="b"></td>
                         </tr>
                         <tr class="success">
                             <td>编号</td>
@@ -178,84 +182,85 @@
                             <td rowspan="3">可拓展性</td>
                             <td>2~车间</td>
                             <td>3</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="du" id="du3" name="du3"></td>
                         </tr>
                         <tr>
                             <td>1-2车间</td>
                             <td>2</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="du" id="du2" name="du2"></td>
                         </tr>
                         <tr>
                             <td>1个部门</td>
                             <td>1</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="du" id="du1" name="du1"></td>
                         </tr>
                         <tr>
                             <td rowspan="3">2</td>
                             <td rowspan="3">资源调用</td>
                             <td>External Resource of Comp. Usage</td>
                             <td>3</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="re" id="re3" name="re3"></td>
                         </tr>
                         <tr>
                             <td>Internal Resource of Comp. Usage</td>
                             <td>2</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="re" id="re2" name="re2"></td>
                         </tr>
                         <tr>
                             <td>Only Own Dept. Resource Usage</td>
                             <td>1</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="re" id="re1" name="re1"></td>
                         </tr>
                         <tr>
                             <td rowspan="3">3</td>
                             <td rowspan="3">项目持续周期</td>
                             <td>小于1月</td>
                             <td>3</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="ip" id="ip3" name="ip3"></td>
                         </tr>
                         <tr>
                             <td>1-3月</td>
                             <td>2</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="ip" id="ip2" name="ip2"></td>
                         </tr>
                         <tr>
                             <td>大于3月</td>
                             <td>1</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="ip" id="ip1" name="ip1"></td>
                         </tr>
                         <tr>
                             <td rowspan="3">4</td>
                             <td rowspan="3">KPI Impact</td>
                             <td>3~项</td>
                             <td>3</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="kpi" id="kpi3" name="kpi3"></td>
                         </tr>
                         <tr>
                             <td>1-3项</td>
                             <td>2</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="kpi" id="kpi2" name="kpi2"></td>
                         </tr>
                         <tr>
                             <td>1项</td>
                             <td>1</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="kpi" id="kpi1" name="kpi1"></td>
                         </tr>
                         <tr>
                             <td>5</td>
                             <td>关闭时项目收益</td>
                             <td>得分/每千美元</td>
-                            <td><input type="number" min="0" class="form-control"></td>
-                            <td><input type="number" min="0" class="form-control"></td>
+                            <td><input type="number" min="0" class="form-control" name="cost_saving"></td>
+                            <td><input type="number" min="0" class="form-control" name="cost_socre"></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+                <input type="submit">
             </div>
             </form>
             <!--项目等级维护-->
             <h3>项目积分等级</h3>
-            <form action="" method="post" id="a_3">
+            <form method="post" id="a_3">
             <div class="form-group">
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -269,40 +274,41 @@
                             <td>S</td>
                             <td rowspan="3">消除浪费</td>
                             <td>suggestion</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_type" name="type_s" id="type_s"></td>
                         </tr>
                         <tr>
                             <td>P</td>
                             <td>PSR</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_type" name="type_p" id="type_p"></td>
                         </tr>
                         <tr>
                             <td>K</td>
                             <td>Kaizen</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_type" name="type_k" id="type_k"></td>
                         </tr>
                         <tr>
                             <td>G</td>
                             <td rowspan="2">减少变异</td>
                             <td>DMAIC/DMAOV</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_type" name="type_g" id="type_g"></td>
                         </tr>
                         <tr>
                             <td>B</td>
                             <td>DMAIC/DMADOV<br>(6Sigma Statistical Tools Number>=10)</td>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="prj_type" name="type_b" id="type_b"></td>
                         </tr>
                         <tr class="success">
                             <td colspan="2">持续改善定向鼓励</td>
-                            <td colspan="2"><input type="number" min="0" class="form-control"></td>
+                            <td colspan="2"><input type="number" min="0" class="form-control" name="target_score"></td>
                         </tr>
                     </table>
                 </div>
+                <input type="submit">
             </div>
             </form>
             <!--成员信息维护-->
             <h3>成员信息</h3>
-            <form action="" method="post" id="a_4">
+            <form method="post" id="a_4">
             <div class="form-group">
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -314,72 +320,73 @@
                         </tr>
                         <tr>
                             <td colspan="2">提案发起者</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="initiator"></td>
+                            <td><input type="checkbox" name="initiator_check"></td>
+                            <td><input type="text" class="form-control" name="initiator_mono"></td>
                         </tr>
                         <tr>
                             <td colspan="2">项目发起者</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="leader"></td>
+                            <td><input type="checkbox" name="leader_check"></td>
+                            <td><input type="text" class="form-control" name="check_mon"></td>
                         </tr>
                         <tr>
                             <td rowspan="4">主要参与者</td>
                             <td>1</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="maj_mem_1"></td>
+                            <td><input type="checkbox" name="maj_mem_1_check"></td>
+                            <td><input type="text" class="form-control" name="maj_mem_1_mono"></td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="maj_mem_2"></td>
+                            <td><input type="checkbox" name="maj_mem_2_check"></td>
+                            <td><input type="text" class="form-control" name="maj_mem_2_mono"></td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="maj_mem_3"></td>
+                            <td><input type="checkbox" name="maj_mem_3_check"></td>
+                            <td><input type="text" class="form-control" name="maj_mem_3_mono"></td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="maj_mem_4"></td>
+                            <td><input type="checkbox" name="maj_mem_4_check"></td>
+                            <td><input type="text" class="form-control" name="maj_mem_4_mono"></td>
                         </tr>
                         <tr>
                             <td rowspan="4">次要参与者</td>
                             <td>1</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="min_mem_1"></td>
+                            <td><input type="checkbox" name="min_mem_1_check"></td>
+                            <td><input type="text" class="form-control" name="min_mem_1_mono"></td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="min_mem_2"></td>
+                            <td><input type="checkbox" name="min_mem_2_check"></td>
+                            <td><input type="text" class="form-control" name="min_mem_2_mono"></td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="min_mem_3"></td>
+                            <td><input type="checkbox" name="min_mem_3_check"></td>
+                            <td><input type="text" class="form-control" name="min_mem_3_mono"></td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><input type="text" class="au form-control"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="text" class="au form-control" name="min_mem_4"></td>
+                            <td><input type="checkbox" name="min_mem_4_check"></td>
+                            <td><input type="text" class="form-control" name="min_mem_4_mono"></td>
                         </tr>
                     </table>
                 </div>
-                <input type="submit" class="btn btn-success" value="提交">
+                <input type="submit">
             </div>
             </form>
         </div>
+        </form>
     </div>
 
 {#
@@ -533,7 +540,7 @@
 <div class="container-fluid">
     <div class="table-responsive">
         <table class="table table-hover table-striped">
-            <caption style="text-align: center;font-size: 20px">Projets reaching 3 month check point</caption>
+            <caption>Projets reaching 3 month check point</caption>
             <tr>
                 <th>Action</th>
                 <th>PROJECT_NUMBER</th>
@@ -569,7 +576,7 @@
 <div class="container-fluid">
     <div class="table-responsive">
         <table class="table table-hover table-striped">
-            <caption style="text-align: center;font-size: 20px">Projets reaching 6 month check point</caption>
+            <caption>Projects reaching 6 month check point</caption>
             <tr>
                 <th>Action</th>
                 <th>PROJECT_NUMBER</th>
@@ -609,15 +616,10 @@
 </body>
 
 <script>
+    /* root url */
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
-    $.ajax({
-        type: 'POST',
-        url: $SCRIPT_ROOT+ '/api/selector',
-        data:JSON.stringify({'s1':jQuery("#s1 option:selected").val(),'s2':jQuery("#s2 option:selected").val()}),
-        dataType: 'json'
-        //contentType:
-        });
 
+    /* jquery自动补全人名 */
     $(function() {
         function split(val) {
             return val.split(/,\s*/);
@@ -651,13 +653,13 @@
                 return false;
             }
         })
-    });
 
-    $("input#au2").autocomplete({
+        $("input#au2").autocomplete({
             source: function (request, response) {
                 //the GET method! use flask request.agrs.get('term')
                 $.getJSON($SCRIPT_ROOT + "/api/user/",{term: request.term},response);
             }
+        })
     });
 
     /*ajax无刷提交表单*/
@@ -682,54 +684,106 @@
         });
       });
 
-    /*以下代码供/admin面板数据检查*/
-    var form_data = function(){
-            var input_Data = document.getElementsByTagName('input');
-            var elements = new Array();
-            for (var i = 0;i < input_Data.length; i++){
-                elements.push(input_Data[i].value);
+    /*控制某类的checkbox 只能做单选操作
+     *需要操作的类input.prj_level,input.du,input.re,input.kpi,input.ip,prj_type
+     * */
+    $(function(){
+       $("input.prj_level").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.prj_level").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.prj_level").removeAttr("disabled");
             }
-            return elements
-        };
-
-    var select_data = function(){
-            var select_Data = document.getElementsByTagName('select');
-            var elements = new Array();
-            for (var i = 0;i < select_Data.length; i++){
-                index = select_Data[i].selectedIndex;
-                elements.push(select_Data[i].options[index].value);
+        })
+    });
+      $("input.du").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.du").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.du").removeAttr("disabled");
             }
-            return elements
-        };
+        })
+    });
 
-    var dataAlert = function (){
-        data = form_data();
-        data2 = select_data();
-        data_string = "***请检查输入!***\n"+
-                "***可复制性***--->" + data2[0] + "\n" +
-                "***资源利用***--->" + data2[1] + "\n" +
-                "***实行周期***--->" + data2[2] + "\n" +
-                "***KPI等级***---->" + data2[3] + "\n" +
-                "***节约成本***--->" + data[6] + "$" + "\n" +
-                "***项目类型***--->" + data2[4] + "\n" +
-                "***定向奖励***--->" + data[7] + "\n" +
-                "***项目编号***--->" + data[8] + "\n" +
-                "***项目描述***--->" + data[9] + "\n" +
-                "***结案日期***--->" + data[10] + "\n" +
-                "**项目发起人**--->" + data[11] + "\n" +
-                "**项目执行者**--->" + data[12] + "\n" +
-                "***主要成员***--->" + data[13] + "\n" +
-                "***次要成员***--->" + data[14] + "\n" +
-                "**积分冻结人员**-->" + data[15] + "\n"
-        if (confirm(data_string)){
-            alert('点击确认提交!');
-            return true;
-        }
-        else{
-            alert('撤销提交,请检查数据!');
-            return false;
-        }
-    };
+     $("input.re").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.re").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.re").removeAttr("disabled");
+            }
+        })
+    });
+
+     $("input.ip").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.ip").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.ip").removeAttr("disabled");
+            }
+        })
+    });
+
+       $("input.kpi").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.kpi").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.kpi").removeAttr("disabled");
+            }
+        })
+    });
+
+      $("input.prj_type").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.prj_type").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.prj_type").removeAttr("disabled");
+            }
+        })
+      });
+    });
+
     /*折叠面板*/
     $(function() {
         /*content高度自适应*/

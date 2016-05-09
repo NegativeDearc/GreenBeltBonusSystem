@@ -2,7 +2,7 @@
 
 from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify, make_response
 from urlparse import urlparse, urljoin
-from app import app
+from app import app,db
 
 from app.ext.rules import ruleMaker
 from app.ext.func_collection import count_member, golden_score, project_score, active_score_launched
@@ -12,7 +12,7 @@ from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
-from app.models.dbModels import usrPwd
+from app.models.dbModels import usrPwd,usrName
 
 from itertools import chain
 from config import config
@@ -78,8 +78,6 @@ def index():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    rul = ruleMaker()
-    data = rul.rules_api_info()
     # session 过期时间 直到浏览器退出
     # 若要登出用户，使 session['is_active']=False
     if not session.get('is_active'):
@@ -94,120 +92,10 @@ def admin():
     insert = insert_records()
     # 提交表单
     if request.method == 'POST':
-        reverse_dict = dict(zip(request.form.values(), request.form.keys()))
-        if request.form.get('sub1') == 'submit':
-            # 注意这段只有在request.form 包含指定数据才有效，否则http 400
-            golden_type = rul.golden_type_judging(request.form)
-            # update values
-            if request.form.get('update', '') == 'on':
-                # sqlite3 使用动态类型判断，字段拼接用 ? 或者 %s
-                # 注意 request 表单是不可修改的
-                # 注意防止SQL注入
-                cur = g.conn.cursor()
-                UPDATE_PROJECT_INFO = sql.UPDATE_PROJECT_INFO \
-                                      % (request.form['project_name'],
-                                         request.form['due_time'],
-                                         request.form['project_num'])
-                UPDATE_MEMBER_INFO = sql.UPDATE_MEMBER_INFO % \
-                                     (request.form['inintialor'],
-                                      request.form['leader'],
-                                      request.form['major_member'],
-                                      request.form['minior_member'],
-                                      request.form['project_num'],
-                                      count_member(request.form['major_member']),
-                                      count_member(request.form['minior_member']))
-                UPDATE_SCORE_INFO = sql.UPDATE_SCORE_INFO % \
-                                    (golden_type,
-                                     request.form['s1'],
-                                     golden_score(golden_type),
-                                     project_score(request.form['s1']),
-                                     request.form['targeted_incentive_score'],
-                                     request.form['duplicability'],
-                                     request.form['resource_usage'],
-                                     request.form['implement_period'],
-                                     request.form['kpi_impact'],
-                                     request.form['cost_saving'],
-                                     active_score_launched(golden_type,
-                                                           request.form['s1'],
-                                                           request.form['targeted_incentive_score']),
-                                     request.form['project_num'])
-
-                # 更新之前项目初始化的信息
-                insert.prj_launch(project_type=request.form['s1'],
-                                  prj_num=request.form['project_num'],
-                                  conn=g.conn,
-                                  update=True)
-                # 执行其他表的更新
-                cur.execute(UPDATE_PROJECT_INFO)
-                cur.execute(UPDATE_MEMBER_INFO)
-                cur.execute(UPDATE_SCORE_INFO)
-                g.conn.commit()
-                return redirect(url_for('admin'))
-            # insert values
-            else:
-                cur = g.conn.cursor()
-                INSERT_PROJECT_INFO = sql.INSERT_PROJECT_INFO % \
-                                      (request.form['project_num'],
-                                       request.form['project_name'],
-                                       request.form['due_time'])
-                INSERT_MEMBER_INFO = sql.INSERT_MEMBER_INFO % \
-                                     (request.form['project_num'],
-                                      request.form['inintialor'],
-                                      request.form['leader'],
-                                      request.form['major_member'],
-                                      request.form['minior_member'],
-                                      count_member(request.form['major_member']),
-                                      count_member(request.form['minior_member']))
-                INSERT_SCORE_INFO = sql.INSERT_SCORE_INFO % \
-                                    (request.form['project_num'],
-                                     golden_type,
-                                     request.form['s1'],
-                                     golden_score(golden_type),
-                                     project_score(request.form['s1']),
-                                     request.form['targeted_incentive_score'],
-                                     request.form['duplicability'],
-                                     request.form['resource_usage'],
-                                     request.form['implement_period'],
-                                     request.form['kpi_impact'],
-                                     request.form['cost_saving'],
-                                     active_score_launched(golden_type,
-                                                           request.form['s1'],
-                                                           request.form['targeted_incentive_score']))
-                # 数据库已设置项目编号唯一性，否则回滚
-                # 产生500错误
-                # 注意提交顺序以及是否需要两次提交
-                cur.execute(INSERT_PROJECT_INFO)
-                cur.execute(INSERT_MEMBER_INFO)
-                cur.execute(INSERT_SCORE_INFO)
-                insert.prj_launch(project_type=request.form['s1'],
-                                  prj_num=request.form['project_num'],
-                                  conn=g.conn)
-                return redirect(url_for('admin'))
-        if reverse_dict.has_key('RELEASE3'):
-            project_num = reverse_dict.get('RELEASE3')
-            action = Action(g.conn, project_num, flag='3_MONTH')
-            action.release_bonus()
-            insert.insert_release_detail(conn=g.conn, prj_num=project_num, flag=1)
-            return redirect(url_for('admin'))
-        if reverse_dict.has_key('CLOSE3'):
-            project_num = reverse_dict.get('CLOSE3')
-            action = Action(g.conn, project_num, flag='3_MONTH')
-            action.close_prj()
-            insert.insert_release_detail(g.conn, project_num, flag=3)
-            return redirect(url_for('admin'))
-        if reverse_dict.has_key('RELEASE6'):
-            project_num = reverse_dict.get('RELEASE6')
-            action = Action(g.conn, project_num, flag='6_MONTH')
-            action.release_bonus()
-            insert.insert_release_detail(g.conn, project_num, flag=2)
-            return redirect(url_for('admin'))
-        if reverse_dict.has_key('CLOSE6'):
-            project_num = reverse_dict.get('CLOSE6')
-            action = Action(g.conn, project_num, flag='6_MONTH')
-            action.close_prj()
-            insert.insert_release_detail(g.conn, project_num, flag=4)
-            return redirect(url_for('admin'))
-    return render_template('admin.html', data_3_month=data_3_month, data_6_month=data_6_month, data=data)
+        print request.form
+        print request.form.get('prj_name')
+        return redirect(url_for('admin'))
+    return render_template('admin.html')
 
 @app.route('/auth/login', methods=['GET', 'POST'])
 def login():
@@ -227,11 +115,10 @@ def login():
         return test_url.scheme in ('http', 'https') and \
                ref_url.netloc == test_url.netloc
 
-    # url/?next=next
-    # a bugs here,if next = /auth/login itself,it will redirect to itself
     next = get_redirect_target()
     if request.method == 'POST':
         # 如果查询到用户则返回app.Models.dbModels.usrPwd类,可调用该类的方法
+        # 注意这边使用user = request.form.get('usr')还是使用user == request.form.get('usr'),为什么?
         usr = usrPwd.query.filter_by(user = request.form.get('usr')).first()
         if usr is not None and usr.verify_pwd(request.form.get('pwd')):
             session['is_active'] = True
@@ -281,12 +168,10 @@ def rules():
 @app.route('/api/user/')
 def user():
     n = request.args.get('term', '')
-    cur = g.conn.cursor()
-    SEARCH_NAME = sql.SEARCH_NAME % (n, n)
-    res = cur.execute(SEARCH_NAME).fetchall()
+    content = "%%%s%%" % n
+    res = db.session.query(usrName.format_name).filter(usrName.format_name.ilike(content)).all()
     usr_name = list(chain(*res))
     return jsonify(dict(zip(string.lowercase, usr_name)))
-
 
 @app.route('/api/project/')
 def project_info():
@@ -311,16 +196,13 @@ def add_employee():
     id = request.args.get('id', None)
     name = request.args.get('name', None)
     if id is not None and name is not None:
-        sql = '''INSERT INTO USER_ID (ID,NAME)
-                 VALUES ("%s","%s");''' % (id, name)
-        cur = g.conn.cursor()
         try:
-            cur.execute(sql)
+            res = usrName(id=id,name=name)
+            db.session.add(res)
+            db.session.commit()
         except Exception:
             return make_response('', 500)
         else:
             return make_response('', 200)
-        finally:
-            g.conn.commit()
     else:
         return make_response('', 500)
