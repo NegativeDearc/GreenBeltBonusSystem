@@ -9,6 +9,10 @@ class usrPwd(db.Model):
     user     = db.Column(db.Text(50),nullable=False,unique=True,primary_key=True)
     password = db.Column(db.Text(50),nullable=False)
 
+    def __init__(self,user=None,password=None):
+        self.user     = user
+        self.password = password
+
     @property
     def pwd(self):
         raise AttributeError('Password is not a readable attribute')
@@ -27,5 +31,7 @@ class usrName(db.Model):
     name        = db.Column(db.String(50),nullable=False,unique=True)
     format_name = db.Column(db.String(50),nullable=False,unique=True)
 
-    def name_formatter(self):
-        self.format_name = '(' + self.id + ')' + self.name
+    def __init__(self,id=None,name=None):
+        self.id          = id
+        self.name        = name
+        self.format_name = '(' + self.id + ')' + self.names
