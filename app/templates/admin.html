@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=Edge;IE=11;IE=10;IE=9"/>
+    <title>Maintain Your DataBase</title>
+</head>
+<link rel="stylesheet" href="static/bootstrap.min.css">
+<link rel="stylesheet" href="static/jquery-ui.css">
+<link rel="stylesheet" href="static/jquery-ui-1.11.4/jquery-ui.theme.css">
+<link rel="stylesheet" href="static/jquery-ui-1.11.4/jquery-ui.structure.css">
+<script src="static/jquery.min.js"></script>
+<script src="static/jquery-ui-1.11.4/jquery-ui.js"></script>
+<script src="static/bootstrap.min.js"></script>
+
+<style type="text/css">
+    table caption {text-align: center;font-size: 20px;}
+    th {text-align: center;vertical-align: middle!important;}
+    td {text-align: center;vertical-align: middle!important;}
+    div.panel-heading,li,p,label,h3,td {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    .alert {text-align: center}
+    nav.navbar-default {background-color: #27AE60;}
+    #brand {color: white;font-size:18px;padding: 14px}
+    div.navbar-collapse > a {color: white;font-size:16px;padding: 14px}
+    div.row {padding-left:20px;padding-right: 20px;margin-top: 20px}
+    ol {color: red;}
+    li {margin-left: -15px;font-size: 13px;}
+    input#sub2 {margin-top: 10px;}
+    input#reset {display: none;}
+    input.btn1 {margin-top: 10px;}
+    input.btn2 {width: 100px;}
+</style>
+
+<body>
+<!--这边可以通过jinja2模板继承重用-->
+<nav class="navbar navbar-default navbar-static-top nav-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!--无论折叠与否都显示-->
+        <a href="" class="navbar-brand" id="brand">Admin Panel</a>
+    </div>
+    <!--折叠数据-->
+    <div class="collapse navbar-collapse navbar-responsive-collapse" id="navbar1">
+        <a href="{{ url_for('index') }}" class="btn">Home</a>|
+        <a href="{{ url_for('rules') }}" class="btn">Rules Editor</a>|
+        <a href="{{ url_for('report') }}" class="btn">Report System</a>
+    </div>
+</nav>
+<!--重用结束-->
+
+<div class="row">
+    <!--通知栏-->
+    <div class="col-md-3">
+        <div class="panel panel-default">
+        <div class="panel-heading">使用前必读说明</div>
+        <div class="panel-body">
+            <div>
+            <ol>
+                <li>所有字段都需要填写,否则无法提交</li>
+                <li>数据填写有误?只需勾选UPDATE按钮</li>
+                <li>文件依据:QW144-01-01,详情请参见黑带文档</li>
+                <li>请注意区分大小写,数据库对大小写敏感</li>
+                <li>请注意中文逗号和英文逗号,英文字段不允许出现中文逗号</li>
+                <li>如果遭遇内部错误500,请联系管理员6573</li>
+                <hr>
+                <li>员工名单录入时请仔细确认信息,不提供更新机会</li>
+                <li>如果存在相同工号,网页会提示500错误</li>
+            </ol>
+            </div>
+        </div>
+    </div>
+    <!--员工工号维护-->
+    <div class="well">
+        <form id="form1">
+            <div class="alert alert-info"><p>员工工号人名维护</p></div>
+            <div class="form-group">
+                <label for="">员工ID编号</label>
+                <input type="text" class="form-control" id="employee_id" placeholder="insert employee id"
+                       required="required" pattern="[0-9]+">
+                <div><p></p></div>
+                <label for="">英文名称或拼音</label>
+                <input type="text" class="form-control" id="employee_name" placeholder="insert employee name"
+                       required="required" pattern="[a-zA-Z\s]+">
+                <input type="submit" name="sub2" id="sub2" value="submit" class="btn btn-default"
+                       onclick="postdata()">
+                <input type="reset" id="reset">
+            </div>
+        </form>
+    </div>
+    </div>
+    <!--折叠面板-->
+    <div class="col-md-9">
+        <form method="post" id="a_1">
+        <div id="accordion">
+            <!--项目基本信息-->
+            <h3>项目基本信息</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>项目编号</td>
+                        <td><input type="text" class="form-control" name="prj_name" id="prj_name" required></td>
+                    </tr>
+                    <tr>
+                        <td>项目描述</td>
+                        <td><input type="text" class="form-control" name="prj_des" id="prj_des" required></td>
+                    </tr>
+                    <tr>
+                        <td>项目关闭日期</td>
+                        <td><input type="text" class="form-control" name="prj_date" id="prj_date" required></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--积分等级维护-->
+            <h3>金点子积分等级</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td rowspan="8">持续改善等级</td>
+                            <td colspan="3">总的持续改善点数</td>
+                            <td id="score_sum">选择,</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="7">持续改善等级判定</td>
+                            <td>S</td>
+                            <td>4-9</td>
+                            <td><input type="checkbox" class="prj_level" id="s" name="s"></td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>10-12</td>
+                            <td><input type="checkbox" class="prj_level" id="p" name="p"></td>
+                        </tr>
+                        <tr>
+                            <td>K</td>
+                            <td>13-17</td>
+                            <td><input type="checkbox" class="prj_level" id="k" name="k"></td>
+                        </tr>
+                        <tr>
+                            <td>G1</td>
+                            <td>18-23</td>
+                            <td><input type="checkbox" class="prj_level" id="g1" name="g1"></td>
+                        </tr>
+                        <tr>
+                            <td>G2</td>
+                            <td>24-29</td>
+                            <td><input type="checkbox" class="prj_level" id="g2" name="g2"></td>
+                        </tr>
+                        <tr>
+                            <td>G3</td>
+                            <td>30-60</td>
+                            <td><input type="checkbox" class="prj_level" id="g3" name="g3"></td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>61~</td>
+                            <td><input type="checkbox" class="prj_level" id="b" name="b"></td>
+                        </tr>
+                        <tr class="success">
+                            <td>编号</td>
+                            <td>项目</td>
+                            <td>点数细节</td>
+                            <td>CIS点数</td>
+                            <td>选择,</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">1</td>
+                            <td rowspan="3">可拓展性</td>
+                            <td>2~车间</td>
+                            <td>3</td>
+                            <td><input type="checkbox" class="du" id="du3" name="du3" value="3"></td>
+                        </tr>
+                        <tr>
+                            <td>1-2车间</td>
+                            <td>2</td>
+                            <td><input type="checkbox" class="du" id="du2" name="du2" value="2"></td>
+                        </tr>
+                        <tr>
+                            <td>1个部门</td>
+                            <td>1</td>
+                            <td><input type="checkbox" class="du" id="du1" name="du1" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">2</td>
+                            <td rowspan="3">资源调用</td>
+                            <td>External Resource of Comp. Usage</td>
+                            <td>3</td>
+                            <td><input type="checkbox" class="re" id="re3" name="re3" value="3"></td>
+                        </tr>
+                        <tr>
+                            <td>Internal Resource of Comp. Usage</td>
+                            <td>2</td>
+                            <td><input type="checkbox" class="re" id="re2" name="re2" value="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Only Own Dept. Resource Usage</td>
+                            <td>1</td>
+                            <td><input type="checkbox" class="re" id="re1" name="re1" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">3</td>
+                            <td rowspan="3">项目持续周期</td>
+                            <td>小于1月</td>
+                            <td>3</td>
+                            <td><input type="checkbox" class="ip" id="ip3" name="ip3" value="3"></td>
+                        </tr>
+                        <tr>
+                            <td>1-3月</td>
+                            <td>2</td>
+                            <td><input type="checkbox" class="ip" id="ip2" name="ip2" value="2"></td>
+                        </tr>
+                        <tr>
+                            <td>大于3月</td>
+                            <td>1</td>
+                            <td><input type="checkbox" class="ip" id="ip1" name="ip1" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">4</td>
+                            <td rowspan="3">KPI Impact</td>
+                            <td>3~项</td>
+                            <td>3</td>
+                            <td><input type="checkbox" class="kpi" id="kpi3" name="kpi3" value="3"></td>
+                        </tr>
+                        <tr>
+                            <td>1-3项</td>
+                            <td>2</td>
+                            <td><input type="checkbox" class="kpi" id="kpi2" name="kpi2" value="2"></td>
+                        </tr>
+                        <tr>
+                            <td>1项</td>
+                            <td>1</td>
+                            <td><input type="checkbox" class="kpi" id="kpi1" name="kpi1" value="1"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>关闭时项目收益</td>
+                            <td>得分/每千美元</td>
+                            <td><input type="number" min="0" class="form-control" name="cost_saving" id="cost_saving" required></td>
+                            <td><input type="number" min="0" class="form-control" name="cost_score" id="cost_score" value=""></td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+            <!--项目等级维护-->
+            <h3>项目积分等级</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                        <tr class="success">
+                            <td>持续改善等级</td>
+                            <td>项目主旨</td>
+                            <td>项目报告形式</td>
+                            <td>选择</td>
+                        </tr>
+                        <tr>
+                            <td>S</td>
+                            <td rowspan="3">消除浪费</td>
+                            <td>suggestion</td>
+                            <td><input type="checkbox" class="prj_type" name="type_s" id="type_s"></td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>PSR</td>
+                            <td><input type="checkbox" class="prj_type" name="type_p" id="type_p"></td>
+                        </tr>
+                        <tr>
+                            <td>K</td>
+                            <td>Kaizen</td>
+                            <td><input type="checkbox" class="prj_type" name="type_k" id="type_k"></td>
+                        </tr>
+                        <tr>
+                            <td>G</td>
+                            <td rowspan="2">减少变异</td>
+                            <td>DMAIC/DMAOV</td>
+                            <td><input type="checkbox" class="prj_type" name="type_g" id="type_g"></td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>DMAIC/DMADOV<br>(6Sigma Statistical Tools Number>=10)</td>
+                            <td><input type="checkbox" class="prj_type" name="type_b" id="type_b"></td>
+                        </tr>
+                        <tr class="success">
+                            <td colspan="2">持续改善定向鼓励</td>
+                            <td colspan="2"><input type="number" min="0" class="form-control" name="target_score" required></td>
+                        </tr>
+                    </table>
+            </div>
+            <!--成员信息维护-->
+            <h3>成员信息</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="2">角色定义</td>
+                        <td>名单</td>
+                        <td>无效?</td>
+                        <td>备注</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">提案发起者</td>
+                        <td><input type="text" class="au form-control" name="initiator" required></td>
+                        <td><input type="checkbox" name="initiator_check"></td>
+                        <td><input type="text" class="form-control" name="initiator_mono"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">项目发起者</td>
+                        <td><input type="text" class="au form-control" name="leader" required></td>
+                        <td><input type="checkbox" name="leader_check"></td>
+                        <td><input type="text" class="form-control" name="check_mon"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">主要参与者</td>
+                        <td>1</td>
+                        <td><input type="text" class="au form-control" name="maj_mem_1" required></td>
+                        <td><input type="checkbox" name="maj_mem_1_check"></td>
+                        <td><input type="text" class="form-control" name="maj_mem_1_mono"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" class="au form-control" name="maj_mem_2"></td>
+                        <td><input type="checkbox" name="maj_mem_2_check"></td>
+                        <td><input type="text" class="form-control" name="maj_mem_2_mono"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" class="au form-control" name="maj_mem_3"></td>
+                        <td><input type="checkbox" name="maj_mem_3_check"></td>
+                        <td><input type="text" class="form-control" name="maj_mem_3_mono"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" class="au form-control" name="maj_mem_4"></td>
+                        <td><input type="checkbox" name="maj_mem_4_check"></td>
+                        <td><input type="text" class="form-control" name="maj_mem_4_mono"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">次要参与者</td>
+                        <td>1</td>
+                        <td><input type="text" class="au form-control" name="min_mem_1" required></td>
+                        <td><input type="checkbox" name="min_mem_1_check"></td>
+                        <td><input type="text" class="form-control" name="min_mem_1_mono"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" class="au form-control" name="min_mem_2"></td>
+                        <td><input type="checkbox" name="min_mem_2_check"></td>
+                        <td><input type="text" class="form-control" name="min_mem_2_mono"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" class="au form-control" name="min_mem_3"></td>
+                        <td><input type="checkbox" name="min_mem_3_check"></td>
+                        <td><input type="text" class="form-control" name="min_mem_3_mono"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="text" class="au form-control" name="min_mem_4"></td>
+                        <td><input type="checkbox" name="min_mem_4_check"></td>
+                        <td><input type="text" class="form-control" name="min_mem_4_mono"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success btn1" value="Submit">
+        </form>
+    </div>
+</div>
+
+<hr>
+{% if data_3_month %}
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <caption>Projets reaching 3 month check point</caption>
+            <tr>
+                <th>Action</th>
+                <th>PROJECT_NUMBER</th>
+                <th>PROJECT_NAME</th>
+                <th>CHECK_POINT_3_MONTH</th>
+                <th>LEADER</th>
+                <th>GOLDEN_IDEA_SCORE</th>
+                <th>PROJECT_SCORE</th>
+                <th>TARGET_SCORE</th>
+                <th>ACTIVE_SCORE</th>
+            </tr>
+
+            {% for rows in data_3_month %}
+            <tr>
+            <td>
+                <form action="" method="post">
+                    <input class="btn btn-success" type="submit" name="{{ rows[0] }}" value="RELEASE3" style="width: 100px">
+                    <input class="btn btn-warning" type="submit" name="{{ rows[0] }}" value="CLOSE3" style="width: 100px">
+                    <!--add another submit here-->
+                </form>
+            </td>
+            {% for element in rows %}
+                <td>{{ element }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+</div>
+{% endif %}
+
+{% if data_6_month %}
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <caption>Projects reaching 6 month check point</caption>
+            <tr>
+                <th>Action</th>
+                <th>PROJECT_NUMBER</th>
+                <th>PROJECT_NAME</th>
+                <th>CHECK_POINT_6_MONTH</th>
+                <th>LEADER</th>
+                <th>GOLDEN_IDEA_SCORE</th>
+                <th>PROJECT_SCORE</th>
+                <th>TARGET_SCORE</th>
+                <th>ACTIVE_SCORE</th>
+            </tr>
+
+            {% for rows in data_6_month %}
+            <tr>
+            <td>
+                <form action="" method="post">
+                    <input class="btn btn-success btn2" type="submit" name="{{ rows[0] }}" value="RELEASE6">
+                    <input class="btn btn-warning btn2" type="submit" name="{{ rows[0] }}" value="CLOSE6">
+                </form>
+            </td>
+            {% for element in rows %}
+                <td>{{ element }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+</div>
+{% endif %}
+
+{% if not data_3_month and not data_6_month %}
+    <div class="container-fluid">
+    <div>All the project in the range of checkpoint(-2,+30) will be show here.</div>
+    </div>
+{% endif %}
+
+</body>
+
+<script>
+    /* root url */
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
+
+    /* jquery自动补全人名 */
+    $(function() {
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+
+        function extractLast(term) {
+            return split(term).pop();
+        }
+
+        $("input.au").autocomplete({
+            source: function (request, response) {
+                //the GET method! use flask request.agrs.get('term')
+                $.getJSON($SCRIPT_ROOT + "/api/user/",{term: extractLast( request.term )},response);
+            },
+
+            focus: function() {
+              //
+              return false;
+            },
+
+            select: function (event, ui) {
+                var terms = split(this.value);
+                // pop
+                terms.pop();
+                //
+                terms.push(ui.item.value);
+                // add place holder,add ',' & ''
+                terms.push("");
+                //this.value = terms.join(", ");
+                this.value = terms.join("");
+                return false;
+            }
+        })
+
+        $("input#au2").autocomplete({
+            source: function (request, response) {
+                //the GET method! use flask request.agrs.get('term')
+                $.getJSON($SCRIPT_ROOT + "/api/user/",{term: request.term},response);
+            }
+        })
+    });
+
+    /*ajax无刷提交表单*/
+    $(function(){
+        $('form#form1').on('submit', function(e) {
+          e.preventDefault();
+          var id = $("#employee_id").val();
+          var name = $("#employee_name").val();
+          $.ajax({
+            type: 'GET',
+            url: $SCRIPT_ROOT + "/api/add_employee/",
+            data: "id=" + id + "&name=" + name,
+            success: function () {
+              alert('用户名已经提交成功！');
+              $("#reset").trigger("click");
+            },
+            error:function(xhr,status,statusText){
+                alert('服务器没有接受您的提交\n' + '错误信息:'+ xhr.statusText);
+                $("#reset").trigger("click");
+            }
+          });
+        });
+      });
+
+    /*控制某类的checkbox 只能做单选操作
+     *需要操作的类input.prj_level,input.du,input.re,input.kpi,input.ip,prj_type
+     * */
+    $(function(){
+       $("input.prj_level").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.prj_level").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.prj_level").removeAttr("disabled");
+            }
+        })
+    });
+     $("input.du").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.du").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.du").removeAttr("disabled");
+            }
+        })
+    });
+
+     $("input.re").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.re").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.re").removeAttr("disabled");
+            }
+        })
+    });
+
+     $("input.ip").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.ip").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.ip").removeAttr("disabled");
+            }
+        })
+    });
+
+     $("input.kpi").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.kpi").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.kpi").removeAttr("disabled");
+            }
+        })
+    });
+
+      $("input.prj_type").each(function(){
+        $(this).click(function(){
+            if ($(this).prop('checked')) {
+                $("input.prj_type").attr("disabled",'disabled');
+                $(this).removeAttr('disabled');
+                /*bootstrap如何获取checkbox事件?
+                 *下面这段代码加不加不都不影响
+                 */
+                $(this).attr('checked',true)
+            };
+            if(!$(this).prop('checked')) {
+                $("input.prj_type").removeAttr("disabled");
+            }
+        })
+      });
+    });
+
+    /*折叠面板*/
+    $(function() {
+        /*content高度自适应*/
+      $("#accordion").accordion({heightStyle:"content",
+                                 clearStyle:true});
+    });
+
+    /*日期选择器*/
+    $(function(){
+        $("#prj_date").datepicker();
+    });
+
+    data = {};
+    var cumsum = function(object) {
+        var zero = 0;
+        for (x in object) {
+            zero += object[x];
+        };
+        return zero;
+    };
+    /*计算积分*/
+    $("#cost_saving").bind('input propertychange',function(){
+        var cost = $("#cost_saving").val();
+        if (cost == ''){
+            $("#cost_score").attr('value',0);
+            data.cost = 0;
+        }
+        else {
+            $("#cost_score").attr('value',cost/1000);
+            data.cost = cost/1000;
+        };
+        $("#score_sum").html('总分'+cumsum(data));
+    });
+
+    /*积分加和*/
+    $(function(){
+        $(".du").click(function(){
+            if($(this).prop('checked')) {
+                data.du = $(this).val()*1;
+
+            } else {
+                delete data.du;
+            };
+            $("#score_sum").html('总分'+cumsum(data));
+        });
+        $(".re").click(function(){
+            if($(this).prop('checked')) {
+                data.re = $(this).val()*1;
+                $("#score_sum").html(data);
+            } else {
+                delete data.re;
+            };
+            $("#score_sum").html('总分'+cumsum(data));
+        });
+        $(".ip").click(function(){
+            if($(this).prop('checked')) {
+                data.ip = $(this).val()*1;
+                $("#score_sum").html(data);
+            } else {
+                delete data.ip;
+            };
+            $("#score_sum").html('总分'+cumsum(data));
+        });
+        $(".kpi").click(function(){
+            if($(this).prop('checked')*1) {
+                data.kpi = $(this).val()*1;
+                $("#score_sum").html(data);
+            } else {
+                delete data.kpi;
+            };
+            $("#score_sum").html('总分'+cumsum(data));
+        });
+    });
+</script>
+</html>
