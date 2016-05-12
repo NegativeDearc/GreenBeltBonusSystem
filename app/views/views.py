@@ -66,7 +66,7 @@ app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    data = None;
+    data = None
     data2 = None
     if request.method == 'POST':
         employee_name = request.form.get('employee_name', '')
@@ -89,7 +89,9 @@ def admin():
     # 载入配置表,渲染到html页面
     res = ruleMaker().rules_api_info()
     # 查找到达检查点的项目
-    # data_3_month = cur.execute(sql.data_3_month).fetchall()
+    data = db.session.query(prjInfo).all()
+    for x in data:
+        print x.data_3_month
     # data_6_month = cur.execute(sql.data_6_month).fetchall()
     if request.method == 'POST':
         # 反转request.form

@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from app import db
+from sqlalchemy.ext.hybrid import hybrid_method,hybrid_property
 from app.ext.rules import ruleMaker
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
@@ -64,9 +65,7 @@ class prjInfo(db.Model):
     #
     prj_total_score       = db.Column(db.Integer,nullable=False)
     prj_active_score      = db.Column(db.Numeric(128),default=0)
-    # 定义双向关系
-    member = db.relationship('prjMem',back_populates = 'info')
-
+    #
     def __init__(self,form):
         rul = ruleMaker()
 
@@ -113,6 +112,20 @@ class prjInfo(db.Model):
             self.prj_score = int(rul.rules_api_info()['b']['value'])
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
 
+    # 可针对实例或者类使用该方法
+    @hybrid_property
+    def data_3_month(self):
+        now = datetime.datetime.now().date()
+        now_before_2_days = now + datetime.timedelta(days=2)
+        now_after_30_days = now - datetime.timedelta(days=30)
+        if self.prj_three_month_check is not True:
+            if self.prj_three_month < now_before_2_days and \
+                            self.prj_three_month > now_after_30_days:
+                return self.prj_no
+            else:
+                return -1
+        else:
+            return -2
 
 class prjMem(db.Model):
     '''储存项目用户清单的表'''
@@ -126,7 +139,6 @@ class prjMem(db.Model):
     score_ratio  = db.Column(db.Float(50))
     score_or_not = db.Column(db.BOOLEAN,default=True)
     # 定义双向关系
-    info   = db.relationship('prjInfo',back_populates = 'member')
 
     def __init__(self,*args):
         '''app.ext.function register_mem_info'''
