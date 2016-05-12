@@ -13,11 +13,11 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True #消除警告,默认配置为None
 
     if platform.startswith('win'):
-        DATABASE_PATH = basedir + '\\app\models\CTLSS_BONUS_DB'
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + basedir + '\\app\models\CTLSS_BONUS_DB'
+        DATABASE_PATH = basedir + '\\app\models\CTLSS_BONUS_DB_TEST'
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + basedir + '\\app\models\CTLSS_BONUS_DB_TEST'
     else:
-        DATABASE_PATH = basedir + '/app/models/CTLSS_BONUS_DB'
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + basedir + '/app/models/CTLSS_BONUS_DB'
+        DATABASE_PATH = basedir + '/app/models/CTLSS_BONUS_DB_TEST'
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + basedir + '/app/models/CTLSS_BONUS_DB_TEST'
 
 class DevelopmentConfig(Config):
     SQLALCHEMY_ECHO = True

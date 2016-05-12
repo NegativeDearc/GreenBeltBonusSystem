@@ -5,14 +5,14 @@ from urlparse import urlparse, urljoin
 from app import app, db
 
 from app.ext.rules import ruleMaker
-from app.ext.func_collection import count_member, golden_score, project_score, active_score_launched
+from app.ext.func_collection import count_member, golden_score, project_score, active_score_launched, register_mem_info
 from app.ext.insert_records import insert_records
 from app.ext.totalSummary import totalSummary
 from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
-from app.models.dbModels import usrPwd, usrName, prjInfo
+from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem
 
 from itertools import chain
 from config import config
@@ -86,18 +86,32 @@ def index():
 def admin():
     if not session.get('is_active'):
         return redirect(url_for('login'), code=401)
+    # 载入配置表,渲染到html页面
+    res = ruleMaker().rules_api_info()
     # 查找到达检查点的项目
-    # cur = g.conn.cursor()
     # data_3_month = cur.execute(sql.data_3_month).fetchall()
     # data_6_month = cur.execute(sql.data_6_month).fetchall()
-    # 提交表单
     if request.method == 'POST':
-        print request.form
-        rd = prjInfo(request.form['prj_name'], request.form['prj_des'], request.form['prj_date'])
-        db.session.add(rd)
-        db.session.commit()
-        return redirect(url_for('admin'))
-    return render_template('admin.html')
+        # 反转request.form
+        reverse_dict = dict(zip(request.form.values(), request.form.keys()))
+        #
+        if request.form.get('submit1') == 'submit':
+            db.session.add(prjInfo(request.form))
+            for x in register_mem_info(request.form):
+                db.session.add(prjMem(*x))
+            db.session.commit()
+            return redirect(url_for('admin'))
+        # 3个月的动作
+        if reverse_dict.has_key('RELEASE'):
+            pass
+        if reverse_dict.has_key('CLOSE'):
+            pass
+        # 6个月的动作
+        if reverse_dict.has_key('release'):
+            pass
+        if reverse_dict.has_key('close'):
+            pass
+    return render_template('admin.html', res=res)
 
 
 @app.route('/auth/login', methods=['GET', 'POST'])
@@ -141,7 +155,7 @@ def report():
     if not session.get('is_active'):
         return redirect(url_for('login'), code=401)
 
-    data = {};
+    data = {}
     prj = {}
     summary = newDict(Major=0, Initiator=0, Leader=0, Minor=0, sum=0)
     if request.method == 'POST' and request.form.get('submit') == 'submit':
@@ -163,7 +177,6 @@ def rules():
     rul = ruleMaker()
     data = rul.rules_api_info()
     if request.method == 'POST':
-        # 更新本地json配置文件
         rul.update_config(request.form)
         return redirect(url_for('rules'))
     return render_template('rules.html', data=data)
@@ -205,9 +218,20 @@ def add_employee():
             res = usrName(id=id, name=name)
             db.session.add(res)
             db.session.commit()
+            return make_response('', 200)
         except Exception:
             return make_response('', 500)
-        else:
-            return make_response('', 200)
     else:
         return make_response('', 500)
+
+
+@app.route('/api/test/database')
+def db_to_pretty_table():
+    cur = g.conn.cursor()
+    data = cur.execute('SELECT * FROM project_total').fetchall()
+    from prettytable import PrettyTable
+    from string import letters
+    raw = PrettyTable(letters[:22])
+    for d in data:
+        raw.add_row(d)
+    return render_template('api.html',raw=raw)

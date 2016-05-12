@@ -39,8 +39,6 @@ class ruleMaker(object):
         origin_data.update(g2={'value':data['s_g2']})
         origin_data.update(g3={'value':data['s_g3']})
         origin_data.update(b1={'value':data['s_b1']})
-        origin_data.update(b2={'value':data['s_b2']})
-        origin_data.update(b3={'value':data['s_b3']})
         #
         origin_data.update(s={'value':data['p_s'],
                               'distribution':[data['ini_s'],data['lea_s'],data['maj_s'],data['min_s']]})
@@ -72,9 +70,7 @@ class ruleMaker(object):
         origin_data.update(g1_range=data['g1_range'])
         origin_data.update(g2_range=data['g2_range'])
         origin_data.update(g3_range=data['g3_range'])
-        origin_data.update(b1_range=data['b1_range'])
-        origin_data.update(b2_range=data['b2_range'])
-        origin_data.update(b3_range=data['b3_range'])
+        origin_data.update(b_range=data['b_range'])
 
         origin_data.update(check_3=data['check_3'])
         origin_data.update(check_6=data['check_6'])
@@ -84,43 +80,29 @@ class ruleMaker(object):
 
     def golden_type_judging(self,data):
         range_data = ruleMaker.rules_api_info(self)
-        # 从request form中获取数据,数据类型为unicode
-        d1 = data['duplicability']
-        d2 = data['resource_usage']
-        d3 = data['implement_period']
-        d4 = data['kpi_impact']
-        d5 = data['cost_saving']
-        lst = map(lambda x:float(x),[d1,d2,d3,d4,d5])
-        # 收益的千分之一作为积分
-        res = int(round(sum(lst[:-1]) + lst[-1]/1000))
+        data = float(data)
         # 积分规则调用,利用bisect 进行排序插值，若得1则居中,或者等于末端点
-        if bisect.bisect(eval(range_data['s1_range']),res) == 1\
-                or res == eval(range_data['s1_range'])[1]:
-            return 'S1'
-        if bisect.bisect(eval(range_data['p1_range']),res) == 1\
-                or res == eval(range_data['p1_range'])[1]:
-            return 'P1'
-        if bisect.bisect(eval(range_data['k1_range']),res) == 1\
-                or res == eval(range_data['k1_range'])[1]:
-            return 'K1'
-        if bisect.bisect(eval(range_data['g1_range']),res) == 1\
-                or res == eval(range_data['g1_range'])[1]:
-            return 'G1'
-        if bisect.bisect(eval(range_data['g2_range']),res) == 1\
-                or res == eval(range_data['g2_range'])[1]:
-            return 'G2'
-        if bisect.bisect(eval(range_data['g3_range']),res) == 1\
-                or res == eval(range_data['g3_range'])[1]:
-            return 'G3'
-        if bisect.bisect(eval(range_data['b1_range']),res) == 1\
-                or res == eval(range_data['b1_range'])[1]:
-            return 'B1'
-        if bisect.bisect(eval(range_data['b2_range']),res) == 1\
-                or res == eval(range_data['b2_range'])[1]:
-            return 'B2'
-        if bisect.bisect(eval(range_data['b3_range']),res) == 1\
-                or res == eval(range_data['b3_range'])[1]:
-            return 'B3'
+        if bisect.bisect(eval(range_data['s1_range']),data) == 1\
+                or data == eval(range_data['s1_range'])[1]:
+            return 's1'
+        if bisect.bisect(eval(range_data['p1_range']),data) == 1\
+                or data == eval(range_data['p1_range'])[1]:
+            return 'p1'
+        if bisect.bisect(eval(range_data['k1_range']),data) == 1\
+                or data == eval(range_data['k1_range'])[1]:
+            return 'k1'
+        if bisect.bisect(eval(range_data['g1_range']),data) == 1\
+                or data == eval(range_data['g1_range'])[1]:
+            return 'g1'
+        if bisect.bisect(eval(range_data['g2_range']),data) == 1\
+                or data == eval(range_data['g2_range'])[1]:
+            return 'g2'
+        if bisect.bisect(eval(range_data['g3_range']),data) == 1\
+                or data == eval(range_data['g3_range'])[1]:
+            return 'g3'
+        if bisect.bisect(eval(range_data['b_range']),data) == 1\
+                or data == eval(range_data['b_range'])[1]:
+            return 'b1'
 
 if __name__ == '__main__':
     test = ruleMaker()

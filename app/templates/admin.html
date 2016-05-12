@@ -17,7 +17,7 @@
     table caption {text-align: center;font-size: 20px;}
     th {text-align: center;vertical-align: middle!important;}
     td {text-align: center;vertical-align: middle!important;}
-    div.panel-heading,li,p,label,h3,td {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    div.panel-heading,li,p,label,h3,td,label {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
     .alert {text-align: center}
     nav.navbar-default {background-color: #27AE60;}
     #brand {color: white;font-size:18px;padding: 14px}
@@ -104,11 +104,11 @@
                     <tbody>
                     <tr>
                         <td>项目编号</td>
-                        <td><input type="text" class="form-control" name="prj_name" id="prj_name" required></td>
+                        <td><input type="text" class="form-control" name="prj_name" id="prj_name" autocomplete="off" required></td>
                     </tr>
                     <tr>
                         <td>项目描述</td>
-                        <td><input type="text" class="form-control" name="prj_des" id="prj_des" required></td>
+                        <td><input type="text" class="form-control" name="prj_des" id="prj_des" autocomplete="off" required></td>
                     </tr>
                     <tr>
                         <td>项目关闭日期</td>
@@ -125,43 +125,43 @@
                         <tr>
                             <td rowspan="8">持续改善等级</td>
                             <td colspan="3">总的持续改善点数</td>
-                            <td id="score_sum">选择,</td>
+                            <td>总分</td>
                         </tr>
                         <tr>
                             <td rowspan="7">持续改善等级判定</td>
                             <td>S</td>
-                            <td>4-9</td>
-                            <td><input type="checkbox" class="prj_level" id="s" name="s"></td>
+                            <td>{{ res.s1_range }}</td>
+                            <td rowspan="7">
+                                <div class="form-group">
+                                    <label for="score_sum">总分：</label>
+                                    <!--input 被 disabled,post就不能提交该值，所以使用readonly-->
+                                    <input type="number" min="0" id="score_sum" name="score_sum" readonly class="form-control">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>P</td>
-                            <td>10-12</td>
-                            <td><input type="checkbox" class="prj_level" id="p" name="p"></td>
+                            <td>{{ res.p1_range }}</td>
                         </tr>
                         <tr>
                             <td>K</td>
-                            <td>13-17</td>
-                            <td><input type="checkbox" class="prj_level" id="k" name="k"></td>
+                            <td>{{ res.k1_range }}</td>
                         </tr>
                         <tr>
                             <td>G1</td>
-                            <td>18-23</td>
-                            <td><input type="checkbox" class="prj_level" id="g1" name="g1"></td>
+                            <td>{{ res.g1_range }}</td>
                         </tr>
                         <tr>
                             <td>G2</td>
-                            <td>24-29</td>
-                            <td><input type="checkbox" class="prj_level" id="g2" name="g2"></td>
+                            <td>{{ res.g2_range }}</td>
                         </tr>
                         <tr>
                             <td>G3</td>
-                            <td>30-60</td>
-                            <td><input type="checkbox" class="prj_level" id="g3" name="g3"></td>
+                            <td>{{ res.g3_range }}</td>
                         </tr>
                         <tr>
                             <td>B</td>
-                            <td>61~</td>
-                            <td><input type="checkbox" class="prj_level" id="b" name="b"></td>
+                            <td>{{ res.b_range }}</td>
                         </tr>
                         <tr class="success">
                             <td>编号</td>
@@ -174,76 +174,76 @@
                             <td rowspan="3">1</td>
                             <td rowspan="3">可拓展性</td>
                             <td>2~车间</td>
-                            <td>3</td>
-                            <td><input type="checkbox" class="du" id="du3" name="du3" value="3"></td>
+                            <td>{{ res.duplicability.level3 }}</td>
+                            <td><input type="checkbox" class="du" id="du3" name="du3" value={{ res.duplicability.level3 }}></td>
                         </tr>
                         <tr>
                             <td>1-2车间</td>
-                            <td>2</td>
-                            <td><input type="checkbox" class="du" id="du2" name="du2" value="2"></td>
+                            <td>{{ res.duplicability.level2 }}</td>
+                            <td><input type="checkbox" class="du" id="du2" name="du2" value={{ res.duplicability.level2 }}></td>
                         </tr>
                         <tr>
                             <td>1个部门</td>
-                            <td>1</td>
-                            <td><input type="checkbox" class="du" id="du1" name="du1" value="1"></td>
+                            <td>{{ res.duplicability.level1 }}</td>
+                            <td><input type="checkbox" class="du" id="du1" name="du1" value={{ res.duplicability.level1 }}></td>
                         </tr>
                         <tr>
                             <td rowspan="3">2</td>
                             <td rowspan="3">资源调用</td>
                             <td>External Resource of Comp. Usage</td>
-                            <td>3</td>
-                            <td><input type="checkbox" class="re" id="re3" name="re3" value="3"></td>
+                            <td>{{ res.resource_usage.level3 }}</td>
+                            <td><input type="checkbox" class="re" id="re3" name="re3" value={{ res.resource_usage.level3 }}></td>
                         </tr>
                         <tr>
                             <td>Internal Resource of Comp. Usage</td>
-                            <td>2</td>
-                            <td><input type="checkbox" class="re" id="re2" name="re2" value="2"></td>
+                            <td>{{ res.resource_usage.level2 }}</td>
+                            <td><input type="checkbox" class="re" id="re2" name="re2" value={{ res.resource_usage.level2 }}></td>
                         </tr>
                         <tr>
                             <td>Only Own Dept. Resource Usage</td>
-                            <td>1</td>
-                            <td><input type="checkbox" class="re" id="re1" name="re1" value="1"></td>
+                            <td>{{ res.resource_usage.level1 }}</td>
+                            <td><input type="checkbox" class="re" id="re1" name="re1" value={{ res.resource_usage.level1 }}></td>
                         </tr>
                         <tr>
                             <td rowspan="3">3</td>
                             <td rowspan="3">项目持续周期</td>
                             <td>小于1月</td>
-                            <td>3</td>
-                            <td><input type="checkbox" class="ip" id="ip3" name="ip3" value="3"></td>
+                            <td>{{ res.implement_period.level3 }}</td>
+                            <td><input type="checkbox" class="ip" id="ip3" name="ip3" value={{ res.implement_period.level3 }}></td>
                         </tr>
                         <tr>
                             <td>1-3月</td>
-                            <td>2</td>
-                            <td><input type="checkbox" class="ip" id="ip2" name="ip2" value="2"></td>
+                            <td>{{ res.implement_period.level2 }}</td>
+                            <td><input type="checkbox" class="ip" id="ip2" name="ip2" value={{ res.implement_period.level2 }}></td>
                         </tr>
                         <tr>
                             <td>大于3月</td>
-                            <td>1</td>
-                            <td><input type="checkbox" class="ip" id="ip1" name="ip1" value="1"></td>
+                            <td>{{ res.implement_period.level1 }}</td>
+                            <td><input type="checkbox" class="ip" id="ip1" name="ip1" value={{ res.implement_period.level1 }}></td>
                         </tr>
                         <tr>
                             <td rowspan="3">4</td>
                             <td rowspan="3">KPI Impact</td>
                             <td>3~项</td>
-                            <td>3</td>
-                            <td><input type="checkbox" class="kpi" id="kpi3" name="kpi3" value="3"></td>
+                            <td>{{ res.kpi_impact.level3 }}</td>
+                            <td><input type="checkbox" class="kpi" id="kpi3" name="kpi3" value={{ res.kpi_impact.level3 }}></td>
                         </tr>
                         <tr>
                             <td>1-3项</td>
-                            <td>2</td>
-                            <td><input type="checkbox" class="kpi" id="kpi2" name="kpi2" value="2"></td>
+                            <td>{{ res.kpi_impact.level2 }}</td>
+                            <td><input type="checkbox" class="kpi" id="kpi2" name="kpi2" value={{ res.kpi_impact.level3 }}></td>
                         </tr>
                         <tr>
                             <td>1项</td>
-                            <td>1</td>
-                            <td><input type="checkbox" class="kpi" id="kpi1" name="kpi1" value="1"></td>
+                            <td>{{ res.kpi_impact.level1 }}</td>
+                            <td><input type="checkbox" class="kpi" id="kpi1" name="kpi1" value={{ res.kpi_impact.level1 }}></td>
                         </tr>
                         <tr>
                             <td>5</td>
                             <td>关闭时项目收益</td>
                             <td>得分/每千美元</td>
                             <td><input type="number" min="0" class="form-control" name="cost_saving" id="cost_saving" required></td>
-                            <td><input type="number" min="0" class="form-control" name="cost_score" id="cost_score" value=""></td>
+                            <td><input type="number" min="0" step="any" class="form-control" name="cost_score" id="cost_score" value=""></td>
                         </tr>
                         </tbody>
                 </table>
@@ -303,70 +303,70 @@
                     </tr>
                     <tr>
                         <td colspan="2">提案发起者</td>
-                        <td><input type="text" class="au form-control" name="initiator" required></td>
-                        <td><input type="checkbox" name="initiator_check"></td>
-                        <td><input type="text" class="form-control" name="initiator_mono"></td>
+                        <td><input type="text" class="au form-control" name="A" required></td>
+                        <td><input type="checkbox" name="A_check"></td>
+                        <td><input type="text" class="form-control" name="A_mono"></td>
                     </tr>
                     <tr>
                         <td colspan="2">项目发起者</td>
-                        <td><input type="text" class="au form-control" name="leader" required></td>
-                        <td><input type="checkbox" name="leader_check"></td>
-                        <td><input type="text" class="form-control" name="check_mon"></td>
+                        <td><input type="text" class="au form-control" name="B" required></td>
+                        <td><input type="checkbox" name="B_check"></td>
+                        <td><input type="text" class="form-control" name="B_mono"></td>
                     </tr>
                     <tr>
                         <td rowspan="4">主要参与者</td>
                         <td>1</td>
-                        <td><input type="text" class="au form-control" name="maj_mem_1" required></td>
-                        <td><input type="checkbox" name="maj_mem_1_check"></td>
-                        <td><input type="text" class="form-control" name="maj_mem_1_mono"></td>
+                        <td><input type="text" class="au form-control" name="C1" required></td>
+                        <td><input type="checkbox" name="C1_check"></td>
+                        <td><input type="text" class="form-control" name="C1_mono"></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><input type="text" class="au form-control" name="maj_mem_2"></td>
-                        <td><input type="checkbox" name="maj_mem_2_check"></td>
-                        <td><input type="text" class="form-control" name="maj_mem_2_mono"></td>
+                        <td><input type="text" class="au form-control" name="C2"></td>
+                        <td><input type="checkbox" name="C2_check"></td>
+                        <td><input type="text" class="form-control" name="C2_mono"></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><input type="text" class="au form-control" name="maj_mem_3"></td>
-                        <td><input type="checkbox" name="maj_mem_3_check"></td>
-                        <td><input type="text" class="form-control" name="maj_mem_3_mono"></td>
+                        <td><input type="text" class="au form-control" name="C3"></td>
+                        <td><input type="checkbox" name="C3_check"></td>
+                        <td><input type="text" class="form-control" name="C3_mono"></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><input type="text" class="au form-control" name="maj_mem_4"></td>
-                        <td><input type="checkbox" name="maj_mem_4_check"></td>
-                        <td><input type="text" class="form-control" name="maj_mem_4_mono"></td>
+                        <td><input type="text" class="au form-control" name="C4"></td>
+                        <td><input type="checkbox" name="C4_check"></td>
+                        <td><input type="text" class="form-control" name="C4_mono"></td>
                     </tr>
                     <tr>
                         <td rowspan="4">次要参与者</td>
                         <td>1</td>
-                        <td><input type="text" class="au form-control" name="min_mem_1" required></td>
-                        <td><input type="checkbox" name="min_mem_1_check"></td>
-                        <td><input type="text" class="form-control" name="min_mem_1_mono"></td>
+                        <td><input type="text" class="au form-control" name="D1" required></td>
+                        <td><input type="checkbox" name="D1_check"></td>
+                        <td><input type="text" class="form-control" name="D1_mono"></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><input type="text" class="au form-control" name="min_mem_2"></td>
-                        <td><input type="checkbox" name="min_mem_2_check"></td>
-                        <td><input type="text" class="form-control" name="min_mem_2_mono"></td>
+                        <td><input type="text" class="au form-control" name="D2"></td>
+                        <td><input type="checkbox" name="D2_check"></td>
+                        <td><input type="text" class="form-control" name="D2_mono"></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><input type="text" class="au form-control" name="min_mem_3"></td>
-                        <td><input type="checkbox" name="min_mem_3_check"></td>
-                        <td><input type="text" class="form-control" name="min_mem_3_mono"></td>
+                        <td><input type="text" class="au form-control" name="D3"></td>
+                        <td><input type="checkbox" name="D3_check"></td>
+                        <td><input type="text" class="form-control" name="D3_mono"></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><input type="text" class="au form-control" name="min_mem_4"></td>
-                        <td><input type="checkbox" name="min_mem_4_check"></td>
-                        <td><input type="text" class="form-control" name="min_mem_4_mono"></td>
+                        <td><input type="text" class="au form-control" name="D4"></td>
+                        <td><input type="checkbox" name="D4_check"></td>
+                        <td><input type="text" class="form-control" name="D4_mono"></td>
                     </tr>
                 </table>
             </div>
         </div>
-        <input type="submit" class="btn btn-success btn1" value="Submit">
+        <input type="submit" class="btn btn-success btn1" value="Submit" name="submit1">
         </form>
     </div>
 </div>
@@ -393,8 +393,8 @@
             <tr>
             <td>
                 <form action="" method="post">
-                    <input class="btn btn-success" type="submit" name="{{ rows[0] }}" value="RELEASE3" style="width: 100px">
-                    <input class="btn btn-warning" type="submit" name="{{ rows[0] }}" value="CLOSE3" style="width: 100px">
+                    <input class="btn btn-success btn2" type="submit" name="{{ rows[0] }}" value="RELEASE">
+                    <input class="btn btn-warning btn2" type="submit" name="{{ rows[0] }}" value="CLOSE">
                     <!--add another submit here-->
                 </form>
             </td>
@@ -429,8 +429,8 @@
             <tr>
             <td>
                 <form action="" method="post">
-                    <input class="btn btn-success btn2" type="submit" name="{{ rows[0] }}" value="RELEASE6">
-                    <input class="btn btn-warning btn2" type="submit" name="{{ rows[0] }}" value="CLOSE6">
+                    <input class="btn btn-success btn2" type="submit" name="{{ rows[0] }}" value="release">
+                    <input class="btn btn-warning btn2" type="submit" name="{{ rows[0] }}" value="close">
                 </form>
             </td>
             {% for element in rows %}
@@ -638,8 +638,9 @@
         for (x in object) {
             zero += object[x];
         };
-        return zero;
+        return Math.ceil(zero);
     };
+
     /*计算积分*/
     $("#cost_saving").bind('input propertychange',function(){
         var cost = $("#cost_saving").val();
@@ -651,7 +652,7 @@
             $("#cost_score").attr('value',cost/1000);
             data.cost = cost/1000;
         };
-        $("#score_sum").html('总分'+cumsum(data));
+        $("#score_sum").attr('value',cumsum(data));
     });
 
     /*积分加和*/
@@ -659,38 +660,34 @@
         $(".du").click(function(){
             if($(this).prop('checked')) {
                 data.du = $(this).val()*1;
-
             } else {
                 delete data.du;
             };
-            $("#score_sum").html('总分'+cumsum(data));
+            $("#score_sum").attr('value',cumsum(data));
         });
         $(".re").click(function(){
             if($(this).prop('checked')) {
                 data.re = $(this).val()*1;
-                $("#score_sum").html(data);
             } else {
                 delete data.re;
             };
-            $("#score_sum").html('总分'+cumsum(data));
+            $("#score_sum").attr('value',cumsum(data));
         });
         $(".ip").click(function(){
             if($(this).prop('checked')) {
                 data.ip = $(this).val()*1;
-                $("#score_sum").html(data);
             } else {
                 delete data.ip;
             };
-            $("#score_sum").html('总分'+cumsum(data));
+            $("#score_sum").attr('value',cumsum(data));
         });
         $(".kpi").click(function(){
             if($(this).prop('checked')*1) {
                 data.kpi = $(this).val()*1;
-                $("#score_sum").html(data);
             } else {
                 delete data.kpi;
             };
-            $("#score_sum").html('总分'+cumsum(data));
+            $("#score_sum").attr('value',cumsum(data));
         });
     });
 </script>
