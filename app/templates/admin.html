@@ -163,82 +163,82 @@
                             <td>B</td>
                             <td>{{ res.b_range }}</td>
                         </tr>
-                        <tr class="success">
+                        <tr class="warning">
                             <td>编号</td>
                             <td>项目</td>
                             <td>点数细节</td>
                             <td>CIS点数</td>
                             <td>选择,</td>
                         </tr>
-                        <tr>
+                        <tr class="success">
                             <td rowspan="3">1</td>
                             <td rowspan="3">可拓展性</td>
                             <td>2~车间</td>
                             <td>{{ res.duplicability.level3 }}</td>
                             <td><input type="checkbox" class="du" id="du3" name="du3" value={{ res.duplicability.level3 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="success">
                             <td>1-2车间</td>
                             <td>{{ res.duplicability.level2 }}</td>
                             <td><input type="checkbox" class="du" id="du2" name="du2" value={{ res.duplicability.level2 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="success">
                             <td>1个部门</td>
                             <td>{{ res.duplicability.level1 }}</td>
                             <td><input type="checkbox" class="du" id="du1" name="du1" value={{ res.duplicability.level1 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="info">
                             <td rowspan="3">2</td>
                             <td rowspan="3">资源调用</td>
                             <td>External Resource of Comp. Usage</td>
                             <td>{{ res.resource_usage.level3 }}</td>
                             <td><input type="checkbox" class="re" id="re3" name="re3" value={{ res.resource_usage.level3 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="info">
                             <td>Internal Resource of Comp. Usage</td>
                             <td>{{ res.resource_usage.level2 }}</td>
                             <td><input type="checkbox" class="re" id="re2" name="re2" value={{ res.resource_usage.level2 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="info">
                             <td>Only Own Dept. Resource Usage</td>
                             <td>{{ res.resource_usage.level1 }}</td>
                             <td><input type="checkbox" class="re" id="re1" name="re1" value={{ res.resource_usage.level1 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="success">
                             <td rowspan="3">3</td>
                             <td rowspan="3">项目持续周期</td>
                             <td>小于1月</td>
                             <td>{{ res.implement_period.level3 }}</td>
                             <td><input type="checkbox" class="ip" id="ip3" name="ip3" value={{ res.implement_period.level3 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="success">
                             <td>1-3月</td>
                             <td>{{ res.implement_period.level2 }}</td>
                             <td><input type="checkbox" class="ip" id="ip2" name="ip2" value={{ res.implement_period.level2 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="success">
                             <td>大于3月</td>
                             <td>{{ res.implement_period.level1 }}</td>
                             <td><input type="checkbox" class="ip" id="ip1" name="ip1" value={{ res.implement_period.level1 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="info">
                             <td rowspan="3">4</td>
                             <td rowspan="3">KPI Impact</td>
                             <td>3~项</td>
                             <td>{{ res.kpi_impact.level3 }}</td>
                             <td><input type="checkbox" class="kpi" id="kpi3" name="kpi3" value={{ res.kpi_impact.level3 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="info">
                             <td>1-3项</td>
                             <td>{{ res.kpi_impact.level2 }}</td>
                             <td><input type="checkbox" class="kpi" id="kpi2" name="kpi2" value={{ res.kpi_impact.level3 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="info">
                             <td>1项</td>
                             <td>{{ res.kpi_impact.level1 }}</td>
                             <td><input type="checkbox" class="kpi" id="kpi1" name="kpi1" value={{ res.kpi_impact.level1 }}></td>
                         </tr>
-                        <tr>
+                        <tr class="success">
                             <td>5</td>
                             <td>关闭时项目收益</td>
                             <td>得分/每千美元</td>
@@ -295,69 +295,69 @@
             <h3>成员信息</h3>
             <div class="table-responsive">
                 <table class="table table-bordered">
-                    <tr>
+                    <tr class="warning">
                         <td colspan="2">角色定义</td>
                         <td>名单</td>
                         <td>无效?</td>
                         <td>备注</td>
                     </tr>
-                    <tr>
+                    <tr class="info">
                         <td colspan="2">提案发起者</td>
                         <td><input type="text" class="au form-control" name="A" required></td>
                         <td><input type="checkbox" name="A_check"></td>
                         <td><input type="text" class="form-control" name="A_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="success">
                         <td colspan="2">项目发起者</td>
                         <td><input type="text" class="au form-control" name="B" required></td>
                         <td><input type="checkbox" name="B_check"></td>
                         <td><input type="text" class="form-control" name="B_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="info">
                         <td rowspan="4">主要参与者</td>
                         <td>1</td>
                         <td><input type="text" class="au form-control" name="C1" required></td>
                         <td><input type="checkbox" name="C1_check"></td>
                         <td><input type="text" class="form-control" name="C1_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="info">
                         <td>2</td>
                         <td><input type="text" class="au form-control" name="C2"></td>
                         <td><input type="checkbox" name="C2_check"></td>
                         <td><input type="text" class="form-control" name="C2_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="info">
                         <td>3</td>
                         <td><input type="text" class="au form-control" name="C3"></td>
                         <td><input type="checkbox" name="C3_check"></td>
                         <td><input type="text" class="form-control" name="C3_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="info">
                         <td>4</td>
                         <td><input type="text" class="au form-control" name="C4"></td>
                         <td><input type="checkbox" name="C4_check"></td>
                         <td><input type="text" class="form-control" name="C4_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="success">
                         <td rowspan="4">次要参与者</td>
                         <td>1</td>
                         <td><input type="text" class="au form-control" name="D1" required></td>
                         <td><input type="checkbox" name="D1_check"></td>
                         <td><input type="text" class="form-control" name="D1_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="success">
                         <td>2</td>
                         <td><input type="text" class="au form-control" name="D2"></td>
                         <td><input type="checkbox" name="D2_check"></td>
                         <td><input type="text" class="form-control" name="D2_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="success">
                         <td>3</td>
                         <td><input type="text" class="au form-control" name="D3"></td>
                         <td><input type="checkbox" name="D3_check"></td>
                         <td><input type="text" class="form-control" name="D3_mono"></td>
                     </tr>
-                    <tr>
+                    <tr class="success">
                         <td>4</td>
                         <td><input type="text" class="au form-control" name="D4"></td>
                         <td><input type="checkbox" name="D4_check"></td>
@@ -382,7 +382,6 @@
                 <th>PROJECT_NUMBER</th>
                 <th>PROJECT_NAME</th>
                 <th>CHECK_POINT_3_MONTH</th>
-                <th>LEADER</th>
                 <th>GOLDEN_IDEA_SCORE</th>
                 <th>PROJECT_SCORE</th>
                 <th>TARGET_SCORE</th>
@@ -393,14 +392,18 @@
             <tr>
             <td>
                 <form action="" method="post">
-                    <input class="btn btn-success btn2" type="submit" name="{{ rows[0] }}" value="RELEASE">
-                    <input class="btn btn-warning btn2" type="submit" name="{{ rows[0] }}" value="CLOSE">
+                    <input class="btn btn-success btn2" type="submit" name="{{ rows.prj_no }}" value="RELEASE">
+                    <input class="btn btn-warning btn2" type="submit" name="{{ rows.prj_no }}" value="CLOSE">
                     <!--add another submit here-->
                 </form>
             </td>
-            {% for element in rows %}
-                <td>{{ element }}</td>
-            {% endfor %}
+                <td>{{ rows.prj_no }}</td>
+                <td>{{ rows.prj_content }}</td>
+                <td>{{ rows.prj_three_month }}</td>
+                <td>{{ rows.prj_golden_score }}</td>
+                <td>{{ rows.prj_score }}</td>
+                <td>{{ rows.prj_target_score }}</td>
+                <td>{{ rows.prj_active_score }}</td>
             </tr>
         {% endfor %}
         </table>
@@ -418,7 +421,6 @@
                 <th>PROJECT_NUMBER</th>
                 <th>PROJECT_NAME</th>
                 <th>CHECK_POINT_6_MONTH</th>
-                <th>LEADER</th>
                 <th>GOLDEN_IDEA_SCORE</th>
                 <th>PROJECT_SCORE</th>
                 <th>TARGET_SCORE</th>
@@ -429,15 +431,19 @@
             <tr>
             <td>
                 <form action="" method="post">
-                    <input class="btn btn-success btn2" type="submit" name="{{ rows[0] }}" value="release">
-                    <input class="btn btn-warning btn2" type="submit" name="{{ rows[0] }}" value="close">
+                    <input class="btn btn-success btn2" type="submit" name="{{ rows.prj_no }}" value="release">
+                    <input class="btn btn-warning btn2" type="submit" name="{{ rows.prj_no }}" value="close">
                 </form>
             </td>
-            {% for element in rows %}
-                <td>{{ element }}</td>
-            {% endfor %}
+            <td>{{ rows.prj_no }}</td>
+            <td>{{ rows.prj_content }}</td>
+            <td>{{ rows.prj_three_month }}</td>
+            <td>{{ rows.prj_golden_score }}</td>
+            <td>{{ rows.prj_score }}</td>
+            <td>{{ rows.prj_target_score }}</td>
+            <td>{{ rows.prj_active_score }}</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </table>
     </div>
 </div>

@@ -12,7 +12,7 @@ from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
-from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem
+from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem, prjRecord
 
 from itertools import chain
 from config import config
@@ -90,30 +90,44 @@ def admin():
     res = ruleMaker().rules_api_info()
     # 查找到达检查点的项目
     data = db.session.query(prjInfo).all()
-    for x in data:
-        print x.data_3_month
-    # data_6_month = cur.execute(sql.data_6_month).fetchall()
+    data_3_month = [x for x in data if x.data_3_month != -1]
+    data_6_month = [x for x in data if x.data_6_month != -1]
+
     if request.method == 'POST':
+        print request.form
         # 反转request.form
         reverse_dict = dict(zip(request.form.values(), request.form.keys()))
         #
-        if request.form.get('submit1') == 'submit':
+        if request.form.get('submit1') == 'Submit':
             db.session.add(prjInfo(request.form))
-            for x in register_mem_info(request.form):
-                db.session.add(prjMem(*x))
+            x, y = register_mem_info(request.form)
+            for ele in x:
+                db.session.add(prjMem(*ele, **y))
             db.session.commit()
             return redirect(url_for('admin'))
         # 3个月的动作
         if reverse_dict.has_key('RELEASE'):
-            pass
+            for x in data_3_month:
+                if x.prj_no == reverse_dict.get('RELEASE'):
+                    x.pass_3_month
+            #
+            db.session.commit()
+            return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE'):
-            pass
+            for x in data_3_month:
+                if x.prj_no == reverse_dict.get('CLOSE'):
+                    x.close_3_month
+            #
+            db.session.commit()
         # 6个月的动作
         if reverse_dict.has_key('release'):
             pass
         if reverse_dict.has_key('close'):
             pass
-    return render_template('admin.html', res=res)
+    return render_template('admin.html',
+                           res=res,
+                           data_3_month = data_3_month,
+                           data_6_month = data_6_month)
 
 
 @app.route('/auth/login', methods=['GET', 'POST'])
@@ -233,7 +247,15 @@ def db_to_pretty_table():
     data = cur.execute('SELECT * FROM project_total').fetchall()
     from prettytable import PrettyTable
     from string import letters
-    raw = PrettyTable(letters[:22])
+    raw = PrettyTable(letters[:18])
     for d in data:
         raw.add_row(d)
     return render_template('api.html',raw=raw)
+
+@app.route('/test')
+def test():
+    from app.models.dbModels import recorder
+    r = recorder()
+    conn = g.conn
+    r.prj_lanuch(dict(prj_name='ckt16001'),conn=conn)
+    return 'ok'

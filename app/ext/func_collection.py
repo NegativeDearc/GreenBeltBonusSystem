@@ -83,6 +83,8 @@ def register_mem_info(form):
         prj_level = 'b'
     #
     res = []
+    count_c = 0
+    count_d = 0
     a =  form.get('prj_name'), form.get('A'), 'A', \
          form.get('A_check', 0), form.get('A_mono'), rul[prj_level]['distribution'][0]
     b =  form.get('prj_name'), form.get('B'), 'B', \
@@ -106,8 +108,13 @@ def register_mem_info(form):
     for elements in [a, b, c1, c2, c3, c4, d1, d2, d3, d4]:
         if elements[1] != '':
             res.append(elements)
-    return res
-
+    for elements in [c1, c2, c3, c4]:
+        if elements[1] != '':
+            count_c += 1
+    for elements in [d1, d2, d3, d4]:
+        if elements[1] != '':
+            count_d += 1
+    return res,{'C':count_c, 'D':count_d}
 
 if __name__ == '__main__':
     print project_score(u'P')  # error can't use str in unicode

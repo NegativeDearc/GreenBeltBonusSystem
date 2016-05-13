@@ -45,7 +45,7 @@ class prjInfo(db.Model):
     '''存储项目信息的表'''
     __tablename__ = 'PRJ_INFO'
 
-    id     = db.Column(db.Integer,nullable=False,unique=True,primary_key=True)
+    id             = db.Column(db.Integer,nullable=False,primary_key=True)
     prj_no = db.Column(db.String(50), nullable=False, unique=True)
     prj_content = db.Column(db.String(128), nullable=False)
     prj_finish_time = db.Column(db.DATE, nullable=False)
@@ -63,8 +63,10 @@ class prjInfo(db.Model):
     #
     prj_target_score      = db.Column(db.Integer,nullable=False)
     #
-    prj_total_score       = db.Column(db.Integer,nullable=False)
+    prj_total_score       = db.Column(db.Numeric(128),nullable=False)
     prj_active_score      = db.Column(db.Numeric(128),default=0)
+    #
+    #member = db.relationship('prjMem',backref = 'prjInfo')
     #
     def __init__(self,form):
         rul = ruleMaker()
@@ -82,7 +84,7 @@ class prjInfo(db.Model):
         #
         self.prj_cost_saving  = form.get('cost_saving')
         self.prj_golden_type  = rul.golden_type_judging(form.get('score_sum'))
-
+        #
         self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
         self.prj_target_score = int(form.get('target_score'))
         #
@@ -112,7 +114,7 @@ class prjInfo(db.Model):
             self.prj_score = int(rul.rules_api_info()['b']['value'])
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
 
-    # 可针对实例或者类使用该方法
+    # 可针对单个实例或者类使用该方法
     @hybrid_property
     def data_3_month(self):
         now = datetime.datetime.now().date()
@@ -125,7 +127,47 @@ class prjInfo(db.Model):
             else:
                 return -1
         else:
-            return -2
+            return -1
+
+    # 以下动作请小心，释放分值和关闭针对符合条件的项目
+    # 若在query all 之后使用该property 会使数据库全部数据都释放/关闭
+    # 操作完毕请提交session
+    @hybrid_property
+    def data_6_month(self):
+        now = datetime.datetime.now().date()
+        now_before_2_days = now + datetime.timedelta(days=2)
+        now_after_30_days = now - datetime.timedelta(days=30)
+        if self.prj_six_month_check is not True:
+            if self.prj_six_month < now_before_2_days and \
+                self.prj_six_month > now_after_30_days:
+                return self.prj_no
+            else:return -1
+        else:return -1
+
+    @hybrid_property
+    def pass_3_month(self):
+        r = ruleMaker().rules_api_info()
+        self.prj_active_score = float(r['check_3']) * float(self.prj_total_score) + float(self.prj_active_score)
+        self.prj_three_month_check = True
+        return 1
+
+    @hybrid_property
+    def close_3_month(self):
+        self.prj_three_month_check = True
+        self.prj_six_month_check   = True
+        return 1
+
+    @hybrid_property
+    def pass_6_month(self):
+        r = ruleMaker().rules_api_info()
+        self.prj_active_score = float(r['check_6']) * float(self.prj_total_score) + float(self.prj_active_score)
+        self.prj_six_month_check = True
+        return 1
+
+    @hybrid_property
+    def close_6_month(self):
+        self.prj_six_month_check = True
+        return 1
 
 class prjMem(db.Model):
     '''储存项目用户清单的表'''
@@ -138,9 +180,11 @@ class prjMem(db.Model):
     mem_mono     = db.Column(db.String(50),default=None)
     score_ratio  = db.Column(db.Float(50))
     score_or_not = db.Column(db.BOOLEAN,default=True)
+    #
+    #prjinfo_id   = db.Column(db.Integer,db.ForeignKey('PRJ_INFO.id'))
     # 定义双向关系
 
-    def __init__(self,*args):
+    def __init__(self,*args,**kwargs):
         '''app.ext.function register_mem_info'''
         self.prj_no       = args[0]
         self.mem_name     = args[1]
@@ -151,5 +195,24 @@ class prjMem(db.Model):
         else:
             self.score_or_not = True
 
+        if self.mem_role in ['C','D']:
+            self.score_ratio  = float(args[5])/float(kwargs[self.mem_role])
+        else:
+            self.score_ratio  = args[5]
         self.mem_mono     = args[4]
-        self.score_ratio  = args[5]
+
+
+class prjRecord(db.Model):
+    '''储存用户分值发放的表'''
+    __tablename__ = 'PRJ_REC'
+
+    id           = db.Column(db.Integer,primary_key=True,nullable=False)
+    prj_no       = db.Column(db.String(50))
+    prj_mem      = db.Column(db.String(50))
+    prj_role     = db.Column(db.String(50))
+    role_ratio   = db.Column(db.Float(50))
+    score_or_not = db.Column(db.BOOLEAN)
+    score        = db.Column(db.Numeric(128))
+    prj_action   = db.Column(db.String(128))
+    action_date  = db.Column(db.Date)
+
