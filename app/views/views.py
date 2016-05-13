@@ -12,7 +12,7 @@ from app.ext.report_monthly import report_html
 from app.ext.release_score import Action
 from app.ext.views_sql import views_sql
 from app.ext.newDict import newDict
-from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem, prjRecord
+from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem,ScoreRelease
 
 from itertools import chain
 from config import config
@@ -22,7 +22,6 @@ import string
 import os
 
 sql = views_sql()
-
 
 @app.before_request
 def connect_db():
@@ -103,7 +102,7 @@ def admin():
             x, y = register_mem_info(request.form)
             for ele in x:
                 db.session.add(prjMem(*ele, **y))
-            db.session.commit()
+            ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
             return redirect(url_for('admin'))
         # 3个月的动作
         if reverse_dict.has_key('RELEASE'):
@@ -254,8 +253,4 @@ def db_to_pretty_table():
 
 @app.route('/test')
 def test():
-    from app.models.dbModels import recorder
-    r = recorder()
-    conn = g.conn
-    r.prj_lanuch(dict(prj_name='ckt16001'),conn=conn)
     return 'ok'

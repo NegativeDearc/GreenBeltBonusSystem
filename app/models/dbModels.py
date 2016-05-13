@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from app import db
-from sqlalchemy.ext.hybrid import hybrid_method,hybrid_property
+from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 from app.ext.rules import ruleMaker
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime
@@ -10,7 +10,7 @@ import datetime
 class usrPwd(db.Model):
     '''存储用户名和密码的表'''
     __tablename__ = 'USER_PASSWORD'
-    user     = db.Column(db.Text(50), nullable=False, unique=True, primary_key=True)
+    user = db.Column(db.Text(50), nullable=False, unique=True, primary_key=True)
     password = db.Column(db.Text(50), nullable=False)
 
     def __init__(self, user=None, password=None):
@@ -41,34 +41,36 @@ class usrName(db.Model):
         self.name = name
         self.format_name = '(' + self.id + ')' + self.name
 
+
 class prjInfo(db.Model):
     '''存储项目信息的表'''
     __tablename__ = 'PRJ_INFO'
 
-    id             = db.Column(db.Integer,nullable=False,primary_key=True)
+    id = db.Column(db.Integer, nullable=False, primary_key=True)
     prj_no = db.Column(db.String(50), nullable=False, unique=True)
     prj_content = db.Column(db.String(128), nullable=False)
     prj_finish_time = db.Column(db.DATE, nullable=False)
     prj_three_month = db.Column(db.DATE, nullable=False)
-    prj_six_month   = db.Column(db.DATE, nullable=False)
-    prj_three_month_check = db.Column(db.BOOLEAN,default=0)
-    prj_six_month_check   = db.Column(db.BOOLEAN,default=0)
+    prj_six_month = db.Column(db.DATE, nullable=False)
+    prj_three_month_check = db.Column(db.BOOLEAN, default=0)
+    prj_six_month_check = db.Column(db.BOOLEAN, default=0)
     # duplicability + resource_usage + implement_period +
     # kpi_impact + cost_saving = prj_golden_type
-    prj_golden_type       = db.Column(db.String(50),nullable=False)
-    prj_golden_score      = db.Column(db.Integer,nullable=False)
+    prj_golden_type = db.Column(db.String(50), nullable=False)
+    prj_golden_score = db.Column(db.Integer, nullable=False)
     #
-    prj_level             = db.Column(db.String(50),nullable=False)
-    prj_score             = db.Column(db.Integer,nullable=False)
+    prj_level = db.Column(db.String(50), nullable=False)
+    prj_score = db.Column(db.Integer, nullable=False)
     #
-    prj_target_score      = db.Column(db.Integer,nullable=False)
+    prj_target_score = db.Column(db.Integer, nullable=False)
     #
-    prj_total_score       = db.Column(db.Numeric(128),nullable=False)
-    prj_active_score      = db.Column(db.Numeric(128),default=0)
+    prj_total_score = db.Column(db.Numeric(128), nullable=False)
+    prj_active_score = db.Column(db.Numeric(128), default=0)
+
     #
-    #member = db.relationship('prjMem',backref = 'prjInfo')
+    # member = db.relationship('prjMem',backref = 'prjInfo')
     #
-    def __init__(self,form):
+    def __init__(self, form):
         rul = ruleMaker()
 
         self.prj_no = form.get('prj_name')
@@ -82,8 +84,8 @@ class prjInfo(db.Model):
         self.prj_three_month = self.prj_finish_time + datetime.timedelta(days=90)
         self.prj_six_month = self.prj_finish_time + datetime.timedelta(days=180)
         #
-        self.prj_cost_saving  = form.get('cost_saving')
-        self.prj_golden_type  = rul.golden_type_judging(form.get('score_sum'))
+        self.prj_cost_saving = form.get('cost_saving')
+        self.prj_golden_type = rul.golden_type_judging(form.get('score_sum'))
         #
         self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
         self.prj_target_score = int(form.get('target_score'))
@@ -139,28 +141,32 @@ class prjInfo(db.Model):
         now_after_30_days = now - datetime.timedelta(days=30)
         if self.prj_six_month_check is not True:
             if self.prj_six_month < now_before_2_days and \
-                self.prj_six_month > now_after_30_days:
+                            self.prj_six_month > now_after_30_days:
                 return self.prj_no
-            else:return -1
-        else:return -1
+            else:
+                return -1
+        else:
+            return -1
 
     @hybrid_property
     def pass_3_month(self):
         r = ruleMaker().rules_api_info()
-        self.prj_active_score = float(r['check_3']) * float(self.prj_total_score) + float(self.prj_active_score)
+        self.prj_active_score = float(r['check_3']) * float(self.prj_total_score) \
+                                + float(self.prj_active_score)
         self.prj_three_month_check = True
         return 1
 
     @hybrid_property
     def close_3_month(self):
         self.prj_three_month_check = True
-        self.prj_six_month_check   = True
+        self.prj_six_month_check = True
         return 1
 
     @hybrid_property
     def pass_6_month(self):
         r = ruleMaker().rules_api_info()
-        self.prj_active_score = float(r['check_6']) * float(self.prj_total_score) + float(self.prj_active_score)
+        self.prj_active_score = float(r['check_6']) * float(self.prj_total_score) \
+                                + float(self.prj_active_score)
         self.prj_six_month_check = True
         return 1
 
@@ -169,50 +175,125 @@ class prjInfo(db.Model):
         self.prj_six_month_check = True
         return 1
 
+
 class prjMem(db.Model):
     '''储存项目用户清单的表'''
     __tablename__ = 'PRJ_MEM'
 
-    id           = db.Column(db.Integer,nullable=False,primary_key=True)
-    prj_no       = db.Column(db.String(50),nullable=True)
-    mem_name     = db.Column(db.String(50),nullable=False)
-    mem_role     = db.Column(db.String(50),nullable=False)
-    mem_mono     = db.Column(db.String(50),default=None)
-    score_ratio  = db.Column(db.Float(50))
-    score_or_not = db.Column(db.BOOLEAN,default=True)
+    id = db.Column(db.Integer, nullable=False, primary_key=True)
+    prj_no = db.Column(db.String(50), nullable=True)
+    mem_name = db.Column(db.String(50), nullable=False)
+    mem_role = db.Column(db.String(50), nullable=False)
+    mem_mono = db.Column(db.String(50), default=None)
+    score_ratio = db.Column(db.Float(50))
+    score_or_not = db.Column(db.BOOLEAN, default=True)
+
     #
-    #prjinfo_id   = db.Column(db.Integer,db.ForeignKey('PRJ_INFO.id'))
+    # prjinfo_id   = db.Column(db.Integer,db.ForeignKey('PRJ_INFO.id'))
     # 定义双向关系
 
-    def __init__(self,*args,**kwargs):
+    def __init__(self, *args, **kwargs):
         '''app.ext.function register_mem_info'''
-        self.prj_no       = args[0]
-        self.mem_name     = args[1]
-        self.mem_role     = args[2]
+        self.prj_no = args[0]
+        self.mem_name = args[1]
+        self.mem_role = args[2]
 
         if args[3] == 0:
             self.score_or_not = False
         else:
             self.score_or_not = True
 
-        if self.mem_role in ['C','D']:
-            self.score_ratio  = float(args[5])/float(kwargs[self.mem_role])
+        if self.mem_role in ['C', 'D']:
+            self.score_ratio = float(args[5]) / float(kwargs[self.mem_role])
         else:
-            self.score_ratio  = args[5]
-        self.mem_mono     = args[4]
+            self.score_ratio = args[5]
+        self.mem_mono = args[4]
 
 
 class prjRecord(db.Model):
     '''储存用户分值发放的表'''
     __tablename__ = 'PRJ_REC'
+    # __mapper_args__ = {'column_prefix':'rec_'}
 
-    id           = db.Column(db.Integer,primary_key=True,nullable=False)
-    prj_no       = db.Column(db.String(50))
-    prj_mem      = db.Column(db.String(50))
-    prj_role     = db.Column(db.String(50))
-    role_ratio   = db.Column(db.Float(50))
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    prj_no = db.Column(db.String(50))
+    prj_mem = db.Column(db.String(50))
+    prj_role = db.Column(db.String(50))
+    mem_mono = db.Column(db.String(50))
+    role_ratio = db.Column(db.Float(50))
     score_or_not = db.Column(db.BOOLEAN)
-    score        = db.Column(db.Numeric(128))
-    prj_action   = db.Column(db.String(128))
-    action_date  = db.Column(db.Date)
+    #
+    score = db.Column(db.Numeric(128))
+    prj_action = db.Column(db.String(128))
+    action_date = db.Column(db.Date)
 
+    def __init__(self, prj_no, prj_mem, prj_role, mem_mono, role_ratio, score_or_not, score, prj_action, action_date):
+        self.prj_no = prj_no
+        self.prj_mem = prj_mem
+        self.prj_role = prj_role
+        self.mem_mono = mem_mono
+        self.role_ratio = role_ratio
+        self.score_or_not = score_or_not
+        self.score = score
+        self.prj_action = prj_action
+        self.action_date = action_date
+
+
+class ScoreRelease(object):
+    '''日志数据库的动作'''
+
+    def __init__(self, prj_no):
+        from app.ext.rules import ruleMaker
+
+        self.rul = ruleMaker().rules_api_info()
+        self.q1  = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+
+        self.q2  = db.session.query(prjMem.prj_no,
+                                    prjMem.mem_name,
+                                    prjMem.mem_role,
+                                    prjMem.mem_mono,
+                                    prjMem.score_ratio,
+                                    prjMem.score_or_not).filter(prjMem.prj_no == prj_no).all()
+
+        self.now = datetime.datetime.now().date()
+
+    def prj_launch(self, form):
+        if form.has_key('type_s'):
+            for x in self.q2:
+                db.session.add(prjRecord(
+                    x.prj_no,
+                    x.mem_name,
+                    x.mem_role,
+                    x.mem_mono,
+                    x.score_ratio,
+                    x.score_or_not,
+                    x.score_ratio * float(self.q1.prj_total_score),
+                    u'项目上线成功,S类直接释放分值',
+                    self.now
+                ))
+        else:
+            for x in self.q2:
+                db.session.add(prjRecord(
+                    x.prj_no,
+                    x.mem_name,
+                    x.mem_role,
+                    x.mem_mono,
+                    x.score_ratio,
+                    x.score_or_not,
+                    x.score_ratio * 0.0,
+                    u'项目上线成功,但打到释放分值条件',
+                    self.now
+                ))
+        db.session.commit()
+
+    def prj_3_release(self):
+        pass
+
+    def prj_3_close(self):
+        pass
+
+    def prj_6_release(self):
+        pass
+
+    def prj_6_close(self):
+        pass
