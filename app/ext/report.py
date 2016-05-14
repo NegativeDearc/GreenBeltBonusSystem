@@ -1,0 +1,168 @@
+# -*- coding:utf-8 -*-
+__author__ = 'SXChen'
+
+import datetime
+
+from app import db
+from app.models.dbModels import prjRecord
+from sqlalchemy import distinct, func
+from itertools import chain
+from prettytable import PrettyTable
+
+
+class ReportDetail(object):
+    '''
+    /report的后台处理模块
+    流程: 接受一个日期范围 ->
+         在日期范围提取用户名列表集合 ->
+         按人员名单遍历明细 ->
+         明细折叠输出      ->
+         jsPDF打印成pdf
+    '''
+
+    def __init__(self, begin, end):
+        '''
+        处理来自jquery datepicker的日期格式,
+        datepicker可在option中采用多种各种.
+        '''
+        self.date_begin = datetime.datetime.strptime(begin, '%m/%d/%Y').date()
+        self.date_end = datetime.datetime.strptime(end, '%m/%d/%Y').date()
+
+    def name_set(self):
+        '''
+        a = [(u'(060090)Zhang Meng',), (u'(134793)Leon Wang',)]
+        |||
+        map(lambda x:list(x),names)
+        |||
+        b = [[u'(060090)Zhang Meng'], [u'(134793)Leon Wang']]
+        |||
+        list(chain(*map(lambda x:list(x),names)))
+        |||
+        c = [u'(060090)Zhang Meng', u'(134793)Leon Wang']
+
+        '''
+        names = db.session.query(distinct(prjRecord.prj_mem)).filter(prjRecord.action_date > self.date_begin,
+                                                                     prjRecord.action_date < self.date_end).all()
+        name_list = list(chain(*map(lambda x: list(x), names)))
+
+        return name_list
+
+    def record_detail(self):
+        '''
+        生成成员的项目细则
+        即便成员不得分,也应该显示具体信息
+        +--------------------+-------------+------------+--------------+--------------+---------------+-----------------+
+        |       Member       | Action Date | Project id | Role Defined | Score Ration | Frozen Score? |      Score      |
+        +--------------------+-------------+------------+--------------+--------------+---------------+-----------------+
+        | (060065)Fu Jiaying |  2016-05-14 | 815u9015j  |      A       |     0.2      |     False     | 1032.4000000000 |
+        +--------------------+-------------+------------+--------------+--------------+---------------+-----------------+
+        '''
+        detail_set = dict()
+        names = ReportDetail.name_set(self)
+
+        def format_tb(raw):
+            '''格式化为pretty table'''
+            tb = PrettyTable()
+            tb.field_names = ['Member', 'Action Date', 'Project id', 'Role Defined',
+                              'Score Ration', 'Frozen Score?', 'Score']
+            for e in raw:
+                tb.add_row([
+                    e.prj_mem,
+                    e.action_date,
+                    e.prj_no,
+                    e.prj_role,
+                    e.role_ratio,
+                    e.score_or_not,
+                    e.score
+                ])
+            return tb
+
+        for name in names:
+            r = db.session.query(prjRecord.prj_mem,
+                                 prjRecord.action_date,
+                                 prjRecord.prj_no,
+                                 prjRecord.prj_role,
+                                 prjRecord.role_ratio,
+                                 prjRecord.score_or_not,
+                                 prjRecord.score). \
+                filter(prjRecord.prj_mem == name). \
+                group_by(prjRecord.prj_role). \
+                all()
+            detail_set.update({name: format_tb(r)})
+        return detail_set
+
+    def score_detail(self):
+        '''
+        得分的细则,
+        按类分别
+        '''
+        score_set = dict()
+        names = ReportDetail.name_set(self)
+        for name in names:
+            r1 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
+                filter(prjRecord.score_or_not == False,
+                       prjRecord.prj_role == 'A',
+                       prjRecord.prj_mem == name). \
+                all()
+            r2 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
+                filter(prjRecord.score_or_not == False,
+                       prjRecord.prj_role == 'B',
+                       prjRecord.prj_mem == name). \
+                all()
+            r3 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
+                filter(prjRecord.score_or_not == False,
+                       prjRecord.prj_role == 'C',
+                       prjRecord.prj_mem == name). \
+                all()
+            r4 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
+                filter(prjRecord.score_or_not == False,
+                       prjRecord.prj_role == 'D',
+                       prjRecord.prj_mem == name). \
+                all()
+
+            if r1[0].Sum is None:
+                a1 = 0.0
+            else:
+                a1 = float(r1[0].Sum)
+            if r2[0].Sum is None:
+                a2 = 0.0
+            else:
+                a2 = float(r2[0].Sum)
+            if r3[0].Sum is None:
+                a3 = 0.0
+            else:
+                a3 = float(r3[0].Sum)
+            if r4[0].Sum is None:
+                a4 = 0.0
+            else:
+                a4 = float(r4[0].Sum)
+
+            score_set.update({name: {'Initiator': a1,
+                                     'Leader': a2,
+                                     'Major': a3,
+                                     'Minor': a4,
+                                     'Sum': a1 + a2 + a3 + a4}
+                              })
+
+        # 汇总
+        def summary(d):
+            Initiator_sum = 0
+            Leader_sum    = 0
+            Major_sum     = 0
+            Minor_sum     = 0
+            Sum_sum       = 0
+
+            for e in d.values():
+                Initiator_sum += e.get('Initiator')
+                Leader_sum    += e.get('Leader')
+                Major_sum     += e.get('Major')
+                Minor_sum     += e.get('Minor')
+                Sum_sum       += e.get('Sum')
+
+            return dict(Initiator_sum=Initiator_sum,
+                        Leader_sum=Leader_sum,
+                        Major_sum=Major_sum,
+                        Minor_sum=Minor_sum,
+                        Sum_sum=Sum_sum)
+
+        return score_set,summary(score_set)

@@ -6,12 +6,9 @@ from app import app, db
 
 from app.ext.rules import ruleMaker
 from app.ext.func_collection import count_member, golden_score, project_score, active_score_launched, register_mem_info
-from app.ext.insert_records import insert_records
 from app.ext.totalSummary import totalSummary
-from app.ext.report_monthly import report_html
-from app.ext.release_score import Action
+from app.ext.report import ReportDetail
 from app.ext.views_sql import views_sql
-from app.ext.newDict import newDict
 from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem,ScoreRelease
 
 from itertools import chain
@@ -180,19 +177,14 @@ def report():
     if not session.get('is_active'):
         return redirect(url_for('login'), code=401)
 
-    data = {}
-    prj = {}
-    summary = newDict(Major=0, Initiator=0, Leader=0, Minor=0, sum=0)
+    name = [];score = {};content = {};summary={}
     if request.method == 'POST' and request.form.get('submit') == 'submit':
         date_begin = request.form.get('date_begin')
         date_end = request.form.get('date_end')
-        report = report_html(g.conn, date_begin, date_end)
-        names = report.get_name()
-        for name in names:
-            prj[name] = list(chain(*report.prj_set(name)))
-            data[name] = report.summary(name)
-            summary = summary + newDict(report.summary(name))
-    return render_template('report.html', data=data, prj=prj, summary=summary)
+        name = ReportDetail(date_begin,date_end).name_set()
+        score,summary = ReportDetail(date_begin,date_end).score_detail()
+        content = ReportDetail(date_begin,date_end).record_detail()
+    return render_template('report.html',score=score,name = name ,content=content,summary=summary)
 
 
 @app.route('/rules', methods=['GET', 'POST'])
@@ -259,8 +251,4 @@ def db_to_pretty_table():
     raw = PrettyTable(letters[:18])
     for d in data:
         raw.add_row(d)
-    return render_template('api.html',raw=raw)
-
-@app.route('/test')
-def test():
-    return 'ok'
+    return render_template('prettyTable.html',raw=raw)
