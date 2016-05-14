@@ -104,25 +104,35 @@ def admin():
                 db.session.add(prjMem(*ele, **y))
             ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
             return redirect(url_for('admin'))
+
         # 3个月的动作
         if reverse_dict.has_key('RELEASE'):
             for x in data_3_month:
                 if x.prj_no == reverse_dict.get('RELEASE'):
                     x.pass_3_month
-            #
-            db.session.commit()
+            ScoreRelease(reverse_dict.get('RELEASE')).prj_3_release()
             return redirect(url_for('admin'))
         if reverse_dict.has_key('CLOSE'):
             for x in data_3_month:
                 if x.prj_no == reverse_dict.get('CLOSE'):
                     x.close_3_month
-            #
-            db.session.commit()
+            ScoreRelease(reverse_dict.get('CLOSE')).prj_3_close()
+            return redirect(url_for('admin'))
+
         # 6个月的动作
         if reverse_dict.has_key('release'):
-            pass
+            for x in data_6_month:
+                if x.prj_no == reverse_dict.get('release'):
+                    x.pass_6_month
+            ScoreRelease(reverse_dict.get('release')).prj_6_release()
+            return redirect(url_for('admin'))
+
         if reverse_dict.has_key('close'):
-            pass
+            for x in data_6_month:
+                if x.prj_no == reverse_dict.get('close'):
+                    x.close_6_month
+            ScoreRelease(reverse_dict.get('close')).prj_6_close()
+            return redirect(url_for('admin'))
     return render_template('admin.html',
                            res=res,
                            data_3_month = data_3_month,

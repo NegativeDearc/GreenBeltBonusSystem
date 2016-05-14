@@ -281,19 +281,72 @@ class ScoreRelease(object):
                     x.score_ratio,
                     x.score_or_not,
                     x.score_ratio * 0.0,
-                    u'项目上线成功,但打到释放分值条件',
+                    u'项目上线成功,但未达到释放分值条件',
                     self.now
                 ))
         db.session.commit()
+        return 1
 
     def prj_3_release(self):
-        pass
+        for x in self.q2:
+            db.session.add(prjRecord(
+                x.prj_no,
+                x.mem_name,
+                x.mem_role,
+                x.mem_mono,
+                x.score_ratio,
+                x.score_or_not,
+                x.score_ratio * float(self.q1.prj_total_score) * float(self.rul['check_3']),
+                u'项目通过三个月检查点,释放比例为%s'  % self.rul['check_3'],
+                self.now
+            ))
+        db.session.commit()
+        return 1
 
     def prj_3_close(self):
-        pass
+        for x in self.q2:
+            db.session.add(prjRecord(
+                x.prj_no,
+                x.mem_name,
+                x.mem_role,
+                x.mem_mono,
+                x.score_ratio,
+                x.score_or_not,
+                x.score_ratio * 0,
+                u'项目未通过三个月检查点,不得分',
+                self.now
+            ))
+        db.session.commit()
+        return 1
 
     def prj_6_release(self):
-        pass
+        for x in self.q2:
+            db.session.add(prjRecord(
+                x.prj_no,
+                x.mem_name,
+                x.mem_role,
+                x.mem_mono,
+                x.score_ratio,
+                x.score_or_not,
+                x.score_ratio * float(self.q1.prj_total_score) * float(self.rul['check_6']),
+                u'项目通过六个月检查点,释放比例为%s'  % self.rul['check_6'],
+                self.now
+            ))
+        db.session.commit()
+        return 1
 
     def prj_6_close(self):
-        pass
+        for x in self.q2:
+            db.session.add(prjRecord(
+                x.prj_no,
+                x.mem_name,
+                x.mem_role,
+                x.mem_mono,
+                x.score_ratio,
+                x.score_or_not,
+                x.score_ratio * 0,
+                u'项目未通过六个月检查点,不得分',
+                self.now
+            ))
+        db.session.commit()
+        return 1
