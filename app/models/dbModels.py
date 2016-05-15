@@ -350,3 +350,91 @@ class ScoreRelease(object):
             ))
         db.session.commit()
         return 1
+
+
+class SearchDetail(object):
+    '''searh页面的积分明细'''
+    def __init__(self,form):
+        self.name = form.get('employee_name')
+        self.rul = ruleMaker().rules_api_info()
+
+    def score_detail(self):
+
+        d = db.session.query(prjInfo,prjMem).\
+            outerjoin(prjMem,prjInfo.prj_no == prjMem.prj_no).\
+            filter(prjMem.mem_name == self.name).\
+            group_by(prjInfo.prj_no).\
+            all()
+
+        x = []
+
+
+        # total_personal_score----------->|项目分数总和
+        # total_frozen_score------------->|无效分总和
+        # total_active_score------------->|激活分总和
+        # total_waiting_to_active_score-->|等待积分激活的总和
+        total_personal_score          = 0
+        total_frozen_score            = 0
+        total_active_score            = 0
+        total_waiting_to_active_score = 0
+
+        for e in d:
+            # personal_total_score----------->|个人能获得的总分值
+            # frozen_score:------------------>|无效分值
+            # active_score:------------------>|已经激活的分值
+            # waiting_to_active_score:------->|等待激活的分值
+            # a:----------------------------->|项目起始发放的分值,目前为S类
+            # b:----------------------------->|3个月发放的分值
+            # c:----------------------------->|6个月发放的分值
+            #
+
+            personal_total_score = float(e.prjInfo.prj_total_score) * float(e.prjMem.score_ratio)
+
+            if e.prjMem.score_or_not:
+                frozen_score = personal_total_score
+                active_score = 0
+                waiting_to_active_score = 0
+                a = 0
+                b = 0
+                c = 0
+            else:
+                frozen_score = 0
+                active_score = float(e.prjInfo.prj_active_score) * float(e.prjMem.score_ratio)
+
+                if e.prjInfo.prj_level == u'S':
+                    waiting_to_active_score = 0
+                    a = personal_total_score
+                    b = 0
+                    c = 0
+                else:
+                    waiting_to_active_score = personal_total_score - active_score
+                    a = 0
+                    b = personal_total_score * float(self.rul['check_3'])
+                    c = personal_total_score * float(self.rul['check_6'])
+
+            x.append([e.prjInfo.prj_no,
+                      e.prjMem.mem_role,
+                      e.prjInfo.prj_finish_time,
+                      e.prjInfo.prj_level,
+                      float(e.prjInfo.prj_total_score),
+                      float(e.prjInfo.prj_total_score) * float(e.prjMem.score_ratio),
+                      e.prjMem.score_or_not,
+                      active_score,
+                      waiting_to_active_score,
+                      frozen_score,
+                      a,
+                      b,
+                      c
+                      ])
+
+            # 积分汇总
+            total_personal_score          += personal_total_score
+            total_frozen_score            += frozen_score
+            total_active_score            += active_score
+            total_waiting_to_active_score += waiting_to_active_score
+
+        y = {'a':total_personal_score,
+             'b':total_active_score,
+             'c':total_waiting_to_active_score,
+             'd':total_frozen_score}
+        return x,y

@@ -11,6 +11,7 @@
 <script src="static/jquery.min.js"></script>
 <script src="static/jquery-ui.min.js"></script>
 <script src="static/bootstrap.min.js"></script>
+<script src="static/jquery.form.js"></script>
 <script src="static/poshytip/jquery.poshytip.min.js"></script>
 <link rel="stylesheet" href="static/poshytip/tip-twitter/tip-twitter.css">
 
@@ -30,6 +31,8 @@
     .alert-success {font-size: 16px;}
     span {color: #eea236;}
     #copyright {font-size: 9px;color: #adadad;}
+    #modal1 {margin-top: 120px;}
+    #copyright {margin-bottom: 10px;margin-left: 10px;}
 </style>
 
 <body leftmargin=0 topmargin=0 oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
@@ -46,14 +49,14 @@
         </div>
 
     <div class="form-group">
-        <form action="" method="post" class="col-xs-12">
+        <form action="" method="post" class="col-xs-12" id="form1">
         <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
         <div class="row col-md-6 col-md-offset-3">
             <div class="input-group">
-            <input id="s" type="text" name="employee_name" placeholder="Enter Employee Name Or Id" class="form-control search clearable">
+            <input id="s" type="text" name="employee_name" placeholder="Enter Employee Name Or Id" class="form-control search clearable" required>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit" name="submit">Submit</button>
-                <button class="btn btn-default" type="button" id="more">More</button>
+                <button class="btn btn-default" type="button" id="more" data-toggle="modal" data-target="#modal1">More</button>
             </span>
             </div>
         </div>
@@ -62,6 +65,39 @@
 
     </div>
 </header>
+
+<!--modal content-->
+<div class="modal fade" id="modal1" role="form">
+    <form action="" method="post" id="form2">
+    <div class="modal-form row col-md-4 col-md-offset-4">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4>高级搜索选项</h4>
+            </div>
+            <!--主体-->
+            <div class="modal-body">
+                <input type="hidden" name="_crsf_token" value="{{ crsf_token() }}">
+                    <div class="input-group-group">
+                        <div>
+                        <label>选择日期范围</label>
+                        <input type="text" class="form-control" name="date_begin" id="date_begin_2" autocomplete="off" required>
+                        <br>
+                        <input type="text" class="form-control" name="date_end" id="date_end_2" autocomplete="off" required>
+                        </div>
+                    </div>
+            </div>
+            <!--脚部-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-default" id="submit2">提交</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
 
 <!--generate summary report -->
 {% if request.form.get('employee_name') %}
@@ -79,7 +115,7 @@
                 <td><p>CIS Total Score <br>员工项目总积分</p></td>
                 <td><p>Active Score <br>可用积分</p></td>
                 <td><p>Inactive Score <br>暂不可用积分</p></td>
-                <td><p>Frozon Scorebr <br>冻结积分</p></td>
+                <td><p>Frozon Score<br>冻结积分</p></td>
             </tr>
             <tr>
                 <td>{{ data2.get('a') }}</td>
@@ -96,21 +132,25 @@
 
 <!--表格生成-->
 {% if data %}
-     <div class="table-responsive">
+     <div class="table table-responsive">
          <table class="table" id="score_matrix">
          <caption>{{ request.form.get('employee_name') }}'s Project Detail</caption>
              <tr>
              <th rowspan="2">Project No.</th>
-             <th colspan="3">Project General Situation</th>
-             <th colspan="2">Releasing Status</th>
+             <th colspan="6">Project General Situation</th>
+             <th colspan="3">Releasing Status</th>
              <th colspan="3">Timely Releasing Score</th>
              </tr>
              <tr>
+                 <th>Member Role</th>
+                 <th>Closed date</th>
                  <th>Project Type</th>
                  <th>Project CIS Score</th>
                  <th>Staff Score</th>
+                 <th>Frozen Score?</th>
                  <th>Already Released</th>
                  <th>Not Release Yet</th>
+                 <th>Invalid Score</th>
                  <th>Project Closed</th>
                  <th>Tracked 3 Month</th>
                  <th>Tracked 6 Month</th>
@@ -118,7 +158,7 @@
              {% for element in data %}
                  <tr>
                  {% for e in element %}
-                     <td><a href="javascript:" class="ahover" title="test &#31; test{{ element }}{{ e }}">{{ e }}</a></td>
+                     <td><a href="javascript:" class="ahover" title="{{ element }}{{ e }}">{{ e }}</a></td>
                  {% endfor %}
                  </tr>
              {% endfor %}
@@ -128,11 +168,14 @@
 
 <footer class="footer">
     <div class="container-fluid">
-        <p id="copyright">ALL RIGHTS RESERVED &copy; 2016 SHELDON CHEN</p>
+        <div id="copyright">All rights &copy; 2016- SHELDON CHEN</div>
     </div>
 </footer>
 
 <script>
+    /*
+    自动补全
+     */
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
 
     $(function() {
@@ -147,6 +190,24 @@
         }
     })
 });
+    /*
+    表单处理ajax提交
+     */
+    $(function(){
+        $('#form2').submit(function(){
+            $(this).ajaxSubmit(function(){
+            });
+            $('#modal1').modal('hide');
+            return false
+        });
+    });
+
+    /*
+    日期选择器
+     */
+    $(function(){
+       $("#date_begin_2,#date_end_2").datepicker({dateFormat:"yy/mm/dd"})
+    });
 
 $(".ahover").poshytip({
     className: 'tip-twitter',

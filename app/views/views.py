@@ -6,10 +6,8 @@ from app import app, db
 
 from app.ext.rules import ruleMaker
 from app.ext.func_collection import count_member, golden_score, project_score, active_score_launched, register_mem_info
-from app.ext.totalSummary import totalSummary
 from app.ext.report import ReportDetail
-from app.ext.views_sql import views_sql
-from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem,ScoreRelease
+from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem, ScoreRelease, SearchDetail
 
 from itertools import chain
 from config import config
@@ -17,8 +15,6 @@ from config import config
 import sqlite3
 import string
 import os
-
-sql = views_sql()
 
 @app.before_request
 def connect_db():
@@ -62,14 +58,16 @@ app.jinja_env.globals['crsf_token'] = generate_csrf_token
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    data = None
-    data2 = None
+    content = None
+    total   = None
     if request.method == 'POST':
-        employee_name = request.form.get('employee_name', '')
-        if employee_name != '':
-            ts = totalSummary(employee_name)
-            data, data2 = ts.personal_score_matrix(g.conn)
-    return render_template('search.html', data=data, data2=data2)
+        if request.form.get('date_begin',None):
+            session['date_begin_2'] = request.form.get('date_begin')
+            session['date_end_2']   = request.form.get('date_end')
+        if request.form.get('employee_name',None):
+            content, total = SearchDetail(request.form).score_detail()
+            print content
+    return render_template('search.html',data = content,data2 = total)
 
 
 @app.route('/')
@@ -132,8 +130,8 @@ def admin():
             return redirect(url_for('admin'))
     return render_template('admin.html',
                            res=res,
-                           data_3_month = data_3_month,
-                           data_6_month = data_6_month)
+                           data_3_month=data_3_month,
+                           data_6_month=data_6_month)
 
 
 @app.route('/auth/login', methods=['GET', 'POST'])
@@ -177,14 +175,17 @@ def report():
     if not session.get('is_active'):
         return redirect(url_for('login'), code=401)
 
-    name = [];score = {};content = {};summary={}
+    name = []
+    score = {}
+    content = {}
+    summary = {}
     if request.method == 'POST' and request.form.get('submit') == 'submit':
         date_begin = request.form.get('date_begin')
         date_end = request.form.get('date_end')
-        name = ReportDetail(date_begin,date_end).name_set()
-        score,summary = ReportDetail(date_begin,date_end).score_detail()
-        content = ReportDetail(date_begin,date_end).record_detail()
-    return render_template('report.html',score=score,name = name ,content=content,summary=summary)
+        name = ReportDetail(date_begin, date_end).name_set()
+        score, summary = ReportDetail(date_begin, date_end).score_detail()
+        content = ReportDetail(date_begin, date_end).record_detail()
+    return render_template('report.html', score=score, name=name, content=content, summary=summary)
 
 
 @app.route('/rules', methods=['GET', 'POST'])
@@ -212,7 +213,7 @@ def user():
 def project_info():
     n = request.args.get('term', '')
     cur = g.conn.cursor()
-    SEARCH_PRJ_INFO = sql.SEARCH_PRJ_INFO % n
+    SEARCH_PRJ_INFO = '''SELECT * FROM project_total WHERE prj_no="%s"''' % n
     res = cur.execute(SEARCH_PRJ_INFO).fetchone()
     if res is None:
         return jsonify({})
@@ -251,4 +252,4 @@ def db_to_pretty_table():
     raw = PrettyTable(letters[:18])
     for d in data:
         raw.add_row(d)
-    return render_template('prettyTable.html',raw=raw)
+    return render_template('prettyTable.html', raw=raw)
