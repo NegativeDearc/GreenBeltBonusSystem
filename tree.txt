@@ -1,62 +1,142 @@
 .
+├── GreenBeltBonusSystemRun.bat
 ├── README.md
 ├── __init__.py
 ├── app
 │   ├── __init__.py
+│   ├── __init__.pyc
 │   ├── ext
 │   │   ├── __init__.py
+│   │   ├── __init__.pyc
 │   │   ├── config.json
 │   │   ├── func_collection.py
-│   │   ├── hash_password.py
-│   │   ├── insert_records.py
+│   │   ├── func_collection.pyc
 │   │   ├── log.py
-│   │   ├── newDict.py
-│   │   ├── release_score.py
-│   │   ├── report_monthly.py
+│   │   ├── log.pyc
+│   │   ├── report.py
+│   │   ├── report.pyc
 │   │   ├── rules.py
-│   │   ├── totalSummary.py
-│   │   └── views_sql.py
+│   │   └── rules.pyc
 │   ├── logs
 │   │   └── log.txt
 │   ├── models
 │   │   ├── CTLSS_BONUS_DB
 │   │   ├── CTLSS_BONUS_DB.sql
 │   │   ├── CTLSS_BONUS_DB_TEST
-│   │   └── Name\ list\ for\ Sheldon.xlsx
+│   │   ├── Name\ list\ for\ Sheldon.xlsx
+│   │   ├── __init__.py
+│   │   ├── __init__.pyc
+│   │   ├── dbModels.py
+│   │   └── dbModels.pyc
 │   ├── static
 │   │   ├── FileSaver.min.js
-│   │   ├── bg.png
-│   │   ├── bokeh-0.10.0.min.css
-│   │   ├── bokeh-0.10.0.min.js
+│   │   ├── bokeh-0.10.0
+│   │   │   ├── bokeh-0.10.0.min.css
+│   │   │   └── bokeh-0.10.0.min.js
 │   │   ├── bootstrap-table-expandable.css
 │   │   ├── bootstrap-table-expandable.js
 │   │   ├── bootstrap.min.css
 │   │   ├── bootstrap.min.js
-│   │   ├── boss.jpg
-│   │   ├── coin_3d.gif
-│   │   ├── github.png
-│   │   ├── go.jpg
+│   │   ├── fort
+│   │   │   ├── fort.css
+│   │   │   └── fort.js
+│   │   ├── index-background
+│   │   │   ├── bg.png
+│   │   │   ├── boss.jpg
+│   │   │   ├── coin_3d.gif
+│   │   │   ├── github.png
+│   │   │   ├── go.jpg
+│   │   │   ├── marquee.jpg
+│   │   │   ├── out_of_the_world
+│   │   │   │   ├── planet_earth_venues_univearse.png
+│   │   │   │   ├── planet_earth_venues_univearse_jupiter.png
+│   │   │   │   ├── planet_earth_venues_univearse_pluto.png
+│   │   │   │   ├── planet_earth_venues_univearse_saturn.png
+│   │   │   │   ├── planet_univearse_telestial_space.png
+│   │   │   │   ├── planet_univearse_telestial_space_mars.png
+│   │   │   │   └── planet_univearse_telestial_space_pluto.png
+│   │   │   ├── upload.jpg
+│   │   │   └── us_dollar.jpg
+│   │   ├── jquery-ui-1.11.4
+│   │   │   ├── external
+│   │   │   │   └── jquery
+│   │   │   │       └── jquery.js
+│   │   │   ├── images
+│   │   │   │   ├── ui-bg_glass_55_fbf9ee_1x400.png
+│   │   │   │   ├── ui-bg_glass_65_ffffff_1x400.png
+│   │   │   │   ├── ui-bg_glass_75_dadada_1x400.png
+│   │   │   │   ├── ui-bg_glass_75_e6e6e6_1x400.png
+│   │   │   │   ├── ui-bg_glass_95_fef1ec_1x400.png
+│   │   │   │   ├── ui-bg_highlight-soft_75_cccccc_1x100.png
+│   │   │   │   ├── ui-icons_222222_256x240.png
+│   │   │   │   ├── ui-icons_2e83ff_256x240.png
+│   │   │   │   ├── ui-icons_454545_256x240.png
+│   │   │   │   ├── ui-icons_888888_256x240.png
+│   │   │   │   └── ui-icons_cd0a0a_256x240.png
+│   │   │   ├── index.html
+│   │   │   ├── jquery-ui.css
+│   │   │   ├── jquery-ui.js
+│   │   │   ├── jquery-ui.min.css
+│   │   │   ├── jquery-ui.min.js
+│   │   │   ├── jquery-ui.structure.css
+│   │   │   ├── jquery-ui.structure.min.css
+│   │   │   ├── jquery-ui.theme.css
+│   │   │   └── jquery-ui.theme.min.css
 │   │   ├── jquery-ui.css
 │   │   ├── jquery-ui.min.js
+│   │   ├── jquery.form.js
 │   │   ├── jquery.min.js
 │   │   ├── jquery.min.map
 │   │   ├── jspdf.min.js
 │   │   ├── jspdf.plugin.autotable.js
-│   │   ├── marquee.jpg
-│   │   ├── upload.jpg
-│   │   └── us_dollar.jpg
+│   │   └── poshytip
+│   │       ├── jquery.poshytip.min.js
+│   │       ├── tip-darkgray
+│   │       │   ├── tip-darkgray.css
+│   │       │   ├── tip-darkgray.png
+│   │       │   └── tip-darkgray_arrows.png
+│   │       ├── tip-green
+│   │       │   ├── tip-green.css
+│   │       │   └── tip-green_arrows.gif
+│   │       ├── tip-skyblue
+│   │       │   ├── tip-skyblue.css
+│   │       │   ├── tip-skyblue.png
+│   │       │   └── tip-skyblue_arrows.png
+│   │       ├── tip-twitter
+│   │       │   ├── tip-twitter.css
+│   │       │   └── tip-twitter_arrows.gif
+│   │       ├── tip-violet
+│   │       │   ├── tip-violet.css
+│   │       │   ├── tip-violet.png
+│   │       │   └── tip-violet_arrows.png
+│   │       ├── tip-yellow
+│   │       │   ├── tip-yellow.css
+│   │       │   ├── tip-yellow.png
+│   │       │   └── tip-yellow_arrows.png
+│   │       └── tip-yellowsimple
+│   │           ├── tip-yellowsimple.css
+│   │           └── tip-yellowsimple_arrows.gif
 │   ├── templates
 │   │   ├── about.html
 │   │   ├── admin.html
 │   │   ├── index.html
 │   │   ├── login.html
+│   │   ├── prettyTable.html
 │   │   ├── report.html
 │   │   ├── rules.html
 │   │   └── search.html
 │   └── views
 │       ├── __init__.py
-│       └── views.py
+│       ├── __init__.pyc
+│       ├── views.py
+│       └── views.pyc
 ├── config.py
+├── config.pyc
+├── nginx_conf
+│   ├── mime.types
+│   └── nginx_for_greenbelt.conf
+├── nginx_greenbelt.bat
+├── requirements.txt
 ├── run.py
 ├── run_.py
 ├── tests
@@ -64,4 +144,4 @@
 │   └── test.py
 └── tree.txt
 
-8 directories, 56 files
+25 directories, 119 files

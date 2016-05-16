@@ -106,15 +106,21 @@
                     <tbody>
                     <tr>
                         <td>项目编号</td>
-                        <td><input type="text" class="form-control" name="prj_name" id="prj_name" autocomplete="off" required></td>
+                        <td><input type="text" class="form-control" name="prj_name"
+                                   id="prj_name" autocomplete="off" required placeholder="CKT16001">
+                        </td>
                     </tr>
                     <tr>
                         <td>项目描述</td>
-                        <td><input type="text" class="form-control" name="prj_des" id="prj_des" autocomplete="off" required></td>
+                        <td><input type="text" class="form-control" name="prj_des" id="prj_des"
+                                   autocomplete="off" required placeholder="Content of CKT16001">
+                        </td>
                     </tr>
                     <tr>
                         <td>项目关闭日期</td>
-                        <td><input type="text" class="form-control" name="prj_date" id="prj_date" required readonly></td>
+                        <td><input type="text" class="form-control" name="prj_date" id="prj_date"
+                                   required readonly>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -137,7 +143,8 @@
                                 <div class="form-group">
                                     <label for="score_sum">总分：</label>
                                     <!--input 被 disabled,post就不能提交该值，所以使用readonly-->
-                                    <input type="number" min="0" id="score_sum" name="score_sum" readonly class="form-control">
+                                    <input type="number" min="0" id="score_sum" name="score_sum"
+                                           readonly class="form-control">
                                 </div>
                             </td>
                         </tr>
@@ -233,7 +240,7 @@
                         <tr class="info">
                             <td>1-3项</td>
                             <td>{{ res.kpi_impact.level2 }}</td>
-                            <td><input type="checkbox" class="kpi" id="kpi2" name="kpi2" value={{ res.kpi_impact.level3 }}></td>
+                            <td><input type="checkbox" class="kpi" id="kpi2" name="kpi2" value={{ res.kpi_impact.level2 }}></td>
                         </tr>
                         <tr class="info">
                             <td>1项</td>

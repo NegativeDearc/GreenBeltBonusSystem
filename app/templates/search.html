@@ -147,7 +147,7 @@
                  <th>Project Type</th>
                  <th>Project CIS Score</th>
                  <th>Staff Score</th>
-                 <th>Frozen Score?</th>
+                 <th>Invalid Score?</th>
                  <th>Already Released</th>
                  <th>Not Release Yet</th>
                  <th>Invalid Score</th>
@@ -158,7 +158,7 @@
              {% for element in data %}
                  <tr>
                  {% for e in element %}
-                     <td><a href="javascript:" class="ahover" title="{{ element }}{{ e }}">{{ e }}</a></td>
+                     <td><a href="javascript:" class="ahover" title="{{ e }}">{{ e }}</a></td>
                  {% endfor %}
                  </tr>
              {% endfor %}

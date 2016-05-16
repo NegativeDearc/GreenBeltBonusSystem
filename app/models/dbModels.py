@@ -246,14 +246,14 @@ class ScoreRelease(object):
         from app.ext.rules import ruleMaker
 
         self.rul = ruleMaker().rules_api_info()
-        self.q1  = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+        self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
 
-        self.q2  = db.session.query(prjMem.prj_no,
-                                    prjMem.mem_name,
-                                    prjMem.mem_role,
-                                    prjMem.mem_mono,
-                                    prjMem.score_ratio,
-                                    prjMem.score_or_not).filter(prjMem.prj_no == prj_no).all()
+        self.q2 = db.session.query(prjMem.prj_no,
+                                   prjMem.mem_name,
+                                   prjMem.mem_role,
+                                   prjMem.mem_mono,
+                                   prjMem.score_ratio,
+                                   prjMem.score_or_not).filter(prjMem.prj_no == prj_no).all()
 
         self.now = datetime.datetime.now().date()
 
@@ -297,7 +297,7 @@ class ScoreRelease(object):
                 x.score_ratio,
                 x.score_or_not,
                 x.score_ratio * float(self.q1.prj_total_score) * float(self.rul['check_3']),
-                u'项目通过三个月检查点,释放比例为%s'  % self.rul['check_3'],
+                u'项目通过三个月检查点,释放比例为%s' % self.rul['check_3'],
                 self.now
             ))
         db.session.commit()
@@ -329,7 +329,7 @@ class ScoreRelease(object):
                 x.score_ratio,
                 x.score_or_not,
                 x.score_ratio * float(self.q1.prj_total_score) * float(self.rul['check_6']),
-                u'项目通过六个月检查点,释放比例为%s'  % self.rul['check_6'],
+                u'项目通过六个月检查点,释放比例为%s' % self.rul['check_6'],
                 self.now
             ))
         db.session.commit()
@@ -354,28 +354,29 @@ class ScoreRelease(object):
 
 class SearchDetail(object):
     '''searh页面的积分明细'''
-    def __init__(self,form):
+
+    def __init__(self, form):
         self.name = form.get('employee_name')
         self.rul = ruleMaker().rules_api_info()
 
     def score_detail(self):
 
-        d = db.session.query(prjInfo,prjMem).\
-            outerjoin(prjMem,prjInfo.prj_no == prjMem.prj_no).\
-            filter(prjMem.mem_name == self.name).\
-            group_by(prjInfo.prj_no).\
+        # 若对d进行以prj_no进行group_by之后只能读取最后一条记录
+        # 请仔细思考group_by 和 distinct 之间的差别
+        # 如要排序，使用order_by
+        d = db.session.query(prjInfo, prjMem). \
+            outerjoin(prjMem, prjInfo.prj_no == prjMem.prj_no). \
+            filter(prjMem.mem_name == self.name). \
             all()
-
         x = []
-
 
         # total_personal_score----------->|项目分数总和
         # total_frozen_score------------->|无效分总和
         # total_active_score------------->|激活分总和
         # total_waiting_to_active_score-->|等待积分激活的总和
-        total_personal_score          = 0
-        total_frozen_score            = 0
-        total_active_score            = 0
+        total_personal_score = 0
+        total_frozen_score = 0
+        total_active_score = 0
         total_waiting_to_active_score = 0
 
         for e in d:
@@ -428,13 +429,13 @@ class SearchDetail(object):
                       ])
 
             # 积分汇总
-            total_personal_score          += personal_total_score
-            total_frozen_score            += frozen_score
-            total_active_score            += active_score
+            total_personal_score += personal_total_score
+            total_frozen_score += frozen_score
+            total_active_score += active_score
             total_waiting_to_active_score += waiting_to_active_score
 
-        y = {'a':total_personal_score,
-             'b':total_active_score,
-             'c':total_waiting_to_active_score,
-             'd':total_frozen_score}
-        return x,y
+        y = {'a': total_personal_score,
+             'b': total_active_score,
+             'c': total_waiting_to_active_score,
+             'd': total_frozen_score}
+        return x, y
