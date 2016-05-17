@@ -26,6 +26,8 @@
     caption {text-align: center;font-size: 20px}
     #cf_1 {padding-top: 10px}
     pre {text-align: center;font-size: 10px;}
+    table {table-layout: fixed;}
+    td {word-wrap: break-word;}
 </style>
 
 <body>
@@ -86,7 +88,7 @@
     <tr>
         <td>Name</td>
         <!--用户角色的列-->
-        {% for k in ('Initiator','Leader','Major','Minor','Sum') %}
+        {% for k in ('Initiator','Leader','Major','Minor','Sum','Remark') %}
         <td>{{ k }}</td>
         {% endfor %}
     </tr>
@@ -96,11 +98,11 @@
         <tr>
         <!--score.items()包含人名的key(x)想以及各类角色得分的value(m)-->
         <td>{{ x }}</td>
-        {% for y in ('Initiator','Leader','Major','Minor','Sum') %}
-            <!--row values-->
+        {% for y in ('Initiator','Leader','Major','Minor','Sum','Remark') %}
             <td>{{ m.get(y) }}</td>
         {% endfor %}
         </tr>
+
         <tr>
           <td colspan="7">
               {{ x }}'s project show below:
@@ -120,6 +122,7 @@
             <td>{{ summary.get('Major_sum') }}</td>
             <td>{{ summary.get('Minor_sum') }}</td>
             <td>{{ summary.get('Sum_sum') }}</td>
+            <td><div>/</div></td>
         </tr>
     {% endif %}
 </tbody>
@@ -141,10 +144,26 @@
     table打印成pdf
      */
     print = function(){
-        var doc = new jsPDF('p', 'pt');
-        doc.text("From {{ request.form.get('date_begin') }} to {{ request.form.get('date_end') }}", 40, 50);
+        /*
+         jsPDF('p',...) 竖向打印
+         jsPDF('l',...) 横向打印
+          */
+        var doc = new jsPDF('l', 'pt','a4');
+        doc.setFontSize(8);
+        doc.text("Report Detail From {{ request.form.get('date_begin') }} to {{ request.form.get('date_end') }}" +
+                 "\tCopyright © CKT.IE&CKT.TECH", 40, 50);
         var res = doc.autoTableHtmlToJson(document.getElementById("report"));
-        doc.autoTable(res.columns, res.data,{startY:60});
+        doc.autoTable(res.columns, res.data,{
+            theme:'grid',
+            startY:60,
+            tableWidth: 'auto',
+            styles:{
+                fontSize: 10,
+                font: "helvetica",
+                overflow: "linebreak",
+                columnWidth: 'auto',
+            }
+        });
         doc.save('CTCLSS_monthly_report.pdf');
     };
 

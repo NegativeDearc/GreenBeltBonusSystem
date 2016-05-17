@@ -62,6 +62,8 @@ class ReportDetail(object):
 
         def format_tb(raw):
             '''格式化为pretty table'''
+
+            # 表头tb.field_names 必须和 e 中选取元素长度相同
             tb = PrettyTable()
             tb.field_names = ['Member', 'Action Date', 'Project id', 'Role Defined',
                               'Score Ration', 'Frozen Score?', 'Score']
@@ -86,7 +88,7 @@ class ReportDetail(object):
                                  prjRecord.score_or_not,
                                  prjRecord.score). \
                 filter(prjRecord.prj_mem == name). \
-                group_by(prjRecord.prj_role). \
+                order_by(prjRecord.prj_no). \
                 all()
             detail_set.update({name: format_tb(r)})
         return detail_set
@@ -99,6 +101,7 @@ class ReportDetail(object):
         score_set = dict()
         names = ReportDetail.name_set(self)
         for name in names:
+            # 按照角色分类进行聚合
             r1 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
                 filter(prjRecord.score_or_not == False,
                        prjRecord.prj_role == 'A',
@@ -120,6 +123,13 @@ class ReportDetail(object):
                        prjRecord.prj_mem == name). \
                 all()
 
+            # 用户相关项目的编号列表
+            r5 = db.session.query(prjRecord.prj_no).\
+                filter(prjRecord.prj_mem == name).\
+                all()
+            # 展开并获取唯一的项目编号
+            r5 = list(set(map(lambda x: str(x), list(chain(*r5)))))
+
             if r1[0].Sum is None:
                 a1 = 0.0
             else:
@@ -137,12 +147,16 @@ class ReportDetail(object):
             else:
                 a4 = float(r4[0].Sum)
 
-            score_set.update({name: {'Initiator': a1,
-                                     'Leader': a2,
-                                     'Major': a3,
-                                     'Minor': a4,
-                                     'Sum': a1 + a2 + a3 + a4}
-                              })
+            # 不显示没有分值的条目
+            if a1 + a2 + a3 + a4 != 0.0:
+                score_set.update({name: {'Initiator': a1,
+                                         'Leader': a2,
+                                         'Major': a3,
+                                         'Minor': a4,
+                                         'Sum': a1 + a2 + a3 + a4,
+                                         'Remark': r5
+                                         }
+                                  })
 
         # 汇总
         def summary(d):

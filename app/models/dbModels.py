@@ -344,7 +344,7 @@ class ScoreRelease(object):
                 x.mem_mono,
                 x.score_ratio,
                 x.score_or_not,
-                x.score_ratio * 0,
+                x.score_ratio * 0.0,
                 u'项目未通过六个月检查点,不得分',
                 self.now
             ))
