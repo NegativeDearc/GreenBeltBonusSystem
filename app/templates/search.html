@@ -20,7 +20,7 @@
     th {text-align: center;background: #27AE60;color: white;vertical-align: middle!important;}
     td {text-align: center}
     caption {text-align: center;font-size: 18px}
-    p {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    th,h4,label,p {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
     a:link{color: black;}
     a:hover{color: white;text-decoration:none;}
     .site-notice {padding: 5px 0 ;text-align: center;background: #208d4e}
@@ -115,7 +115,7 @@
                 <td><p>CIS Total Score <br>员工项目总积分</p></td>
                 <td><p>Active Score <br>可用积分</p></td>
                 <td><p>Inactive Score <br>暂不可用积分</p></td>
-                <td><p>Frozon Score<br>冻结积分</p></td>
+                <td><p>Invaild Score<br>无效积分</p></td>
             </tr>
             <tr>
                 <td>{{ data2.get('a') }}</td>
@@ -136,24 +136,24 @@
          <table class="table" id="score_matrix">
          <caption>{{ request.form.get('employee_name') }}'s Project Detail</caption>
              <tr>
-             <th rowspan="2">Project No.</th>
-             <th colspan="6">Project General Situation</th>
-             <th colspan="3">Releasing Status</th>
-             <th colspan="3">Timely Releasing Score</th>
+             <th rowspan="2">项目编号</th>
+             <th colspan="6">基本状况</th>
+             <th colspan="3">释放状态</th>
+             <th colspan="3">节点释放状态</th>
              </tr>
              <tr>
-                 <th>Member Role</th>
-                 <th>Closed date</th>
-                 <th>Project Type</th>
-                 <th>Project CIS Score</th>
-                 <th>Staff Score</th>
-                 <th>Invalid Score?</th>
-                 <th>Already Released</th>
-                 <th>Not Release Yet</th>
-                 <th>Invalid Score</th>
-                 <th>Project Closed</th>
-                 <th>Tracked 3 Month</th>
-                 <th>Tracked 6 Month</th>
+                 <th>角色代码</th>
+                 <th>关闭日期</th>
+                 <th>项目等级</th>
+                 <th>项目积分</th>
+                 <th>员工积分</th>
+                 <th>分值无效？</th>
+                 <th>已释放</th>
+                 <th>未释放</th>
+                 <th>无效</th>
+                 <th>项目关闭时释放</th>
+                 <th>追踪3月后释放</th>
+                 <th>追踪6月后释放</th>
              </tr>
              {% for element in data %}
                  <tr>
@@ -209,16 +209,19 @@
        $("#date_begin_2,#date_end_2").datepicker({dateFormat:"yy/mm/dd"})
     });
 
-$(".ahover").poshytip({
-    className: 'tip-twitter',
-	showTimeout: 1,
-	alignTo: 'target',
-	alignX: 'center',
-	offsetY: 5,
-	allowTipHover: false,
-	fade: false,
-	slide: false
-});
+    /*
+    悬浮提示
+     */
+    $(".ahover").poshytip({
+        className: 'tip-twitter',
+        showTimeout: 1,
+        alignTo: 'target',
+        alignX: 'center',
+        offsetY: 5,
+        allowTipHover: false,
+        fade: false,
+        slide: false
+    });
 </script>
 </body>
 </html>
