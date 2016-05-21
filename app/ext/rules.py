@@ -6,6 +6,7 @@ import os
 import json
 import bisect
 
+
 # 统一项目积分规则的接口
 class ruleMaker(object):
     def __init__(self):

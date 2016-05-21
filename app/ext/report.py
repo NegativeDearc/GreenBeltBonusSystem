@@ -41,8 +41,8 @@ class ReportDetail(object):
         c = [u'(060090)Zhang Meng', u'(134793)Leon Wang']
 
         '''
-        names = db.session.query(distinct(prjRecord.prj_mem)).filter(prjRecord.action_date > self.date_begin,
-                                                                     prjRecord.action_date < self.date_end).all()
+        names = db.session.query(distinct(prjRecord.prj_mem)).filter(prjRecord.action_date >= self.date_begin,
+                                                                     prjRecord.action_date <= self.date_end).all()
         name_list = list(chain(*map(lambda x: list(x), names)))
 
         return name_list

@@ -85,35 +85,66 @@ class prjInfo(db.Model):
         self.prj_six_month = self.prj_finish_time + datetime.timedelta(days=180)
         #
         self.prj_cost_saving = form.get('cost_saving')
-        self.prj_golden_type = rul.golden_type_judging(form.get('score_sum'))
-        #
-        self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
         self.prj_target_score = int(form.get('target_score'))
         #
-        if form.has_key('type_s'):
+        # 2016/5/20 按要求修改：项目等级应与金点子积分匹配
+        # 若两者不匹配，以项目等级为主，不过注意金点子G类型有3种
+        if 'type_s' in form:
             self.prj_level = 'S'
             self.prj_score = int(rul.rules_api_info()['s']['value'])
             # S类型无须检查
             self.prj_three_month_check = True
             self.prj_six_month_check = True
+            #
+            self.prj_golden_type = 's1'
+            self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 总分加和
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
             # S类型直接激活分值
             self.prj_active_score = self.prj_total_score
-        if form.has_key('type_p'):
+        if 'type_p' in form:
             self.prj_level = 'P'
             self.prj_score = int(rul.rules_api_info()['p']['value'])
+            #
+            self.prj_golden_type = 'p1'
+            self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 加和
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
-        if form.has_key('type_k'):
+        if 'type_k' in form:
             self.prj_level = 'K'
             self.prj_score = int(rul.rules_api_info()['k']['value'])
+            #
+            self.prj_golden_type = 'k1'
+            self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 加和
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
-        if form.has_key('type_g'):
+        if 'type_g' in form:
             self.prj_level = 'G'
             self.prj_score = int(rul.rules_api_info()['g']['value'])
+            # G类型因为有3种golden_type,在这里特殊处理
+            self.prj_golden_type = rul.golden_type_judging(form.get('score_sum'))
+            # 若恰为g1
+            if self.prj_golden_type == 'g1':
+                self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 若恰为g2
+            elif self.prj_golden_type == 'g2':
+                self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 若恰为g3
+            elif self.prj_golden_type == 'g3':
+                self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 不满足上述条件,默认为g1
+            else:
+                self.prj_golden_type = 'g1'
+                self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 加和
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
-        if form.has_key('type_b'):
+        if 'type_b' in form:
             self.prj_level = 'B'
             self.prj_score = int(rul.rules_api_info()['b']['value'])
+            #
+            self.prj_golden_type = 'b1'
+            self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            # 加和
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
 
     # 可针对单个实例或者类使用该方法

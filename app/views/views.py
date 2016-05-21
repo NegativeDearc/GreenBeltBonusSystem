@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 
-from flask import render_template, request, g, session, url_for, abort, redirect, flash, jsonify, make_response
+from flask import render_template, request, g, session, url_for, abort, redirect, \
+    flash, jsonify, make_response
 from urlparse import urlparse, urljoin
 from app import app, db
 
 from app.ext.rules import ruleMaker
-from app.ext.func_collection import count_member, golden_score, project_score, active_score_launched, register_mem_info
+from app.ext.func_collection import register_mem_info
 from app.ext.report import ReportDetail
 from app.models.dbModels import usrPwd, usrName, prjInfo, prjMem, ScoreRelease, SearchDetail
 
@@ -16,6 +17,7 @@ import sqlite3
 import string
 import os
 
+
 @app.before_request
 def connect_db():
     # 请求之前打开数据库链接
@@ -24,10 +26,6 @@ def connect_db():
     g.conn = sqlite3.connect(path, timeout=5)
     g.conn.text_factory = lambda x: unicode(x, "utf-8", "ignore")
     # 注册函数
-    g.conn.create_function('count_member', 1, count_member)
-    g.conn.create_function('golden_score', 1, golden_score)
-    g.conn.create_function('project_score', 1, project_score)
-    g.conn.create_function('active_score_launched', 2, active_score_launched)
 
 
 @app.teardown_appcontext
@@ -35,9 +33,8 @@ def close_db(exception):
     # 注意flask有两种环境，一种是应用环境app context，一种是请求环境request context
     # 在应用关闭销毁数据库链接
     if hasattr(g, 'conn'):
-        # 打印查看关闭情况
-        # print 'Database has been closed'
         g.conn.close()
+    db.session.close()
 
 
 def csrf_protect():
@@ -66,7 +63,6 @@ def search():
             session['date_end_2']   = request.form.get('date_end')
         if request.form.get('employee_name',None):
             content, total = SearchDetail(request.form).score_detail()
-            print content
     return render_template('search.html',data = content,data2 = total)
 
 
@@ -101,13 +97,13 @@ def admin():
             return redirect(url_for('admin'))
 
         # 3个月的动作
-        if reverse_dict.has_key('RELEASE'):
+        if 'RELEASE' in reverse_dict:
             for x in data_3_month:
                 if x.prj_no == reverse_dict.get('RELEASE'):
                     x.pass_3_month
             ScoreRelease(reverse_dict.get('RELEASE')).prj_3_release()
             return redirect(url_for('admin'))
-        if reverse_dict.has_key('CLOSE'):
+        if 'CLOSE' in reverse_dict:
             for x in data_3_month:
                 if x.prj_no == reverse_dict.get('CLOSE'):
                     x.close_3_month
@@ -115,14 +111,14 @@ def admin():
             return redirect(url_for('admin'))
 
         # 6个月的动作
-        if reverse_dict.has_key('release'):
+        if 'release' in reverse_dict:
             for x in data_6_month:
                 if x.prj_no == reverse_dict.get('release'):
                     x.pass_6_month
             ScoreRelease(reverse_dict.get('release')).prj_6_release()
             return redirect(url_for('admin'))
 
-        if reverse_dict.has_key('close'):
+        if 'close' in reverse_dict:
             for x in data_6_month:
                 if x.prj_no == reverse_dict.get('close'):
                     x.close_6_month
