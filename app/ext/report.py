@@ -8,7 +8,8 @@ from app.models.dbModels import prjRecord
 from sqlalchemy import distinct, func
 from itertools import chain
 from prettytable import PrettyTable
-
+from collections import OrderedDict
+from calendar import monthrange
 
 class ReportDetail(object):
     '''
@@ -25,8 +26,20 @@ class ReportDetail(object):
         处理来自jquery datepicker的日期格式,
         datepicker可在option中采用多种各种.
         '''
-        self.date_begin = datetime.datetime.strptime(begin, '%m/%d/%Y').date()
-        self.date_end = datetime.datetime.strptime(end, '%m/%d/%Y').date()
+
+        # 为了避免提交时传入空值或无法处理的值导致的出错
+        # 这里采用默认的月初和月首作为数据库的传入
+        try:
+            self.date_begin = datetime.datetime.strptime(begin, '%m/%d/%Y').date()
+        except ValueError:
+            self.date_begin = datetime.date.today().replace(day=1)
+
+        try:
+            self.date_end = datetime.datetime.strptime(end, '%m/%d/%Y').date()
+        except ValueError:
+            today = datetime.date.today()
+            _, last_day = monthrange(today.year,today.month)
+            self.date_end = datetime.date(today.year,today.month,last_day)
 
     def name_set(self):
         '''
@@ -41,8 +54,15 @@ class ReportDetail(object):
         c = [u'(060090)Zhang Meng', u'(134793)Leon Wang']
 
         '''
-        names = db.session.query(distinct(prjRecord.prj_mem)).filter(prjRecord.action_date >= self.date_begin,
-                                                                     prjRecord.action_date <= self.date_end).all()
+
+        # 因为在后面采用的是以名字为key的集合存储,在这里使用order_by没有意义
+        # 后采用OrderedDict()解决问题
+        names = db.session.query(distinct(prjRecord.prj_mem)).\
+            filter(prjRecord.action_date >= self.date_begin,
+                   prjRecord.action_date <= self.date_end).\
+            order_by(prjRecord.prj_mem). \
+            all()
+
         name_list = list(chain(*map(lambda x: list(x), names)))
 
         return name_list
@@ -57,7 +77,7 @@ class ReportDetail(object):
         | (060065)Fu Jiaying |  2016-05-14 | 815u9015j  |      A       |     0.2      |     False     | 1032.4000000000 |
         +--------------------+-------------+------------+--------------+--------------+---------------+-----------------+
         '''
-        detail_set = dict()
+        detail_set = OrderedDict()
         names = ReportDetail.name_set(self)
 
         def format_tb(raw):
@@ -66,7 +86,7 @@ class ReportDetail(object):
             # 表头tb.field_names 必须和 e 中选取元素长度相同
             tb = PrettyTable()
             tb.field_names = ['Member', 'Action Date', 'Project id', 'Role Defined',
-                              'Score Ration', 'Frozen Score?', 'Score']
+                              'Score Ration', 'Invalid Score?', 'Score']
             for e in raw:
                 tb.add_row([
                     e.prj_mem,
@@ -98,7 +118,7 @@ class ReportDetail(object):
         得分的细则,
         按类分别
         '''
-        score_set = dict()
+        score_set = OrderedDict()
         names = ReportDetail.name_set(self)
         for name in names:
             # 按照角色分类进行聚合

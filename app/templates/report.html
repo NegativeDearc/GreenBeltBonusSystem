@@ -59,13 +59,13 @@
             <div class="form-group">
                 <label for="due_time" class="col-sm-1 control-label">Date From</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control datepicker" name="date_begin" required="required" readonly>
+                    <input type="text" class="form-control datepicker" name="date_begin" required="required">
                 </div>
             </div>
             <div class="form-group">
                 <label for="due_time" class="col-sm-1 control-label">Date End</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control datepicker" name="date_end" required="required" readonly>
+                    <input type="text" class="form-control datepicker" name="date_end" required="required">
                 </div>
             </div>
             <div class="form-group">
@@ -107,9 +107,7 @@
           <td colspan="7">
               {{ x }}'s project show below:
               <pre class="content">
-                  {% for y in content.get(x) %}
-                      <div>{{ y }}</div>
-                  {% endfor %}
+                  <div>{{ content.get(x) }}</div>
               </pre>
           </td>
         </tr>
@@ -151,7 +149,7 @@
         var doc = new jsPDF('l', 'pt','a4');
         doc.setFontSize(8);
         doc.text("Report Detail From {{ request.form.get('date_begin') }} to {{ request.form.get('date_end') }}" +
-                 "\tCopyright © CKT.IE&CKT.TECH", 40, 50);
+                 "\tCopyright © CKT.CI", 40, 50);
         var res = doc.autoTableHtmlToJson(document.getElementById("report"));
         doc.autoTable(res.columns, res.data,{
             theme:'grid',
