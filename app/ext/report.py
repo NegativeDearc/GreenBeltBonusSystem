@@ -107,7 +107,9 @@ class ReportDetail(object):
                                  prjRecord.role_ratio,
                                  prjRecord.score_or_not,
                                  prjRecord.score). \
-                filter(prjRecord.prj_mem == name). \
+                filter(prjRecord.prj_mem == name,
+                	   prjRecord.action_date >= self.date_begin,
+                	   prjRecord.action_date <= self.date_end). \
                 order_by(prjRecord.prj_no). \
                 all()
             detail_set.update({name: format_tb(r)})
@@ -125,47 +127,58 @@ class ReportDetail(object):
             r1 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
                 filter(prjRecord.score_or_not == False,
                        prjRecord.prj_role == 'A',
-                       prjRecord.prj_mem == name). \
+                       prjRecord.prj_mem == name,
+                       prjRecord.action_date >= self.date_begin,
+                	   prjRecord.action_date <= self.date_end). \
                 all()
             r2 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
                 filter(prjRecord.score_or_not == False,
                        prjRecord.prj_role == 'B',
-                       prjRecord.prj_mem == name). \
+                       prjRecord.prj_mem == name,
+                       prjRecord.action_date >= self.date_begin,
+                	   prjRecord.action_date <= self.date_end). \
                 all()
             r3 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
                 filter(prjRecord.score_or_not == False,
                        prjRecord.prj_role == 'C',
-                       prjRecord.prj_mem == name). \
+                       prjRecord.prj_mem == name,
+                       prjRecord.action_date >= self.date_begin,
+                	   prjRecord.action_date <= self.date_end). \
                 all()
             r4 = db.session.query(func.sum(prjRecord.score).label('Sum')). \
                 filter(prjRecord.score_or_not == False,
                        prjRecord.prj_role == 'D',
-                       prjRecord.prj_mem == name). \
+                       prjRecord.prj_mem == name,
+                       prjRecord.action_date >= self.date_begin,
+                	   prjRecord.action_date <= self.date_end). \
                 all()
 
             # 用户相关项目的编号列表
             r5 = db.session.query(prjRecord.prj_no).\
-                filter(prjRecord.prj_mem == name).\
+                filter(prjRecord.prj_mem == name,
+                	   prjRecord.action_date >= self.date_begin,
+                	   prjRecord.action_date <= self.date_end).\
                 all()
             # 展开并获取唯一的项目编号
             r5 = list(set(map(lambda x: str(x), list(chain(*r5)))))
 
+            # 限制显示精度
             if r1[0].Sum is None:
                 a1 = 0.0
             else:
-                a1 = float(r1[0].Sum)
+                a1 = round(float(r1[0].Sum),2)
             if r2[0].Sum is None:
                 a2 = 0.0
             else:
-                a2 = float(r2[0].Sum)
+                a2 = round(float(r2[0].Sum),2)
             if r3[0].Sum is None:
                 a3 = 0.0
             else:
-                a3 = float(r3[0].Sum)
+                a3 = round(float(r3[0].Sum),2)
             if r4[0].Sum is None:
                 a4 = 0.0
             else:
-                a4 = float(r4[0].Sum)
+                a4 = round(float(r4[0].Sum),2)
 
             # 不显示没有分值的条目
             if a1 + a2 + a3 + a4 != 0.0:

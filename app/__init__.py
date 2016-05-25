@@ -9,7 +9,7 @@ def create_app(conf):
     app.config.from_object(conf)
     return app
 
-app = create_app(config['development'])
+app = create_app(config['production'])
 db = SQLAlchemy(app)
 
 # debug 模式关闭时启用日志记录

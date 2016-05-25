@@ -148,12 +148,12 @@ class prjInfo(db.Model):
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score
 
     # 可针对单个实例或者类使用该方法
-    # /admin 面板时间范围为(-15,+45)
+    # /admin 面板时间范围为(-2,+30)
     @hybrid_property
     def data_3_month(self):
         now = datetime.datetime.now().date()
-        now_before_2_days = now + datetime.timedelta(days=15)
-        now_after_30_days = now - datetime.timedelta(days=45)
+        now_before_2_days = now + datetime.timedelta(days=2)
+        now_after_30_days = now - datetime.timedelta(days=30)
         if self.prj_three_month_check is not True:
             if self.prj_three_month <= now_before_2_days and \
                             self.prj_three_month >= now_after_30_days:
@@ -169,8 +169,8 @@ class prjInfo(db.Model):
     @hybrid_property
     def data_6_month(self):
         now = datetime.datetime.now().date()
-        now_before_2_days = now + datetime.timedelta(days=15)
-        now_after_30_days = now - datetime.timedelta(days=45)
+        now_before_2_days = now + datetime.timedelta(days=2)
+        now_after_30_days = now - datetime.timedelta(days=30)
         if self.prj_six_month_check is not True:
             if self.prj_six_month <= now_before_2_days and \
                             self.prj_six_month >= now_after_30_days:
