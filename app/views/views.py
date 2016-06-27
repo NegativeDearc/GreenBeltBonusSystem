@@ -249,3 +249,27 @@ def db_to_pretty_table():
     for d in data:
         raw.add_row(d)
     return render_template('prettyTable.html', raw=raw)
+
+
+@app.route('/api/advanced_search/',methods=['POST','GET'])
+def advanced_search():
+    if request.method == 'POST':
+        sql_text = request.form.get('sql')
+        print sql_text
+
+        from config import ProductionConfig
+        conn = sqlite3.Connection(ProductionConfig.DATABASE_PATH)
+        cur = conn.cursor()
+
+        try:
+            data = cur.execute('select * from project_total WHERE ' + sql_text)
+            data = [list(x) for x in data]
+            return jsonify({'data':data}),200
+        except Exception:
+            return abort(500)
+        finally:
+            cur.close()
+            conn.close()
+        # 解析sql使其能被sqlalchemy处理
+    else:
+        return jsonify({'GET':'GOT NOTHING'})

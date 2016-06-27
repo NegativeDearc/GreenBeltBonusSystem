@@ -12,6 +12,13 @@
 <script src="static/jquery.min.js"></script>
 <script src="static/jquery-ui-1.11.4/jquery-ui.js"></script>
 <script src="static/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="static/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+<script src="static/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<script src="static/jQuery.extendext.min.js"></script>
+<script src="static/doT.min.js"></script>
+<link rel="stylesheet" href="static/jQuery-QueryBuilder/dist/css/query-builder.default.css">
+<script src="static/jQuery-QueryBuilder/dist/js/query-builder.js"></script>
 <script>
     /* root url */
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
@@ -30,7 +37,7 @@
     table caption {text-align: center;font-size: 20px;}
     th {text-align: center;vertical-align: middle!important;}
     td {text-align: center;vertical-align: middle!important;}
-    div.panel-heading,li,p,label,h3,td,label {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+    div.panel-heading,li,p,label,h3,td,label,h4,button {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
     .alert {text-align: center}
     nav.navbar-default {background-color: #27AE60;}
     #brand {color: white;font-size:18px;padding: 14px}
@@ -42,6 +49,7 @@
     input#reset {display: none;}
     input.btn1 {margin-top: 10px;}
     input.btn2 {width: 100px;}
+    .modal-dialog {width: 1140px;}
 </style>
 
 <body>
@@ -61,7 +69,8 @@
     <div class="collapse navbar-collapse navbar-responsive-collapse" id="navbar1">
         <a href="{{ url_for('index') }}" class="btn">Home</a>|
         <a href="{{ url_for('rules') }}" class="btn">Rules Editor</a>|
-        <a href="{{ url_for('report') }}" class="btn">Report System</a>
+        <a href="{{ url_for('report') }}" class="btn">Report System</a>|
+        <a class="btn" data-toggle="modal" data-target="#advanced-search">Advanced Search</a>
     </div>
 </nav>
 <!--重用结束-->
@@ -477,8 +486,28 @@
     </div>
 {% endif %}
 
-</body>
+<!-- advanced search -->
+<div class="modal fade" id="advanced-search" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="advanced-search-label">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">高级搜索</h4>
+            </div>
+            <div class="modal-body">
+                <div id="jquery-advanced-search"></div>
+                <button id="btn-set-sql" class="btn">SQL</button>
+                <div id="advanced-search-table" class="table-responsive"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
+</body>
 <script>
     /* root url */
     var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
@@ -717,6 +746,127 @@
             };
             $("#score_sum").attr('value',cumsum(data));
         });
+    });
+    /*
+    高级搜索器
+     */
+    $("#jquery-advanced-search").queryBuilder({
+          plugins: ['bt-tooltip-errors'],
+
+          filters: [{
+              id:'prj_no',
+              label:'Project Number(Item number)',
+              type:'string',
+              operators:['contains','equal']
+          }, {
+                  id:'mem_name',
+                  label: 'Employee Name or Id',
+                  type: 'string',
+                  operators:['contains']
+          },{
+                  id:'mem_role',
+                  label:'Employee role in Project',
+                  type:'string',
+                  input:'select',
+                  values:{
+                      'A':'A',
+                      'B':'B',
+                      'C':'C',
+                      'D':'D'
+                  },
+                  operators:['equal']
+              },
+              {
+                  id: 'prj_level',
+                  label: 'Project Type',
+                  type: 'string',
+                  input: 'select',
+                  values: {
+                      'S': 'S',
+                      'P': 'P',
+                      'K': 'K',
+                      'G': 'G',
+                      'B': 'B'
+                  },
+                  operators:['equal']
+          },{
+                  id: 'prj_finish_time',
+                  label: 'Project finished date',
+                  type: 'date',
+                  plugin: 'datepicker',
+                  plugin_config: {
+                      format: 'yyyy-mm-dd',
+                      todayBtn: 'linked',
+                      todayHighlight: true,
+                      autoclose: true
+                    },
+                  operators:['equal','less','less_or_equal','greater','greater_or_equal','between']
+              },
+          {
+                  id: 'prj_three_month',
+                  label: 'Project 3 month date',
+                  type: 'date',
+                  plugin: 'datepicker',
+                  plugin_config: {
+                      format: 'yyyy-mm-dd',
+                      todayBtn: 'linked',
+                      todayHighlight: true,
+                      autoclose: true
+                    },
+                  operators:['equal','less','less_or_equal','greater','greater_or_equal','between']
+              },
+          {
+                  id: 'prj_six_month',
+                  label: 'Project 6 month date',
+                  type: 'date',
+                  plugin: 'datepicker',
+                  plugin_config: {
+                      format: 'yyyy-mm-dd',
+                      todayBtn: 'linked',
+                      todayHighlight: true,
+                      autoclose: true
+                    },
+                  operators:['equal','less','less_or_equal','greater','greater_or_equal','between']
+              }
+          ]
+    });
+    /*
+    生成SQL
+     */
+    $('#btn-set-sql').on('click', function() {
+        var sql = $('#jquery-advanced-search').queryBuilder('getSQL');
+        if (sql.sql.length) {
+            var sql_text = sql.sql;
+            //console.log(sql_text);
+            $.ajax({
+                url : $SCRIPT_ROOT + '/api/advanced_search/',
+                method:'post',
+                data:{'sql':sql_text},
+                dataType:'json',
+                success:function(data){
+                    $('#advanced-search-table').html('');
+                    if (data.data.length) {
+                        var str = '<table class="table table-bordered">';
+                        str += '<tr class="info"><td>编号</td><td>内容</td><td>结束日期</td><td>3个月检查点</td><td>6个月检查点</td>' +
+                                '<td>是否通过三个月检查</td><td>是否通过六个月检查</td><td>金点子</td><td>项目等级</td>' +
+                                '<td>点子分</td><td>项目分</td><td>定向分</td><td>总分</td><td>成员</td><td>角色</td><td>备注</td>' +
+                                '<td>比例</td><td>是否有效</td></tr>'
+                        for (var i= 0;i< data.data.length;i++){
+                            str += '<tr>';
+                            for(var j=0;j< data.data[i].length;j++){
+                                str += '<td>' + data.data[i][j] + '</td>';
+                            };
+                            str += '</tr>';
+                        };
+                        str += '</table>';
+                    };
+                    $('#advanced-search-table').html(str);
+                },
+                error:function(msg){
+                    console.log('Database did not resopnse.')
+                }
+            });
+        };
     });
 </script>
 </html>
