@@ -67,9 +67,13 @@ class prjInfo(db.Model):
     prj_total_score = db.Column(db.Numeric(128), nullable=False)
     prj_active_score = db.Column(db.Numeric(128), default=0)
 
+    # 2016/7/1 add two columns
+    prj_golden_score_detail_sum = db.Column(db.Integer)
+    prj_cost_saving = db.Column(db.Float(10))
     #
     # member = db.relationship('prjMem',backref = 'prjInfo')
     #
+
     def __init__(self, form):
         rul = ruleMaker()
 
@@ -85,6 +89,7 @@ class prjInfo(db.Model):
         self.prj_six_month = self.prj_finish_time + datetime.timedelta(days=180)
         #
         self.prj_cost_saving = form.get('cost_saving')
+        self.prj_golden_score_detail_sum = form.get('score_sum')
         self.prj_target_score = int(form.get('target_score'))
         #
         # 2016/5/20 按要求修改：项目等级应与金点子积分匹配
@@ -132,9 +137,13 @@ class prjInfo(db.Model):
             # 若恰为g3
             elif self.prj_golden_type == 'g3':
                 self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
-            # 不满足上述条件,默认为g1
-            else:
+            # 2016/7/1 修正bug
+            # 不满足上述条件，会产生比g1小和比g3大两种情况，就近处理
+            elif self.prj_golden_type in ['s1','k1']:
                 self.prj_golden_type = 'g1'
+                self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
+            elif self.prj_golden_type in ['b1']:
+                self.prj_golden_type = 'g3'
                 self.prj_golden_score = int(rul.rules_api_info()[self.prj_golden_type]['value'])
             # 加和
             self.prj_total_score = self.prj_score + self.prj_golden_score + self.prj_target_score

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=Edge;IE=11;IE=10;IE=9"/>
     <title>Maintain Your DataBase</title>
-</head>
+
 <link rel="stylesheet" href="static/bootstrap.min.css">
 <link rel="stylesheet" href="static/jquery-ui.css">
 <link rel="stylesheet" href="static/jquery-ui-1.11.4/jquery-ui.theme.css">
@@ -49,8 +49,9 @@
     input#reset {display: none;}
     input.btn1 {margin-top: 10px;}
     input.btn2 {width: 100px;}
-    .modal-dialog {width: 1140px;}
+    .modal-dialog {width: 1280px;}
 </style>
+</head>
 
 <body>
 <!--这边可以通过jinja2模板继承重用-->
@@ -848,7 +849,7 @@
                     if (data.data.length) {
                         var str = '<table class="table table-bordered">';
                         str += '<tr class="info"><td>编号</td><td>内容</td><td>结束日期</td><td>3个月检查点</td><td>6个月检查点</td>' +
-                                '<td>是否通过三个月检查</td><td>是否通过六个月检查</td><td>金点子</td><td>项目等级</td>' +
+                                '<td>是否通过三个月检查</td><td>是否通过六个月检查</td><td>金点子分</td><td>Cost Saving</td><td>金点子</td><td>项目等级</td>' +
                                 '<td>点子分</td><td>项目分</td><td>定向分</td><td>总分</td><td>成员</td><td>角色</td><td>备注</td>' +
                                 '<td>比例</td><td>是否有效</td></tr>'
                         for (var i= 0;i< data.data.length;i++){

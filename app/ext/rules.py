@@ -107,16 +107,12 @@ class ruleMaker(object):
 
 if __name__ == '__main__':
     test = ruleMaker()
-    #print test.path
-    print test.rules_api_info()['s']['value']
-    print test.rules_api_info()['k1']['value']
-    print test.rules_api_info()['b3']['value']
-    print type(test.rules_api_info()['b3']['value']) #unicode
-    print test.rules_api_info()['s']['distribution']
-    print test.rules_api_info()['s']['distribution'][3]
-    print type(test.rules_api_info()['s']['distribution']) #list
-    print test.golden_type_judging(dict(duplicability=3,
-                                        resource_usage=3,
-                                        implement_period=3,
-                                        kpi_impact=3,
-                                        cost_saving=100))
+    # print test.path
+    # print test.rules_api_info()['s']['value']
+    # print test.rules_api_info()['k1']['value']
+    # print test.rules_api_info()['b3']['value']
+    # print type(test.rules_api_info()['b3']['value']) #unicode
+    # print test.rules_api_info()['s']['distribution']
+    # print test.rules_api_info()['s']['distribution'][3]
+    # print type(test.rules_api_info()['s']['distribution']) #list
+    print test.golden_type_judging(171)
