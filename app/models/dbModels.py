@@ -64,8 +64,8 @@ class prjInfo(db.Model):
     #
     prj_target_score = db.Column(db.Integer, nullable=False)
     #
-    prj_total_score = db.Column(db.Numeric(128), nullable=False)
-    prj_active_score = db.Column(db.Numeric(128), default=0)
+    prj_total_score = db.Column(db.Float(50), nullable=False)
+    prj_active_score = db.Column(db.Float(50), default=0)
 
     # 2016/7/1 add two columns
     prj_golden_score_detail_sum = db.Column(db.Integer)
@@ -264,7 +264,7 @@ class prjRecord(db.Model):
     role_ratio = db.Column(db.Float(50))
     score_or_not = db.Column(db.BOOLEAN)
     #
-    score = db.Column(db.Numeric(128))
+    score = db.Column(db.Float(50))
     prj_action = db.Column(db.String(128))
     action_date = db.Column(db.Date)
 

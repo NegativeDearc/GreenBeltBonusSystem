@@ -239,18 +239,6 @@ def add_employee():
         return make_response('', 500)
 
 
-@app.route('/api/test/database')
-def db_to_pretty_table():
-    cur = g.conn.cursor()
-    data = cur.execute('SELECT * FROM project_total').fetchall()
-    from prettytable import PrettyTable
-    from string import letters
-    raw = PrettyTable(letters[:18])
-    for d in data:
-        raw.add_row(d)
-    return render_template('prettyTable.html', raw=raw)
-
-
 @app.route('/api/advanced_search/',methods=['POST','GET'])
 def advanced_search():
     if request.method == 'POST':

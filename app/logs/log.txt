@@ -278,3 +278,603 @@ Traceback (most recent call last):
   File "/Library/Python/2.7/site-packages/flask/app.py", line 1566, in make_response
     raise ValueError('View function did not return a response')
 ValueError: View function did not return a response
+2016-07-15 19:05:25,796-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'1', u'2', '2016-06-27', '2016-09-25', '2016-12-24', 0, 0, 'p1', 20, 'P', 80, 11, 111.0, 0.0, u'', 1.0)]
+2016-07-15 19:05:50,829-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'1', u'2', '2016-06-27', '2016-09-25', '2016-12-24', 0, 0, 'p1', 20, 'P', 80, 11, 111.0, 0.0, u'', 1.0)]
+2016-07-15 19:07:36,513-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'1', u'2', '2016-07-01', '2016-09-29', '2016-12-28', 0, 0, 'p1', 20, 'P', 80, 100, 200.0, 0.0, u'', 111.0)]
+2016-07-15 19:07:41,182-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'1', u'2', '2016-07-01', '2016-09-29', '2016-12-28', 0, 0, 'p1', 20, 'P', 80, 100, 200.0, 0.0, u'', 111.0)]
+2016-07-15 22:25:03,634-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'test', u'test', '2016-07-03', '2016-10-01', '2016-12-30', 0, 0, 'k1', 50, 'K', 150, 444, 644.0, 0.0, u'14', 1999.0)]
+2016-07-15 22:26:19,228-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'ss', u'ag', '2016-07-03', '2016-10-01', '2016-12-30', 0, 0, 'k1', 50, 'K', 150, 444, 644.0, 0.0, u'', 1999.0)]
+2016-07-15 22:26:21,400-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'ss', u'ag', '2016-07-03', '2016-10-01', '2016-12-30', 0, 0, 'k1', 50, 'K', 150, 444, 644.0, 0.0, u'', 1999.0)]
+2016-07-15 22:34:15,678-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 93, in admin
+    x, y = register_mem_info(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/ext/func_collection.py", line 26, in register_mem_info
+    form.get('A_check', 0), form.get('A_mono'), rul[prj_level]['distribution'][0]
+KeyError: None
+2016-07-15 22:35:36,831-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'111', u'2222', '2016-07-05', '2016-10-03', '2017-01-01', 0, 0, 'k1', 50, 'K', 150, 223, 423.0, 0.0, u'', 111.0)]
+2016-07-15 22:41:19,452-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 93, in admin
+    x, y = register_mem_info(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/ext/func_collection.py", line 26, in register_mem_info
+    form.get('A_check', 0), form.get('A_mono'), rul[prj_level]['distribution'][0]
+KeyError: None
+2016-07-15 22:41:39,636-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 96, in admin
+    ScoreRelease(request.form.get('prj_name')).prj_launch(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/models/dbModels.py", line 290, in __init__
+    self.q1 = db.session.query(prjInfo.prj_total_score).filter(prjInfo.prj_no == prj_no).first()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2634, in first
+    ret = list(self[0:1])
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2457, in __getitem__
+    return list(res)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/query.py", line 2735, in __iter__
+    self.session._autoflush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1303, in _autoflush
+    util.raise_from_cause(e)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 1293, in _autoflush
+    self.flush()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2019, in flush
+    self._flush(objects)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2137, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/langhelpers.py", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/session.py", line 2101, in _flush
+    flush_context.execute()
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 373, in execute
+    rec.execute(self)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/unitofwork.py", line 532, in execute
+    uow
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 174, in save_obj
+    mapper, table, insert)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/orm/persistence.py", line 800, in _emit_insert_statements
+    execute(statement, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1146, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "/Library/Python/2.7/site-packages/sqlalchemy/util/compat.py", line 200, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/base.py", line 1139, in _execute_context
+    context)
+  File "/Library/Python/2.7/site-packages/sqlalchemy/engine/default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely) (sqlite3.IntegrityError) UNIQUE constraint failed: PRJ_INFO.prj_no [SQL: u'INSERT INTO "PRJ_INFO" (prj_no, prj_content, prj_finish_time, prj_three_month, prj_six_month, prj_three_month_check, prj_six_month_check, prj_golden_type, prj_golden_score, prj_level, prj_score, prj_target_score, prj_total_score, prj_active_score, prj_golden_score_detail_sum, prj_cost_saving) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'] [parameters: (u'sss', u'ssss', '2016-06-29', '2016-09-27', '2016-12-26', 0, 0, 'k1', 50, 'K', 150, 12, 212.0, 0.0, u'', 33.0)]
+2016-07-15 22:46:42,163-app-ERROR-Exception on /admin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/views/views.py", line 93, in admin
+    x, y = register_mem_info(request.form)
+  File "/Users/Dearc/Desktop/GreenBeltBonusSystem/app/ext/func_collection.py", line 26, in register_mem_info
+    form.get('A_check', 0), form.get('A_mono'), rul[prj_level]['distribution'][0]
+KeyError: None

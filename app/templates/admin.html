@@ -32,7 +32,6 @@
     };
     isIE();
 </script>
-
 <style type="text/css">
     table caption {text-align: center;font-size: 20px;}
     th {text-align: center;vertical-align: middle!important;}
@@ -40,7 +39,7 @@
     div.panel-heading,li,p,label,h3,td,label,h4,button {font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
     .alert {text-align: center}
     nav.navbar-default {background-color: #27AE60;}
-    #brand {color: white;font-size:18px;padding: 14px}
+    #brand {color: white;font-size:18px;padding: 16px}
     div.navbar-collapse > a {color: white;font-size:16px;padding: 14px}
     div.row {padding-left:20px;padding-right: 20px;margin-top: 20px}
     ol {color: red;}
@@ -49,7 +48,7 @@
     input#reset {display: none;}
     input.btn1 {margin-top: 10px;}
     input.btn2 {width: 100px;}
-    .modal-dialog {width: 1280px;}
+    #advanced-search > .modal-dialog {width: 1280px;}
 </style>
 </head>
 
@@ -326,7 +325,7 @@
             <!--成员信息维护-->
             <h3>成员信息</h3>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="member">
                     <tr class="warning">
                         <td colspan="2">角色定义</td>
                         <td>名单</td>
@@ -398,7 +397,8 @@
                 </table>
             </div>
         </div>
-        <input type="submit" class="btn btn-success btn1" value="Submit" name="submit1">
+        <input type="submit" class="btn btn-success btn1" value="Submit" name="submit1" onclick="return check_submit()">
+        <input type="submit" class="btn btn-success btn1" value="Submit" id="submit1_hidden" style="display: none;">
         </form>
     </div>
 </div>
@@ -508,6 +508,25 @@
     </div>
 </div>
 
+<!-- check before submit -->
+<div class="modal fade" id="check" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h3 class="modal-title">检查你的输入!</h3>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" id="submit2" onclick="a_1_submit()">确认提交</button>
+                <button class="btn btn-warning" data-dismiss="modal">返回修改</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script>
     /* root url */
@@ -700,7 +719,7 @@
     };
 
     /*计算积分*/
-    $("#cost_saving").bind('input propertychange',function(){
+    $("#cost_saving").bind('input oninput propertychange',function(){
         var cost = $("#cost_saving").val();
         if (cost == ''){
             $("#cost_score").attr('value',0);
@@ -847,11 +866,11 @@
                 success:function(data){
                     $('#advanced-search-table').html('');
                     if (data.data.length) {
-                        var str = '<table class="table table-bordered">';
+                        var str = '<table class="table table-bordered" style="font-size:12px;word-wrap:break-word;table-layout:nowarp;">';
                         str += '<tr class="info"><td>编号</td><td>内容</td><td>结束日期</td><td>3个月检查点</td><td>6个月检查点</td>' +
-                                '<td>是否通过三个月检查</td><td>是否通过六个月检查</td><td>金点子分</td><td>Cost Saving</td><td>金点子</td><td>项目等级</td>' +
+                                '<td>通过三个月检查?</td><td>通过六个月检查?</td><td>金点子分</td><td>Cost Saving</td><td>金点子</td><td>项目等级</td>' +
                                 '<td>点子分</td><td>项目分</td><td>定向分</td><td>总分</td><td>成员</td><td>角色</td><td>备注</td>' +
-                                '<td>比例</td><td>是否有效</td></tr>'
+                                '<td>比例</td><td>无效?</td></tr>'
                         for (var i= 0;i< data.data.length;i++){
                             str += '<tr>';
                             for(var j=0;j< data.data[i].length;j++){
@@ -869,5 +888,67 @@
             });
         };
     });
+    /*
+    提交表单前确认
+     */
+    check_submit = function () {
+        $("div#check .modal-body").html('');//清空之前的输入
+
+        //空值处理
+        $(".prj_type").each(function(){
+            if($(this).is(':checked')){
+                return prj_type = $(this).attr('name').substr(-1).toUpperCase();
+            } else {
+                return prj_type = "没有选中任何值";
+            }
+        });
+
+        var name    = new Array();
+        var type    = new Array();
+        var score   = new Array();
+        var remark  = new Array();
+        var lst     = $("#member").find("input");
+
+        for(var i=0;i<10;i++){
+            if(lst[i*3].value != '') {
+                name[i] = lst[i*3].value;
+                type[i] = lst[i*3].name[0];
+                if (lst[i*3+1].checked) {
+                    score[i]  = '得分!'
+                } else {
+                    score[i]  = '无效!'
+                }
+                remark[i] = lst[i*3+2].value;
+            }
+        };
+
+        str  = '<div>您刚刚录入的信息如下:</div>';
+        str += '<div>项目编号:<span style="color:red">'+ $("#prj_name").val() + '</span></div>';
+        str += '<div>项目内容:<span style="color:red">'+ $("#prj_des").val() + '</span></div>';
+        str += '<div>结案日期:<span style="color:red">'+ $("#prj_date").val() + '</span></div>';
+        str += '<div>金点总分:<span style="color:red">'+ $("#score_sum").val() + '</span></div>';
+        str += '<div>节约成本:<span style="color:red">'+ $("#cost_saving").val() + ' $</span></div>';
+        str += '<div>改善等级:<span style="color:red">' + prj_type +' </span></div>';
+        str += '<div>定向奖励:<span style="color:red">' + $("[name='target_score']").val() +' </span></div>';
+        str += '<hr>';
+
+        for(var j=0;j<name.length;j++){
+            if (name[j] != 'undefined') {
+                str += '<div>成员:<span style="color:red">' +
+                        name[j] + '--->' +
+                        score[j]+ '--->' +type[j] + '--->'+remark[j] +' </span></div>';
+            }
+        };
+
+        $("div#check .modal-body").append(str); //选取id=check元素div中所有class=modal-body的,注意空格
+        $("#check").modal('show');
+
+        return false;//return true 会造成一次空的POST提交
+    };
+
+    a_1_submit = function(){
+        $("#check").modal('hide');
+        $("#submit1_hidden").click();
+    }
 </script>
 </html>
