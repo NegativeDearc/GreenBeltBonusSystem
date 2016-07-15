@@ -1,247 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/trianglify.min.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/Name list for Sheldon.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bokeh-0.10.0/bokeh-0.10.0.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bokeh-0.10.0/bokeh-0.10.0.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ar-tn.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.az.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.bg.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.bs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ca.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.cs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.cy.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.da.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.de.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.el.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.en-AU.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.en-GB.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.en-IE.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.en-NZ.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.en-ZA.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.eo.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.et.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.eu.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fa.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fi.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fo.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr-CH.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.gl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.he.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.hr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.hu.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.hy.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.id.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.is.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.it-CH.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.it.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ja.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ka.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.kh.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.kk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.km.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ko.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.kr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.lt.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.lv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.me.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.mk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.mn.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ms.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.nb.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.nl-BE.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.nl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.no.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ro.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.rs-latin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.rs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.ru.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sq.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sr-latin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sw.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.th.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.tr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.uk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.vi.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-TW.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/fort/fort.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/fort/fort.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/boss.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/coin_3d.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/github.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/go.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/marquee.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/upload.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/index-background/us_dollar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/.jscsrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/.jshintrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/.scss-lint.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/CONTRIBUTING.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/Gruntfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/composer.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.ar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.az.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.cs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.da.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.de.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.en.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.es.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.fa-IR.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.fr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.it.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.nl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.no.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.pl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.pt-BR.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.pt-PT.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.ro.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.ru.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.sq.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.tr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.ua.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/i18n/query-builder.zh-CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/js/query-builder.standalone.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/js/query-builder.standalone.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/scss/dark.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/scss/default.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/scss/plugins/bt-tooltip-errors.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/scss/plugins/filter-description.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/scss/plugins/invert.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/dist/scss/plugins/sortable.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/examples/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/examples/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/examples/screenshot.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/.wrapper.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/core.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/defaults.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/.wrapper.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/ar.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/az.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/cs.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/da.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/de.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/en.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/es.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/fa-IR.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/fr.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/it.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/nl.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/no.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/pl.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/pt-BR.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/pt-PT.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/ro.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/ru.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/sq.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/tr.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/ua.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/i18n/zh-CN.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/model.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/bt-checkbox/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/bt-selectpicker/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/bt-tooltip-errors/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/bt-tooltip-errors/plugin.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/change-filters/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/filter-description/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/filter-description/plugin.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/ar.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/az.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/cs.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/en.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/fr.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/pl.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/ru.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/tr.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/ua.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/i18n/zh-CN.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/invert/plugin.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/mongodb-support/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/sortable/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/sortable/plugin.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/sql-support/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/plugins/unique-filter/plugin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/public.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/scss/dark.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/scss/default.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/template.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/src/utils.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/common.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/core.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/data.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/plugins-data.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/plugins-gui.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/plugins.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/jQuery-QueryBuilder/tests/utils.module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/Cakefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/browser/example.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/browser/sql-parser.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/lib/browser.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/lib/compiled_parser.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/lib/grammar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/lib/lexer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/lib/nodes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/lib/parser.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/lib/sql_parser.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/src/grammar.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/src/lexer.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/src/nodes.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/src/parser.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/src/sql_parser.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/test/grammar.spec.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/sql-parser/test/lexer.spec.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/templates/prettyTable.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/CTLSS_BONUS_DB_TEST" afterPath="$PROJECT_DIR$/app/models/CTLSS_BONUS_DB_TEST" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/logs/log.txt" afterPath="$PROJECT_DIR$/app/logs/log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/dbModels.py" afterPath="$PROJECT_DIR$/app/models/dbModels.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/admin.html" afterPath="$PROJECT_DIR$/app/templates/admin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/index.html" afterPath="$PROJECT_DIR$/app/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/login.html" afterPath="$PROJECT_DIR$/app/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/views.py" afterPath="$PROJECT_DIR$/app/views/views.py" />
-    </list>
+    <list default="true" id="4aa12980-c067-4d9b-9d42-e77633a73aba" name="Default" comment="" />
     <ignored path="GreenBeltBonusSystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -276,8 +36,8 @@
       <file leaf-file-name="admin.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/admin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4988067">
-              <caret line="946" column="6" selection-start-line="946" selection-start-column="6" selection-end-line="946" selection-end-column="6" />
+            <state vertical-scroll-proportion="2.1479714">
+              <caret line="951" column="5" selection-start-line="951" selection-start-column="5" selection-end-line="951" selection-end-column="5" />
               <folding>
                 <element signature="n#style#0;n#input#2;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -784,7 +544,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -793,7 +553,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29261363" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29261363" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1141,8 +901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4988067">
-          <caret line="946" column="6" selection-start-line="946" selection-start-column="6" selection-end-line="946" selection-end-column="6" />
+        <state vertical-scroll-proportion="2.1479714">
+          <caret line="951" column="5" selection-start-line="951" selection-start-column="5" selection-end-line="951" selection-end-column="5" />
           <folding>
             <element signature="n#style#0;n#input#2;n#form#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
