@@ -26,7 +26,7 @@
 
 **TODO**
 
-- 网站挂在Nignx后，闲杂导致外网IP地址无法获取，如何解决？
+- 网站挂在Nignx后，导致外网IP地址无法获取，如何解决？
 
 #### 管理员界面 ####
 使用jQuery Accordion 对页面进行折叠，节约版面。使用jQuery QueryBuilder插件生成Core SQL完成搜索和筛选

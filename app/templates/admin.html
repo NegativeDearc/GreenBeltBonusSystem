@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -398,7 +398,7 @@
             </div>
         </div>
         <input type="submit" class="btn btn-success btn1" value="Submit" name="submit1" onclick="return check_submit()">
-        <input type="submit" class="btn btn-success btn1" value="Submit" id="submit1_hidden" style="display: none;">
+        <input type="submit" class="btn btn-success btn1" value="Submit" name="submit1" id="submit1_hidden" style="display: none;">
         </form>
     </div>
 </div>
@@ -897,9 +897,8 @@
         //空值处理
         $(".prj_type").each(function(){
             if($(this).is(':checked')){
+                console.log($(this).attr('name').substr(-1).toUpperCase());
                 return prj_type = $(this).attr('name').substr(-1).toUpperCase();
-            } else {
-                return prj_type = "没有选中任何值";
             }
         });
 
@@ -914,9 +913,9 @@
                 name[i] = lst[i*3].value;
                 type[i] = lst[i*3].name[0];
                 if (lst[i*3+1].checked) {
-                    score[i]  = '得分!'
-                } else {
                     score[i]  = '无效!'
+                } else {
+                    score[i]  = '得分!'
                 }
                 remark[i] = lst[i*3+2].value;
             }
