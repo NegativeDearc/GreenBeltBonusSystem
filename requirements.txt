@@ -121,7 +121,7 @@ virtualenv==15.0.1
 w3lib==1.12.0
 watchdog==0.8.3
 wcwidth==0.1.4
-Werkzeug==0.10.4
+Werkzeug==0.15.3
 wfastcgi==2.2
 WTForms==2.0.2
 xlrd==0.9.4
