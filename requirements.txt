@@ -62,7 +62,7 @@ odo==0.3.4
 pandas==0.17.1
 pathtools==0.1.2
 PIL==1.1.7
-Pillow==2.9.0
+Pillow==6.2.0
 plan==0.5
 Pmw==2.0.1
 preppy==2.3.4
