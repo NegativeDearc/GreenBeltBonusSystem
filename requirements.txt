@@ -68,7 +68,7 @@ Pmw==2.0.1
 preppy==2.3.4
 prettytable==0.7.2
 prompt-toolkit==0.46
-psutil==3.2.1
+psutil==5.6.6
 ptpython==0.21
 py2exe==0.6.9
 pyasn1==0.1.8
